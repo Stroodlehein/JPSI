@@ -3,516 +3,618 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>JPSI — Japan Physical Silver Index</title>
-<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@300;400;600&family=Shippori+Mincho:wght@400;600&family=DM+Mono:wght@300;400;500&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300&display=swap" rel="stylesheet">
+<title>JPMI — Japan Physical Metals Index</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@200;300;400;600&family=DM+Mono:wght@300;400;500&family=Playfair+Display:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
 <style>
-  :root {
-    --bg: #f7f4ef; --paper: #fdfbf7; --ink: #1a1714; --ink2: #4a4540; --ink3: #8a847c;
-    --silver: #8c9aaa; --silver-light: #c8d0d8; --accent: #b87c4a; --accent2: #6b8c6b;
-    --border: #ddd8d0; --border2: #c8c2b8; --red: #9c3a2e;
-  }
-  * { box-sizing: border-box; margin: 0; padding: 0; }
-  body { background: var(--bg); color: var(--ink); font-family: 'Cormorant Garamond','Noto Serif JP',Georgia,serif; min-height: 100vh; position: relative; }
-  body::before { content:''; position:fixed; inset:0; background-image:repeating-linear-gradient(0deg,transparent,transparent 28px,rgba(26,23,20,0.015) 28px,rgba(26,23,20,0.015) 29px); pointer-events:none; z-index:0; }
-  .page { max-width:860px; margin:0 auto; padding:48px 24px 80px; position:relative; z-index:1; }
-  header { display:flex; justify-content:space-between; align-items:flex-start; margin-bottom:32px; padding-bottom:24px; border-bottom:1px solid var(--border2); }
-  .header-left h1 { font-size:2.4rem; font-weight:300; letter-spacing:0.08em; color:var(--ink); line-height:1.1; }
-  .header-left h1 span { color:var(--silver); }
-  .header-left .subtitle { font-size:0.85rem; color:var(--ink3); margin-top:6px; font-family:'DM Mono',monospace; letter-spacing:0.04em; }
-  .lang-toggle { display:flex; align-items:center; border:1px solid var(--border2); border-radius:2px; overflow:hidden; margin-top:4px; }
-  .lang-btn { padding:6px 14px; font-family:'DM Mono',monospace; font-size:0.75rem; letter-spacing:0.08em; cursor:pointer; border:none; background:var(--paper); color:var(--ink3); transition:all 0.15s; }
-  .lang-btn.active { background:var(--ink); color:var(--paper); }
-  .lang-btn:hover:not(.active) { background:var(--border); }
+:root {
+  --bg:#f5f2ec; --paper:#faf8f4; --ink:#17140f; --ink2:#3d3830; --ink3:#7a7368; --ink4:#a89f94;
+  --silver:#8a98a8; --border:#ddd8cf; --border2:#ccc6bb; --red:#8c2e22; --green:#2a5c3a;
+  --green-bg:#f0f6f1; --amber:#7a5a18; --amber-bg:#faf5e8; --red-bg:#faf0ee;
+}
+*{box-sizing:border-box;margin:0;padding:0;}
+html{scroll-behavior:smooth;}
+body{background:var(--bg);color:var(--ink);font-family:'Noto Serif JP',Georgia,serif;font-weight:300;min-height:100vh;}
+body::before{content:'';position:fixed;inset:0;background-image:repeating-linear-gradient(0deg,transparent,transparent 31px,rgba(23,20,15,0.018) 31px,rgba(23,20,15,0.018) 32px);pointer-events:none;z-index:0;}
+.page{max-width:900px;margin:0 auto;padding:0 24px 100px;position:relative;z-index:1;}
 
-  .fetch-banner { display:flex; align-items:center; gap:10px; padding:10px 16px; border-radius:2px; margin-bottom:20px; font-family:'DM Mono',monospace; font-size:0.72rem; letter-spacing:0.04em; border:1px solid var(--border); background:var(--paper); color:var(--ink3); transition:all 0.3s; }
-  .fetch-banner.loading { border-color:var(--silver-light); color:var(--silver); }
-  .fetch-banner.success { border-color:#b8d4b8; background:#f0f7f0; color:#3a6b3a; }
-  .fetch-banner.partial { border-color:#d4c8a8; background:#faf7ee; color:#6b5a2a; }
-  .fetch-banner.error { border-color:#e4b8b8; background:#f7f0f0; color:var(--red); }
-  .fetch-dot { width:7px; height:7px; border-radius:50%; background:currentColor; flex-shrink:0; }
-  .fetch-banner.loading .fetch-dot { animation:pulse 1s ease-in-out infinite; }
-  @keyframes pulse { 0%,100%{opacity:1}50%{opacity:0.2} }
-  .fetch-retry { margin-left:auto; background:none; border:1px solid currentColor; color:inherit; font-family:'DM Mono',monospace; font-size:0.65rem; padding:3px 8px; border-radius:2px; cursor:pointer; letter-spacing:0.06em; opacity:0.7; transition:opacity 0.15s; }
-  .fetch-retry:hover { opacity:1; }
-  .input-group.auto-filled input { border-color:#b8d4b8; background:#f8fbf8; }
-  .input-group .auto-tag { display:none; font-family:'DM Mono',monospace; font-size:0.6rem; color:#3a6b3a; letter-spacing:0.06em; margin-top:3px; }
-  .input-group.auto-filled .auto-tag { display:block; }
+/* MASTHEAD */
+.masthead{border-bottom:3px double var(--border2);padding:32px 0 20px;margin-bottom:0;}
+.masthead-top{display:flex;justify-content:space-between;align-items:flex-start;gap:16px;}
+.masthead-kicker{font-family:'DM Mono',monospace;font-size:0.62rem;letter-spacing:0.2em;color:var(--ink4);text-transform:uppercase;margin-bottom:8px;}
+.masthead-title{font-family:'Playfair Display',Georgia,serif;font-size:2.6rem;font-weight:700;letter-spacing:-0.01em;line-height:1;color:var(--ink);}
+.masthead-title .abbr{color:var(--silver);font-weight:400;font-style:italic;}
+.masthead-title .kanji-inline{font-family:'Noto Serif JP';font-weight:200;font-size:1.8rem;color:var(--ink3);margin-left:10px;vertical-align:middle;opacity:0.5;}
+.masthead-tagline{margin-top:10px;font-size:0.9rem;color:var(--ink3);font-style:italic;font-family:'Playfair Display',serif;max-width:480px;line-height:1.5;}
+.masthead-tagline em{color:var(--ink2);font-style:normal;}
+.masthead-right{display:flex;flex-direction:column;align-items:flex-end;gap:10px;flex-shrink:0;}
+.lang-toggle{display:flex;border:1px solid var(--border2);border-radius:2px;overflow:hidden;}
+.lang-btn{padding:5px 12px;font-family:'DM Mono',monospace;font-size:0.7rem;letter-spacing:0.08em;cursor:pointer;border:none;background:var(--paper);color:var(--ink3);transition:all 0.15s;}
+.lang-btn.active{background:var(--ink);color:var(--paper);}
+.lang-btn:hover:not(.active){background:var(--border);}
 
-  .index-card { background:var(--ink); color:var(--paper); border-radius:3px; padding:32px 36px; margin-bottom:32px; position:relative; overflow:hidden; }
-  .index-card::before { content:'銀'; position:absolute; right:-10px; top:-20px; font-size:140px; font-family:'Noto Serif JP'; color:rgba(255,255,255,0.04); font-weight:600; pointer-events:none; line-height:1; }
-  .index-card .date-label { font-family:'DM Mono',monospace; font-size:0.7rem; letter-spacing:0.12em; color:rgba(255,255,255,0.45); margin-bottom:12px; text-transform:uppercase; }
-  .index-card .jpsi-main { display:flex; align-items:baseline; gap:12px; margin-bottom:4px; }
-  .index-card .jpsi-label { font-family:'DM Mono',monospace; font-size:0.75rem; letter-spacing:0.14em; color:rgba(255,255,255,0.5); }
-  .index-card .jpsi-value { font-size:3.2rem; font-weight:300; letter-spacing:0.02em; color:#fff; font-family:'DM Mono',monospace; }
-  .index-card .jpsi-unit { font-size:1rem; color:rgba(255,255,255,0.55); font-family:'DM Mono',monospace; }
-  .sub-indices { display:grid; grid-template-columns:repeat(3,1fr); gap:20px; margin-top:24px; padding-top:24px; border-top:1px solid rgba(255,255,255,0.1); }
-  .sub-index { display:flex; flex-direction:column; gap:4px; }
-  .sub-index .si-label { font-family:'DM Mono',monospace; font-size:0.65rem; letter-spacing:0.14em; color:rgba(255,255,255,0.4); text-transform:uppercase; }
-  .sub-index .si-name { font-size:0.78rem; color:rgba(255,255,255,0.6); font-style:italic; }
-  .sub-index .si-value { font-family:'DM Mono',monospace; font-size:1.25rem; color:#fff; font-weight:400; }
-  .premium-pill { display:inline-flex; align-items:center; gap:6px; background:rgba(255,255,255,0.08); border:1px solid rgba(255,255,255,0.12); border-radius:2px; padding:4px 10px; font-family:'DM Mono',monospace; font-size:0.7rem; color:rgba(255,255,255,0.6); margin-top:16px; }
-  .premium-pill span { color:#fff; font-weight:500; }
+/* NAV */
+.site-nav{display:flex;gap:0;border-bottom:1px solid var(--border);margin-bottom:24px;margin-top:0;}
+.nav-link{font-family:'DM Mono',monospace;font-size:0.68rem;letter-spacing:0.1em;text-transform:uppercase;padding:10px 18px;text-decoration:none;color:var(--ink4);border-bottom:2px solid transparent;margin-bottom:-1px;transition:all 0.15s;}
+.nav-link:hover{color:var(--ink2);}
+.nav-link.active{color:var(--ink);border-bottom-color:var(--ink);}
 
-  .section { background:var(--paper); border:1px solid var(--border); border-radius:3px; margin-bottom:20px; overflow:hidden; }
-  .section-header { display:flex; align-items:center; justify-content:space-between; padding:16px 24px; border-bottom:1px solid var(--border); background:rgba(26,23,20,0.02); }
-  .section-title { display:flex; align-items:center; gap:10px; }
-  .section-badge { font-family:'DM Mono',monospace; font-size:0.6rem; letter-spacing:0.14em; padding:3px 7px; border-radius:2px; text-transform:uppercase; }
-  .badge-rs { background:#e8f0e8; color:#3a6b3a; border:1px solid #b8d4b8; }
-  .badge-db { background:#e8ecf4; color:#3a4a6b; border:1px solid #b8c4e4; }
-  .badge-sr { background:#f4ece4; color:#6b4a2a; border:1px solid #d4b898; }
-  .badge-jpsi { background:#1a1714; color:#f7f4ef; border:1px solid #1a1714; }
-  .section-title h3 { font-size:1rem; font-weight:400; color:var(--ink); }
-  .section-body { padding:20px 24px; }
-  .input-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(200px,1fr)); gap:16px; }
-  .input-group { display:flex; flex-direction:column; gap:6px; }
-  .input-group label { font-size:0.75rem; color:var(--ink3); font-family:'DM Mono',monospace; letter-spacing:0.04em; }
-  .input-group input { background:var(--bg); border:1px solid var(--border2); border-radius:2px; padding:9px 12px; font-family:'DM Mono',monospace; font-size:0.9rem; color:var(--ink); transition:border-color 0.15s,background 0.3s; width:100%; }
-  .input-group input:focus { outline:none; border-color:var(--silver); }
-  .input-group input::placeholder { color:var(--border2); }
-  .weights-row { display:grid; grid-template-columns:repeat(3,1fr) auto; gap:12px; align-items:end; }
-  .weight-sum { font-family:'DM Mono',monospace; font-size:0.75rem; padding-bottom:10px; color:var(--ink3); }
-  .weight-sum.ok { color:var(--accent2); } .weight-sum.err { color:var(--red); }
-  .merctable { width:100%; border-collapse:collapse; }
-  .merctable th { font-family:'DM Mono',monospace; font-size:0.65rem; letter-spacing:0.1em; text-transform:uppercase; color:var(--ink3); text-align:left; padding:8px 12px; border-bottom:1px solid var(--border); }
-  .merctable td { padding:10px 12px; font-family:'DM Mono',monospace; font-size:0.9rem; color:var(--ink); border-bottom:1px solid var(--border); }
-  .merctable tr:last-child td { border-bottom:none; }
-  .merctable td:nth-child(2) { color:var(--ink3); }
-  .merc-add-row { display:flex; gap:10px; margin-top:12px; }
-  .merc-add-row input { flex:1; background:var(--bg); border:1px solid var(--border2); border-radius:2px; padding:8px 12px; font-family:'DM Mono',monospace; font-size:0.85rem; color:var(--ink); }
-  .merc-add-row input:focus { outline:none; border-color:var(--silver); }
-  .btn { padding:9px 18px; font-family:'DM Mono',monospace; font-size:0.75rem; letter-spacing:0.08em; border:none; border-radius:2px; cursor:pointer; transition:all 0.15s; }
-  .btn-primary { background:var(--ink); color:var(--paper); } .btn-primary:hover { background:#333; }
-  .btn-secondary { background:transparent; border:1px solid var(--border2); color:var(--ink2); } .btn-secondary:hover { background:var(--border); }
-  .btn-danger { background:transparent; border:none; color:var(--ink3); padding:4px 8px; font-size:0.7rem; } .btn-danger:hover { color:var(--red); }
-  .actions { display:flex; gap:10px; flex-wrap:wrap; margin-top:4px; }
-  .signals-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(180px,1fr)); gap:12px; }
-  .signal-card { border:1px solid var(--border); border-radius:2px; padding:14px 16px; background:var(--bg); }
-  .signal-trigger { font-family:'DM Mono',monospace; font-size:0.72rem; color:var(--ink2); margin-bottom:6px; }
-  .signal-meaning { font-size:0.82rem; color:var(--ink3); font-style:italic; line-height:1.4; }
-  .formula-block { background:var(--bg); border:1px solid var(--border); border-radius:2px; padding:16px 18px; font-family:'DM Mono',monospace; font-size:0.78rem; color:var(--ink2); line-height:2; }
-  .formula-block .f-comment { color:var(--ink3); font-size:0.7rem; }
-  .disclaimer { margin-top:32px; padding:16px 20px; border-left:2px solid var(--border2); font-size:0.78rem; color:var(--ink3); line-height:1.6; font-style:italic; }
-  footer { margin-top:48px; padding-top:20px; border-top:1px solid var(--border); display:flex; justify-content:space-between; align-items:center; }
-  footer .f-left { font-family:'DM Mono',monospace; font-size:0.68rem; color:var(--ink3); letter-spacing:0.08em; }
-  footer .f-right { font-size:0.75rem; color:var(--ink3); font-style:italic; }
-  .notif { position:fixed; bottom:24px; right:24px; background:var(--ink); color:var(--paper); padding:12px 20px; border-radius:2px; font-family:'DM Mono',monospace; font-size:0.75rem; opacity:0; transform:translateY(8px); transition:all 0.2s; pointer-events:none; z-index:100; }
-  .notif.show { opacity:1; transform:translateY(0); }
-  @media (max-width:600px) {
-    header { flex-direction:column; gap:16px; }
-    .header-left h1 { font-size:1.8rem; }
-    .sub-indices { grid-template-columns:repeat(3,1fr); gap:12px; }
-    .index-card { padding:24px 20px; }
-    .weights-row { grid-template-columns:repeat(3,1fr); }
-    .weights-row .weight-sum { grid-column:1/-1; }
-    footer { flex-direction:column; gap:8px; text-align:center; }
-  }
+.masthead-meta{font-family:'DM Mono',monospace;font-size:0.62rem;color:var(--ink4);letter-spacing:0.06em;text-align:right;line-height:1.7;}
+
+/* IDEOLOGY STRIP */
+.ideology-strip{border-bottom:1px solid var(--border);padding:14px 0;margin-bottom:28px;display:flex;align-items:center;overflow:hidden;}
+.ideology-item{flex:1;padding:0 20px;border-right:1px solid var(--border);text-align:center;}
+.ideology-item:first-child{padding-left:0;}
+.ideology-item:last-child{border-right:none;padding-right:0;}
+.ideology-contrast{font-family:'DM Mono',monospace;font-size:0.6rem;letter-spacing:0.1em;color:var(--ink4);text-transform:uppercase;display:flex;align-items:center;justify-content:center;gap:8px;}
+.ideology-contrast .old{color:var(--ink4);text-decoration:line-through;}
+.ideology-contrast .arrow{color:var(--border2);}
+.ideology-contrast .new{color:var(--ink2);font-weight:500;}
+
+/* FETCH BANNER */
+.fetch-banner{display:flex;align-items:center;gap:10px;padding:8px 14px;font-family:'DM Mono',monospace;font-size:0.68rem;letter-spacing:0.04em;border:1px solid var(--border);background:var(--paper);color:var(--ink4);margin-bottom:20px;border-radius:1px;transition:all 0.3s;}
+.fetch-banner.loading{border-color:#c8d4d8;color:var(--silver);}
+.fetch-banner.success{border-color:#b0ccb8;background:var(--green-bg);color:var(--green);}
+.fetch-banner.partial{border-color:#ccc0a0;background:var(--amber-bg);color:var(--amber);}
+.fetch-banner.error{border-color:#ccb0ac;background:var(--red-bg);color:var(--red);}
+.fetch-dot{width:6px;height:6px;border-radius:50%;background:currentColor;flex-shrink:0;}
+.fetch-banner.loading .fetch-dot{animation:blink 1.2s ease-in-out infinite;}
+@keyframes blink{0%,100%{opacity:1}50%{opacity:0.15}}
+.fetch-retry{margin-left:auto;background:none;border:1px solid currentColor;color:inherit;font-family:'DM Mono',monospace;font-size:0.62rem;padding:2px 8px;cursor:pointer;opacity:0.6;transition:opacity 0.15s;letter-spacing:0.06em;}
+.fetch-retry:hover{opacity:1;}
+
+/* BENCHMARK CARD */
+.benchmark-card{background:var(--ink);color:var(--paper);padding:36px 40px 32px;margin-bottom:28px;position:relative;overflow:hidden;}
+.benchmark-card::before{content:'銀';position:absolute;right:-8px;top:-16px;font-family:'Noto Serif JP';font-size:200px;font-weight:200;color:rgba(255,255,255,0.035);pointer-events:none;line-height:1;user-select:none;}
+.benchmark-card::after{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,var(--silver) 0%,rgba(138,152,168,0.2) 100%);}
+.bc-header{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:24px;}
+.bc-label{font-family:'DM Mono',monospace;font-size:0.62rem;letter-spacing:0.2em;color:rgba(255,255,255,0.35);text-transform:uppercase;}
+.bc-timestamp{font-family:'DM Mono',monospace;font-size:0.62rem;color:rgba(255,255,255,0.3);letter-spacing:0.06em;text-align:right;line-height:1.6;}
+.bc-main{display:flex;align-items:baseline;gap:14px;margin-bottom:6px;}
+.bc-index-name{font-family:'DM Mono',monospace;font-size:0.8rem;letter-spacing:0.16em;color:rgba(255,255,255,0.45);}
+.bc-price{font-family:'DM Mono',monospace;font-size:3.8rem;font-weight:300;color:#fff;letter-spacing:-0.01em;line-height:1;}
+.bc-currency{font-family:'DM Mono',monospace;font-size:1.1rem;color:rgba(255,255,255,0.45);font-weight:300;}
+.bc-subtitle{font-family:'Noto Serif JP',serif;font-size:0.78rem;color:rgba(255,255,255,0.35);font-style:italic;margin-bottom:28px;font-weight:300;}
+.bc-sub-row{display:grid;grid-template-columns:repeat(3,1fr);gap:0;border-top:1px solid rgba(255,255,255,0.08);padding-top:20px;margin-top:4px;}
+.bc-sub{padding:0 20px;border-right:1px solid rgba(255,255,255,0.06);}
+.bc-sub:first-child{padding-left:0;}
+.bc-sub:last-child{border-right:none;}
+.bc-sub-tag{font-family:'DM Mono',monospace;font-size:0.6rem;letter-spacing:0.18em;color:rgba(255,255,255,0.3);text-transform:uppercase;margin-bottom:4px;}
+.bc-sub-name{font-size:0.72rem;color:rgba(255,255,255,0.5);font-style:italic;margin-bottom:6px;}
+.bc-sub-val{font-family:'DM Mono',monospace;font-size:1.3rem;color:rgba(255,255,255,0.9);font-weight:400;}
+.bc-footer-row{display:flex;align-items:center;justify-content:space-between;margin-top:20px;padding-top:16px;border-top:1px solid rgba(255,255,255,0.06);}
+.premium-badge{display:inline-flex;align-items:center;gap:8px;font-family:'DM Mono',monospace;font-size:0.68rem;color:rgba(255,255,255,0.45);}
+.premium-badge .pval{color:#fff;font-size:0.9rem;font-weight:400;}
+.bc-methodology-note{font-family:'Noto Serif JP',serif;font-size:0.7rem;color:rgba(255,255,255,0.22);font-style:italic;font-weight:300;text-align:right;}
+
+/* SECTION GROUP */
+.section-group{margin-bottom:28px;}
+.section-group-label{font-family:'DM Mono',monospace;font-size:0.6rem;letter-spacing:0.2em;text-transform:uppercase;color:var(--ink4);margin-bottom:10px;padding-bottom:6px;border-bottom:1px solid var(--border);display:flex;align-items:center;justify-content:space-between;}
+.sgl-badge{display:inline-block;padding:2px 7px;border-radius:1px;font-size:0.58rem;letter-spacing:0.12em;}
+.sgl-rs{background:#eaf0ea;color:#2a5c3a;border:1px solid #b8d4b8;}
+.sgl-db{background:#eaecf4;color:#2a3a6c;border:1px solid #b8c4e4;}
+.sgl-sr{background:#f4ece4;color:#6b4a2a;border:1px solid #d4b898;}
+
+/* PRICE CARDS */
+.price-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));gap:10px;}
+.price-card{background:var(--paper);border:1px solid var(--border);padding:16px 18px;position:relative;transition:border-color 0.3s,background 0.3s;}
+.price-card::before{content:'';position:absolute;top:0;left:0;width:2px;height:100%;background:var(--border2);transition:background 0.3s;}
+.price-card.loaded{border-color:#c0d8c0;background:#f8fbf8;}
+.price-card.loaded::before{background:#6aaa7a;}
+.price-card.failed{border-color:#d8c0bc;background:#fbf8f8;}
+.price-card.failed::before{background:#cc7a6a;}
+.price-card.manual{border-style:dashed;border-color:var(--border2);}
+.price-card.manual::before{background:var(--border2);}
+.pc-source{font-family:'DM Mono',monospace;font-size:0.6rem;letter-spacing:0.12em;color:var(--ink4);text-transform:uppercase;margin-bottom:10px;}
+.pc-value{font-family:'DM Mono',monospace;font-size:1.6rem;color:var(--ink);font-weight:400;line-height:1;margin-bottom:4px;transition:color 0.3s;}
+.price-card.loading-state .pc-value{color:var(--border2);font-size:1rem;font-style:italic;}
+.price-card.failed .pc-value{color:#cc7a6a;font-size:0.85rem;font-style:italic;}
+.pc-unit{font-family:'DM Mono',monospace;font-size:0.62rem;color:var(--ink4);margin-bottom:6px;}
+.pc-status{font-family:'DM Mono',monospace;font-size:0.58rem;color:var(--green);letter-spacing:0.04em;}
+.price-card.failed .pc-status{color:var(--red);}
+.price-card.manual input{background:transparent;border:none;border-bottom:1px solid var(--border2);font-family:'DM Mono',monospace;font-size:1.6rem;color:var(--ink);width:100%;padding:0 0 2px;outline:none;line-height:1;margin-bottom:4px;}
+.price-card.manual input:focus{border-bottom-color:var(--silver);}
+.price-card.manual input::placeholder{color:var(--border2);font-size:1.1rem;}
+.pc-hint{font-family:'DM Mono',monospace;font-size:0.58rem;color:var(--ink4);font-style:italic;margin-top:6px;}
+
+/* ABOUT STRIP */
+.about-strip{border:1px solid var(--border);background:var(--paper);padding:24px 28px;margin-bottom:28px;position:relative;overflow:hidden;}
+.about-strip::before{content:'日本現物金属指数';position:absolute;right:-4px;bottom:-10px;font-family:'Noto Serif JP';font-size:48px;font-weight:200;color:rgba(23,20,15,0.04);pointer-events:none;white-space:nowrap;}
+.about-headline{font-family:'Playfair Display',serif;font-size:1.05rem;font-weight:700;color:var(--ink);margin-bottom:10px;line-height:1.3;}
+.about-body{font-size:0.82rem;color:var(--ink3);line-height:1.75;max-width:640px;}
+.about-body strong{color:var(--ink2);font-weight:400;}
+.paradigm-table{margin-top:16px;display:grid;grid-template-columns:1fr auto 1fr;gap:4px 12px;font-family:'DM Mono',monospace;font-size:0.62rem;letter-spacing:0.04em;}
+.pt-header{color:var(--ink4);text-transform:uppercase;letter-spacing:0.12em;padding-bottom:4px;border-bottom:1px solid var(--border);}
+.pt-old{color:var(--ink4);text-decoration:line-through;}
+.pt-arrow{color:var(--border2);text-align:center;}
+.pt-new{color:var(--ink2);font-weight:500;}
+
+/* SR SECTION */
+.sr-section{background:var(--paper);border:1px solid var(--border);margin-bottom:28px;}
+.sr-header{display:flex;align-items:center;justify-content:space-between;padding:14px 20px;border-bottom:1px solid var(--border);background:rgba(23,20,15,0.018);}
+.sr-header-left{display:flex;align-items:center;gap:10px;}
+.sr-header h3{font-size:0.88rem;font-weight:400;color:var(--ink);}
+.sr-body{padding:18px 20px;}
+.sr-note{font-size:0.75rem;color:var(--ink3);font-style:italic;margin-bottom:14px;line-height:1.5;}
+.merctable{width:100%;border-collapse:collapse;}
+.merctable th{font-family:'DM Mono',monospace;font-size:0.6rem;letter-spacing:0.1em;text-transform:uppercase;color:var(--ink4);text-align:left;padding:6px 10px;border-bottom:1px solid var(--border);}
+.merctable td{padding:9px 10px;font-family:'DM Mono',monospace;font-size:0.88rem;color:var(--ink);border-bottom:1px solid var(--border);}
+.merctable tr:last-child td{border-bottom:none;}
+.merctable td:nth-child(2){color:var(--ink3);}
+.merc-add-row{display:flex;gap:8px;margin-top:12px;}
+.merc-add-row input{flex:1;background:var(--bg);border:1px solid var(--border2);padding:7px 10px;font-family:'DM Mono',monospace;font-size:0.85rem;color:var(--ink);outline:none;border-radius:1px;}
+.merc-add-row input:focus{border-color:var(--silver);}
+.mspi-mean-row{margin-top:10px;padding:8px 12px;background:var(--bg);border:1px solid var(--border);display:flex;justify-content:space-between;align-items:center;}
+.mspi-label{font-family:'DM Mono',monospace;font-size:0.65rem;color:var(--ink4);letter-spacing:0.08em;}
+.mspi-val{font-family:'DM Mono',monospace;font-size:0.95rem;color:var(--ink);}
+
+/* WEIGHTS */
+.weights-section{background:var(--paper);border:1px solid var(--border);margin-bottom:28px;}
+.ws-header{padding:14px 20px;border-bottom:1px solid var(--border);display:flex;align-items:center;gap:10px;background:rgba(23,20,15,0.018);}
+.ws-header h3{font-size:0.88rem;font-weight:400;color:var(--ink);}
+.ws-body{padding:18px 20px;}
+.weights-row{display:grid;grid-template-columns:1fr 1fr 1fr auto;gap:12px;align-items:end;margin-bottom:16px;}
+.wt-group{display:flex;flex-direction:column;gap:5px;}
+.wt-group label{font-family:'DM Mono',monospace;font-size:0.62rem;color:var(--ink4);letter-spacing:0.08em;text-transform:uppercase;}
+.wt-group input{background:var(--bg);border:1px solid var(--border2);padding:8px 10px;font-family:'DM Mono',monospace;font-size:0.9rem;color:var(--ink);width:100%;outline:none;border-radius:1px;transition:border-color 0.15s;}
+.wt-group input:focus{border-color:var(--silver);}
+.weight-sum{font-family:'DM Mono',monospace;font-size:0.72rem;padding-bottom:9px;color:var(--ink4);}
+.weight-sum.ok{color:var(--green);}
+.weight-sum.err{color:var(--red);}
+.actions{display:flex;gap:8px;flex-wrap:wrap;}
+
+/* SIGNALS */
+.signals-section{margin-bottom:28px;}
+.signals-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(185px,1fr));gap:10px;}
+.signal-card{background:var(--paper);border:1px solid var(--border);padding:14px 16px;}
+.signal-trigger{font-family:'DM Mono',monospace;font-size:0.72rem;color:var(--ink2);margin-bottom:5px;letter-spacing:0.02em;}
+.signal-meaning{font-size:0.78rem;color:var(--ink3);font-style:italic;line-height:1.45;}
+
+/* METHODOLOGY */
+.method-section{background:var(--paper);border:1px solid var(--border);margin-bottom:28px;}
+.method-header{padding:14px 20px;border-bottom:1px solid var(--border);background:rgba(23,20,15,0.018);}
+.method-header h3{font-size:0.88rem;font-weight:400;color:var(--ink);}
+.method-body{padding:18px 20px;}
+.formula-block{background:var(--bg);border:1px solid var(--border);padding:16px 18px;font-family:'DM Mono',monospace;font-size:0.76rem;color:var(--ink2);line-height:2.1;}
+.f-comment{color:var(--ink4);font-size:0.68rem;}
+
+/* BUTTONS */
+.btn{padding:8px 16px;font-family:'DM Mono',monospace;font-size:0.7rem;letter-spacing:0.08em;border:none;cursor:pointer;transition:all 0.15s;border-radius:1px;}
+.btn-primary{background:var(--ink);color:var(--paper);}
+.btn-primary:hover{background:#2a2520;}
+.btn-secondary{background:transparent;border:1px solid var(--border2);color:var(--ink2);}
+.btn-secondary:hover{background:var(--border);}
+.btn-danger{background:transparent;border:none;color:var(--ink4);padding:4px 8px;font-size:0.68rem;}
+.btn-danger:hover{color:var(--red);}
+.btn-sm{padding:5px 11px;font-size:0.65rem;}
+.badge{font-family:'DM Mono',monospace;font-size:0.58rem;letter-spacing:0.14em;padding:3px 7px;border-radius:1px;text-transform:uppercase;display:inline-block;}
+.badge-rs{background:#eaf0ea;color:#2a5c3a;border:1px solid #b8d4b8;}
+.badge-db{background:#eaecf4;color:#2a3a6c;border:1px solid #b8c4e4;}
+.badge-sr{background:#f4ece4;color:#6b4a2a;border:1px solid #d4b898;}
+.badge-jpmi{background:var(--ink);color:var(--paper);border:1px solid var(--ink);}
+
+/* FOOTER */
+.site-footer{border-top:3px double var(--border2);padding-top:20px;margin-top:48px;display:grid;grid-template-columns:1fr auto;gap:12px;align-items:start;}
+.footer-left .fl-title{font-family:'Playfair Display',serif;font-size:0.88rem;color:var(--ink3);margin-bottom:4px;}
+.footer-left .fl-sub{font-family:'DM Mono',monospace;font-size:0.6rem;color:var(--ink4);letter-spacing:0.06em;line-height:1.8;}
+.footer-right{font-family:'DM Mono',monospace;font-size:0.6rem;color:var(--ink4);text-align:right;letter-spacing:0.04em;line-height:1.8;}
+
+/* NOTIF */
+.notif{position:fixed;bottom:24px;right:24px;background:var(--ink);color:var(--paper);padding:10px 18px;font-family:'DM Mono',monospace;font-size:0.72rem;letter-spacing:0.04em;opacity:0;transform:translateY(6px);transition:all 0.2s;pointer-events:none;z-index:999;border-radius:1px;}
+.notif.show{opacity:1;transform:translateY(0);}
+
+@media(max-width:640px){
+  .masthead-top{flex-direction:column;}
+  .masthead-title{font-size:2rem;}
+  .masthead-title .kanji-inline{font-size:1.4rem;}
+  .bc-price{font-size:2.8rem;}
+  .bc-sub-row{grid-template-columns:1fr;gap:12px;}
+  .bc-sub{padding:0;border-right:none;border-bottom:1px solid rgba(255,255,255,0.06);padding-bottom:12px;}
+  .bc-sub:last-child{border-bottom:none;}
+  .ideology-strip{flex-direction:column;gap:8px;}
+  .ideology-item{border-right:none;border-bottom:1px solid var(--border);padding:6px 0;}
+  .ideology-item:last-child{border-bottom:none;}
+  .weights-row{grid-template-columns:1fr 1fr 1fr;}
+  .weights-row .weight-sum{grid-column:1/-1;}
+  .site-footer{grid-template-columns:1fr;}
+  .footer-right{text-align:left;}
+  .masthead-right{align-items:flex-start;}
+}
 </style>
 </head>
 <body>
 <div class="page">
-  <header>
-    <div class="header-left">
-      <h1>JPSI<span> ——</span></h1>
-      <div class="subtitle" data-en="Japan Physical Silver Index" data-ja="日本現物銀指数">Japan Physical Silver Index</div>
-    </div>
-    <div class="lang-toggle">
-      <button class="lang-btn active" onclick="setLang('en')">EN</button>
-      <button class="lang-btn" onclick="setLang('ja')">日本語</button>
-    </div>
-  </header>
 
-  <div class="fetch-banner loading" id="fetch-banner">
-    <div class="fetch-dot"></div>
-    <span id="fetch-status">Loading prices from prices.json…</span>
-    <button class="fetch-retry" id="fetch-retry-btn" onclick="loadPricesJSON()" style="display:none;">↻ Retry</button>
-  </div>
-
-  <div class="index-card">
-    <div class="date-label" id="card-date-label">TODAY'S BENCHMARK</div>
-    <div class="jpsi-main">
-      <div class="jpsi-label">JPSI</div>
-      <div class="jpsi-value" id="jpsi-display">—</div>
-      <div class="jpsi-unit">¥/g</div>
-    </div>
-    <div class="sub-indices">
-      <div class="sub-index">
-        <div class="si-label">RS</div>
-        <div class="si-name" data-en="Refinery Spot" data-ja="精錬所スポット">Refinery Spot</div>
-        <div class="si-value" id="rs-display">—</div>
-      </div>
-      <div class="sub-index">
-        <div class="si-label">DB</div>
-        <div class="si-name" data-en="Dealer / Pawn Bid" data-ja="業者・質屋買値">Dealer / Pawn Bid</div>
-        <div class="si-value" id="db-display">—</div>
-      </div>
-      <div class="sub-index">
-        <div class="si-label">SR</div>
-        <div class="si-name" data-en="Street Retail" data-ja="フリマ実売">Street Retail</div>
-        <div class="si-value" id="sr-display">—</div>
+<!-- MASTHEAD -->
+<header class="masthead">
+  <div class="masthead-top">
+    <div class="masthead-identity">
+      <div class="masthead-kicker">Japan Physical Metals Index™</div>
+      <div class="masthead-title">JPMI<span class="abbr"> — </span><span class="kanji-inline">日本現物金属指数</span></div>
+      <div class="masthead-tagline">
+        JPMI aggregates real domestic dealer bids, pawn buyback rates, recycler payouts, and peer-to-peer transaction data to produce a live reference price for physical metals in Japan — reflecting retail liquidity, domestic demand, real spreads, and secondary market premiums.
       </div>
     </div>
-    <div class="premium-pill">
-      <span data-en="Premium vs RS" data-ja="RS比プレミアム">Premium vs RS</span>: <span id="premium-display">—</span>
+    <div class="masthead-right">
+      <div class="lang-toggle">
+        <button class="lang-btn active" onclick="setLang('en')">EN</button>
+        <button class="lang-btn" onclick="setLang('ja')">日本語</button>
+      </div>
+      <div class="masthead-meta" id="masthead-date">Silver Index · JPY/g<br>Updated daily via GitHub Actions</div>
     </div>
   </div>
+</header>
 
-  <!-- RS -->
-  <div class="section">
-    <div class="section-header">
-      <div class="section-title">
-        <span class="section-badge badge-rs">RS</span>
-        <h3 data-en="Refinery Spot — Buyback Prices" data-ja="精錬所スポット — 買取価格">Refinery Spot — Buyback Prices</h3>
-      </div>
-      <button class="btn btn-secondary" onclick="loadPricesJSON()" style="font-size:0.7rem;padding:6px 12px;">↻ Refresh</button>
-    </div>
-    <div class="section-body">
-      <p style="font-size:0.8rem;color:var(--ink3);margin-bottom:16px;font-style:italic;" data-en="Tanaka &amp; Tokuriki auto-loaded from prices.json (updated daily by GitHub Actions). Enter Ishifuku manually." data-ja="田中・徳力はprices.jsonから自動読み込み（GitHub Actionsで毎日更新）。石福は手動入力。">Tanaka &amp; Tokuriki auto-loaded from prices.json (updated daily by GitHub Actions). Enter Ishifuku manually.</p>
-      <div class="input-grid">
-        <div class="input-group" id="rs1-group">
-          <label data-en="Tanaka Kikinzoku (¥/g)" data-ja="田中貴金属（円/g）">Tanaka Kikinzoku (¥/g)</label>
-          <input type="number" id="rs1" placeholder="Loading…" step="0.01">
-          <span class="auto-tag">● Auto-loaded</span>
-        </div>
-        <div class="input-group" id="rs2-group">
-          <label data-en="Tokuriki Honten (¥/g)" data-ja="徳力本店（円/g）">Tokuriki Honten (¥/g)</label>
-          <input type="number" id="rs2" placeholder="Loading…" step="0.01">
-          <span class="auto-tag">● Auto-loaded</span>
-        </div>
-        <div class="input-group" id="rs3-group">
-          <label data-en="Ishifuku / Proxy (¥/g)" data-ja="石福 / 代替（円/g）">Ishifuku / Proxy (¥/g)</label>
-          <input type="number" id="rs3" placeholder="Enter manually" step="0.01">
-        </div>
-      </div>
-    </div>
-  </div>
 
-  <!-- DB -->
-  <div class="section">
-    <div class="section-header">
-      <div class="section-title">
-        <span class="section-badge badge-db">DB</span>
-        <h3 data-en="Dealer / Pawn Bid Prices" data-ja="業者・質屋 買値">Dealer / Pawn Bid Prices</h3>
-      </div>
-    </div>
-    <div class="section-body">
-      <p style="font-size:0.8rem;color:var(--ink3);margin-bottom:16px;font-style:italic;" data-en="Nanboya &amp; Daikichi loaded automatically. Add additional bids manually." data-ja="ナンボヤ・大吉は自動読み込み。追加の買値は手動入力。">Nanboya &amp; Daikichi loaded automatically. Add additional bids manually.</p>
-      <div class="input-grid">
-        <div class="input-group" id="db1-group">
-          <label data-en="Nanboya (¥/g)" data-ja="ナンボヤ（円/g）">Nanboya (¥/g)</label>
-          <input type="number" id="db1" placeholder="Loading…" step="0.01">
-          <span class="auto-tag">● Auto-loaded</span>
-        </div>
-        <div class="input-group" id="db2-group">
-          <label data-en="Daikichi (¥/g)" data-ja="大吉（円/g）">Daikichi (¥/g)</label>
-          <input type="number" id="db2" placeholder="Loading…" step="0.01">
-          <span class="auto-tag">● Auto-loaded</span>
-        </div>
-        <div class="input-group">
-          <label data-en="Additional Bid (¥/g)" data-ja="追加買値（円/g）">Additional Bid (¥/g)</label>
-          <input type="number" id="db3" placeholder="e.g. 143.80" step="0.01">
-        </div>
-      </div>
-    </div>
-  </div>
 
-  <!-- SR -->
-  <div class="section">
-    <div class="section-header">
-      <div class="section-title">
-        <span class="section-badge badge-sr">SR</span>
-        <h3 data-en="Street Retail — Mercari MSPI-B" data-ja="フリマ実売 — メルカリ MSPI-B">Street Retail — Mercari MSPI-B</h3>
-      </div>
-    </div>
-    <div class="section-body">
-      <p style="font-size:0.8rem;color:var(--ink3);margin-bottom:16px;font-style:italic;" data-en="Add sold listings for common .999 bullion coins (1oz, no slabs, no jewelry). Price converts automatically." data-ja="一般的な.999地金コイン（1オンス、スラブなし、ジュエリーなし）の成約履歴を追加してください。">Add sold listings for common .999 bullion coins (1oz, no slabs, no jewelry). Price converts automatically.</p>
-      <table class="merctable">
-        <thead><tr>
-          <th data-en="Sold Price (¥)" data-ja="成約価格（円）">Sold Price (¥)</th>
-          <th data-en="¥ / g" data-ja="円/g">¥ / g</th>
-          <th></th>
-        </tr></thead>
-        <tbody id="merc-tbody">
-          <tr><td colspan="3" style="color:var(--ink3);font-style:italic;font-size:0.8rem;">No entries yet. Add sold listings below.</td></tr>
-        </tbody>
-      </table>
-      <div class="merc-add-row" style="margin-top:16px;">
-        <input type="number" id="merc-input" placeholder="e.g. 5200" step="1">
-        <button class="btn btn-secondary" onclick="addMercariEntry()" data-en="Add Entry" data-ja="追加">Add Entry</button>
-      </div>
-      <div style="margin-top:12px;padding:10px 14px;background:var(--bg);border:1px solid var(--border);border-radius:2px;display:flex;justify-content:space-between;align-items:center;">
-        <span style="font-family:'DM Mono',monospace;font-size:0.72rem;color:var(--ink3);" data-en="MSPI-B Mean" data-ja="MSPI-B 平均">MSPI-B Mean</span>
-        <span style="font-family:'DM Mono',monospace;font-size:1rem;color:var(--ink);" id="mspi-mean">—</span>
-      </div>
-    </div>
-  </div>
+<!-- NAV -->
+<nav class="site-nav">
+  <a href="index.html" class="nav-link active">Index</a>
+  <a href="about.html" class="nav-link">About &amp; Methodology</a>
+</nav>
 
-  <!-- WEIGHTS -->
-  <div class="section">
-    <div class="section-header">
-      <div class="section-title">
-        <span class="section-badge badge-jpsi">JPSI</span>
-        <h3 data-en="Weights &amp; Compute" data-ja="ウェイト設定と計算">Weights &amp; Compute</h3>
-      </div>
-    </div>
-    <div class="section-body">
-      <p style="font-size:0.8rem;color:var(--ink3);margin-bottom:16px;font-style:italic;" data-en="Adjust the blend. Weights must sum to 1.00." data-ja="ブレンドを調整してください。ウェイトの合計は1.00にしてください。">Adjust the blend. Weights must sum to 1.00.</p>
-      <div class="weights-row">
-        <div class="input-group">
-          <label data-en="RS Weight" data-ja="RS ウェイト">RS Weight</label>
-          <input type="number" id="w-rs" value="0.50" min="0" max="1" step="0.01" oninput="checkWeights()">
-        </div>
-        <div class="input-group">
-          <label data-en="DB Weight" data-ja="DB ウェイト">DB Weight</label>
-          <input type="number" id="w-db" value="0.25" min="0" max="1" step="0.01" oninput="checkWeights()">
-        </div>
-        <div class="input-group">
-          <label data-en="SR Weight" data-ja="SR ウェイト">SR Weight</label>
-          <input type="number" id="w-sr" value="0.25" min="0" max="1" step="0.01" oninput="checkWeights()">
-        </div>
-        <div class="weight-sum ok" id="weight-sum-label">∑ = 1.00 ✓</div>
-      </div>
-      <div class="actions" style="margin-top:20px;">
-        <button class="btn btn-primary" onclick="recalculate()" data-en="Recalculate" data-ja="再計算">Recalculate</button>
-        <button class="btn btn-secondary" onclick="loadDemo()" data-en="Load Demo" data-ja="デモを読み込む">Load Demo</button>
-        <button class="btn btn-secondary" onclick="clearAll()" data-en="Clear All" data-ja="すべてクリア">Clear All</button>
-        <button class="btn btn-secondary" onclick="exportCSV()" data-en="Export CSV" data-ja="CSVで出力">Export CSV</button>
-      </div>
-    </div>
-  </div>
-
-  <!-- SIGNALS -->
-  <div class="section">
-    <div class="section-header"><div class="section-title"><h3 data-en="Market Signals" data-ja="マーケットシグナル">Market Signals</h3></div></div>
-    <div class="section-body">
-      <div class="signals-grid">
-        <div class="signal-card"><div class="signal-trigger">SR↑ &amp; RS→</div><div class="signal-meaning" data-en="Retail hoarding / premium expansion" data-ja="小売り買い占め / プレミアム拡大">Retail hoarding / premium expansion</div></div>
-        <div class="signal-card"><div class="signal-trigger">DB↑ before RS</div><div class="signal-meaning" data-en="Scrap shortage / dealer competition" data-ja="スクラップ不足 / 業者間競争">Scrap shortage / dealer competition</div></div>
-        <div class="signal-card"><div class="signal-trigger">SR listings ↓↓</div><div class="signal-meaning" data-en="&ldquo;Panic keep&rdquo; phase — sellers disappear" data-ja="「パニック保有」フェーズ — 出品消滅">"Panic keep" phase — sellers disappear</div></div>
-        <div class="signal-card"><div class="signal-trigger">Premium &gt; 30%</div><div class="signal-meaning" data-en="Tight physical conditions (Japan retail)" data-ja="現物タイト（国内小売り）">Tight physical conditions (Japan retail)</div></div>
-      </div>
-    </div>
-  </div>
-
-  <!-- FORMULAS -->
-  <div class="section">
-    <div class="section-header"><div class="section-title"><h3 data-en="Core Formulas" data-ja="計算式">Core Formulas</h3></div></div>
-    <div class="section-body">
-      <div class="formula-block">
-        <div class="f-comment">// Refinery Spot average</div>
-        RS = mean(Tanaka, Tokuriki, Ishifuku)<br><br>
-        <div class="f-comment">// Dealer Bid average</div>
-        DB = mean(Nanboya, Daikichi, ...)<br><br>
-        <div class="f-comment">// Composite Index</div>
-        JPSI = (RS × wRS) + (DB × wDB) + (SR × wSR)<br><br>
-        <div class="f-comment">// Street Retail premium</div>
-        Premium = (SR / RS) − 1<br><br>
-        <div class="f-comment">// Mercari per-item price</div>
-        ¥/g = Sold Price (¥) ÷ 31.1035
-      </div>
-    </div>
-  </div>
-
-  <div class="disclaimer">
-    <strong>Disclaimer:</strong> JPSI is an informational index only. RS and DB prices are fetched daily via GitHub Actions from public sources. Street Retail (SR) must be entered manually from Mercari sold listings. Restrict SR to common .999 bullion (1oz) sold listings for the cleanest signal.
-  </div>
-
-  <footer>
-    <div class="f-left">© JPSI — JAPAN PHYSICAL SILVER INDEX</div>
-    <div class="f-right">Tanaka · Tokuriki · Nanboya · Daikichi — auto via GitHub Actions</div>
-  </footer>
+<!-- FETCH BANNER -->
+<div class="fetch-banner loading" id="fetch-banner">
+  <div class="fetch-dot"></div>
+  <span id="fetch-status">Loading live data from prices.json…</span>
+  <button class="fetch-retry" id="fetch-retry-btn" onclick="loadPricesJSON()" style="display:none;">↻ Retry</button>
 </div>
 
+<!-- BENCHMARK CARD -->
+<div class="benchmark-card">
+  <div class="bc-header">
+    <div class="bc-label" id="card-date-label">JPMI — SILVER · TODAY'S BENCHMARK</div>
+    <div class="bc-timestamp" id="bc-timestamp">—</div>
+  </div>
+  <div class="bc-main">
+    <div class="bc-index-name">JPMI-AG</div>
+    <div class="bc-price" id="jpsi-display">—</div>
+    <div class="bc-currency">¥ / g</div>
+  </div>
+  <div class="bc-subtitle" data-en="Japan Physical Silver Index · Weighted composite of refinery, dealer, and street prices" data-ja="日本現物銀指数 · 精錬所・業者・フリマの加重複合指数">Japan Physical Silver Index · Weighted composite of refinery, dealer, and street prices</div>
+  <div class="bc-sub-row">
+    <div class="bc-sub">
+      <div class="bc-sub-tag">RS</div>
+      <div class="bc-sub-name" data-en="Refinery Spot" data-ja="精錬所スポット">Refinery Spot</div>
+      <div class="bc-sub-val" id="rs-display">—</div>
+    </div>
+    <div class="bc-sub">
+      <div class="bc-sub-tag">DB</div>
+      <div class="bc-sub-name" data-en="Dealer / Pawn Bid" data-ja="業者・質屋買値">Dealer / Pawn Bid</div>
+      <div class="bc-sub-val" id="db-display">—</div>
+    </div>
+    <div class="bc-sub">
+      <div class="bc-sub-tag">SR</div>
+      <div class="bc-sub-name" data-en="Street Retail (Mercari)" data-ja="フリマ実売（メルカリ）">Street Retail (Mercari)</div>
+      <div class="bc-sub-val" id="sr-display">—</div>
+    </div>
+  </div>
+  <div class="bc-footer-row">
+    <div class="premium-badge">
+      <span data-en="Street premium vs RS" data-ja="RS比フリマプレミアム">Street premium vs RS</span>:&nbsp;<span class="pval" id="premium-display">—</span>
+    </div>
+    <div class="bc-methodology-note" data-en="Tanaka · Tokuriki · Nanboya · Daikichi · Mercari MSPI-B" data-ja="田中 · 徳力 · ナンボヤ · 大吉 · メルカリ MSPI-B">Tanaka · Tokuriki · Nanboya · Daikichi · Mercari MSPI-B</div>
+  </div>
+</div>
+
+
+<!-- RS -->
+<div class="section-group">
+  <div class="section-group-label">
+    <span><span class="sgl-badge sgl-rs">RS</span>&nbsp;&nbsp;Refinery Spot — Buyback Prices</span>
+    <button class="btn btn-secondary btn-sm" onclick="loadPricesJSON()">↻ Refresh</button>
+  </div>
+  <div class="price-grid">
+    <div class="price-card loading-state" id="pc-tanaka">
+      <div class="pc-source">Tanaka 田中貴金属</div>
+      <div class="pc-value" id="pv-tanaka">Loading…</div>
+      <div class="pc-unit">¥ / g · silver buyback</div>
+      <div class="pc-status" id="ps-tanaka">Fetching…</div>
+    </div>
+    <div class="price-card loading-state" id="pc-tokuriki">
+      <div class="pc-source">Tokuriki 徳力本店</div>
+      <div class="pc-value" id="pv-tokuriki">Loading…</div>
+      <div class="pc-unit">¥ / g · silver buyback</div>
+      <div class="pc-status" id="ps-tokuriki">Fetching…</div>
+    </div>
+
+  </div>
+</div>
+
+<!-- DB -->
+<div class="section-group">
+  <div class="section-group-label">
+    <span><span class="sgl-badge sgl-db">DB</span>&nbsp;&nbsp;Dealer / Pawn Bid Prices</span>
+  </div>
+  <div class="price-grid">
+    <div class="price-card loading-state" id="pc-nanboya">
+      <div class="pc-source">Nanboya ナンボヤ</div>
+      <div class="pc-value" id="pv-nanboya">Loading…</div>
+      <div class="pc-unit">¥ / g · Sv1000 bid</div>
+      <div class="pc-status" id="ps-nanboya">Fetching…</div>
+    </div>
+    <div class="price-card loading-state" id="pc-daikichi">
+      <div class="pc-source">Daikichi 買取大吉</div>
+      <div class="pc-value" id="pv-daikichi">Loading…</div>
+      <div class="pc-unit">¥ / g · per gram bid</div>
+      <div class="pc-status" id="ps-daikichi">Fetching…</div>
+    </div>
+
+  </div>
+</div>
+
+<!-- SR -->
+<div class="sr-section">
+  <div class="sr-header">
+    <div class="sr-header-left">
+      <span class="badge badge-sr">SR</span>
+      <h3 data-en="Street Retail — Mercari MSPI-B" data-ja="フリマ実売 — メルカリ MSPI-B">Street Retail — Mercari MSPI-B</h3>
+    </div>
+  </div>
+  <div class="sr-body">
+    <p class="sr-note" data-en="Add sold listings for common .999 silver bullion coins (1oz, no slabs, no jewelry). Peer-to-peer premium signal." data-ja="一般的な.999地金銀コイン（1オンス、スラブなし、ジュエリーなし）の成約履歴を追加してください。">Add sold listings for common .999 silver bullion coins (1oz, no slabs, no jewelry). Peer-to-peer premium signal.</p>
+    <table class="merctable">
+      <thead><tr>
+        <th data-en="Sold Price (¥)" data-ja="成約価格（円）">Sold Price (¥)</th>
+        <th data-en="¥ / g" data-ja="円/g">¥ / g</th>
+        <th></th>
+      </tr></thead>
+      <tbody id="merc-tbody"><tr><td colspan="3" style="color:var(--ink4);font-style:italic;font-size:0.78rem;">No entries yet. Add sold listings below.</td></tr></tbody>
+    </table>
+    <div class="merc-add-row">
+      <input type="number" id="merc-input" placeholder="Sold price in ¥ (e.g. 15200)" step="1">
+      <button class="btn btn-secondary" onclick="addMercariEntry()" data-en="Add" data-ja="追加">Add</button>
+    </div>
+    <div class="mspi-mean-row">
+      <span class="mspi-label" data-en="MSPI-B Mean (¥/g)" data-ja="MSPI-B 平均（円/g）">MSPI-B Mean (¥/g)</span>
+      <span class="mspi-val" id="mspi-mean">—</span>
+    </div>
+  </div>
+</div>
+
+<!-- WEIGHTS -->
+<div class="weights-section">
+  <div class="ws-header">
+    <span class="badge badge-jpmi">JPMI</span>
+    <h3 data-en="Index Weights &amp; Compute" data-ja="指数ウェイトと計算">Index Weights &amp; Compute</h3>
+  </div>
+  <div class="ws-body">
+    <p style="font-size:0.75rem;color:var(--ink3);margin-bottom:14px;font-style:italic;">Adjust the blend. Weights must sum to 1.00. RS = refiners · DB = dealers/pawn · SR = Mercari</p>
+    <div class="weights-row">
+      <div class="wt-group"><label>RS Weight</label><input type="number" id="w-rs" value="0.50" min="0" max="1" step="0.01" oninput="checkWeights()"></div>
+      <div class="wt-group"><label>DB Weight</label><input type="number" id="w-db" value="0.25" min="0" max="1" step="0.01" oninput="checkWeights()"></div>
+      <div class="wt-group"><label>SR Weight</label><input type="number" id="w-sr" value="0.25" min="0" max="1" step="0.01" oninput="checkWeights()"></div>
+      <div class="weight-sum ok" id="weight-sum-label">∑ 1.00 ✓</div>
+    </div>
+    <div class="actions">
+      <button class="btn btn-primary" onclick="recalculate()">Recalculate</button>
+      <button class="btn btn-secondary" onclick="clearAll()">Clear All</button>
+      <button class="btn btn-secondary" onclick="exportCSV()">Export CSV</button>
+    </div>
+  </div>
+</div>
+
+<!-- SIGNALS -->
+<div class="signals-section">
+  <div class="section-group-label" style="margin-bottom:10px;"><span>Market Signals</span></div>
+  <div class="signals-grid">
+    <div class="signal-card"><div class="signal-trigger">SR↑ while RS flat</div><div class="signal-meaning">Retail hoarding — street premium expanding</div></div>
+    <div class="signal-card"><div class="signal-trigger">DB↑ before RS moves</div><div class="signal-meaning">Scrap shortage — dealers competing for supply</div></div>
+    <div class="signal-card"><div class="signal-trigger">SR listings vanish</div><div class="signal-meaning">"Panic keep" phase — sellers disappearing</div></div>
+    <div class="signal-card"><div class="signal-trigger">Premium &gt; 30%</div><div class="signal-meaning">Tight physical conditions — domestic retail stressed</div></div>
+  </div>
+</div>
+
+<!-- METHODOLOGY -->
+<div class="method-section">
+  <div class="method-header"><h3>Methodology &amp; Formulas</h3></div>
+  <div class="method-body">
+    <div class="formula-block">
+      <div class="f-comment">// RS — Refinery Spot (upstream physical buyback)</div>
+      RS = mean(Tanaka_buy, Tokuriki_buy)<br><br>
+      <div class="f-comment">// DB — Dealer / Pawn Bid (retail exit liquidity)</div>
+      DB = mean(Nanboya_Sv1000, Daikichi_1g, ...)<br><br>
+      <div class="f-comment">// SR — Street Retail (Mercari peer-to-peer)</div>
+      SR = mean(sold_price_¥ ÷ 31.1035g) &nbsp;<span class="f-comment">// MSPI-B</span><br><br>
+      <div class="f-comment">// JPMI composite</div>
+      JPMI = (RS × wRS) + (DB × wDB) + (SR × wSR)<br><br>
+      <div class="f-comment">// Street premium vs refinery floor</div>
+      Premium = (SR ÷ RS) − 1
+    </div>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<footer class="site-footer">
+  <div class="footer-left">
+    <div class="fl-title">JPMI — Japan Physical Metals Index™</div>
+    <div class="fl-sub">Silver Index (JPMI-AG) · JPY per gram · Updated daily<br>Sources: Tanaka · Tokuriki · Nanboya · Daikichi · Mercari MSPI-B<br>Informational index only. Not financial advice.</div>
+  </div>
+  <div class="footer-right">Data via GitHub Actions<br>Physical metal · Domestic market<br>Global spot ≠ Japanese physical reality</div>
+</footer>
+
+</div>
 <div class="notif" id="notif"></div>
 
 <script>
   const OZ_TO_G = 31.1035;
   let mercariEntries = [];
   let currentLang = 'en';
+  const live = { tanaka:null, tokuriki:null, nanboya:null, daikichi:null };
 
-  // ── LOAD FROM prices.json ─────────────────────────────────────
   async function loadPricesJSON() {
     const banner = document.getElementById('fetch-banner');
     const statusEl = document.getElementById('fetch-status');
     const retryBtn = document.getElementById('fetch-retry-btn');
-
     banner.className = 'fetch-banner loading';
-    statusEl.textContent = 'Loading prices from prices.json…';
+    statusEl.textContent = 'Loading live data from prices.json…';
     retryBtn.style.display = 'none';
+    ['tanaka','tokuriki','nanboya','daikichi'].forEach(k => setCard(k, null, 'Fetching…', true));
 
     try {
-      // Fetch prices.json from same repo, cache-busted
       const res = await fetch('./prices.json?t=' + Date.now(), { signal: AbortSignal.timeout(10000) });
       if (!res.ok) throw new Error('HTTP ' + res.status);
       const data = await res.json();
-
       const p = data.prices_jpy_per_g || {};
-      const updatedAt = data.updated_at_utc ? new Date(data.updated_at_utc) : null;
       const errors = data.errors || [];
+      const updatedAt = data.updated_at_utc ? new Date(data.updated_at_utc) : null;
 
-      // Map to fields
-      const setField = (inputId, groupId, val, labelText) => {
-        if (val && val > 50 && val < 5000) {
-          document.getElementById(inputId).value = val.toFixed(2);
-          const grp = document.getElementById(groupId);
-          grp.classList.add('auto-filled');
-          grp.querySelector('.auto-tag').textContent = `● ${labelText}`;
-        }
-      };
+      setCard('tanaka',   p.tanaka_silver_buy,  p.tanaka_silver_buy   ? '● Buyback price' : 'Not available');
+      setCard('tokuriki', p.tokuriki_silver_buy, p.tokuriki_silver_buy ? '● Buyback price' : 'Not available');
+      setCard('nanboya',  p.nanboya_sv1000,      p.nanboya_sv1000      ? '● Sv1000 bid'    : 'Not available');
+      setCard('daikichi', p.daikichi_sv1000,     p.daikichi_sv1000     ? '● Per gram bid'  : 'Not available');
 
-      // RS fields
-      setField('rs1', 'rs1-group', p.tanaka_silver_buy, 'Tanaka auto-loaded');
-      setField('rs2', 'rs2-group', p.tokuriki_silver_buy, 'Tokuriki auto-loaded');
-
-      // DB fields — Nanboya and Daikichi are dealer/pawn proxies
-      setField('db1', 'db1-group', p.nanboya_sv1000, 'Nanboya auto-loaded');
-      setField('db2', 'db2-group', p.daikichi_sv1000, 'Daikichi auto-loaded');
-
-      // Format updated time
-      let tsStr = '';
+      let tsStr = '—';
       if (updatedAt) {
-        tsStr = updatedAt.toLocaleDateString('en-GB', {day:'2-digit',month:'short',year:'numeric'})
-          + ' at ' + updatedAt.toLocaleTimeString('en-GB',{hour:'2-digit',minute:'2-digit'}) + ' UTC';
+        tsStr = updatedAt.toLocaleDateString('en-GB',{weekday:'short',day:'2-digit',month:'short',year:'numeric'})
+          + ' · ' + updatedAt.toLocaleTimeString('en-GB',{hour:'2-digit',minute:'2-digit'}) + ' UTC';
+        document.getElementById('bc-timestamp').textContent = tsStr;
+        document.getElementById('masthead-date').innerHTML = `Silver Index · JPY/g<br>${tsStr}`;
       }
 
       if (errors.length > 0) {
         banner.className = 'fetch-banner partial';
-        statusEl.textContent = `⚠ Partial data — ${errors.length} source(s) failed. Updated: ${tsStr}`;
+        statusEl.textContent = `⚠ ${errors.length} source(s) unavailable · ${tsStr}`;
         retryBtn.style.display = 'inline-block';
       } else {
         banner.className = 'fetch-banner success';
-        statusEl.textContent = `✓ All prices loaded — updated ${tsStr}`;
+        statusEl.textContent = `✓ All prices loaded · ${tsStr}`;
       }
-
       recalculate();
 
-    } catch (e) {
+    } catch(e) {
       banner.className = 'fetch-banner error';
       statusEl.textContent = '⚠ Could not load prices.json — check GitHub Actions ran successfully.';
       retryBtn.style.display = 'inline-block';
+      ['tanaka','tokuriki','nanboya','daikichi'].forEach(k => setCard(k, null, 'Load failed'));
     }
   }
 
-  // ── LANG ──────────────────────────────────────────────────────
+  function setCard(key, value, statusText, loading=false) {
+    const card = document.getElementById('pc-' + key);
+    const valEl = document.getElementById('pv-' + key);
+    const statEl = document.getElementById('ps-' + key);
+    card.classList.remove('loaded','failed','loading-state');
+    if (loading) {
+      card.classList.add('loading-state');
+      valEl.textContent = 'Loading…';
+    } else if (value && value > 50 && value < 5000) {
+      live[key] = value;
+      valEl.textContent = value.toFixed(2);
+      card.classList.add('loaded');
+    } else {
+      live[key] = null;
+      valEl.textContent = 'N/A';
+      card.classList.add('failed');
+    }
+    statEl.textContent = statusText;
+  }
+
   function setLang(lang) {
     currentLang = lang;
     document.querySelectorAll('.lang-btn').forEach(b => b.classList.remove('active'));
     document.querySelector(`.lang-btn[onclick="setLang('${lang}')"]`).classList.add('active');
     document.querySelectorAll('[data-en]').forEach(el => {
-      const txt = lang === 'ja' && el.dataset.ja ? el.dataset.ja : el.dataset.en;
-      if (el.tagName === 'INPUT') el.placeholder = txt;
+      const txt = lang==='ja' && el.dataset.ja ? el.dataset.ja : el.dataset.en;
+      if (el.tagName==='INPUT') el.placeholder = txt;
       else el.textContent = txt;
     });
-    document.getElementById('card-date-label').textContent = lang === 'ja' ? '本日のベンチマーク' : "TODAY'S BENCHMARK";
+    document.getElementById('card-date-label').textContent =
+      lang==='ja' ? 'JPMI — 銀 · 本日のベンチマーク' : "JPMI — SILVER · TODAY'S BENCHMARK";
     renderMercariTable();
   }
 
-  // ── WEIGHTS ───────────────────────────────────────────────────
   function checkWeights() {
-    const s = Math.round(['w-rs','w-db','w-sr'].reduce((a,id) => a + (parseFloat(document.getElementById(id).value)||0), 0) * 100) / 100;
+    const s = Math.round(['w-rs','w-db','w-sr'].reduce((a,id)=>a+(parseFloat(document.getElementById(id).value)||0),0)*100)/100;
     const el = document.getElementById('weight-sum-label');
-    el.textContent = `∑ = ${s.toFixed(2)} ${Math.abs(s-1)<0.001?'✓':'✗'}`;
-    el.className = 'weight-sum ' + (Math.abs(s-1)<0.001?'ok':'err');
+    el.textContent = `∑ ${s.toFixed(2)} ${Math.abs(s-1)<0.001?'✓':'✗'}`;
+    el.className = 'weight-sum '+(Math.abs(s-1)<0.001?'ok':'err');
   }
 
-  // ── MERCARI ───────────────────────────────────────────────────
   function addMercariEntry() {
     const val = parseFloat(document.getElementById('merc-input').value);
-    if (isNaN(val)||val<=0) { showNotif(currentLang==='ja'?'有効な価格を入力してください':'Enter a valid price'); return; }
+    if (isNaN(val)||val<=0) { showNotif('Enter a valid price'); return; }
     mercariEntries.push(val);
     document.getElementById('merc-input').value = '';
-    renderMercariTable(); updateMSPIMean();
+    renderMercariTable(); updateMSPIMean(); recalculate();
   }
-  function removeMercariEntry(i) { mercariEntries.splice(i,1); renderMercariTable(); updateMSPIMean(); }
+
+  function removeMercariEntry(i) { mercariEntries.splice(i,1); renderMercariTable(); updateMSPIMean(); recalculate(); }
+
   function renderMercariTable() {
     const tbody = document.getElementById('merc-tbody');
     if (!mercariEntries.length) {
-      tbody.innerHTML = `<tr><td colspan="3" style="color:var(--ink3);font-style:italic;font-size:0.8rem;">${currentLang==='ja'?'まだ入力がありません。':'No entries yet. Add sold listings below.'}</td></tr>`;
+      tbody.innerHTML = `<tr><td colspan="3" style="color:var(--ink4);font-style:italic;font-size:0.78rem;">${currentLang==='ja'?'まだ入力がありません。':'No entries yet. Add sold listings below.'}</td></tr>`;
       return;
     }
     tbody.innerHTML = mercariEntries.map((p,i) =>
       `<tr><td>¥${p.toLocaleString()}</td><td>¥${(p/OZ_TO_G).toFixed(2)}</td><td><button class="btn btn-danger" onclick="removeMercariEntry(${i})">✕</button></td></tr>`
     ).join('');
   }
+
   function updateMSPIMean() {
     const el = document.getElementById('mspi-mean');
     if (!mercariEntries.length) { el.textContent='—'; return; }
     el.textContent = `¥${(mercariEntries.reduce((a,b)=>a+b/OZ_TO_G,0)/mercariEntries.length).toFixed(2)}/g`;
   }
+
   function getMSPIMean() {
     if (!mercariEntries.length) return null;
     return mercariEntries.reduce((a,b)=>a+b/OZ_TO_G,0)/mercariEntries.length;
   }
 
-  // ── RECALCULATE ───────────────────────────────────────────────
   function recalculate() {
-    const rv = ['rs1','rs2','rs3'].map(id=>parseFloat(document.getElementById(id).value)).filter(v=>!isNaN(v)&&v>0);
-    const dv = ['db1','db2','db3'].map(id=>parseFloat(document.getElementById(id).value)).filter(v=>!isNaN(v)&&v>0);
+    const rsVals = [live.tanaka, live.tokuriki].filter(v=>v!==null);
+    const dbVals = [live.nanboya, live.daikichi].filter(v=>v!==null);
     const SR = getMSPIMean();
-    const wRS = parseFloat(document.getElementById('w-rs').value)||0;
-    const wDB = parseFloat(document.getElementById('w-db').value)||0;
-    const wSR = parseFloat(document.getElementById('w-sr').value)||0;
-    const RS = rv.length ? rv.reduce((a,b)=>a+b,0)/rv.length : null;
-    const DB = dv.length ? dv.reduce((a,b)=>a+b,0)/dv.length : null;
+    const wRS=parseFloat(document.getElementById('w-rs').value)||0;
+    const wDB=parseFloat(document.getElementById('w-db').value)||0;
+    const wSR=parseFloat(document.getElementById('w-sr').value)||0;
+    const RS = rsVals.length ? rsVals.reduce((a,b)=>a+b,0)/rsVals.length : null;
+    const DB = dbVals.length ? dbVals.reduce((a,b)=>a+b,0)/dbVals.length : null;
     const fmt = v => v!==null ? `¥${v.toFixed(2)}` : '—';
     document.getElementById('rs-display').textContent = fmt(RS);
     document.getElementById('db-display').textContent = fmt(DB);
     document.getElementById('sr-display').textContent = fmt(SR);
-    let jpsi=0, tw=0;
-    if (RS!==null){jpsi+=RS*wRS;tw+=wRS;}
-    if (DB!==null){jpsi+=DB*wDB;tw+=wDB;}
-    if (SR!==null){jpsi+=SR*wSR;tw+=wSR;}
-    if (tw>0) {
-      document.getElementById('jpsi-display').textContent = `¥${(jpsi/tw).toFixed(2)}`;
-      const prem = (RS&&SR) ? ((SR/RS)-1)*100 : null;
-      document.getElementById('premium-display').textContent = prem!==null ? `${prem>0?'+':''}${prem.toFixed(1)}%` : '—';
+    let jpsi=0,tw=0;
+    if(RS!==null){jpsi+=RS*wRS;tw+=wRS;}
+    if(DB!==null){jpsi+=DB*wDB;tw+=wDB;}
+    if(SR!==null){jpsi+=SR*wSR;tw+=wSR;}
+    if(tw>0){
+      document.getElementById('jpsi-display').textContent=`¥${(jpsi/tw).toFixed(2)}`;
+      const prem=(RS&&SR)?((SR/RS)-1)*100:null;
+      document.getElementById('premium-display').textContent=prem!==null?`${prem>0?'+':''}${prem.toFixed(1)}%`:'—';
     } else {
-      document.getElementById('jpsi-display').textContent = '—';
-      document.getElementById('premium-display').textContent = '—';
+      document.getElementById('jpsi-display').textContent='—';
+      document.getElementById('premium-display').textContent='—';
     }
-    showNotif(currentLang==='ja'?'更新しました':'Updated');
-  }
-
-  function loadDemo() {
-    document.getElementById('rs1').value='148.50';
-    document.getElementById('rs2').value='149.20';
-    document.getElementById('rs3').value='148.80';
-    document.getElementById('db1').value='145.00';
-    document.getElementById('db2').value='144.50';
-    document.getElementById('db3').value='143.80';
-    mercariEntries=[5150,5220,5180,5090,5200];
-    renderMercariTable(); updateMSPIMean(); recalculate();
-    showNotif(currentLang==='ja'?'デモデータを読み込みました':'Demo data loaded');
   }
 
   function clearAll() {
-    ['rs1','rs2','rs3','db1','db2','db3'].forEach(id=>document.getElementById(id).value='');
-    ['rs1-group','rs2-group','db1-group','db2-group'].forEach(id=>document.getElementById(id).classList.remove('auto-filled'));
+    Object.keys(live).forEach(k=>{live[k]=null;});
+    ['tanaka','tokuriki','nanboya','daikichi'].forEach(k=>setCard(k,null,'Cleared'));
     mercariEntries=[]; renderMercariTable(); updateMSPIMean();
     ['jpsi-display','rs-display','db-display','sr-display'].forEach(id=>document.getElementById(id).textContent='—');
     document.getElementById('premium-display').textContent='—';
     document.getElementById('mspi-mean').textContent='—';
-    showNotif(currentLang==='ja'?'クリアしました':'Cleared');
+    showNotif('Cleared');
   }
 
   function exportCSV() {
-    const today = new Date().toISOString().split('T')[0];
-    const rows = [
-      ['Date','JPSI (¥/g)','RS (¥/g)','DB (¥/g)','SR (¥/g)','Premium vs RS'],
-      [today,...['jpsi-display','rs-display','db-display','sr-display','premium-display'].map(id=>document.getElementById(id).textContent)]
-    ];
-    const blob = new Blob([rows.map(r=>r.join(',')).join('\n')],{type:'text/csv'});
-    const a = document.createElement('a'); a.href=URL.createObjectURL(blob); a.download=`jpsi_${today}.csv`; a.click();
-    showNotif(currentLang==='ja'?'CSVをダウンロードしました':'CSV downloaded');
+    const today=new Date().toISOString().split('T')[0];
+    const rows=[['Date','JPMI-AG (¥/g)','RS (¥/g)','DB (¥/g)','SR (¥/g)','Street Premium vs RS'],[today,...['jpsi-display','rs-display','db-display','sr-display','premium-display'].map(id=>document.getElementById(id).textContent)]];
+    const blob=new Blob([rows.map(r=>r.join(',')).join('\n')],{type:'text/csv'});
+    const a=document.createElement('a');a.href=URL.createObjectURL(blob);a.download=`jpmi_ag_${today}.csv`;a.click();
+    showNotif('CSV exported');
   }
 
   function showNotif(msg) {
     const el=document.getElementById('notif');
-    el.textContent=msg; el.classList.add('show');
+    el.textContent=msg;el.classList.add('show');
     setTimeout(()=>el.classList.remove('show'),1800);
   }
 
-  document.addEventListener('DOMContentLoaded', () => {
-    document.getElementById('merc-input').addEventListener('keydown', e => { if(e.key==='Enter') addMercariEntry(); });
+  document.addEventListener('DOMContentLoaded',()=>{
+    document.getElementById('merc-input').addEventListener('keydown',e=>{if(e.key==='Enter')addMercariEntry();});
     loadPricesJSON();
   });
 </script>
