@@ -130,18 +130,30 @@ def parse_mitsubishi(html: str) -> dict:
         idx = 0
     block = text[idx: idx + 600]
 
-    # Extract all yen/g prices from the block
+    # Extract only meaningful prices (>100 yen/g) — excludes daily-change values like +16.83
     prices = [float(m) for m in re.findall(r"([\d,]+\.\d+)円/g", block)
-              if 10 < float(m) < 50000]
+              if float(m) > 100]
 
-    # The block order is: sell, sell_change, buy, buy_change (for 店頭価格 row)
-    # then sell, sell_change, buy, buy_change (for Web価格 row)
-    # We want 店頭 sell (first) and 店頭 buy (second distinct price)
+    # Order in block: 店頭sell, 店頭buy, Web_sell, Web_buy
     if len(prices) >= 2:
         sell = prices[0]
         buy  = prices[1]
     elif len(prices) == 1:
         sell = prices[0]
+
+    # Fallback: try table-based parsing if text block failed
+    if sell is None:
+        soup2 = BeautifulSoup(html, "html.parser")
+        for td in soup2.find_all(["td", "th"]):
+            m2 = re.search(r"(\d{3,4}\.\d+)円/g", td.get_text())
+            if m2:
+                v = float(m2.group(1))
+                if v > 100:
+                    if sell is None:
+                        sell = v
+                    elif buy is None:
+                        buy = v
+                        break
 
     if sell is None:
         raise ValueError("Mitsubishi: could not parse 最新の価格 block")
