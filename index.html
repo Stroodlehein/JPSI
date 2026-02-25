@@ -128,25 +128,6 @@ body::before{content:'';position:fixed;inset:0;background-image:repeating-linear
 .pt-arrow{color:var(--border2);text-align:center;}
 .pt-new{color:var(--ink2);font-weight:500;}
 
-/* SR SECTION */
-.sr-section{background:var(--paper);border:1px solid var(--border);margin-bottom:28px;}
-.sr-header{display:flex;align-items:center;justify-content:space-between;padding:14px 20px;border-bottom:1px solid var(--border);background:rgba(23,20,15,0.018);}
-.sr-header-left{display:flex;align-items:center;gap:10px;}
-.sr-header h3{font-size:0.88rem;font-weight:400;color:var(--ink);}
-.sr-body{padding:18px 20px;}
-.sr-note{font-size:0.75rem;color:var(--ink3);font-style:italic;margin-bottom:14px;line-height:1.5;}
-.merctable{width:100%;border-collapse:collapse;}
-.merctable th{font-family:'DM Mono',monospace;font-size:0.6rem;letter-spacing:0.1em;text-transform:uppercase;color:var(--ink4);text-align:left;padding:6px 10px;border-bottom:1px solid var(--border);}
-.merctable td{padding:9px 10px;font-family:'DM Mono',monospace;font-size:0.88rem;color:var(--ink);border-bottom:1px solid var(--border);}
-.merctable tr:last-child td{border-bottom:none;}
-.merctable td:nth-child(2){color:var(--ink3);}
-.merc-add-row{display:flex;gap:8px;margin-top:12px;}
-.merc-add-row input{flex:1;background:var(--bg);border:1px solid var(--border2);padding:7px 10px;font-family:'DM Mono',monospace;font-size:0.85rem;color:var(--ink);outline:none;border-radius:1px;}
-.merc-add-row input:focus{border-color:var(--silver);}
-.mspi-mean-row{margin-top:10px;padding:8px 12px;background:var(--bg);border:1px solid var(--border);display:flex;justify-content:space-between;align-items:center;}
-.mspi-label{font-family:'DM Mono',monospace;font-size:0.65rem;color:var(--ink4);letter-spacing:0.08em;}
-.mspi-val{font-family:'DM Mono',monospace;font-size:0.95rem;color:var(--ink);}
-
 /* WEIGHTS */
 .weights-section{background:var(--paper);border:1px solid var(--border);margin-bottom:28px;}
 .ws-header{padding:14px 20px;border-bottom:1px solid var(--border);display:flex;align-items:center;gap:10px;background:rgba(23,20,15,0.018);}
@@ -292,7 +273,7 @@ body::before{content:'';position:fixed;inset:0;background-image:repeating-linear
     <div class="premium-badge">
       <span data-en="Street premium vs RS" data-ja="RS比フリマプレミアム">Street premium vs RS</span>:&nbsp;<span class="pval" id="premium-display">—</span>
     </div>
-    <div class="bc-methodology-note" data-en="Tanaka · Tokuriki · Nanboya · Daikichi · Mercari MSPI-B" data-ja="田中 · 徳力 · ナンボヤ · 大吉 · メルカリ MSPI-B">Tanaka · Tokuriki · Nanboya · Daikichi · Mercari MSPI-B</div>
+    <div class="bc-methodology-note" data-en="Tanaka · Nihon Material · Nanboya · Daikichi · Mercari MSPI-B" data-ja="田中 · 日本マテリアル · ナンボヤ · 大吉 · メルカリ MSPI-B">Tanaka · Nihon Material · Nanboya · Daikichi · Mercari MSPI-B</div>
   </div>
 </div>
 
@@ -350,30 +331,27 @@ body::before{content:'';position:fixed;inset:0;background-image:repeating-linear
 </div>
 
 <!-- SR -->
-<div class="sr-section">
-  <div class="sr-header">
-    <div class="sr-header-left">
-      <span class="badge badge-sr">SR</span>
-      <h3 data-en="Street Retail — Mercari MSPI-B" data-ja="フリマ実売 — メルカリ MSPI-B">Street Retail — Mercari MSPI-B</h3>
-    </div>
+<div class="section-group">
+  <div class="section-group-label">
+    <span><span class="sgl-badge sgl-sr">SR</span>&nbsp;&nbsp;Street Retail — Mercari MSPI-B</span>
   </div>
-  <div class="sr-body">
-    <p class="sr-note" data-en="Add sold listings for common .999 silver bullion coins (1oz, no slabs, no jewelry). Peer-to-peer premium signal." data-ja="一般的な.999地金銀コイン（1オンス、スラブなし、ジュエリーなし）の成約履歴を追加してください。">Add sold listings for common .999 silver bullion coins (1oz, no slabs, no jewelry). Peer-to-peer premium signal.</p>
-    <table class="merctable">
-      <thead><tr>
-        <th data-en="Sold Price (¥)" data-ja="成約価格（円）">Sold Price (¥)</th>
-        <th data-en="¥ / g" data-ja="円/g">¥ / g</th>
-        <th></th>
-      </tr></thead>
-      <tbody id="merc-tbody"><tr><td colspan="3" style="color:var(--ink4);font-style:italic;font-size:0.78rem;">No entries yet. Add sold listings below.</td></tr></tbody>
-    </table>
-    <div class="merc-add-row">
-      <input type="number" id="merc-input" placeholder="Sold price in ¥ (e.g. 15200)" step="1">
-      <button class="btn btn-secondary" onclick="addMercariEntry()" data-en="Add" data-ja="追加">Add</button>
+  <div class="price-grid">
+    <div class="price-card loading-state" id="pc-mercari">
+      <div class="pc-source">Mercari メルカリ · MSPI-B</div>
+      <div class="pc-value" id="pv-mercari">Loading…</div>
+      <div class="pc-unit">¥ / g · peer-to-peer mean</div>
+      <div class="pc-status" id="ps-mercari">Fetching…</div>
     </div>
-    <div class="mspi-mean-row">
-      <span class="mspi-label" data-en="MSPI-B Mean (¥/g)" data-ja="MSPI-B 平均（円/g）">MSPI-B Mean (¥/g)</span>
-      <span class="mspi-val" id="mspi-mean">—</span>
+    <div class="price-card" style="border-style:dashed;background:transparent;display:flex;flex-direction:column;justify-content:center;">
+      <div class="pc-source" style="margin-bottom:6px;">Sample</div>
+      <div style="font-family:'DM Mono',monospace;font-size:1.1rem;color:var(--ink);" id="pv-mercari-n">—</div>
+      <div class="pc-unit">recent 1oz bullion listings</div>
+      <div class="pc-hint" style="margin-top:8px;" data-en="Maple Leaf · Britannia · Eagle · Philharmonic · Panda · Libertad" data-ja="メープル · ブリタニア · イーグル · ウィーン · パンダ · リベルタード">Maple Leaf · Britannia · Eagle · Philharmonic · Panda · Libertad</div>
+    </div>
+    <div class="price-card" style="border-style:dashed;background:transparent;display:flex;flex-direction:column;justify-content:center;">
+      <div class="pc-source" style="margin-bottom:6px;">Last Updated</div>
+      <div style="font-family:'DM Mono',monospace;font-size:0.82rem;color:var(--ink2);line-height:1.6;" id="pv-mercari-date">—</div>
+      <div class="pc-hint" style="margin-top:8px;" data-en="Updated manually. .999 silver, 1oz, no slabs, no jewelry." data-ja="手動更新。.999銀、1オンス、スラブなし、ジュエリーなし。">Updated manually. .999 silver, 1oz, no slabs, no jewelry.</div>
     </div>
   </div>
 </div>
@@ -385,17 +363,20 @@ body::before{content:'';position:fixed;inset:0;background-image:repeating-linear
     <h3 data-en="Index Weights &amp; Compute" data-ja="指数ウェイトと計算">Index Weights &amp; Compute</h3>
   </div>
   <div class="ws-body">
-    <p style="font-size:0.75rem;color:var(--ink3);margin-bottom:14px;font-style:italic;">Adjust the blend. Weights must sum to 1.00. RS = refiners · DB = dealers/pawn · SR = Mercari</p>
-    <div class="weights-row">
-      <div class="wt-group"><label>RS Weight</label><input type="number" id="w-rs" value="0.50" min="0" max="1" step="0.01" oninput="checkWeights()"></div>
-      <div class="wt-group"><label>DB Weight</label><input type="number" id="w-db" value="0.25" min="0" max="1" step="0.01" oninput="checkWeights()"></div>
-      <div class="wt-group"><label>SR Weight</label><input type="number" id="w-sr" value="0.25" min="0" max="1" step="0.01" oninput="checkWeights()"></div>
-      <div class="weight-sum ok" id="weight-sum-label">∑ 1.00 ✓</div>
-    </div>
-    <div class="actions">
-      <button class="btn btn-primary" onclick="recalculate()">Recalculate</button>
-      <button class="btn btn-secondary" onclick="clearAll()">Clear All</button>
-      <button class="btn btn-secondary" onclick="exportCSV()">Export CSV</button>
+    <p style="font-size:0.75rem;color:var(--ink3);margin-bottom:14px;font-style:italic;" data-en="Fixed weights applied to composite. RS = refiners · DB = dealers/pawn · SR = Mercari peer-to-peer" data-ja="複合指数に適用される固定ウェイト。RS=精錬所 · DB=業者/質屋 · SR=メルカリ">Fixed weights applied to composite. RS = refiners · DB = dealers/pawn · SR = Mercari peer-to-peer</p>
+    <div class="weights-row" style="grid-template-columns:1fr 1fr 1fr;">
+      <div class="wt-group">
+        <label>RS Weight</label>
+        <div style="font-family:'DM Mono',monospace;font-size:1.4rem;color:var(--ink);padding:8px 0;">0.50</div>
+      </div>
+      <div class="wt-group">
+        <label>DB Weight</label>
+        <div style="font-family:'DM Mono',monospace;font-size:1.4rem;color:var(--ink);padding:8px 0;">0.25</div>
+      </div>
+      <div class="wt-group">
+        <label>SR Weight</label>
+        <div style="font-family:'DM Mono',monospace;font-size:1.4rem;color:var(--ink);padding:8px 0;">0.25</div>
+      </div>
     </div>
   </div>
 </div>
@@ -417,13 +398,13 @@ body::before{content:'';position:fixed;inset:0;background-image:repeating-linear
   <div class="method-body">
     <div class="formula-block">
       <div class="f-comment">// RS — Refinery Spot (upstream physical buyback)</div>
-      RS = mean(Tanaka_buy, Tokuriki_buy)<br><br>
+      RS = mean(Tanaka_buy, NihonMaterial_buy)<br><br>
       <div class="f-comment">// DB — Dealer / Pawn Bid (retail exit liquidity)</div>
-      DB = mean(Nanboya_Sv1000, Daikichi_1g, ...)<br><br>
-      <div class="f-comment">// SR — Street Retail (Mercari peer-to-peer)</div>
-      SR = mean(sold_price_¥ ÷ 31.1035g) &nbsp;<span class="f-comment">// MSPI-B</span><br><br>
-      <div class="f-comment">// JPMI composite</div>
-      JPMI = (RS × wRS) + (DB × wDB) + (SR × wSR)<br><br>
+      DB = mean(Nanboya_Sv1000, Daikichi_1g)<br><br>
+      <div class="f-comment">// SR — Street Retail (Mercari MSPI-B, updated manually)</div>
+      SR = mean(sold_price_¥ ÷ 31.1035g) &nbsp;<span class="f-comment">// 4–5 recent 1oz bullion listings</span><br><br>
+      <div class="f-comment">// JPMI composite (fixed weights)</div>
+      JPMI = (RS × 0.50) + (DB × 0.25) + (SR × 0.25)<br><br>
       <div class="f-comment">// Street premium vs refinery floor</div>
       Premium = (SR ÷ RS) − 1
     </div>
@@ -434,19 +415,18 @@ body::before{content:'';position:fixed;inset:0;background-image:repeating-linear
 <footer class="site-footer">
   <div class="footer-left">
     <div class="fl-title">JPMI — Japan Physical Metals Index™</div>
-    <div class="fl-sub">Silver Index (JPMI-AG) · JPY per gram · Updated daily<br>Sources: Tanaka · Tokuriki · Nanboya · Daikichi · Mercari MSPI-B<br>Informational index only. Not financial advice.</div>
+    <div class="fl-sub">Silver Index (JPMI-AG) · JPY per gram · Updated daily<br>Sources: Tanaka · Nihon Material · Nanboya · Daikichi · Mercari MSPI-B<br>Informational index only. Not financial advice.</div>
   </div>
   <div class="footer-right">Data via GitHub Actions<br>Physical metal · Domestic market<br>Global spot ≠ Japanese physical reality</div>
 </footer>
 
 </div>
-<div class="notif" id="notif"></div>
 
 <script>
   const OZ_TO_G = 31.1035;
-  let mercariEntries = [];
+  const W_RS = 0.50, W_DB = 0.25, W_SR = 0.25;
   let currentLang = 'en';
-  const live = { tanaka:null, nihon:null, mitsubishi:null, nanboya:null, daikichi:null };
+  const live = { tanaka:null, nihon:null, mitsubishi:null, nanboya:null, daikichi:null, mercari:null };
 
   async function loadPricesJSON() {
     const banner = document.getElementById('fetch-banner');
@@ -456,6 +436,7 @@ body::before{content:'';position:fixed;inset:0;background-image:repeating-linear
     statusEl.textContent = 'Loading live data from prices.json…';
     retryBtn.style.display = 'none';
     ['tanaka','nihon','mitsubishi','nanboya','daikichi'].forEach(k => setCard(k, null, 'Fetching…', true));
+    setCard('mercari', null, 'Fetching…', true);
 
     try {
       const res = await fetch('./prices.json?t=' + Date.now(), { signal: AbortSignal.timeout(10000) });
@@ -465,11 +446,32 @@ body::before{content:'';position:fixed;inset:0;background-image:repeating-linear
       const errors = data.errors || [];
       const updatedAt = data.updated_at_utc ? new Date(data.updated_at_utc) : null;
 
-      setCard('tanaka',     p.tanaka_silver_buy,             p.tanaka_silver_buy             ? '● Buyback price'    : 'Not available');
-      setCard('nihon',      p.nihon_silver_buy,              p.nihon_silver_buy              ? '● Buyback price'    : 'Not available');
-      setCard('mitsubishi', p.mitsubishi_silver_sell,        p.mitsubishi_silver_sell        ? '● Retail sell price' : 'Not available');
-      setCard('nanboya',    p.nanboya_sv1000,                p.nanboya_sv1000                ? '● Sv1000 bid'       : 'Not available');
-      setCard('daikichi',   p.daikichi_sv1000,               p.daikichi_sv1000               ? '● Per gram bid'     : 'Not available');
+      setCard('tanaka',     p.tanaka_silver_buy,      p.tanaka_silver_buy      ? '● Buyback price'     : 'Not available');
+      setCard('nihon',      p.nihon_silver_buy,       p.nihon_silver_buy       ? '● Buyback price'     : 'Not available');
+      setCard('mitsubishi', p.mitsubishi_silver_sell, p.mitsubishi_silver_sell ? '● Retail sell price'  : 'Not available');
+      setCard('nanboya',    p.nanboya_sv1000,         p.nanboya_sv1000         ? '● Sv1000 bid'        : 'Not available');
+      setCard('daikichi',   p.daikichi_sv1000,        p.daikichi_sv1000        ? '● Per gram bid'      : 'Not available');
+
+      // Mercari SR from prices.json
+      if (p.mercari_mspi_b) {
+        live.mercari = p.mercari_mspi_b;
+        const card = document.getElementById('pc-mercari');
+        card.classList.remove('loading-state','failed');
+        card.classList.add('loaded');
+        document.getElementById('pv-mercari').textContent = p.mercari_mspi_b.toFixed(2);
+        document.getElementById('ps-mercari').textContent = '● MSPI-B mean';
+        if (p.mercari_sample_size) document.getElementById('pv-mercari-n').textContent = `n = ${p.mercari_sample_size}`;
+        if (p.mercari_updated) document.getElementById('pv-mercari-date').textContent = p.mercari_updated;
+      } else {
+        live.mercari = null;
+        const card = document.getElementById('pc-mercari');
+        card.classList.remove('loading-state','loaded');
+        card.classList.add('failed');
+        document.getElementById('pv-mercari').textContent = 'N/A';
+        document.getElementById('ps-mercari').textContent = 'Not yet recorded';
+        document.getElementById('pv-mercari-n').textContent = '—';
+        document.getElementById('pv-mercari-date').textContent = '—';
+      }
 
       let tsStr = '—';
       if (updatedAt) {
@@ -494,6 +496,7 @@ body::before{content:'';position:fixed;inset:0;background-image:repeating-linear
       statusEl.textContent = '⚠ Could not load prices.json — check GitHub Actions ran successfully.';
       retryBtn.style.display = 'inline-block';
       ['tanaka','nihon','mitsubishi','nanboya','daikichi'].forEach(k => setCard(k, null, 'Load failed'));
+      setCard('mercari', null, 'Load failed');
     }
   }
 
@@ -501,6 +504,7 @@ body::before{content:'';position:fixed;inset:0;background-image:repeating-linear
     const card = document.getElementById('pc-' + key);
     const valEl = document.getElementById('pv-' + key);
     const statEl = document.getElementById('ps-' + key);
+    if (!card) return;
     card.classList.remove('loaded','failed','loading-state');
     if (loading) {
       card.classList.add('loading-state');
@@ -528,65 +532,22 @@ body::before{content:'';position:fixed;inset:0;background-image:repeating-linear
     });
     document.getElementById('card-date-label').textContent =
       lang==='ja' ? 'JPMI — 銀 · 本日のベンチマーク' : "JPMI — SILVER · TODAY'S BENCHMARK";
-    renderMercariTable();
-  }
-
-  function checkWeights() {
-    const s = Math.round(['w-rs','w-db','w-sr'].reduce((a,id)=>a+(parseFloat(document.getElementById(id).value)||0),0)*100)/100;
-    const el = document.getElementById('weight-sum-label');
-    el.textContent = `∑ ${s.toFixed(2)} ${Math.abs(s-1)<0.001?'✓':'✗'}`;
-    el.className = 'weight-sum '+(Math.abs(s-1)<0.001?'ok':'err');
-  }
-
-  function addMercariEntry() {
-    const val = parseFloat(document.getElementById('merc-input').value);
-    if (isNaN(val)||val<=0) { showNotif('Enter a valid price'); return; }
-    mercariEntries.push(val);
-    document.getElementById('merc-input').value = '';
-    renderMercariTable(); updateMSPIMean(); recalculate();
-  }
-
-  function removeMercariEntry(i) { mercariEntries.splice(i,1); renderMercariTable(); updateMSPIMean(); recalculate(); }
-
-  function renderMercariTable() {
-    const tbody = document.getElementById('merc-tbody');
-    if (!mercariEntries.length) {
-      tbody.innerHTML = `<tr><td colspan="3" style="color:var(--ink4);font-style:italic;font-size:0.78rem;">${currentLang==='ja'?'まだ入力がありません。':'No entries yet. Add sold listings below.'}</td></tr>`;
-      return;
-    }
-    tbody.innerHTML = mercariEntries.map((p,i) =>
-      `<tr><td>¥${p.toLocaleString()}</td><td>¥${(p/OZ_TO_G).toFixed(2)}</td><td><button class="btn btn-danger" onclick="removeMercariEntry(${i})">✕</button></td></tr>`
-    ).join('');
-  }
-
-  function updateMSPIMean() {
-    const el = document.getElementById('mspi-mean');
-    if (!mercariEntries.length) { el.textContent='—'; return; }
-    el.textContent = `¥${(mercariEntries.reduce((a,b)=>a+b/OZ_TO_G,0)/mercariEntries.length).toFixed(2)}/g`;
-  }
-
-  function getMSPIMean() {
-    if (!mercariEntries.length) return null;
-    return mercariEntries.reduce((a,b)=>a+b/OZ_TO_G,0)/mercariEntries.length;
   }
 
   function recalculate() {
     const rsVals = [live.tanaka, live.nihon].filter(v=>v!==null);
     const dbVals = [live.nanboya, live.daikichi].filter(v=>v!==null);
-    const SR = getMSPIMean();
-    const wRS=parseFloat(document.getElementById('w-rs').value)||0;
-    const wDB=parseFloat(document.getElementById('w-db').value)||0;
-    const wSR=parseFloat(document.getElementById('w-sr').value)||0;
     const RS = rsVals.length ? rsVals.reduce((a,b)=>a+b,0)/rsVals.length : null;
     const DB = dbVals.length ? dbVals.reduce((a,b)=>a+b,0)/dbVals.length : null;
+    const SR = live.mercari;
     const fmt = v => v!==null ? `¥${v.toFixed(2)}` : '—';
     document.getElementById('rs-display').textContent = fmt(RS);
     document.getElementById('db-display').textContent = fmt(DB);
     document.getElementById('sr-display').textContent = fmt(SR);
-    let jpsi=0,tw=0;
-    if(RS!==null){jpsi+=RS*wRS;tw+=wRS;}
-    if(DB!==null){jpsi+=DB*wDB;tw+=wDB;}
-    if(SR!==null){jpsi+=SR*wSR;tw+=wSR;}
+    let jpsi=0, tw=0;
+    if(RS!==null){jpsi+=RS*W_RS;tw+=W_RS;}
+    if(DB!==null){jpsi+=DB*W_DB;tw+=W_DB;}
+    if(SR!==null){jpsi+=SR*W_SR;tw+=W_SR;}
     if(tw>0){
       document.getElementById('jpsi-display').textContent=`¥${(jpsi/tw).toFixed(2)}`;
       const prem=(RS&&SR)?((SR/RS)-1)*100:null;
@@ -597,34 +558,14 @@ body::before{content:'';position:fixed;inset:0;background-image:repeating-linear
     }
   }
 
-  function clearAll() {
-    Object.keys(live).forEach(k=>{live[k]=null;});
-    ['tanaka','nihon','mitsubishi','nanboya','daikichi'].forEach(k=>setCard(k,null,'Cleared'));
-    mercariEntries=[]; renderMercariTable(); updateMSPIMean();
-    ['jpsi-display','rs-display','db-display','sr-display'].forEach(id=>document.getElementById(id).textContent='—');
-    document.getElementById('premium-display').textContent='—';
-    document.getElementById('mspi-mean').textContent='—';
-    showNotif('Cleared');
-  }
-
   function exportCSV() {
     const today=new Date().toISOString().split('T')[0];
     const rows=[['Date','JPMI-AG (¥/g)','RS (¥/g)','DB (¥/g)','SR (¥/g)','Street Premium vs RS'],[today,...['jpsi-display','rs-display','db-display','sr-display','premium-display'].map(id=>document.getElementById(id).textContent)]];
     const blob=new Blob([rows.map(r=>r.join(',')).join('\n')],{type:'text/csv'});
     const a=document.createElement('a');a.href=URL.createObjectURL(blob);a.download=`jpmi_ag_${today}.csv`;a.click();
-    showNotif('CSV exported');
   }
 
-  function showNotif(msg) {
-    const el=document.getElementById('notif');
-    el.textContent=msg;el.classList.add('show');
-    setTimeout(()=>el.classList.remove('show'),1800);
-  }
-
-  document.addEventListener('DOMContentLoaded',()=>{
-    document.getElementById('merc-input').addEventListener('keydown',e=>{if(e.key==='Enter')addMercariEntry();});
-    loadPricesJSON();
-  });
+  document.addEventListener('DOMContentLoaded', loadPricesJSON);
 </script>
 </body>
 </html>
