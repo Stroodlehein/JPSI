@@ -6,7 +6,7 @@ Sources:
   RS (Refinery Spot):
     - Tanaka Kikinzoku     — gold.tanaka.co.jp (English page, UTF-8)
     - Nihon Material       — material.co.jp/market.php (EUC-JP, static HTML)
-    - Mitsubishi Materials — gold.mmc.co.jp/market/silver-price/ (UTF-8, static HTML)
+    - Mitsubishi Materials — gold.mmc.co.jp/market/s_data/YYYY.html (static annual chart, no JS)
                              NOTE: Mitsubishi publishes RETAIL sell price + buyback via
                              savings scheme only (no physical silver OTC buyback).
                              We capture both small_retail and buyback for transparency.
@@ -27,7 +27,7 @@ UA = "Mozilla/5.0 (compatible; JPMIbot/1.0)"
 SOURCES = {
     "tanaka":     "https://gold.tanaka.co.jp/commodity/souba/english/index.php",
     "nihon":      "https://www.material.co.jp/market.php",
-    "mitsubishi": "https://gold.mmc.co.jp/market/silver-price/",
+    "mitsubishi": "https://gold.mmc.co.jp/market/s_data/2026.html",  # static annual chart — no JS
     "nanboya":    "https://nanboya.com/gold-kaitori/silver/silver-souba/",
     "daikichi":   "https://www.kaitori-daikichi.jp/list/gold/silver/souba/",
 }
@@ -106,63 +106,47 @@ def parse_nihon(html: str) -> dict:
 # ── Mitsubishi Materials (UTF-8 static HTML) ─────────────────────────────────
 def parse_mitsubishi(html: str) -> dict:
     """
-    The 最新の価格 section contains a table:
-    | 店頭価格 | 小売価格 500.39円/g | ... | 買取価格 483.89円/g | ... |
+    Targets the annual chart page (e.g. /market/s_data/2026.html) which is
+    guaranteed static HTML with no JS rendering.
+    Table structure: | 日 | 海外価格 (USD/toz) | 小売価格 (¥/g) |
+    We walk rows from the bottom to find the most recent non-empty 小売価格.
 
-    Important context for JPMI:
-    - Mitsubishi does NOT do OTC physical silver buyback at their shops
-      ("銀地金の売買は行っておりません")
-    - The 買取価格 here applies to their savings scheme (マイ・ゴールドパートナー)
-    - We capture both sell (retail reference) and scheme buyback for transparency
-    - These are included as RS data points, labelled clearly in prices.json
+    Note: Mitsubishi does NOT do physical OTC silver buyback at their stores.
+    The 買取価格 is their savings-scheme (マイ・ゴールドパートナー) rate only.
+    Both prices are captured as RS reference data.
     """
     soup = BeautifulSoup(html, "html.parser")
+    sell = None
 
-    # Strategy: find all price-like strings near 買取価格 and 小売価格 in 最新の価格 section
-    text = soup.get_text(" ", strip=True)
-
-    sell, buy = None, None
-
-    # Pattern: "店頭価格 NNN.NN円/g ... NNN.NN円/g ..." (sell comes before buy in table)
-    # Look for the 最新の価格 block
-    idx = text.find("最新の価格")
-    if idx == -1:
-        idx = 0
-    block = text[idx: idx + 600]
-
-    # Extract only meaningful prices (>100 yen/g) — excludes daily-change values like +16.83
-    prices = [float(m) for m in re.findall(r"([\d,]+\.\d+)円/g", block)
-              if float(m) > 100]
-
-    # Order in block: 店頭sell, 店頭buy, Web_sell, Web_buy
-    if len(prices) >= 2:
-        sell = prices[0]
-        buy  = prices[1]
-    elif len(prices) == 1:
-        sell = prices[0]
-
-    # Fallback: try table-based parsing if text block failed
-    if sell is None:
-        soup2 = BeautifulSoup(html, "html.parser")
-        for td in soup2.find_all(["td", "th"]):
-            m2 = re.search(r"(\d{3,4}\.\d+)円/g", td.get_text())
-            if m2:
-                v = float(m2.group(1))
-                if v > 100:
-                    if sell is None:
+    # Find the monthly table that has 海外価格 and 小売価格 columns
+    # Walk all tables, find one whose headers contain 小売価格
+    for table in soup.find_all("table"):
+        headers_text = " ".join(th.get_text(strip=True) for th in table.find_all("th"))
+        if "小売" not in headers_text:
+            continue
+        # Collect all rows that have a numeric 小売価格 (column index 1 or 2)
+        # Row format: | 日 | 海外価格 | 小売価格 | or similar
+        # Walk rows in reverse to get the most recent entry
+        rows = table.find_all("tr")
+        for row in reversed(rows):
+            cells = [td.get_text(strip=True) for td in row.find_all("td")]
+            # Try each cell for a plain decimal number > 100 (yen/g range)
+            for cell in cells[1:]:  # skip first col (day number)
+                m = re.match(r"^([\d]+\.\d+)$", cell)
+                if m:
+                    v = float(m.group(1))
+                    if v > 100:
                         sell = v
-                    elif buy is None:
-                        buy = v
                         break
+            if sell:
+                break
+        if sell:
+            break
 
     if sell is None:
-        raise ValueError("Mitsubishi: could not parse 最新の価格 block")
+        raise ValueError("Mitsubishi annual chart: could not find 小売価格")
 
-    result = {"silver_sell": sell}
-    if buy is not None:
-        result["silver_scheme_buy"] = buy  # savings-scheme buyback, NOT OTC
-
-    return result
+    return {"silver_sell": sell}
 
 
 # ── Nanboya (DB) ──────────────────────────────────────────────────────────────
@@ -244,8 +228,10 @@ def main():
         p["nihon_silver_buy"]  = result["silver_buy"]
         p["nihon_silver_sell"] = result.get("silver_sell")
 
-    # RS — Mitsubishi (retail sell + scheme buy)
-    result, err = safe_fetch("mitsubishi", lambda: parse_mitsubishi(get_html(SOURCES["mitsubishi"])))
+    # RS — Mitsubishi: use annual chart page (guaranteed static HTML, no JS rendering)
+    from datetime import date
+    mmc_url = f"https://gold.mmc.co.jp/market/s_data/{date.today().year}.html"
+    result, err = safe_fetch("mitsubishi", lambda: parse_mitsubishi(get_html(mmc_url)))
     if err:   out["errors"].append(err)
     if result:
         p["mitsubishi_silver_sell"]        = result.get("silver_sell")
