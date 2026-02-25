@@ -310,12 +310,19 @@ body::before{content:'';position:fixed;inset:0;background-image:repeating-linear
       <div class="pc-unit">¥ / g · silver buyback</div>
       <div class="pc-status" id="ps-tanaka">Fetching…</div>
     </div>
-    <div class="price-card loading-state" id="pc-tokuriki">
-      <div class="pc-source">Tokuriki 徳力本店</div>
-      <div class="pc-value" id="pv-tokuriki">Loading…</div>
+    <div class="price-card loading-state" id="pc-nihon">
+      <div class="pc-source">Nihon Material 日本マテリアル</div>
+      <div class="pc-value" id="pv-nihon">Loading…</div>
       <div class="pc-unit">¥ / g · silver buyback</div>
-      <div class="pc-status" id="ps-tokuriki">Fetching…</div>
+      <div class="pc-status" id="ps-nihon">Fetching…</div>
     </div>
+    <div class="price-card loading-state" id="pc-mitsubishi">
+      <div class="pc-source">Mitsubishi 三菱マテリアル</div>
+      <div class="pc-value" id="pv-mitsubishi">Loading…</div>
+      <div class="pc-unit">¥ / g · retail sell price</div>
+      <div class="pc-status" id="ps-mitsubishi">Fetching…</div>
+    </div>
+
 
   </div>
 </div>
@@ -439,7 +446,7 @@ body::before{content:'';position:fixed;inset:0;background-image:repeating-linear
   const OZ_TO_G = 31.1035;
   let mercariEntries = [];
   let currentLang = 'en';
-  const live = { tanaka:null, tokuriki:null, nanboya:null, daikichi:null };
+  const live = { tanaka:null, nihon:null, mitsubishi:null, nanboya:null, daikichi:null };
 
   async function loadPricesJSON() {
     const banner = document.getElementById('fetch-banner');
@@ -448,7 +455,7 @@ body::before{content:'';position:fixed;inset:0;background-image:repeating-linear
     banner.className = 'fetch-banner loading';
     statusEl.textContent = 'Loading live data from prices.json…';
     retryBtn.style.display = 'none';
-    ['tanaka','tokuriki','nanboya','daikichi'].forEach(k => setCard(k, null, 'Fetching…', true));
+    ['tanaka','nihon','mitsubishi','nanboya','daikichi'].forEach(k => setCard(k, null, 'Fetching…', true));
 
     try {
       const res = await fetch('./prices.json?t=' + Date.now(), { signal: AbortSignal.timeout(10000) });
@@ -458,10 +465,11 @@ body::before{content:'';position:fixed;inset:0;background-image:repeating-linear
       const errors = data.errors || [];
       const updatedAt = data.updated_at_utc ? new Date(data.updated_at_utc) : null;
 
-      setCard('tanaka',   p.tanaka_silver_buy,  p.tanaka_silver_buy   ? '● Buyback price' : 'Not available');
-      setCard('tokuriki', p.tokuriki_silver_buy, p.tokuriki_silver_buy ? '● Buyback price' : 'Not available');
-      setCard('nanboya',  p.nanboya_sv1000,      p.nanboya_sv1000      ? '● Sv1000 bid'    : 'Not available');
-      setCard('daikichi', p.daikichi_sv1000,     p.daikichi_sv1000     ? '● Per gram bid'  : 'Not available');
+      setCard('tanaka',     p.tanaka_silver_buy,             p.tanaka_silver_buy             ? '● Buyback price'    : 'Not available');
+      setCard('nihon',      p.nihon_silver_buy,              p.nihon_silver_buy              ? '● Buyback price'    : 'Not available');
+      setCard('mitsubishi', p.mitsubishi_silver_sell,        p.mitsubishi_silver_sell        ? '● Retail sell price' : 'Not available');
+      setCard('nanboya',    p.nanboya_sv1000,                p.nanboya_sv1000                ? '● Sv1000 bid'       : 'Not available');
+      setCard('daikichi',   p.daikichi_sv1000,               p.daikichi_sv1000               ? '● Per gram bid'     : 'Not available');
 
       let tsStr = '—';
       if (updatedAt) {
@@ -485,7 +493,7 @@ body::before{content:'';position:fixed;inset:0;background-image:repeating-linear
       banner.className = 'fetch-banner error';
       statusEl.textContent = '⚠ Could not load prices.json — check GitHub Actions ran successfully.';
       retryBtn.style.display = 'inline-block';
-      ['tanaka','tokuriki','nanboya','daikichi'].forEach(k => setCard(k, null, 'Load failed'));
+      ['tanaka','nihon','mitsubishi','nanboya','daikichi'].forEach(k => setCard(k, null, 'Load failed'));
     }
   }
 
@@ -563,7 +571,7 @@ body::before{content:'';position:fixed;inset:0;background-image:repeating-linear
   }
 
   function recalculate() {
-    const rsVals = [live.tanaka, live.tokuriki].filter(v=>v!==null);
+    const rsVals = [live.tanaka, live.nihon].filter(v=>v!==null);
     const dbVals = [live.nanboya, live.daikichi].filter(v=>v!==null);
     const SR = getMSPIMean();
     const wRS=parseFloat(document.getElementById('w-rs').value)||0;
@@ -591,7 +599,7 @@ body::before{content:'';position:fixed;inset:0;background-image:repeating-linear
 
   function clearAll() {
     Object.keys(live).forEach(k=>{live[k]=null;});
-    ['tanaka','tokuriki','nanboya','daikichi'].forEach(k=>setCard(k,null,'Cleared'));
+    ['tanaka','nihon','mitsubishi','nanboya','daikichi'].forEach(k=>setCard(k,null,'Cleared'));
     mercariEntries=[]; renderMercariTable(); updateMSPIMean();
     ['jpsi-display','rs-display','db-display','sr-display'].forEach(id=>document.getElementById(id).textContent='—');
     document.getElementById('premium-display').textContent='—';
