@@ -9,7 +9,7 @@ UA = "Mozilla/5.0 (compatible; JPSIbot/1.0)"
 
 SOURCES = {
   "tanaka": "https://gold.tanaka.co.jp/commodity/souba/english/index.php",
-  "tokuriki": "https://www.tokuriki-kanda.co.jp/goldetc/",
+  "tokuriki": "https://www.tokuriki-kanda.co.jp/goldetc/market/",  # fixed: was /goldetc/
   "nanboya": "https://nanboya.com/gold-kaitori/silver/silver-souba/",
   "daikichi": "https://www.kaitori-daikichi.jp/list/gold/silver/souba/",
 }
@@ -40,52 +40,92 @@ def parse_tanaka_silver_buy(html: str) -> float:
 
 def parse_tokuriki_silver_buy(html: str) -> float:
   """
-  Tokuriki page formatting can vary.
-  We'll try multiple patterns:
-  1) 銀 <number> 円/g
-  2) シルバー <number> 円/g
-  3) 銀 <number> 円 (no /g)
-  and prefer the first match that looks like a realistic JPY/gram price.
+  Parses the Tokuriki market page (/goldetc/market/) for silver buyback price.
+  The page shows a table with 銀 row containing 小売価格 and 買取価格 in yen/g.
+  We want 買取価格 (buyback).
   """
   soup = BeautifulSoup(html, "html.parser")
   text = soup.get_text(" ", strip=True)
 
-  # Narrow search area near keywords if present
-  anchor_idx = text.find("買取")
-  tail = text[anchor_idx: anchor_idx + 4000] if anchor_idx != -1 else text
+  # Pattern 1: direct yen/g format near 銀 - look for two prices and take second (buy)
+  # e.g. "銀 493.90円/g ... 476.85円/g"
+  m = re.search(r"銀\s*[\s\S]{0,600}?(\d{3,4}\.\d{2})円/g[\s\S]{0,300}?(\d{3,4}\.\d{2})円/g", text)
+  if m:
+    val = float(m.group(2))
+    if 50.0 <= val <= 5000.0:
+      return val
 
-  patterns = [
-    r"(?:銀|シルバー)\s*[:：]?\s*(\d+(?:\.\d+)?)\s*円\s*/\s*g",
-    r"(?:銀|シルバー)\s*[:：]?\s*(\d+(?:\.\d+)?)\s*円/g",
-    r"(?:銀|シルバー)\s*[:：]?\s*(\d+(?:\.\d+)?)\s*円\s*g",
-    r"(?:銀|シルバー)\s*[:：]?\s*(\d+(?:\.\d+)?)\s*円",
-  ]
+  # Pattern 2: 買取価格 near 銀
+  anchor = text.find("買取価格")
+  if anchor != -1:
+    tail = text[anchor: anchor + 2000]
+    patterns = [
+      r"銀\s*(?:\(g\))?\s*[\s\S]{0,200}?(\d{3,4}\.\d{2})",
+      r"(\d{3,4}\.\d{2})\s*円",
+    ]
+    for pat in patterns:
+      for m2 in re.finditer(pat, tail):
+        val = float(m2.group(1))
+        if 50.0 <= val <= 5000.0:
+          return val
 
-  candidates = []
-  for pat in patterns:
-    for m in re.finditer(pat, tail):
-      try:
-        val = float(m.group(1))
-        # sanity filter for plausible JPY/g silver range (avoid random years, phone numbers etc)
-        if 50.0 <= val <= 2000.0:
-          candidates.append(val)
-      except Exception:
-        pass
-    if candidates:
-      break
+  # Pattern 3: kg price -> convert to per gram
+  # Tokuriki sometimes shows 銀(kg) with price like "476,850"
+  m3 = re.search(r"銀\(kg\)[\s\S]{0,400}?(\d{3,4}),(\d{3})[\s\S]{0,200}?(\d{3,4}),(\d{3})", text)
+  if m3:
+    buy_kg = float(m3.group(3) + m3.group(4))
+    val = buy_kg / 1000.0
+    if 50.0 <= val <= 5000.0:
+      return val
 
-  if not candidates:
-    raise ValueError("Tokuriki silver buyback not found")
+  # Pattern 4: broad search for any per-gram silver price
+  for pat in [
+    r"(?:銀|シルバー)\s*[:：]?\s*(\d{3,4}\.\d{2})\s*円\s*/\s*g",
+    r"(\d{3,4}\.\d{2})\s*円\s*/\s*g",
+  ]:
+    for m4 in re.finditer(pat, text):
+      val = float(m4.group(1))
+      if 50.0 <= val <= 5000.0:
+        return val
 
-  return candidates[0]
+  raise ValueError("Tokuriki silver buyback not found on market page")
 
 def parse_nanboya_sv1000(html: str) -> float:
+  """
+  Nanboya shows silver in yen/g. We want the Sv1000 (.999 silver) buyback per gram.
+  Typical format: price is shown as a number near Sv1000 or 純銀.
+  Must be in realistic JPY/g range (300-2000), NOT a 4-digit standalone number like 1000.
+  """
   soup = BeautifulSoup(html, "html.parser")
   text = soup.get_text(" ", strip=True)
-  m = re.search(r"Sv1000.*?(\d{2,4})\s*円", text)
-  if not m:
-    raise ValueError("Nanboya Sv1000 price not found")
-  return float(m.group(1))
+
+  # Look for Sv1000 row: price should be a 3-4 digit number in realistic range
+  # Pattern: Sv1000 followed by price and 円 (NOT just bare "1000")
+  patterns = [
+    r"Sv1000[\s\S]{0,200}?(\d{3,4}(?:\.\d+)?)\s*円\s*/\s*g",
+    r"Sv1000[\s\S]{0,200}?(\d{3,4}(?:\.\d+)?)\s*円",
+    r"純銀[\s\S]{0,200}?(\d{3,4}(?:\.\d+)?)\s*円\s*/\s*g",
+    r"純銀[\s\S]{0,200}?(\d{3,4}(?:\.\d+)?)\s*円",
+  ]
+
+  for pat in patterns:
+    m = re.search(pat, text)
+    if m:
+      val = float(m.group(1))
+      # Filter: must be in realistic silver per-gram range, not a category code
+      if 200.0 <= val <= 2000.0 and val != 1000.0:
+        return val
+
+  # Fallback: find any realistic ¥/g near 銀
+  idx = text.find("銀")
+  if idx != -1:
+    tail = text[idx: idx + 1000]
+    for m2 in re.finditer(r"(\d{3,4}(?:\.\d+)?)\s*円", tail):
+      val = float(m2.group(1))
+      if 200.0 <= val <= 2000.0 and val != 1000.0:
+        return val
+
+  raise ValueError("Nanboya Sv1000 realistic price not found")
 
 def parse_daikichi_sv1000(html: str) -> float:
   soup = BeautifulSoup(html, "html.parser")
@@ -109,22 +149,22 @@ def main():
     "sources": SOURCES,
   }
 
-  # Tanaka
+  # Tanaka (RS)
   v, err = safe_get("tanaka", lambda: parse_tanaka_silver_buy(get_html(SOURCES["tanaka"])))
   if err: out["errors"].append(err)
   if v is not None: out["prices_jpy_per_g"]["tanaka_silver_buy"] = v
 
-  # Tokuriki (no longer fatal)
+  # Tokuriki (RS)
   v, err = safe_get("tokuriki", lambda: parse_tokuriki_silver_buy(get_html(SOURCES["tokuriki"])))
   if err: out["errors"].append(err)
   if v is not None: out["prices_jpy_per_g"]["tokuriki_silver_buy"] = v
 
-  # Nanboya
+  # Nanboya (DB - pawn/dealer proxy)
   v, err = safe_get("nanboya", lambda: parse_nanboya_sv1000(get_html(SOURCES["nanboya"])))
   if err: out["errors"].append(err)
   if v is not None: out["prices_jpy_per_g"]["nanboya_sv1000"] = v
 
-  # Daikichi
+  # Daikichi (DB - pawn/dealer proxy)
   v, err = safe_get("daikichi", lambda: parse_daikichi_sv1000(get_html(SOURCES["daikichi"])))
   if err: out["errors"].append(err)
   if v is not None: out["prices_jpy_per_g"]["daikichi_sv1000"] = v
