@@ -143,21 +143,6 @@ body::before{content:'';position:fixed;inset:0;background-image:repeating-linear
 .weight-sum.err{color:var(--red);}
 .actions{display:flex;gap:8px;flex-wrap:wrap;}
 
-/* SIGNALS */
-.signals-section{margin-bottom:28px;}
-.signals-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(185px,1fr));gap:10px;}
-.signal-card{background:var(--paper);border:1px solid var(--border);padding:14px 16px;}
-.signal-trigger{font-family:'DM Mono',monospace;font-size:0.72rem;color:var(--ink2);margin-bottom:5px;letter-spacing:0.02em;}
-.signal-meaning{font-size:0.78rem;color:var(--ink3);font-style:italic;line-height:1.45;}
-
-/* METHODOLOGY */
-.method-section{background:var(--paper);border:1px solid var(--border);margin-bottom:28px;}
-.method-header{padding:14px 20px;border-bottom:1px solid var(--border);background:rgba(23,20,15,0.018);}
-.method-header h3{font-size:0.88rem;font-weight:400;color:var(--ink);}
-.method-body{padding:18px 20px;}
-.formula-block{background:var(--bg);border:1px solid var(--border);padding:16px 18px;font-family:'DM Mono',monospace;font-size:0.76rem;color:var(--ink2);line-height:2.1;}
-.f-comment{color:var(--ink4);font-size:0.68rem;}
-
 /* SECTION COLOUR THEMES */
 /* RS — green */
 .price-card.rs-card{border-color:#c8dfc8;background:#f4f9f4;}
@@ -443,35 +428,6 @@ body::before{content:'';position:fixed;inset:0;background-image:repeating-linear
   </div>
 </div>
 
-<!-- SIGNALS -->
-<div class="signals-section">
-  <div class="section-group-label" style="margin-bottom:10px;"><span>Market Signals</span></div>
-  <div class="signals-grid">
-    <div class="signal-card"><div class="signal-trigger">SR↑ while RS flat</div><div class="signal-meaning">Retail hoarding — street premium expanding</div></div>
-    <div class="signal-card"><div class="signal-trigger">DB↑ before RS moves</div><div class="signal-meaning">Scrap shortage — dealers competing for supply</div></div>
-    <div class="signal-card"><div class="signal-trigger">SR listings vanish</div><div class="signal-meaning">"Panic keep" phase — sellers disappearing</div></div>
-    <div class="signal-card"><div class="signal-trigger">Premium &gt; 30%</div><div class="signal-meaning">Tight physical conditions — domestic retail stressed</div></div>
-  </div>
-</div>
-
-<!-- METHODOLOGY -->
-<div class="method-section">
-  <div class="method-header"><h3>Methodology &amp; Formulas</h3></div>
-  <div class="method-body">
-    <div class="formula-block">
-      <div class="f-comment">// RS — Refinery Spot (upstream physical buyback)</div>
-      RS = mean(Tanaka_buy, NihonMaterial_buy)<br><br>
-      <div class="f-comment">// DB — Dealer / Pawn Bid (retail exit liquidity)</div>
-      DB = mean(Nanboya_Sv1000, Daikichi_1g)<br><br>
-      <div class="f-comment">// SR — Street Retail (Mercari MSPI-B, updated manually)</div>
-      SR = mean(sold_price_¥ ÷ 31.1035g) &nbsp;<span class="f-comment">// gross buyer price · seller nets ~90% after Mercari commission</span><br><br>
-      <div class="f-comment">// JPMI composite (fixed weights)</div>
-      JPMI = (RS × 0.50) + (DB × 0.25) + (SR × 0.25)<br><br>
-      <div class="f-comment">// Street premium vs refinery floor</div>
-      Premium = (SR ÷ RS) − 1
-    </div>
-  </div>
-</div>
 
 <!-- FOOTER -->
 <footer class="site-footer">
