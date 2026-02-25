@@ -334,25 +334,65 @@ body::before{content:'';position:fixed;inset:0;background-image:repeating-linear
 <div class="section-group">
   <div class="section-group-label">
     <span><span class="sgl-badge sgl-sr">SR</span>&nbsp;&nbsp;Street Retail — Mercari MSPI-B</span>
+    <span style="font-family:'DM Mono',monospace;font-size:0.58rem;color:var(--ink4);" data-en="Updated manually · 2026-02-25" data-ja="手動更新 · 2026-02-25">Updated manually · 2026-02-25</span>
   </div>
-  <div class="price-grid">
-    <div class="price-card loading-state" id="pc-mercari">
-      <div class="pc-source">Mercari メルカリ · MSPI-B</div>
-      <div class="pc-value" id="pv-mercari">Loading…</div>
-      <div class="pc-unit">¥ / g · peer-to-peer mean</div>
-      <div class="pc-status" id="ps-mercari">Fetching…</div>
-    </div>
-    <div class="price-card" style="border-style:dashed;background:transparent;display:flex;flex-direction:column;justify-content:center;">
-      <div class="pc-source" style="margin-bottom:6px;">Sample</div>
-      <div style="font-family:'DM Mono',monospace;font-size:1.1rem;color:var(--ink);" id="pv-mercari-n">—</div>
-      <div class="pc-unit">recent 1oz bullion listings</div>
-      <div class="pc-hint" style="margin-top:8px;" data-en="Maple Leaf · Britannia · Eagle · Philharmonic · Panda · Libertad" data-ja="メープル · ブリタニア · イーグル · ウィーン · パンダ · リベルタード">Maple Leaf · Britannia · Eagle · Philharmonic · Panda · Libertad</div>
-    </div>
-    <div class="price-card" style="border-style:dashed;background:transparent;display:flex;flex-direction:column;justify-content:center;">
-      <div class="pc-source" style="margin-bottom:6px;">Last Updated</div>
-      <div style="font-family:'DM Mono',monospace;font-size:0.82rem;color:var(--ink2);line-height:1.6;" id="pv-mercari-date">—</div>
-      <div class="pc-hint" style="margin-top:8px;" data-en="Updated manually. .999 silver, 1oz, no slabs, no jewelry." data-ja="手動更新。.999銀、1オンス、スラブなし、ジュエリーなし。">Updated manually. .999 silver, 1oz, no slabs, no jewelry.</div>
-    </div>
+  <div class="price-card loaded" style="padding:0;overflow:hidden;">
+    <table style="width:100%;border-collapse:collapse;">
+      <thead>
+        <tr style="background:rgba(23,20,15,0.025);border-bottom:1px solid var(--border);">
+          <th style="font-family:'DM Mono',monospace;font-size:0.58rem;letter-spacing:0.12em;text-transform:uppercase;color:var(--ink4);text-align:left;padding:9px 16px;font-weight:400;">#</th>
+          <th style="font-family:'DM Mono',monospace;font-size:0.58rem;letter-spacing:0.12em;text-transform:uppercase;color:var(--ink4);text-align:left;padding:9px 16px;font-weight:400;" data-en="Coin" data-ja="銀貨">Coin</th>
+          <th style="font-family:'DM Mono',monospace;font-size:0.58rem;letter-spacing:0.12em;text-transform:uppercase;color:var(--ink4);text-align:right;padding:9px 16px;font-weight:400;" data-en="Sold (¥)" data-ja="成約（円）">Sold (¥)</th>
+          <th style="font-family:'DM Mono',monospace;font-size:0.58rem;letter-spacing:0.12em;text-transform:uppercase;color:var(--ink4);text-align:right;padding:9px 16px;font-weight:400;">¥ / g</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr style="border-bottom:1px solid var(--border);">
+          <td style="font-family:'DM Mono',monospace;font-size:0.65rem;color:var(--ink4);padding:9px 16px;">1</td>
+          <td style="font-size:0.8rem;color:var(--ink2);padding:9px 16px;" data-en="Libertad 1oz 2002" data-ja="リベルタード 1oz 2002年">Libertad 1oz 2002</td>
+          <td style="font-family:'DM Mono',monospace;font-size:0.85rem;color:var(--ink);text-align:right;padding:9px 16px;">¥21,500</td>
+          <td style="font-family:'DM Mono',monospace;font-size:0.85rem;color:var(--ink3);text-align:right;padding:9px 16px;">691.23</td>
+        </tr>
+        <tr style="border-bottom:1px solid var(--border);">
+          <td style="font-family:'DM Mono',monospace;font-size:0.65rem;color:var(--ink4);padding:9px 16px;">2</td>
+          <td style="font-size:0.8rem;color:var(--ink2);padding:9px 16px;" data-en="Philharmonic 1oz 2025" data-ja="ウィーン・フィルハーモニー 1oz 2025年">Philharmonic 1oz 2025</td>
+          <td style="font-family:'DM Mono',monospace;font-size:0.85rem;color:var(--ink);text-align:right;padding:9px 16px;">¥21,199</td>
+          <td style="font-family:'DM Mono',monospace;font-size:0.85rem;color:var(--ink3);text-align:right;padding:9px 16px;">681.54</td>
+        </tr>
+        <tr style="border-bottom:1px solid var(--border);">
+          <td style="font-family:'DM Mono',monospace;font-size:0.65rem;color:var(--ink4);padding:9px 16px;">3</td>
+          <td style="font-size:0.8rem;color:var(--ink2);padding:9px 16px;" data-en="Britannia 1oz 2020" data-ja="ブリタニア 1oz 2020年">Britannia 1oz 2020</td>
+          <td style="font-family:'DM Mono',monospace;font-size:0.85rem;color:var(--ink);text-align:right;padding:9px 16px;">¥22,000</td>
+          <td style="font-family:'DM Mono',monospace;font-size:0.85rem;color:var(--ink3);text-align:right;padding:9px 16px;">707.31</td>
+        </tr>
+        <tr style="border-bottom:1px solid var(--border);">
+          <td style="font-family:'DM Mono',monospace;font-size:0.65rem;color:var(--ink4);padding:9px 16px;">4</td>
+          <td style="font-size:0.8rem;color:var(--ink2);padding:9px 16px;" data-en="Walking Liberty Eagle 2025" data-ja="ウォーキングリバティイーグル 2025年">Walking Liberty Eagle 2025</td>
+          <td style="font-family:'DM Mono',monospace;font-size:0.85rem;color:var(--ink);text-align:right;padding:9px 16px;">¥22,800</td>
+          <td style="font-family:'DM Mono',monospace;font-size:0.85rem;color:var(--ink3);text-align:right;padding:9px 16px;">733.05</td>
+        </tr>
+        <tr style="border-bottom:1px solid var(--border);">
+          <td style="font-family:'DM Mono',monospace;font-size:0.65rem;color:var(--ink4);padding:9px 16px;">5</td>
+          <td style="font-size:0.8rem;color:var(--ink2);padding:9px 16px;" data-en="Panda 1oz 2023" data-ja="パンダ銀貨 1oz 2023年">Panda 1oz 2023</td>
+          <td style="font-family:'DM Mono',monospace;font-size:0.85rem;color:var(--ink);text-align:right;padding:9px 16px;">¥21,000</td>
+          <td style="font-family:'DM Mono',monospace;font-size:0.85rem;color:var(--ink3);text-align:right;padding:9px 16px;">675.07</td>
+        </tr>
+        <tr style="border-bottom:1px solid var(--border);">
+          <td style="font-family:'DM Mono',monospace;font-size:0.65rem;color:var(--ink4);padding:9px 16px;">6</td>
+          <td style="font-size:0.8rem;color:var(--ink2);padding:9px 16px;" data-en="Britannia 1oz 2021" data-ja="ブリタニア 1oz 2021年">Britannia 1oz 2021</td>
+          <td style="font-family:'DM Mono',monospace;font-size:0.85rem;color:var(--ink);text-align:right;padding:9px 16px;">¥21,800</td>
+          <td style="font-family:'DM Mono',monospace;font-size:0.85rem;color:var(--ink3);text-align:right;padding:9px 16px;">700.87</td>
+        </tr>
+        <tr style="background:rgba(23,20,15,0.025);">
+          <td colspan="2" style="font-family:'DM Mono',monospace;font-size:0.65rem;letter-spacing:0.1em;text-transform:uppercase;color:var(--ink4);padding:11px 16px;" data-en="MSPI-B Mean · n=6 · 1oz .999 bullion" data-ja="MSPI-B 平均 · n=6 · 1oz .999地金">MSPI-B Mean · n=6 · 1oz .999 bullion</td>
+          <td style="font-family:'DM Mono',monospace;font-size:0.85rem;color:var(--ink);text-align:right;padding:11px 16px;border-top:1px solid var(--border2);">¥21,717</td>
+          <td style="font-family:'DM Mono',monospace;font-size:1rem;font-weight:500;color:var(--ink);text-align:right;padding:11px 16px;border-top:1px solid var(--border2);">698.16</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <div style="padding:10px 16px;border-top:1px solid var(--border);background:rgba(23,20,15,0.012);">
+    <p style="font-family:'DM Mono',monospace;font-size:0.62rem;color:var(--ink4);line-height:1.7;" data-en="⚠ Prices shown are buyer-paid sold prices. Mercari deducts a 10% seller commission plus variable delivery fees — actual seller proceeds are lower. SR reflects peer-to-peer market clearing price, not net seller return." data-ja="⚠ 表示価格は買い手の支払い成約価格です。メルカリは出品者に10%の手数料と変動配送料を徴収します。実際の売り手の手取りは低くなります。SRはP2P市場の成約価格を反映しており、売り手の純収益ではありません。">⚠ Prices shown are buyer-paid sold prices. Mercari deducts a 10% seller commission plus variable delivery fees — actual seller proceeds are lower. SR reflects peer-to-peer market clearing price, not net seller return.</p>
   </div>
 </div>
 
@@ -402,7 +442,7 @@ body::before{content:'';position:fixed;inset:0;background-image:repeating-linear
       <div class="f-comment">// DB — Dealer / Pawn Bid (retail exit liquidity)</div>
       DB = mean(Nanboya_Sv1000, Daikichi_1g)<br><br>
       <div class="f-comment">// SR — Street Retail (Mercari MSPI-B, updated manually)</div>
-      SR = mean(sold_price_¥ ÷ 31.1035g) &nbsp;<span class="f-comment">// 4–5 recent 1oz bullion listings</span><br><br>
+      SR = mean(sold_price_¥ ÷ 31.1035g) &nbsp;<span class="f-comment">// gross buyer price · seller nets ~90% after Mercari commission</span><br><br>
       <div class="f-comment">// JPMI composite (fixed weights)</div>
       JPMI = (RS × 0.50) + (DB × 0.25) + (SR × 0.25)<br><br>
       <div class="f-comment">// Street premium vs refinery floor</div>
@@ -436,7 +476,6 @@ body::before{content:'';position:fixed;inset:0;background-image:repeating-linear
     statusEl.textContent = 'Loading live data from prices.json…';
     retryBtn.style.display = 'none';
     ['tanaka','nihon','mitsubishi','nanboya','daikichi'].forEach(k => setCard(k, null, 'Fetching…', true));
-    setCard('mercari', null, 'Fetching…', true);
 
     try {
       const res = await fetch('./prices.json?t=' + Date.now(), { signal: AbortSignal.timeout(10000) });
@@ -452,26 +491,8 @@ body::before{content:'';position:fixed;inset:0;background-image:repeating-linear
       setCard('nanboya',    p.nanboya_sv1000,         p.nanboya_sv1000         ? '● Sv1000 bid'        : 'Not available');
       setCard('daikichi',   p.daikichi_sv1000,        p.daikichi_sv1000        ? '● Per gram bid'      : 'Not available');
 
-      // Mercari SR from prices.json
-      if (p.mercari_mspi_b) {
-        live.mercari = p.mercari_mspi_b;
-        const card = document.getElementById('pc-mercari');
-        card.classList.remove('loading-state','failed');
-        card.classList.add('loaded');
-        document.getElementById('pv-mercari').textContent = p.mercari_mspi_b.toFixed(2);
-        document.getElementById('ps-mercari').textContent = '● MSPI-B mean';
-        if (p.mercari_sample_size) document.getElementById('pv-mercari-n').textContent = `n = ${p.mercari_sample_size}`;
-        if (p.mercari_updated) document.getElementById('pv-mercari-date').textContent = p.mercari_updated;
-      } else {
-        live.mercari = null;
-        const card = document.getElementById('pc-mercari');
-        card.classList.remove('loading-state','loaded');
-        card.classList.add('failed');
-        document.getElementById('pv-mercari').textContent = 'N/A';
-        document.getElementById('ps-mercari').textContent = 'Not yet recorded';
-        document.getElementById('pv-mercari-n').textContent = '—';
-        document.getElementById('pv-mercari-date').textContent = '—';
-      }
+      // Mercari SR — static, hardcoded from prices.json
+      live.mercari = p.mercari_mspi_b || 698.16;
 
       let tsStr = '—';
       if (updatedAt) {
@@ -496,7 +517,6 @@ body::before{content:'';position:fixed;inset:0;background-image:repeating-linear
       statusEl.textContent = '⚠ Could not load prices.json — check GitHub Actions ran successfully.';
       retryBtn.style.display = 'inline-block';
       ['tanaka','nihon','mitsubishi','nanboya','daikichi'].forEach(k => setCard(k, null, 'Load failed'));
-      setCard('mercari', null, 'Load failed');
     }
   }
 
