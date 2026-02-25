@@ -1,609 +1,98 @@
-<!doctype html>
-<html lang="en">
+<!DOCTYPE html>
+<html>
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>JPSI — Japan Physical Silver Index</title>
-  <meta name="description" content="A real-world physical silver benchmark for Japan: refinery spot + pawn bid + Mercari street retail." />
-  <style>
-    :root{
-      --bg:#0b0f17;
-      --panel:#0f1624;
-      --panel2:#0c1322;
-      --text:#e6edf7;
-      --muted:#9aa7bd;
-      --line:#1d2940;
-      --accent:#7aa2ff;
-      --accent2:#4be3c1;
-      --bad:#ff6b6b;
-      --good:#58d68d;
-      --shadow: 0 10px 30px rgba(0,0,0,.35);
-      --radius:16px;
-      --mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
-      --sans: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji", "Segoe UI Emoji";
-    }
-    *{box-sizing:border-box}
-    body{
-      margin:0;
-      font-family:var(--sans);
-      background:
-        radial-gradient(900px 500px at 15% 5%, rgba(122,162,255,.20), transparent 60%),
-        radial-gradient(900px 500px at 85% 10%, rgba(75,227,193,.16), transparent 60%),
-        var(--bg);
-      color:var(--text);
-    }
-    .wrap{max-width:1120px;margin:0 auto;padding:28px 20px 70px}
-    header{
-      display:flex;align-items:center;justify-content:space-between;gap:16px;
-      margin-bottom:18px;
-    }
-    .brand{display:flex;align-items:center;gap:12px}
-    .logo{
-      width:42px;height:42px;border-radius:14px;
-      background: linear-gradient(135deg, rgba(122,162,255,.95), rgba(75,227,193,.85));
-      box-shadow:var(--shadow);
-      position:relative;
-    }
-    .logo:after{
-      content:"Ag"; position:absolute; inset:0;
-      display:grid; place-items:center;
-      color:#07111f; font-weight:900;
-      letter-spacing:.5px;
-    }
-    h1{margin:0;font-size:18px;letter-spacing:.3px}
-    .tag{color:var(--muted);font-size:12px}
-    .pillrow{display:flex;gap:10px;flex-wrap:wrap;justify-content:flex-end}
-    .pill{
-      border:1px solid var(--line);
-      padding:8px 10px;border-radius:999px;
-      background:rgba(255,255,255,.03);
-      color:var(--muted);font-size:12px;
-    }
-    .pill b{color:var(--text);font-weight:700}
-    .hero{
-      display:grid;grid-template-columns: 1.3fr .7fr;gap:16px;
-      margin:16px 0 18px;
-    }
-    .card{
-      background: linear-gradient(180deg, rgba(255,255,255,.04), rgba(255,255,255,.02));
-      border:1px solid var(--line);
-      border-radius:var(--radius);
-      box-shadow:var(--shadow);
-      overflow:hidden;
-    }
-    .card .hd{
-      padding:16px 18px;
-      border-bottom:1px solid rgba(29,41,64,.8);
-      background: linear-gradient(180deg, rgba(15,22,36,.92), rgba(15,22,36,.55));
-    }
-    .card .bd{padding:16px 18px}
-    .kicker{color:var(--muted);font-size:12px}
-    .big{
-      font-size:40px; line-height:1.05; margin:6px 0 10px;
-      letter-spacing:-.8px;
-    }
-    .big small{font-size:14px;color:var(--muted);letter-spacing:0}
-    .delta{
-      display:flex;gap:10px;align-items:center;flex-wrap:wrap;
-      color:var(--muted);font-size:13px;
-    }
-    .badge{
-      padding:6px 10px;border-radius:999px;
-      border:1px solid var(--line);
-      background:rgba(255,255,255,.03);
-      font-family:var(--mono);
-      color:var(--text);
-    }
-    .badge.good{border-color:rgba(88,214,141,.5);color:var(--good)}
-    .badge.bad{border-color:rgba(255,107,107,.5);color:var(--bad)}
-    .grid{
-      display:grid;grid-template-columns:1fr 1fr;gap:16px;
-    }
-    @media (max-width: 900px){
-      .hero{grid-template-columns:1fr}
-      .grid{grid-template-columns:1fr}
-      .pillrow{justify-content:flex-start}
-    }
-    .inputs{
-      display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px;
-      margin-top:10px;
-    }
-    @media (max-width: 900px){
-      .inputs{grid-template-columns:1fr}
-    }
-    .field label{
-      display:flex;justify-content:space-between;align-items:baseline;
-      font-size:12px;color:var(--muted);margin-bottom:6px;
-    }
-    .field input{
-      width:100%;
-      padding:12px 12px;
-      border-radius:12px;
-      border:1px solid var(--line);
-      background:rgba(5,10,18,.55);
-      color:var(--text);
-      font-family:var(--mono);
-      outline:none;
-    }
-    .field input:focus{border-color:rgba(122,162,255,.6);box-shadow:0 0 0 4px rgba(122,162,255,.14)}
-    .row{
-      display:flex;gap:12px;flex-wrap:wrap;align-items:center;justify-content:space-between;
-      margin-top:12px;
-    }
-    button{
-      padding:10px 12px;border-radius:12px;
-      border:1px solid rgba(122,162,255,.55);
-      background:rgba(122,162,255,.10);
-      color:var(--text);cursor:pointer;
-      font-weight:700;
-    }
-    button:hover{background:rgba(122,162,255,.16)}
-    .mini{color:var(--muted);font-size:12px}
-    table{
-      width:100%;
-      border-collapse:collapse;
-      font-size:13px;
-      overflow:hidden;
-      border-radius:14px;
-      border:1px solid var(--line);
-      background:rgba(5,10,18,.35);
-    }
-    th, td{padding:10px 10px;border-bottom:1px solid rgba(29,41,64,.65);text-align:left}
-    th{color:var(--muted);font-weight:700;background:rgba(255,255,255,.02)}
-    tr:last-child td{border-bottom:none}
-    .right{text-align:right}
-    .mono{font-family:var(--mono)}
-    .muted{color:var(--muted)}
-    .note{
-      margin-top:10px;
-      color:var(--muted);
-      font-size:12px;
-      line-height:1.5;
-    }
-    .method{
-      display:grid;grid-template-columns: 1fr 1fr;gap:16px;
-      margin-top:16px;
-    }
-    @media (max-width: 900px){.method{grid-template-columns:1fr}}
-    .code{
-      font-family:var(--mono);
-      font-size:12px;
-      border:1px solid var(--line);
-      border-radius:14px;
-      padding:12px;
-      background:rgba(5,10,18,.45);
-      color:#cfe1ff;
-      overflow:auto;
-      white-space:pre;
-    }
-    textarea:focus{border-color:rgba(122,162,255,.6);box-shadow:0 0 0 4px rgba(122,162,255,.14);outline:none}
-    footer{
-      margin-top:18px;color:var(--muted);font-size:12px;
-      display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;
-    }
-  </style>
+<meta charset="UTF-8">
+<title>JPMI — Japan Physical Metals Index</title>
+<style>
+body {
+  font-family: Arial, sans-serif;
+  background: #f4f6f8;
+  margin: 0;
+}
+
+.header {
+  background: #1e2a38;
+  color: white;
+  padding: 20px;
+  text-align: center;
+}
+
+.section {
+  background: white;
+  margin: 20px;
+  padding: 20px;
+  border-radius: 10px;
+}
+
+h2 {
+  border-bottom: 2px solid #1e2a38;
+  padding-bottom: 5px;
+}
+
+.price {
+  font-size: 24px;
+  font-weight: bold;
+}
+
+.footer {
+  text-align: center;
+  padding: 20px;
+  font-size: 12px;
+  color: gray;
+}
+</style>
 </head>
 
 <body>
-  <div class="wrap">
-    <header>
-      <div class="brand">
-        <div class="logo" aria-hidden="true"></div>
-        <div>
-          <h1>JPSI — Japan Physical Silver Index</h1>
-          <div class="tag">Refinery spot + dealer bid + Mercari street retail → a physical benchmark in JPY</div>
-        </div>
-      </div>
-      <div class="pillrow">
-        <div class="pill"><b>RS</b> Refinery Spot</div>
-        <div class="pill"><b>DB</b> Dealer / Pawn Bid</div>
-        <div class="pill"><b>SR</b> Street Retail (Mercari)</div>
-        <div class="pill"><b>JPSI</b> Composite Index</div>
-      </div>
-    </header>
 
-    <section class="hero">
-      <div class="card">
-        <div class="hd">
-          <div class="kicker">Today’s Benchmark</div>
-          <div class="big"><span id="jpsiValue">¥—</span> <small>/ g</small></div>
-          <div class="delta">
-            <span class="badge" id="rsBadge">RS: ¥—/g</span>
-            <span class="badge" id="dbBadge">DB: ¥—/g</span>
-            <span class="badge" id="srBadge">SR: ¥—/g</span>
-            <span class="badge" id="premBadge">Premium: —</span>
-            <span class="badge" id="autoBadge">Feed: —</span>
-          </div>
-        </div>
-        <div class="bd">
-          <div class="kicker">Inputs (auto-filled daily where available)</div>
+<div class="header">
+<h1>JPMI</h1>
+<p>Japan Physical Metals Index</p>
+</div>
 
-          <div class="inputs">
-            <div class="field">
-              <label>Tanaka silver buyback (¥/g)<span class="muted mono">RS</span></label>
-              <input id="tanakaBuy" type="number" step="0.01" value="431.42" />
-            </div>
-            <div class="field">
-              <label>Tokuriki silver buyback (¥/g)<span class="muted mono">RS</span></label>
-              <input id="tokurikiBuy" type="number" step="0.01" value="422.95" />
-            </div>
-            <div class="field">
-              <label>Ishifuku desk / proxy buyback (¥/g)<span class="muted mono">RS</span></label>
-              <input id="ishifukuBuy" type="number" step="0.01" value="403.65" />
-            </div>
+<div class="section">
+<h2>Live Silver Index (JPY/g)</h2>
+<div class="price" id="jpmi">Loading...</div>
+</div>
 
-            <div class="field">
-              <label>Nanboya SV1000 (¥/g)<span class="muted mono">DB</span></label>
-              <input id="dealer1" type="number" step="0.01" value="412" />
-            </div>
-            <div class="field">
-              <label>Kaitori Daikichi SV1000 (¥/g)<span class="muted mono">DB</span></label>
-              <input id="dealer2" type="number" step="0.01" value="460" />
-            </div>
-            <div class="field">
-              <label>As-of date (optional backfill)<span class="muted mono">display</span></label>
-              <input id="asOf" type="text" value="" placeholder="YYYY-MM-DD (leave blank for today)" />
-            </div>
+<div class="section">
+<h2>Price Sources</h2>
+<ul>
+<li>Tanaka Kikinzoku</li>
+<li>Tokuriki Kanda</li>
+<li>Ishifuku Metal</li>
+<li>Nanboya SV1000</li>
+<li>Kaitori Daikichi SV1000</li>
+<li>Mercari Physical Listings</li>
+</ul>
+</div>
 
-            <div class="field">
-              <label>Mercari SR (MSPI-B mean) (¥/g)<span class="muted mono">SR</span></label>
-              <input id="streetRetail" type="number" step="0.01" value="758.10" />
-            </div>
+<div class="section">
+<h2>Chart</h2>
+<canvas id="chart"></canvas>
+</div>
 
-            <div class="field">
-              <label>Weights RS/DB/SR (sum 1.00)<span class="muted mono">JPSI</span></label>
-              <input id="weights" type="text" value="0.40,0.30,0.30" />
-            </div>
+<div class="section">
+<h2>Methodology</h2>
+<p>
+The JPMI reflects real-world retail and dealer buyback prices
+for physical silver in Japan, based on daily listings
+and published buy rates.
+</p>
+</div>
 
-            <div class="field">
-              <label>Auto-feed (refresh)<span class="muted mono">prices.json</span></label>
-              <input id="feedHint" type="text" value="Uses prices.json (GitHub Actions daily)" readonly />
-            </div>
-          </div>
+<div class="footer">
+JPMI™ — Japan Physical Metals Index
+</div>
 
-          <div class="row">
-            <div class="mini">Tip: RS+DB can auto-fill daily. SR is manual via Mercari SOLD prices.</div>
-            <div>
-              <button id="recalcBtn">Recalculate</button>
-              <button id="loadFeedBtn" style="margin-left:8px;border-color:rgba(75,227,193,.6);background:rgba(75,227,193,.10);">Load Auto Feed</button>
-            </div>
-          </div>
+<script>
+fetch("prices.json")
+.then(res => res.json())
+.then(data => {
+document.getElementById("jpmi").innerText =
+data.jpmi.toFixed(2) + " JPY/g";
+});
+</script>
 
-          <div class="note">
-            <b>Disclaimer:</b> Informational index only. SR depends on item mix; keep SR to “common bullion .999, non-slabbed” for the cleanest signal.
-          </div>
-        </div>
-      </div>
-
-      <div class="card">
-        <div class="hd">
-          <div class="kicker">Mercari MSPI-B (bullion)</div>
-          <div class="muted" style="margin-top:6px">
-            Paste SOLD prices (¥) for common 1oz .999 coins (no slabs / no jewelry).
-          </div>
-        </div>
-
-        <div class="bd">
-          <div class="kicker">Paste Mercari SOLD prices (¥) — one per line</div>
-
-          <div style="margin:10px 0 12px">
-            <textarea id="mercariPaste" rows="6" style="
-              width:100%;
-              padding:12px;
-              border-radius:12px;
-              border:1px solid var(--line);
-              background:rgba(5,10,18,.55);
-              color:var(--text);
-              font-family:var(--mono);
-              resize:vertical;
-            ">21500
-22500
-23000
-24900
-26000</textarea>
-
-            <div class="row" style="margin-top:10px">
-              <div class="mini">Click “Compute SR” → auto-updates SR (¥/g). Then “Save Today” downloads CSV.</div>
-              <div>
-                <button id="calcSRBtn">Compute SR</button>
-                <button id="saveDayBtn" style="margin-left:8px;border-color:rgba(75,227,193,.6);background:rgba(75,227,193,.10);">Save Today</button>
-              </div>
-            </div>
-          </div>
-
-          <table>
-            <thead>
-              <tr>
-                <th>Sold price (¥)</th>
-                <th class="right">¥/g</th>
-              </tr>
-            </thead>
-            <tbody id="mspiRows"></tbody>
-            <tfoot>
-              <tr>
-                <th>MSPI-B mean</th>
-                <th class="right mono" id="mspiMean">¥—</th>
-              </tr>
-            </tfoot>
-          </table>
-
-          <div class="note">
-            <b>How we compute ¥/g:</b> 1oz = 31.1035g.
-            <br/><b>Save Today:</b> downloads an updated <span class="mono">jpsi-data.csv</span> you can upload back into the repo (optional).
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <section class="grid">
-      <div class="card">
-        <div class="hd">
-          <div class="kicker">What JPSI measures</div>
-          <div style="margin-top:8px;color:var(--muted);line-height:1.6">
-            <b>RS (Refinery Spot):</b> upstream physical buyback (Tanaka + Tokuriki + Ishifuku proxy).<br/>
-            <b>DB (Dealer/Pawn Bid):</b> real exit liquidity (Nanboya SV1000 + Daikichi SV1000).<br/>
-            <b>SR (Street Retail):</b> what people pay on Mercari (sold listings).<br/>
-            <b>JPSI:</b> weighted composite — “true physical” in JPY.
-          </div>
-        </div>
-        <div class="bd">
-          <div class="method">
-            <div>
-              <div class="kicker">Core formulas</div>
-              <div class="code">RS = mean(Tanaka_buy, Tokuriki_buy, Ishifuku_buy)
-DB = mean(Nanboya_SV1000, Daikichi_SV1000)
-
-JPSI = (RS*wRS) + (DB*wDB) + (SR*wSR)
-
-Premium_vs_RS = (SR / RS) - 1</div>
-            </div>
-            <div>
-              <div class="kicker">MSPI-B (Mercari) per-item</div>
-              <div class="code">For bullion coins:
-Price_per_g = Price_Yen / 31.1035
-
-(Keep SR to common .999, non-slabbed.)</div>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <div class="card">
-        <div class="hd">
-          <div class="kicker">Signals</div>
-          <div class="muted" style="margin-top:8px;line-height:1.6">
-            <b>SR ↑ while RS flat</b> → retail hoarding / premium expansion<br/>
-            <b>DB ↑ before RS</b> → scrap shortage / dealer competition<br/>
-            <b>SR listings vanish</b> → “panic / keep it” phase<br/>
-            <b>Premium > 30%</b> → tight physical conditions (Japan retail)
-          </div>
-        </div>
-        <div class="bd">
-          <div class="kicker">Automation status</div>
-          <div class="note">
-            RS+DB can auto-fill from <span class="mono">prices.json</span>, updated by GitHub Actions daily.
-            SR stays manual (Mercari is not reliably automatable).
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <footer>
-      <div>© <span id="year"></span> JPSI</div>
-      <div class="muted">Independent index dashboard (not affiliated with any dealer/refiner)</div>
-    </footer>
-  </div>
-
-  <script>
-    const OZ_G = 31.1035;
-    const DATA_FILE = "jpsi-data.csv";
-    const PRICES_FILE = "prices.json";
-
-    const defaultSold = [21500, 22500, 23000, 24900, 26000];
-
-    function yeng(n){ return "¥" + (isFinite(n) ? n.toFixed(2) : "—") + "/g"; }
-    function pct(n){
-      if(!isFinite(n)) return "—";
-      const sign = n >= 0 ? "+" : "";
-      return sign + (n*100).toFixed(1) + "%";
-    }
-    function mean(arr){
-      const xs = arr.filter(x => isFinite(x));
-      if(xs.length === 0) return NaN;
-      return xs.reduce((a,b)=>a+b,0)/xs.length;
-    }
-    function parseWeights(s){
-      const parts = (s||"").split(",").map(x=>parseFloat(x.trim()));
-      if(parts.length !== 3 || parts.some(x=>!isFinite(x))) return [0.4,0.3,0.3];
-      const sum = parts.reduce((a,b)=>a+b,0);
-      if(Math.abs(sum - 1.0) > 0.001) return [0.4,0.3,0.3];
-      return parts;
-    }
-    function parseYenLines(text){
-      const lines = (text||"").split(/\r?\n/).map(l => l.trim()).filter(Boolean);
-      const nums = [];
-      for(const line of lines){
-        const cleaned = line.replace(/[^\d.]/g, "");
-        const n = parseFloat(cleaned);
-        if(isFinite(n) && n > 0) nums.push(n);
-      }
-      return nums;
-    }
-
-    function renderMSPIFromSold(soldPrices){
-      const tbody = document.getElementById("mspiRows");
-      tbody.innerHTML = "";
-      const perG = soldPrices.map(p => p / OZ_G);
-      for(let i=0;i<soldPrices.length;i++){
-        const tr = document.createElement("tr");
-        tr.innerHTML = `
-          <td class="mono">${Math.round(soldPrices[i]).toLocaleString("en-US")}</td>
-          <td class="right mono">${(perG[i]).toFixed(1)}</td>
-        `;
-        tbody.appendChild(tr);
-      }
-      const m = mean(perG);
-      document.getElementById("mspiMean").textContent = isFinite(m) ? "¥" + m.toFixed(1) + "/g" : "¥—";
-      return m;
-    }
-
-    function computeAll(){
-      const tanaka = parseFloat(document.getElementById("tanakaBuy").value);
-      const tokuriki = parseFloat(document.getElementById("tokurikiBuy").value);
-      const ishifuku = parseFloat(document.getElementById("ishifukuBuy").value);
-      const d1 = parseFloat(document.getElementById("dealer1").value);
-      const d2 = parseFloat(document.getElementById("dealer2").value);
-      const sr = parseFloat(document.getElementById("streetRetail").value);
-
-      const [wRS, wDB, wSR] = parseWeights(document.getElementById("weights").value);
-
-      const RS = mean([tanaka, tokuriki, ishifuku]);
-      const DB = mean([d1, d2]);
-      const JPSI = (RS*wRS) + (DB*wDB) + (sr*wSR);
-      const prem = (sr / RS) - 1;
-
-      document.getElementById("jpsiValue").textContent = isFinite(JPSI) ? "¥" + JPSI.toFixed(2) : "¥—";
-      document.getElementById("rsBadge").textContent = "RS: " + (isFinite(RS) ? yeng(RS) : "¥—/g");
-      document.getElementById("dbBadge").textContent = "DB: " + (isFinite(DB) ? yeng(DB) : "¥—/g");
-      document.getElementById("srBadge").textContent = "SR: " + (isFinite(sr) ? yeng(sr) : "¥—/g");
-
-      const premEl = document.getElementById("premBadge");
-      premEl.textContent = "Premium: " + pct(prem);
-      premEl.classList.remove("good","bad");
-      if(isFinite(prem)){
-        if(prem > 0.30) premEl.classList.add("bad");
-        else premEl.classList.add("good");
-      }
-
-      return {RS, DB, SR: sr, JPSI, prem};
-    }
-
-    function todayISO(){
-      const v = (document.getElementById("asOf").value || "").trim();
-      if(v) return v;
-      const d = new Date();
-      const yyyy = d.getFullYear();
-      const mm = String(d.getMonth()+1).padStart(2,"0");
-      const dd = String(d.getDate()).padStart(2,"0");
-      return `${yyyy}-${mm}-${dd}`;
-    }
-
-    async function fetchCSV(){
-      const res = await fetch(DATA_FILE, { cache: "no-store" });
-      if(!res.ok) throw new Error("Could not load " + DATA_FILE);
-      return await res.text();
-    }
-
-    function csvHasDate(csvText, dateStr){
-      const lines = csvText.trim().split(/\r?\n/);
-      for(let i=1;i<lines.length;i++){
-        const [d] = lines[i].split(",");
-        if((d||"").trim() === dateStr) return true;
-      }
-      return false;
-    }
-
-    function downloadText(filename, text){
-      const blob = new Blob([text], {type:"text/csv;charset=utf-8"});
-      const url = URL.createObjectURL(blob);
-      const a = document.createElement("a");
-      a.href = url;
-      a.download = filename;
-      document.body.appendChild(a);
-      a.click();
-      a.remove();
-      URL.revokeObjectURL(url);
-    }
-
-    async function saveToday(){
-      const dateStr = todayISO();
-      const {RS, DB, SR, JPSI, prem} = computeAll();
-
-      if(!isFinite(RS) || !isFinite(DB) || !isFinite(SR) || !isFinite(JPSI)){
-        alert("Missing numbers. Please fill RS/DB/SR first.");
-        return;
-      }
-
-      let csv = "date,rs,db,sr,jpsi,premium\n";
-      try{ csv = await fetchCSV(); }catch(e){ /* ok */ }
-
-      if(csvHasDate(csv, dateStr)){
-        const ok = confirm(`A row for ${dateStr} already exists. Download anyway?`);
-        if(!ok) return;
-      }
-
-      const row = [
-        dateStr,
-        RS.toFixed(2),
-        DB.toFixed(2),
-        SR.toFixed(2),
-        JPSI.toFixed(2),
-        prem.toFixed(4)
-      ].join(",");
-
-      const newCSV = csv.trimEnd() + "\n" + row + "\n";
-      downloadText("jpsi-data.csv", newCSV);
-      alert("Downloaded updated jpsi-data.csv ✅\n(Optional) Upload it back to your repo to keep public history.");
-    }
-
-    function computeSRFromPaste(){
-      const prices = parseYenLines(document.getElementById("mercariPaste").value);
-      if(prices.length === 0){
-        alert("Paste at least 1 sold price (¥) first.");
-        return;
-      }
-      const sr = renderMSPIFromSold(prices);
-      if(isFinite(sr)){
-        document.getElementById("streetRetail").value = sr.toFixed(2);
-        computeAll();
-      }
-    }
-
-    async function loadAutoPrices(){
-      const autoBadge = document.getElementById("autoBadge");
-      try{
-        const res = await fetch(PRICES_FILE, { cache: "no-store" });
-        if(!res.ok){
-          autoBadge.textContent = "Feed: not found";
-          return;
-        }
-        const data = await res.json();
-        const p = data?.prices_jpy_per_g || {};
-        const ts = data?.updated_at_utc || null;
-
-        // RS
-        if (isFinite(p.tanaka_silver_buy)) document.getElementById("tanakaBuy").value = Number(p.tanaka_silver_buy).toFixed(2);
-        if (isFinite(p.tokuriki_silver_buy)) document.getElementById("tokurikiBuy").value = Number(p.tokuriki_silver_buy).toFixed(2);
-
-        // DB (two dealers)
-        if (isFinite(p.nanboya_sv1000)) document.getElementById("dealer1").value = Number(p.nanboya_sv1000).toFixed(2);
-        if (isFinite(p.daikichi_sv1000)) document.getElementById("dealer2").value = Number(p.daikichi_sv1000).toFixed(2);
-
-        computeAll();
-
-        if(ts){
-          autoBadge.textContent = "Feed: " + ts.replace("T"," ").replace("+00:00"," UTC");
-        }else{
-          autoBadge.textContent = "Feed: loaded";
-        }
-      }catch(e){
-        autoBadge.textContent = "Feed: error";
-      }
-    }
-
-    // buttons
-    document.getElementById("calcSRBtn").addEventListener("click", computeSRFromPaste);
-    document.getElementById("saveDayBtn").addEventListener("click", saveToday);
-    document.getElementById("recalcBtn").addEventListener("click", computeAll);
-    document.getElementById("loadFeedBtn").addEventListener("click", loadAutoPrices);
-
-    // init
-    document.getElementById("year").textContent = new Date().getFullYear();
-    document.getElementById("mercariPaste").value = defaultSold.join("\n");
-    const initSR = renderMSPIFromSold(defaultSold);
-    document.getElementById("streetRetail").value = initSR.toFixed(2);
-    computeAll();
-    loadAutoPrices();
-  </script>
 </body>
 </html>
