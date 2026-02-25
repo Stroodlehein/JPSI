@@ -1,9 +1,9 @@
 {
-  "updated_at_utc": "2026-02-24T04:50:38+00:00",
+  "updated_at_utc": "2026-02-25T03:22:46+00:00",
   "prices_jpy_per_g": {
-    "tanaka_silver_buy": 463.76,
+    "tanaka_silver_buy": 481.14,
     "nanboya_sv1000": 1000.0,
-    "daikichi_sv1000": 460.0
+    "daikichi_sv1000": 466.0
   },
   "errors": [
     "tokuriki: ValueError: Tokuriki silver buyback not found"
