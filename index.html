@@ -158,6 +158,28 @@ body::before{content:'';position:fixed;inset:0;background-image:repeating-linear
 .formula-block{background:var(--bg);border:1px solid var(--border);padding:16px 18px;font-family:'DM Mono',monospace;font-size:0.76rem;color:var(--ink2);line-height:2.1;}
 .f-comment{color:var(--ink4);font-size:0.68rem;}
 
+/* SECTION COLOUR THEMES */
+/* RS — green */
+.price-card.rs-card{border-color:#c8dfc8;background:#f4f9f4;}
+.price-card.rs-card::before{background:#7ab87a;}
+.price-card.rs-card.loaded{border-color:#9ecf9e;background:#edf6ed;}
+.price-card.rs-card.loaded::before{background:#3a8a4a;}
+.price-card.rs-card.failed{border-color:#d8c0bc;background:#fbf8f8;}
+.price-card.rs-card.failed::before{background:#cc7a6a;}
+.price-card.rs-card .pc-source{color:#2a5c3a;}
+/* DB — blue */
+.price-card.db-card{border-color:#c4cce8;background:#f2f4fb;}
+.price-card.db-card::before{background:#7a8ec8;}
+.price-card.db-card.loaded{border-color:#9aaad8;background:#eaeefc;}
+.price-card.db-card.loaded::before{background:#3a50a0;}
+.price-card.db-card.failed{border-color:#d8c0bc;background:#fbf8f8;}
+.price-card.db-card.failed::before{background:#cc7a6a;}
+.price-card.db-card .pc-source{color:#2a3a6c;}
+/* SR — orange/amber */
+.sr-table-card{border:1px solid #dfc8a8;background:#fdf6ee;border-left:2px solid #c8843a;overflow:hidden;}
+.sr-table-card.loaded{border-color:#d4b07a;background:#fdf3e6;}
+.sr-table-card .sr-table-footnote{background:#fdf0e0;}
+
 /* BUTTONS */
 .btn{padding:8px 16px;font-family:'DM Mono',monospace;font-size:0.7rem;letter-spacing:0.08em;border:none;cursor:pointer;transition:all 0.15s;border-radius:1px;}
 .btn-primary{background:var(--ink);color:var(--paper);}
@@ -285,19 +307,19 @@ body::before{content:'';position:fixed;inset:0;background-image:repeating-linear
     <button class="btn btn-secondary btn-sm" onclick="loadPricesJSON()">↻ Refresh</button>
   </div>
   <div class="price-grid">
-    <div class="price-card loading-state" id="pc-tanaka">
+    <div class="price-card rs-card loading-state" id="pc-tanaka">
       <div class="pc-source">Tanaka 田中貴金属</div>
       <div class="pc-value" id="pv-tanaka">Loading…</div>
       <div class="pc-unit">¥ / g · silver buyback</div>
       <div class="pc-status" id="ps-tanaka">Fetching…</div>
     </div>
-    <div class="price-card loading-state" id="pc-nihon">
+    <div class="price-card rs-card loading-state" id="pc-nihon">
       <div class="pc-source">Nihon Material 日本マテリアル</div>
       <div class="pc-value" id="pv-nihon">Loading…</div>
       <div class="pc-unit">¥ / g · silver buyback</div>
       <div class="pc-status" id="ps-nihon">Fetching…</div>
     </div>
-    <div class="price-card loading-state" id="pc-mitsubishi">
+    <div class="price-card rs-card loading-state" id="pc-mitsubishi">
       <div class="pc-source">Mitsubishi 三菱マテリアル</div>
       <div class="pc-value" id="pv-mitsubishi">Loading…</div>
       <div class="pc-unit">¥ / g · retail sell price</div>
@@ -314,13 +336,13 @@ body::before{content:'';position:fixed;inset:0;background-image:repeating-linear
     <span><span class="sgl-badge sgl-db">DB</span>&nbsp;&nbsp;Dealer / Pawn Bid Prices</span>
   </div>
   <div class="price-grid">
-    <div class="price-card loading-state" id="pc-nanboya">
+    <div class="price-card db-card loading-state" id="pc-nanboya">
       <div class="pc-source">Nanboya ナンボヤ</div>
       <div class="pc-value" id="pv-nanboya">Loading…</div>
       <div class="pc-unit">¥ / g · Sv1000 bid</div>
       <div class="pc-status" id="ps-nanboya">Fetching…</div>
     </div>
-    <div class="price-card loading-state" id="pc-daikichi">
+    <div class="price-card db-card loading-state" id="pc-daikichi">
       <div class="pc-source">Daikichi 買取大吉</div>
       <div class="pc-value" id="pv-daikichi">Loading…</div>
       <div class="pc-unit">¥ / g · per gram bid</div>
@@ -334,9 +356,9 @@ body::before{content:'';position:fixed;inset:0;background-image:repeating-linear
 <div class="section-group">
   <div class="section-group-label">
     <span><span class="sgl-badge sgl-sr">SR</span>&nbsp;&nbsp;Street Retail — Mercari MSPI-B</span>
-    <span style="font-family:'DM Mono',monospace;font-size:0.58rem;color:var(--ink4);" data-en="Updated manually · 2026-02-25" data-ja="手動更新 · 2026-02-25">Updated manually · 2026-02-25</span>
+    <span style="font-family:'DM Mono',monospace;font-size:0.58rem;color:var(--ink4);" data-en="Updated Mon · Wed · Fri · 20:00 JST · Last: 2026-02-25" data-ja="更新 月・水・金 · 20:00 JST · 最終: 2026-02-25">Updated Mon · Wed · Fri · 20:00 JST · Last: 2026-02-25</span>
   </div>
-  <div class="price-card loaded" style="padding:0;overflow:hidden;">
+  <div class="price-card sr-table-card loaded" style="padding:0;">
     <table style="width:100%;border-collapse:collapse;">
       <thead>
         <tr style="background:rgba(23,20,15,0.025);border-bottom:1px solid var(--border);">
@@ -391,7 +413,7 @@ body::before{content:'';position:fixed;inset:0;background-image:repeating-linear
       </tbody>
     </table>
   </div>
-  <div style="padding:10px 16px;border-top:1px solid var(--border);background:rgba(23,20,15,0.012);">
+  <div style="padding:10px 16px;border-top:1px solid #dfc8a8;background:#fdf0e0;">
     <p style="font-family:'DM Mono',monospace;font-size:0.62rem;color:var(--ink4);line-height:1.7;" data-en="⚠ Prices shown are buyer-paid sold prices. Mercari deducts a 10% seller commission plus variable delivery fees — actual seller proceeds are lower. SR reflects peer-to-peer market clearing price, not net seller return." data-ja="⚠ 表示価格は買い手の支払い成約価格です。メルカリは出品者に10%の手数料と変動配送料を徴収します。実際の売り手の手取りは低くなります。SRはP2P市場の成約価格を反映しており、売り手の純収益ではありません。">⚠ Prices shown are buyer-paid sold prices. Mercari deducts a 10% seller commission plus variable delivery fees — actual seller proceeds are lower. SR reflects peer-to-peer market clearing price, not net seller return.</p>
   </div>
 </div>
@@ -526,6 +548,7 @@ body::before{content:'';position:fixed;inset:0;background-image:repeating-linear
     const statEl = document.getElementById('ps-' + key);
     if (!card) return;
     card.classList.remove('loaded','failed','loading-state');
+    // preserve colour theme class
     if (loading) {
       card.classList.add('loading-state');
       valEl.textContent = 'Loading…';
