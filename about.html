@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+
 <html lang="en">
 <head>
 <meta charset="UTF-8">
@@ -7,97 +8,99 @@
 <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@200;300;400;600&family=DM+Mono:wght@300;400;500&family=Playfair+Display:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
 <style>
 :root {
-  --bg:#f5f2ec; --paper:#faf8f4; --ink:#17140f; --ink2:#3d3830; --ink3:#7a7368; --ink4:#a89f94;
+  --bg:#ffffff; --paper:#ffffff; --ink:#17140f; --ink2:#3d3830; --ink3:#7a7368; --ink4:#a89f94;
   --silver:#8a98a8; --border:#ddd8cf; --border2:#ccc6bb; --red:#8c2e22; --green:#2a5c3a;
 }
 *{box-sizing:border-box;margin:0;padding:0;}
-body{background:var(--bg);color:var(--ink);font-family:'Noto Serif JP',Georgia,serif;font-weight:300;min-height:100vh;}
+body{background:var(--bg);color:var(--ink);font-family:'DM Mono',monospace;font-weight:300;min-height:100vh;}
 body::before{content:'';position:fixed;inset:0;background-image:repeating-linear-gradient(0deg,transparent,transparent 31px,rgba(23,20,15,0.018) 31px,rgba(23,20,15,0.018) 32px);pointer-events:none;z-index:0;}
 .page{max-width:900px;margin:0 auto;padding:0 24px 100px;position:relative;z-index:1;}
 
 /* MASTHEAD */
-.masthead{border-bottom:3px double var(--border2);padding:32px 0 20px;}
+.masthead{border-bottom:3px double var(–border2);padding:32px 0 20px;}
 .masthead-top{display:flex;justify-content:space-between;align-items:flex-start;gap:16px;}
-.masthead-kicker{font-family:'DM Mono',monospace;font-size:0.62rem;letter-spacing:0.2em;color:var(--ink4);text-transform:uppercase;margin-bottom:8px;}
-.masthead-title{font-family:'Playfair Display',Georgia,serif;font-size:2.6rem;font-weight:700;letter-spacing:-0.01em;line-height:1;color:var(--ink);}
-.masthead-title .abbr{color:var(--silver);font-weight:400;font-style:italic;}
-.masthead-title .kanji-inline{font-family:'Noto Serif JP';font-weight:200;font-size:1.8rem;color:var(--ink3);margin-left:10px;vertical-align:middle;opacity:0.5;}
-.masthead-tagline{margin-top:10px;font-size:0.68rem;color:var(--ink3);font-family:'DM Mono',monospace;letter-spacing:0.04em;max-width:540px;line-height:1.8;}
+.masthead-kicker{font-family:‘DM Mono’,monospace;font-size:0.62rem;letter-spacing:0.2em;color:var(–ink4);text-transform:uppercase;margin-bottom:8px;}
+.masthead-title{font-family:‘Playfair Display’,Georgia,serif;font-size:2.6rem;font-weight:700;letter-spacing:-0.01em;line-height:1;color:var(–ink);}
+.masthead-title .abbr{display:none;}
+.masthead-title .kanji-inline{font-family:‘DM Mono’,monospace;font-weight:600;font-size:1.8rem;color:var(–ink);margin-left:10px;vertical-align:middle;opacity:1;}
+.masthead-tagline{margin-top:10px;font-size:0.68rem;color:var(–ink3);font-family:‘DM Mono’,monospace;letter-spacing:0.04em;max-width:540px;line-height:1.8;}
 .masthead-right{display:flex;flex-direction:column;align-items:flex-end;gap:10px;flex-shrink:0;}
 
 /* NAV */
-.site-nav{display:flex;gap:0;border-bottom:1px solid var(--border);margin-bottom:48px;}
-.nav-link{font-family:'DM Mono',monospace;font-size:0.68rem;letter-spacing:0.1em;text-transform:uppercase;padding:10px 18px;text-decoration:none;color:var(--ink4);border-bottom:2px solid transparent;margin-bottom:-1px;transition:all 0.15s;}
-.nav-link:hover{color:var(--ink2);}
-.nav-link.active{color:var(--ink);border-bottom-color:var(--ink);}
+.site-nav{display:flex;gap:0;border-bottom:1px solid var(–border);margin-bottom:48px;}
+.nav-link{font-family:‘DM Mono’,monospace;font-size:0.68rem;letter-spacing:0.1em;text-transform:uppercase;padding:10px 18px;text-decoration:none;color:var(–ink4);border-bottom:2px solid transparent;margin-bottom:-1px;transition:all 0.15s;}
+.nav-link:hover{color:var(–ink2);}
+.nav-link.active{color:var(–ink);border-bottom-color:var(–ink);}
 
 /* PAGE HEADER */
 .page-header{margin-bottom:40px;}
-.page-header h2{font-family:'Playfair Display',serif;font-size:1.9rem;font-weight:700;color:var(--ink);line-height:1.2;margin-bottom:8px;}
-.page-header .ph-sub{font-size:0.85rem;color:var(--ink3);font-style:italic;font-family:'Playfair Display',serif;}
+.page-header h2{font-family:‘DM Mono’,monospace;font-size:1.9rem;font-weight:700;color:var(–ink);line-height:1.2;margin-bottom:8px;}
+.page-header .ph-sub{font-size:0.85rem;color:var(–ink3);font-style:italic;font-family:‘DM Mono’,monospace;}
 
 /* CONTENT SECTIONS */
 .content-block{margin-bottom:48px;}
-.content-block h3{font-family:'Playfair Display',serif;font-size:1.15rem;font-weight:700;color:var(--ink);margin-bottom:16px;padding-bottom:10px;border-bottom:1px solid var(--border);}
-.content-block p{font-size:0.88rem;color:var(--ink3);line-height:1.85;margin-bottom:14px;}
-.content-block p strong{color:var(--ink2);font-weight:400;}
+.content-block h3{font-family:‘DM Mono’,monospace;font-size:1.15rem;font-weight:700;color:var(–ink);margin-bottom:16px;padding-bottom:10px;border-bottom:1px solid var(–border);}
+.content-block p{font-size:0.88rem;color:var(–ink3);line-height:1.85;margin-bottom:14px;}
+.content-block p strong{color:var(–ink2);font-weight:400;}
 
 /* PULL QUOTE */
-.pull-quote{border-left:3px solid var(--ink);padding:16px 24px;margin:28px 0;background:var(--paper);}
-.pull-quote p{font-family:'Playfair Display',serif;font-size:1.05rem;color:var(--ink2);line-height:1.6;font-style:italic;margin:0;}
+.pull-quote{border-left:3px solid var(–ink);padding:16px 24px;margin:28px 0;background:var(–paper);}
+.pull-quote p{font-family:‘DM Mono’,monospace;font-size:1.05rem;color:var(–ink2);line-height:1.6;font-style:italic;margin:0;}
 
 /* PARADIGM TABLE */
 .paradigm-wrap{margin:28px 0;}
-.paradigm-wrap h4{font-family:'DM Mono',monospace;font-size:0.62rem;letter-spacing:0.16em;text-transform:uppercase;color:var(--ink4);margin-bottom:12px;}
-.paradigm-table{width:100%;border-collapse:collapse;font-family:'DM Mono',monospace;font-size:0.75rem;}
-.paradigm-table thead tr{border-bottom:2px solid var(--border2);}
-.paradigm-table th{padding:8px 14px;text-align:left;color:var(--ink4);font-weight:400;letter-spacing:0.1em;font-size:0.62rem;text-transform:uppercase;}
-.paradigm-table td{padding:11px 14px;border-bottom:1px solid var(--border);}
+.paradigm-wrap h4{font-family:‘DM Mono’,monospace;font-size:0.62rem;letter-spacing:0.16em;text-transform:uppercase;color:var(–ink4);margin-bottom:12px;}
+.paradigm-table{width:100%;border-collapse:collapse;font-family:‘DM Mono’,monospace;font-size:0.75rem;}
+.paradigm-table thead tr{border-bottom:2px solid var(–border2);}
+.paradigm-table th{padding:8px 14px;text-align:left;color:var(–ink4);font-weight:400;letter-spacing:0.1em;font-size:0.62rem;text-transform:uppercase;}
+.paradigm-table td{padding:11px 14px;border-bottom:1px solid var(–border);}
 .paradigm-table tr:last-child td{border-bottom:none;}
-.paradigm-table .col-old{color:var(--ink4);text-decoration:line-through;}
-.paradigm-table .col-arrow{color:var(--border2);text-align:center;width:40px;}
-.paradigm-table .col-new{color:var(--ink2);font-weight:500;}
+.paradigm-table .col-old{color:var(–ink4);text-decoration:line-through;}
+.paradigm-table .col-arrow{color:var(–border2);text-align:center;width:40px;}
+.paradigm-table .col-new{color:var(–ink2);font-weight:500;}
 .paradigm-table tbody tr:hover{background:rgba(23,20,15,0.02);}
 
 /* THREE-LAYER DIAGRAM */
 .layers{display:flex;flex-direction:column;gap:10px;margin:24px 0;}
-.layer{display:grid;grid-template-columns:80px 1fr auto;gap:0;border:1px solid var(--border);background:var(--paper);overflow:hidden;}
-.layer-badge{display:flex;align-items:center;justify-content:center;padding:18px 14px;font-family:'DM Mono',monospace;font-size:0.65rem;letter-spacing:0.14em;font-weight:500;text-transform:uppercase;}
+.layer{display:grid;grid-template-columns:80px 1fr auto;gap:0;border:1px solid var(–border);background:var(–paper);overflow:hidden;}
+.layer-badge{display:flex;align-items:center;justify-content:center;padding:18px 14px;font-family:‘DM Mono’,monospace;font-size:0.65rem;letter-spacing:0.14em;font-weight:500;text-transform:uppercase;}
 .layer-rs .layer-badge{background:#eaf0ea;color:#2a5c3a;border-right:1px solid #b8d4b8;}
 .layer-db .layer-badge{background:#eaecf4;color:#2a3a6c;border-right:1px solid #b8c4e4;}
 .layer-sr .layer-badge{background:#f4ece4;color:#6b4a2a;border-right:1px solid #d4b898;}
 .layer-content{padding:14px 18px;}
-.layer-name{font-family:'Playfair Display',serif;font-size:0.88rem;font-weight:700;color:var(--ink);margin-bottom:4px;}
-.layer-desc{font-size:0.78rem;color:var(--ink3);line-height:1.5;}
-.layer-sources{padding:14px 16px;display:flex;flex-direction:column;justify-content:center;gap:4px;border-left:1px solid var(--border);}
-.layer-source-item{font-family:'DM Mono',monospace;font-size:0.6rem;color:var(--ink4);letter-spacing:0.06em;white-space:nowrap;}
+.layer-name{font-family:‘DM Mono’,monospace;font-size:0.88rem;font-weight:700;color:var(–ink);margin-bottom:4px;}
+.layer-desc{font-size:0.78rem;color:var(–ink3);line-height:1.5;}
+.layer-sources{padding:14px 16px;display:flex;flex-direction:column;justify-content:center;gap:4px;border-left:1px solid var(–border);}
+.layer-source-item{font-family:‘DM Mono’,monospace;font-size:0.6rem;color:var(–ink4);letter-spacing:0.06em;white-space:nowrap;}
 
 /* FORMULA BOX */
-.formula-block{background:var(--bg);border:1px solid var(--border);padding:20px 22px;font-family:'DM Mono',monospace;font-size:0.78rem;color:var(--ink2);line-height:2.2;margin:20px 0;}
-.f-comment{color:var(--ink4);font-size:0.68rem;}
-.f-key{color:var(--ink);font-weight:500;}
+.formula-block{background:var(–bg);border:1px solid var(–border);padding:20px 22px;font-family:‘DM Mono’,monospace;font-size:0.78rem;color:var(–ink2);line-height:2.2;margin:20px 0;}
+.f-comment{color:var(–ink4);font-size:0.68rem;}
+.f-key{color:var(–ink);font-weight:500;}
 
 /* FOOTER */
-.site-footer{border-top:3px double var(--border2);padding-top:20px;margin-top:48px;display:grid;grid-template-columns:1fr auto;gap:12px;align-items:start;}
-.footer-left .fl-title{font-family:'Playfair Display',serif;font-size:0.88rem;color:var(--ink3);margin-bottom:4px;}
-.footer-left .fl-sub{font-family:'DM Mono',monospace;font-size:0.6rem;color:var(--ink4);letter-spacing:0.06em;line-height:1.8;}
-.footer-right{font-family:'DM Mono',monospace;font-size:0.6rem;color:var(--ink4);text-align:right;letter-spacing:0.04em;line-height:1.8;}
+.site-footer{border-top:3px double var(–border2);padding-top:20px;margin-top:48px;display:grid;grid-template-columns:1fr auto;gap:12px;align-items:start;}
+.footer-left .fl-title{font-family:‘DM Mono’,monospace;font-size:0.88rem;color:var(–ink3);margin-bottom:4px;}
+.footer-left .fl-sub{font-family:‘DM Mono’,monospace;font-size:0.6rem;color:var(–ink4);letter-spacing:0.06em;line-height:1.8;}
+.footer-right{font-family:‘DM Mono’,monospace;font-size:0.6rem;color:var(–ink4);text-align:right;letter-spacing:0.04em;line-height:1.8;}
 
 @media(max-width:640px){
-  .masthead-top{flex-direction:column;}
-  .masthead-title{font-size:2rem;}
-  .masthead-title .kanji-inline{font-size:1.4rem;}
-  .layer{grid-template-columns:60px 1fr;}
-  .layer-sources{display:none;}
-  .site-footer{grid-template-columns:1fr;}
-  .footer-right{text-align:left;}
+.masthead-top{flex-direction:column;}
+.masthead-title{font-size:2rem;}
+.masthead-title .kanji-inline{font-size:1.4rem;}
+.layer{grid-template-columns:60px 1fr;}
+.layer-sources{display:none;}
+.site-footer{grid-template-columns:1fr;}
+.footer-right{text-align:left;}
 }
 </style>
+
 </head>
 <body>
 <div class="page">
 
   <!-- MASTHEAD -->
+
   <header class="masthead">
     <div class="masthead-top">
       <div class="masthead-identity">
@@ -109,18 +112,21 @@ body::before{content:'';position:fixed;inset:0;background-image:repeating-linear
   </header>
 
   <!-- NAV -->
+
   <nav class="site-nav">
     <a href="index.html" class="nav-link">Index</a>
     <a href="about.html" class="nav-link active">About &amp; Methodology</a>
   </nav>
 
   <!-- PAGE HEADER -->
+
   <div class="page-header">
     <h2>What JPMI Measures —<br>and Why It Matters</h2>
     <div class="ph-sub">The case for a domestic physical metals benchmark</div>
   </div>
 
   <!-- SECTION 1: CORE BELIEF -->
+
   <div class="content-block">
     <h3>The Problem with Spot Price</h3>
     <p>
@@ -130,16 +136,20 @@ body::before{content:'';position:fixed;inset:0;background-image:repeating-linear
       But in Japan, what actually matters is the yen-per-gram price you can <strong>buy or sell real metal for today</strong> — at a bullion dealer's counter, a pawn broker's window, a recycler's intake desk, or on Mercari between private individuals. These are not the same market. They never were.
     </p>
 
-    <div class="pull-quote">
-      <p>Global spot ≠ Japanese physical reality. Retail participants don't transact at "spot." They transact at Tanaka's bid, Tokuriki's buyback rate, Nanboya's Sv1000 price, and Mercari's peer-to-peer premiums.</p>
-    </div>
+```
+<div class="pull-quote">
+  <p>Global spot ≠ Japanese physical reality. Retail participants don't transact at "spot." They transact at Tanaka's bid, Tokuriki's buyback rate, Nanboya's Sv1000 price, and Mercari's peer-to-peer premiums.</p>
+</div>
 
-    <p>
-      Japan's physical metals market is <strong>fragmented, opaque, locally priced, and often decoupled from global futures prices.</strong> It is subject to domestic demand surges, scrap supply constraints, dealer competition, and retail hoarding dynamics that global benchmarks simply do not capture.
-    </p>
+<p>
+  Japan's physical metals market is <strong>fragmented, opaque, locally priced, and often decoupled from global futures prices.</strong> It is subject to domestic demand surges, scrap supply constraints, dealer competition, and retail hoarding dynamics that global benchmarks simply do not capture.
+</p>
+```
+
   </div>
 
   <!-- SECTION 2: MISSION -->
+
   <div class="content-block">
     <h3>Mission</h3>
     <p>
@@ -151,101 +161,114 @@ body::before{content:'';position:fixed;inset:0;background-image:repeating-linear
   </div>
 
   <!-- SECTION 3: PARADIGM TABLE -->
+
   <div class="content-block">
     <h3>The Paradigm Shift</h3>
     <p>JPMI represents a deliberate move away from paper-market conventions toward the reality of domestic physical metal ownership.</p>
 
-    <div class="paradigm-wrap">
-      <table class="paradigm-table">
-        <thead>
-          <tr>
-            <th>Old Paradigm</th>
-            <th class="col-arrow"></th>
-            <th>JPMI Paradigm</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr><td class="col-old">Paper spot price</td><td class="col-arrow">→</td><td class="col-new">Physical clearing price</td></tr>
-          <tr><td class="col-old">USD / oz</td><td class="col-arrow">→</td><td class="col-new">JPY / g</td></tr>
-          <tr><td class="col-old">Futures market</td><td class="col-arrow">→</td><td class="col-new">Domestic retail market</td></tr>
-          <tr><td class="col-old">Institutional settlement</td><td class="col-arrow">→</td><td class="col-new">Retail liquidation</td></tr>
-          <tr><td class="col-old">Synthetic supply</td><td class="col-arrow">→</td><td class="col-new">Real metal flows</td></tr>
-        </tbody>
-      </table>
-    </div>
+```
+<div class="paradigm-wrap">
+  <table class="paradigm-table">
+    <thead>
+      <tr>
+        <th>Old Paradigm</th>
+        <th class="col-arrow"></th>
+        <th>JPMI Paradigm</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr><td class="col-old">Paper spot price</td><td class="col-arrow">→</td><td class="col-new">Physical clearing price</td></tr>
+      <tr><td class="col-old">USD / oz</td><td class="col-arrow">→</td><td class="col-new">JPY / g</td></tr>
+      <tr><td class="col-old">Futures market</td><td class="col-arrow">→</td><td class="col-new">Domestic retail market</td></tr>
+      <tr><td class="col-old">Institutional settlement</td><td class="col-arrow">→</td><td class="col-new">Retail liquidation</td></tr>
+      <tr><td class="col-old">Synthetic supply</td><td class="col-arrow">→</td><td class="col-new">Real metal flows</td></tr>
+    </tbody>
+  </table>
+</div>
+```
+
   </div>
 
   <!-- SECTION 4: THREE-LAYER STRUCTURE -->
+
   <div class="content-block">
     <h3>Index Structure — Three Layers</h3>
     <p>The JPMI composite is built from three distinct layers of the domestic physical market, each capturing a different tier of price discovery.</p>
 
-    <div class="layers">
+```
+<div class="layers">
 
-      <div class="layer layer-rs">
-        <div class="layer-badge">RS</div>
-        <div class="layer-content">
-          <div class="layer-name">Refinery Spot</div>
-          <div class="layer-desc">The upstream institutional floor. What Japan's major precious metal refiners will pay to buy back silver from the public. The most transparent and consistently published domestic price tier.</div>
-        </div>
-        <div class="layer-sources">
-          <div class="layer-source-item">Tanaka 田中貴金属</div>
-          <div class="layer-source-item">Nihon Material 日本マテリアル</div>
-          <div class="layer-source-item">Mitsubishi 三菱マテリアル*</div>
-        </div>
-      </div>
-
-      <div class="layer layer-db">
-        <div class="layer-badge">DB</div>
-        <div class="layer-content">
-          <div class="layer-name">Dealer / Pawn Bid</div>
-          <div class="layer-desc">The retail exit liquidity layer. What pawn shops and kaitori dealers will pay walk-in customers for physical silver. Reflects real-world liquidation value for ordinary holders — often below RS, but a truer signal of accessible liquidity.</div>
-        </div>
-        <div class="layer-sources">
-          <div class="layer-source-item">Nanboya ナンボヤ</div>
-          <div class="layer-source-item">Daikichi 買取大吉</div>
-        </div>
-      </div>
-
-      <div class="layer layer-sr">
-        <div class="layer-badge">SR</div>
-        <div class="layer-content">
-          <div class="layer-name">Street Retail</div>
-          <div class="layer-desc">The peer-to-peer premium signal. Actual sold prices for .999 silver bullion coins on Mercari — what buyers willingly pay above refinery rates. When SR diverges sharply upward from RS, it signals retail hoarding, supply tightness, or a demand surge not yet reflected in institutional prices.</div>
-        </div>
-        <div class="layer-sources">
-          <div class="layer-source-item">Mercari メルカリ</div>
-          <div class="layer-source-item">MSPI-B (1oz .999)</div>
-        </div>
-      </div>
-
+  <div class="layer layer-rs">
+    <div class="layer-badge">RS</div>
+    <div class="layer-content">
+      <div class="layer-name">Refinery Spot</div>
+      <div class="layer-desc">The upstream institutional floor. What Japan's major precious metal refiners will pay to buy back silver from the public. The most transparent and consistently published domestic price tier.</div>
+    </div>
+    <div class="layer-sources">
+      <div class="layer-source-item">Tanaka 田中貴金属</div>
+      <div class="layer-source-item">Nihon Material 日本マテリアル</div>
+      <div class="layer-source-item">Mitsubishi 三菱マテリアル*</div>
     </div>
   </div>
 
+  <div class="layer layer-db">
+    <div class="layer-badge">DB</div>
+    <div class="layer-content">
+      <div class="layer-name">Dealer / Pawn Bid</div>
+      <div class="layer-desc">The retail exit liquidity layer. What pawn shops and kaitori dealers will pay walk-in customers for physical silver. Reflects real-world liquidation value for ordinary holders — often below RS, but a truer signal of accessible liquidity.</div>
+    </div>
+    <div class="layer-sources">
+      <div class="layer-source-item">Nanboya ナンボヤ</div>
+      <div class="layer-source-item">Daikichi 買取大吉</div>
+    </div>
+  </div>
+
+  <div class="layer layer-sr">
+    <div class="layer-badge">SR</div>
+    <div class="layer-content">
+      <div class="layer-name">Street Retail</div>
+      <div class="layer-desc">The peer-to-peer premium signal. Actual sold prices for .999 silver bullion coins on Mercari — what buyers willingly pay above refinery rates. When SR diverges sharply upward from RS, it signals retail hoarding, supply tightness, or a demand surge not yet reflected in institutional prices.</div>
+    </div>
+    <div class="layer-sources">
+      <div class="layer-source-item">Mercari メルカリ</div>
+      <div class="layer-source-item">MSPI-B (1oz .999)</div>
+    </div>
+  </div>
+
+</div>
+```
+
+  </div>
+
   <!-- SECTION 5: FORMULAS -->
+
   <div class="content-block">
     <h3>Calculation Methodology</h3>
     <p>The JPMI composite is a weighted average of the three sub-indices. Default weights reflect the relative reliability and update frequency of each data source, but can be adjusted by the user.</p>
 
-    <div class="formula-block">
-      <div class="f-comment">// RS — simple mean of refinery buyback prices</div>
-      <span class="f-key">RS</span> = mean(Tanaka_buy, Tokuriki_buy)<br><br>
-      <div class="f-comment">// DB — simple mean of dealer / pawn bid prices</div>
-      <span class="f-key">DB</span> = mean(Nanboya_Sv1000, Daikichi_1g)<br><br>
-      <div class="f-comment">// SR — mean of Mercari sold listings converted to ¥/g</div>
-      <span class="f-key">SR</span> = mean(sold_price_¥ ÷ 31.1035)  <span class="f-comment">// MSPI-B · 1oz .999 bullion only</span><br><br>
-      <div class="f-comment">// JPMI composite (default weights: RS 50%, DB 25%, SR 25%)</div>
-      <span class="f-key">JPMI</span> = (RS × w<sub>RS</sub>) + (DB × w<sub>DB</sub>) + (SR × w<sub>SR</sub>)<br><br>
-      <div class="f-comment">// Street premium — how far retail leads the refinery floor</div>
-      <span class="f-key">Premium</span> = (SR ÷ RS) − 1
-    </div>
+```
+<div class="formula-block">
+  <div class="f-comment">// RS — simple mean of refinery buyback prices</div>
+  <span class="f-key">RS</span> = mean(Tanaka_buy, Tokuriki_buy)<br><br>
+  <div class="f-comment">// DB — simple mean of dealer / pawn bid prices</div>
+  <span class="f-key">DB</span> = mean(Nanboya_Sv1000, Daikichi_1g)<br><br>
+  <div class="f-comment">// SR — mean of Mercari sold listings converted to ¥/g</div>
+  <span class="f-key">SR</span> = mean(sold_price_¥ ÷ 31.1035)  <span class="f-comment">// MSPI-B · 1oz .999 bullion only</span><br><br>
+  <div class="f-comment">// JPMI composite (default weights: RS 50%, DB 25%, SR 25%)</div>
+  <span class="f-key">JPMI</span> = (RS × w<sub>RS</sub>) + (DB × w<sub>DB</sub>) + (SR × w<sub>SR</sub>)<br><br>
+  <div class="f-comment">// Street premium — how far retail leads the refinery floor</div>
+  <span class="f-key">Premium</span> = (SR ÷ RS) − 1
+</div>
 
-    <p>
-      The SR component uses only sold listings for standard 1oz .999 silver bullion coins — no jewellery, no slabs, no numismatic pieces — to ensure like-for-like comparison. This sub-index is referred to as <strong>MSPI-B</strong> (Mercari Silver Price Index — Bullion).
-    </p>
+<p>
+  The SR component uses only sold listings for standard 1oz .999 silver bullion coins — no jewellery, no slabs, no numismatic pieces — to ensure like-for-like comparison. This sub-index is referred to as <strong>MSPI-B</strong> (Mercari Silver Price Index — Bullion).
+</p>
+```
+
   </div>
 
   <!-- SECTION 6: DATA SOURCES -->
+
   <div class="content-block">
     <h3>Data Sources &amp; Update Frequency</h3>
     <p>
@@ -261,6 +284,7 @@ body::before{content:'';position:fixed;inset:0;background-image:repeating-linear
   </div>
 
   <!-- FOOTER -->
+
   <footer class="site-footer">
     <div class="footer-left">
       <div class="fl-title">JPMI — Japan Physical Metals Index™</div>
