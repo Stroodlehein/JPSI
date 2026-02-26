@@ -1,17 +1,25 @@
 {
-  "updated_at_utc": "2026-02-25T12:56:18+00:00",
+  "updated_at_utc": "2026-02-26T03:19:14+00:00",
   "prices_jpy_per_g": {
-    "tanaka_silver_buy": 481.69,
-    "nihon_silver_buy": 471.24,
-    "mitsubishi_silver_sell": 500.39,
-    "nanboya_sv1000": 463.0,
-    "daikichi_sv1000": 471.0,
-    "mercari_mspi_b": 698.45,
-    "mercari_sample_size": 6,
-    "mercari_updated": "2026-02-25"
+    "tanaka_silver_buy": 481.14,
+    "tanaka_silver_sell": 498.19,
+    "nihon_silver_buy": 481.14,
+    "nihon_silver_sell": 498.19,
+    "mitsubishi_silver_sell": 424.27,
+    "mitsubishi_silver_scheme_buy": null,
+    "nanboya_sv1000": 472.0,
+    "daikichi_sv1000": 466.0
+  },
+  "errors": [],
+  "sources": {
+    "tanaka": "https://gold.tanaka.co.jp/commodity/souba/english/index.php",
+    "nihon": "https://www.material.co.jp/market.php",
+    "mitsubishi": "https://gold.mmc.co.jp/market/s_data/2026.html",
+    "nanboya": "https://nanboya.com/gold-kaitori/silver/silver-souba/",
+    "daikichi": "https://www.kaitori-daikichi.jp/list/gold/silver/souba/"
   },
   "notes": {
-    "mitsubishi_silver_sell": "Mitsubishi Materials retail sell price (savings scheme reference). Not a buyback rate. Excluded from RS mean.",
-    "mercari_mspi_b": "MSPI-B: mean of 6 sold 1oz .999 silver bullion listings on Mercari (Libertad 2002, Vienna Phil 2025, Britannia 2020, Walking Liberty 2025, Panda 2023, Britannia 2021). Raw prices: 21500, 21199, 22000, 22800, 21000, 21800 JPY. Divided by 31.1035g/oz."
+    "mitsubishi_silver_scheme_buy": "Mitsubishi's 買取価格 applies to their マイ・ゴールドパートナー savings scheme only. Physical silver OTC buyback is not available at their stores. Included as RS reference price, not a direct retail exit price.",
+    "tokuriki": "Removed — market page uses JavaScript rendering, unavailable to scraper."
   }
 }
