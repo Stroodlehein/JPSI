@@ -1,11 +1,16 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" width="32" height="32">
   <rect width="32" height="32" fill="#17140f"/>
   <rect x="0" y="0" width="32" height="2" fill="rgba(255,255,255,0.15)"/>
-  <text x="16" y="21"
+  <text x="16" y="13"
         text-anchor="middle"
-        dominant-baseline="middle"
         font-family="Georgia, 'Times New Roman', serif"
         font-weight="700"
-        font-size="11"
-        fill="#ffffff">JPMI</text>
+        font-size="13"
+        fill="#ffffff">JP</text>
+  <text x="16" y="26"
+        text-anchor="middle"
+        font-family="Georgia, 'Times New Roman', serif"
+        font-weight="700"
+        font-size="13"
+        fill="#ffffff">MI</text>
 </svg>
