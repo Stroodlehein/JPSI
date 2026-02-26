@@ -219,9 +219,9 @@ body::before{content:'';position:fixed;inset:0;background-image:repeating-linear
 <header class="masthead">
   <div class="masthead-top">
     <div class="masthead-identity">
-      <div class="masthead-kicker">Japan Physical Metals Index™</div>
+      <div class="masthead-kicker" data-en="Japan Physical Metals Index™" data-ja="日本現物金属指数™">Japan Physical Metals Index™</div>
       <div class="masthead-title">JPMI<span class="abbr"> — </span><span class="kanji-inline">日本現物金属指数</span></div>
-      <div class="masthead-tagline">
+      <div class="masthead-tagline" data-en="Aggregates Refinery Spot · Dealer Bid · Street &amp; Mercari prices — reflecting retail liquidity, domestic demand, real spreads, and secondary market premiums." data-ja="精錬所スポット・業者買値・フリマ価格を集計 — 国内の実需・流動性・実スプレッド・二次市場プレミアムを反映">
         Aggregates Refinery Spot · Dealer Bid · Street &amp; Mercari prices — reflecting retail liquidity, domestic demand, real spreads, and secondary market premiums.
       </div>
     </div>
@@ -238,8 +238,8 @@ body::before{content:'';position:fixed;inset:0;background-image:repeating-linear
 <!-- NAV -->
 
 <nav class="site-nav">
-  <a href="index.html" class="nav-link active">Index</a>
-  <a href="about.html" class="nav-link">About &amp; Methodology</a>
+  <a href="index.html" class="nav-link active" data-en="Index" data-ja="指数">Index</a>
+  <a href="about.html" class="nav-link" data-en="About &amp; Methodology" data-ja="概要・方法論">About &amp; Methodology</a>
 </nav>
 
 <!-- FETCH BANNER -->
@@ -292,29 +292,28 @@ body::before{content:'';position:fixed;inset:0;background-image:repeating-linear
 
 <div class="section-group">
   <div class="section-group-label">
-    <span><span class="sgl-badge sgl-rs">RS</span>&nbsp;&nbsp;Refinery Spot — Buyback Prices</span>
-    <button class="btn btn-secondary btn-sm" onclick="loadPricesJSON()">↻ Refresh</button>
+    <span><span class="sgl-badge sgl-rs">RS</span>&nbsp;&nbsp;<span data-en="Refinery Spot — Buyback Prices" data-ja="精錬所スポット — 買取価格">Refinery Spot — Buyback Prices</span></span>
+    <button class="btn btn-secondary btn-sm" onclick="loadPricesJSON()" data-en="↻ Refresh" data-ja="↻ 更新">↻ Refresh</button>
   </div>
   <div class="price-grid">
     <div class="price-card rs-card loading-state" id="pc-tanaka">
       <div class="pc-source">Tanaka 田中貴金属</div>
       <div class="pc-value" id="pv-tanaka">Loading…</div>
-      <div class="pc-unit">¥ / g · silver buyback</div>
+      <div class="pc-unit" data-en="¥ / g · silver buyback" data-ja="円/g · 銀買取">¥ / g · silver buyback</div>
       <div class="pc-status" id="ps-tanaka">Fetching…</div>
     </div>
     <div class="price-card rs-card loading-state" id="pc-nihon">
       <div class="pc-source">Nihon Material 日本マテリアル</div>
       <div class="pc-value" id="pv-nihon">Loading…</div>
-      <div class="pc-unit">¥ / g · silver buyback</div>
+      <div class="pc-unit" data-en="¥ / g · silver buyback" data-ja="円/g · 銀買取">¥ / g · silver buyback</div>
       <div class="pc-status" id="ps-nihon">Fetching…</div>
     </div>
     <div class="price-card rs-card loading-state" id="pc-mitsubishi">
       <div class="pc-source">Mitsubishi 三菱マテリアル</div>
       <div class="pc-value" id="pv-mitsubishi">Loading…</div>
-      <div class="pc-unit">¥ / g · retail sell price</div>
+      <div class="pc-unit" data-en="¥ / g · retail sell price" data-ja="円/g · 小売売価">¥ / g · retail sell price</div>
       <div class="pc-status" id="ps-mitsubishi">Fetching…</div>
     </div>
-
   </div>
 </div>
 
@@ -322,22 +321,21 @@ body::before{content:'';position:fixed;inset:0;background-image:repeating-linear
 
 <div class="section-group">
   <div class="section-group-label">
-    <span><span class="sgl-badge sgl-db">DB</span>&nbsp;&nbsp;Dealer / Pawn Bid Prices</span>
+    <span><span class="sgl-badge sgl-db">DB</span>&nbsp;&nbsp;<span data-en="Dealer / Pawn Bid Prices" data-ja="業者・質屋 買取価格">Dealer / Pawn Bid Prices</span></span>
   </div>
   <div class="price-grid">
     <div class="price-card db-card loading-state" id="pc-nanboya">
       <div class="pc-source">Nanboya ナンボヤ</div>
       <div class="pc-value" id="pv-nanboya">Loading…</div>
-      <div class="pc-unit">¥ / g · Sv1000 bid</div>
+      <div class="pc-unit" data-en="¥ / g · Sv1000 bid" data-ja="円/g · Sv1000 買値">¥ / g · Sv1000 bid</div>
       <div class="pc-status" id="ps-nanboya">Fetching…</div>
     </div>
     <div class="price-card db-card loading-state" id="pc-daikichi">
       <div class="pc-source">Daikichi 買取大吉</div>
       <div class="pc-value" id="pv-daikichi">Loading…</div>
-      <div class="pc-unit">¥ / g · per gram bid</div>
+      <div class="pc-unit" data-en="¥ / g · per gram bid" data-ja="円/g · グラム買値">¥ / g · per gram bid</div>
       <div class="pc-status" id="ps-daikichi">Fetching…</div>
     </div>
-
   </div>
 </div>
 
@@ -345,7 +343,7 @@ body::before{content:'';position:fixed;inset:0;background-image:repeating-linear
 
 <div class="section-group">
   <div class="section-group-label">
-    <span><span class="sgl-badge sgl-sr">SR</span>&nbsp;&nbsp;Street Retail — Mercari MSPI-B</span>
+    <span><span class="sgl-badge sgl-sr">SR</span>&nbsp;&nbsp;<span data-en="Street Retail — Mercari MSPI-B" data-ja="フリマ実売 — メルカリ MSPI-B">Street Retail — Mercari MSPI-B</span></span>
     <span style="font-family:'DM Mono',monospace;font-size:0.58rem;color:var(--ink4);" data-en="Updated Mon · Wed · Fri · 20:00 JST · Last: 2026-02-25" data-ja="更新 月・水・金 · 20:00 JST · 最終: 2026-02-25">Updated Mon · Wed · Fri · 20:00 JST · Last: 2026-02-25</span>
   </div>
   <div class="price-card sr-table-card loaded" style="padding:0;">
@@ -419,15 +417,15 @@ body::before{content:'';position:fixed;inset:0;background-image:repeating-linear
     <p style="font-size:0.75rem;color:var(--ink3);margin-bottom:14px;font-style:italic;" data-en="Fixed weights applied to composite. RS = refiners · DB = dealers/pawn · SR = Mercari peer-to-peer" data-ja="複合指数に適用される固定ウェイト。RS=精錬所 · DB=業者/質屋 · SR=メルカリ">Fixed weights applied to composite. RS = refiners · DB = dealers/pawn · SR = Mercari peer-to-peer</p>
     <div class="weights-row" style="grid-template-columns:1fr 1fr 1fr;">
       <div class="wt-group">
-        <label>RS Weight</label>
+        <label data-en="RS Weight" data-ja="RSウェイト">RS Weight</label>
         <div style="font-family:'DM Mono',monospace;font-size:1.4rem;color:var(--ink);padding:8px 0;">0.50</div>
       </div>
       <div class="wt-group">
-        <label>DB Weight</label>
+        <label data-en="DB Weight" data-ja="DBウェイト">DB Weight</label>
         <div style="font-family:'DM Mono',monospace;font-size:1.4rem;color:var(--ink);padding:8px 0;">0.25</div>
       </div>
       <div class="wt-group">
-        <label>SR Weight</label>
+        <label data-en="SR Weight" data-ja="SRウェイト">SR Weight</label>
         <div style="font-family:'DM Mono',monospace;font-size:1.4rem;color:var(--ink);padding:8px 0;">0.25</div>
       </div>
     </div>
@@ -438,10 +436,10 @@ body::before{content:'';position:fixed;inset:0;background-image:repeating-linear
 
 <footer class="site-footer">
   <div class="footer-left">
-    <div class="fl-title">JPMI — Japan Physical Metals Index™</div>
-    <div class="fl-sub">Silver Index (JPMI-AG) · JPY per gram · Updated daily<br>Sources: Tanaka · Nihon Material · Nanboya · Daikichi · Mercari MSPI-B<br>Informational index only. Not financial advice.</div>
+    <div class="fl-title" data-en="JPMI — Japan Physical Metals Index™" data-ja="JPMI — 日本現物金属指数™">JPMI — Japan Physical Metals Index™</div>
+    <div class="fl-sub" data-en="Silver Index (JPMI-AG) · JPY per gram · Updated daily&#10;Sources: Tanaka · Nihon Material · Nanboya · Daikichi · Mercari MSPI-B&#10;Informational index only. Not financial advice." data-ja="銀指数（JPMI-AG）· 円/g · 毎日更新&#10;データ元：田中 · 日本マテリアル · ナンボヤ · 大吉 · メルカリ MSPI-B&#10;情報提供のみ。投資アドバイスではありません。">Silver Index (JPMI-AG) · JPY per gram · Updated daily<br>Sources: Tanaka · Nihon Material · Nanboya · Daikichi · Mercari MSPI-B<br>Informational index only. Not financial advice.</div>
   </div>
-  <div class="footer-right">Data via GitHub Actions<br>Physical metal · Domestic market<br>Global spot ≠ Japanese physical reality</div>
+  <div class="footer-right" data-en="Data via GitHub Actions&#10;Physical metal · Domestic market&#10;Global spot ≠ Japanese physical reality" data-ja="GitHub Actions 経由でデータ取得&#10;現物金属 · 国内市場&#10;グローバルスポット ≠ 日本現物の実態">Data via GitHub Actions<br>Physical metal · Domestic market<br>Global spot ≠ Japanese physical reality</div>
 </footer>
 
 </div>
@@ -532,8 +530,14 @@ body::before{content:'';position:fixed;inset:0;background-image:repeating-linear
     document.querySelector(`.lang-btn[onclick="setLang('${lang}')"]`).classList.add('active');
     document.querySelectorAll('[data-en]').forEach(el => {
       const txt = lang==='ja' && el.dataset.ja ? el.dataset.ja : el.dataset.en;
-      if (el.tagName==='INPUT') el.placeholder = txt;
-      else el.textContent = txt;
+      if (el.tagName==='INPUT') {
+        el.placeholder = txt;
+      } else if (el.tagName==='A' || el.tagName==='BUTTON' || el.tagName==='SPAN' || el.tagName==='LABEL' || el.tagName==='TH' || el.tagName==='TD' || el.tagName==='P' || el.tagName==='DIV' || el.tagName==='H3') {
+        // For elements that may contain <br> in data attributes, use innerHTML
+        el.innerHTML = txt.replace(/\n/g, '<br>');
+      } else {
+        el.textContent = txt;
+      }
     });
     document.getElementById('card-date-label').textContent =
       lang==='ja' ? 'JPMI — 銀 · 本日のベンチマーク' : "JPMI — SILVER · TODAY'S BENCHMARK";
