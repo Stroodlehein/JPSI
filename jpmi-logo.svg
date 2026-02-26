@@ -1,0 +1,21 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 480 200" width="480" height="200">
+  <defs>
+    <style>
+      @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&amp;family=DM+Mono:wght@300&amp;display=swap');
+      .wordmark { font-family: 'Playfair Display', Georgia, serif; font-weight: 700; font-size: 96px; fill: #ffffff; letter-spacing: -1px; }
+      .subtitle { font-family: 'DM Mono', 'Courier New', monospace; font-weight: 300; font-size: 14px; fill: rgba(255,255,255,0.45); letter-spacing: 6px; }
+    </style>
+  </defs>
+
+  <!-- Background -->
+  <rect width="480" height="200" fill="#17140f"/>
+
+  <!-- Top accent line -->
+  <rect x="40" y="0" width="400" height="2" fill="rgba(255,255,255,0.08)"/>
+
+  <!-- JPMI wordmark -->
+  <text x="40" y="132" class="wordmark">JPMI</text>
+
+  <!-- Subtitle -->
+  <text x="42" y="162" class="subtitle">JAPAN PHYSICAL METALS INDEX</text>
+</svg>
