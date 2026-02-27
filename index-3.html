@@ -1,0 +1,607 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>JPMI — Japan Physical Silver Index · JPY/g · 日本現物銀指数</title>
+<meta name="description" content="JPMI aggregates refinery buyback, dealer bid, and Mercari peer-to-peer prices to produce a live physical silver benchmark for Japan — expressed in JPY per gram.">
+<meta name="keywords" content="Japan silver price, 銀 価格, JPY per gram, physical silver Japan, 日本現物銀, silver buyback Japan, Tanaka silver, Nanboya silver, Mercari silver, JPMI, silver index Japan">
+<meta name="author" content="JPMI — Japan Physical Metals Index">
+<meta name="robots" content="index, follow">
+
+<text y=%22.9em%22 font-size=%2272%22 x=%225%22 fill=%22white%22 font-family=%22Georgia,serif%22 font-weight=%22bold%22>JP</text></svg>">
+<link rel="icon" type="image/x-icon" href="favicon.ico">
+<link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="favicon-16.png">
+<link rel="apple-touch-icon" sizes="180x180" href="favicon-180.png">
+<link rel="canonical" href="https://stroodlehein.github.io/JPSI/">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://stroodlehein.github.io/JPSI/">
+<meta property="og:title" content="JPMI — Japan Physical Silver Index · JPY/g">
+<meta property="og:description" content="Live physical silver benchmark for Japan. Aggregates refinery spot, dealer bid, and Mercari peer-to-peer prices in JPY per gram.">
+<meta property="og:locale" content="en_US">
+<meta property="og:locale:alternate" content="ja_JP">
+<meta property="og:site_name" content="JPMI — Japan Physical Metals Index">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="JPMI — Japan Physical Silver Index · JPY/g">
+<meta name="twitter:description" content="Live physical silver benchmark for Japan. Refinery spot · Dealer bid · Mercari P2P — expressed in JPY/g.">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebSite",
+  "name": "JPMI — Japan Physical Metals Index",
+  "alternateName": "日本現物金属指数",
+  "url": "https://stroodlehein.github.io/JPSI/",
+  "description": "Live physical silver price benchmark for Japan, aggregating refinery buyback, dealer bid, and peer-to-peer Mercari prices in JPY per gram.",
+  "inLanguage": ["en", "ja"]
+}
+</script>
+<title>JPMI — Japan Physical Metals Index</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@200;300;400;600&family=DM+Mono:wght@300;400;500&family=Playfair+Display:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg:#ffffff; --paper:#ffffff; --ink:#17140f; --ink2:#3d3830; --ink3:#7a7368; --ink4:#a89f94;
+  --silver:#8a98a8; --border:#ddd8cf; --border2:#ccc6bb; --red:#8c2e22; --green:#2a5c3a;
+  --green-bg:#f0f6f1; --amber:#7a5a18; --amber-bg:#faf5e8; --red-bg:#faf0ee;
+}
+*{box-sizing:border-box;margin:0;padding:0;}
+html{scroll-behavior:smooth;}
+body{background:var(--bg);color:var(--ink);font-family:'DM Mono',monospace;font-weight:300;min-height:100vh;}
+body::before{content:'';position:fixed;inset:0;background-image:repeating-linear-gradient(0deg,transparent,transparent 31px,rgba(23,20,15,0.018) 31px,rgba(23,20,15,0.018) 32px);pointer-events:none;z-index:0;}
+.page{max-width:900px;margin:0 auto;padding:0 24px 100px;position:relative;z-index:1;}
+
+/* MASTHEAD */
+.masthead{border-bottom:3px double var(--border2);padding:32px 0 20px;margin-bottom:0;}
+.masthead-top{display:flex;justify-content:space-between;align-items:flex-start;gap:16px;}
+.masthead-kicker{font-family:'DM Mono',monospace;font-size:0.62rem;letter-spacing:0.2em;color:var(--ink4);text-transform:uppercase;margin-bottom:8px;}
+.masthead-title{font-family:'Playfair Display',Georgia,serif;font-size:2.6rem;font-weight:700;letter-spacing:-0.01em;line-height:1;color:var(--ink);}
+.masthead-title .abbr{display:none;}
+.masthead-title .kanji-inline{font-family:'Noto Serif JP';font-weight:600;font-size:1.8rem;color:var(--ink);margin-left:10px;vertical-align:middle;opacity:1;}
+.masthead-tagline{margin-top:10px;font-size:0.68rem;color:var(--ink3);font-family:'DM Mono',monospace;letter-spacing:0.04em;max-width:540px;line-height:1.8;}
+.masthead-tagline em{color:var(--ink2);font-style:normal;}
+.masthead-right{display:flex;flex-direction:column;align-items:flex-end;gap:10px;flex-shrink:0;}
+.lang-toggle{display:flex;border:1px solid var(--border2);border-radius:2px;overflow:hidden;}
+.lang-btn{padding:5px 12px;font-family:'DM Mono',monospace;font-size:0.7rem;letter-spacing:0.08em;cursor:pointer;border:none;background:var(--paper);color:var(--ink3);transition:all 0.15s;}
+.lang-btn.active{background:var(--ink);color:var(--paper);}
+.lang-btn:hover:not(.active){background:var(--border);}
+
+/* NAV */
+.site-nav{display:flex;gap:0;border-bottom:1px solid var(--border);margin-bottom:24px;margin-top:0;}
+.nav-link{font-family:'DM Mono',monospace;font-size:0.68rem;letter-spacing:0.1em;text-transform:uppercase;padding:10px 18px;text-decoration:none;color:var(--ink4);border-bottom:2px solid transparent;margin-bottom:-1px;transition:all 0.15s;}
+.nav-link:hover{color:var(--ink2);}
+.nav-link.active{color:var(--ink);border-bottom-color:var(--ink);}
+
+.masthead-meta{font-family:'DM Mono',monospace;font-size:0.62rem;color:var(--ink4);letter-spacing:0.06em;text-align:right;line-height:1.7;}
+
+/* IDEOLOGY STRIP */
+.ideology-strip{border-bottom:1px solid var(--border);padding:14px 0;margin-bottom:28px;display:flex;align-items:center;overflow:hidden;}
+.ideology-item{flex:1;padding:0 20px;border-right:1px solid var(--border);text-align:center;}
+.ideology-item:first-child{padding-left:0;}
+.ideology-item:last-child{border-right:none;padding-right:0;}
+.ideology-contrast{font-family:'DM Mono',monospace;font-size:0.6rem;letter-spacing:0.1em;color:var(--ink4);text-transform:uppercase;display:flex;align-items:center;justify-content:center;gap:8px;}
+.ideology-contrast .old{color:var(--ink4);text-decoration:line-through;}
+.ideology-contrast .arrow{color:var(--border2);}
+.ideology-contrast .new{color:var(--ink2);font-weight:500;}
+
+/* FETCH BANNER */
+.fetch-banner{display:flex;align-items:center;gap:10px;padding:8px 14px;font-family:'DM Mono',monospace;font-size:0.68rem;letter-spacing:0.04em;border:1px solid var(--border);background:var(--paper);color:var(--ink4);margin-bottom:20px;border-radius:1px;transition:all 0.3s;}
+.fetch-banner.loading{border-color:#c8d4d8;color:var(--silver);}
+.fetch-banner.success{border-color:#b0ccb8;background:var(--green-bg);color:var(--green);}
+.fetch-banner.partial{border-color:#ccc0a0;background:var(--amber-bg);color:var(--amber);}
+.fetch-banner.error{border-color:#ccb0ac;background:var(--red-bg);color:var(--red);}
+.fetch-dot{width:6px;height:6px;border-radius:50%;background:currentColor;flex-shrink:0;}
+.fetch-banner.loading .fetch-dot{animation:blink 1.2s ease-in-out infinite;}
+@keyframes blink{0%,100%{opacity:1}50%{opacity:0.15}}
+.fetch-retry{margin-left:auto;background:none;border:1px solid currentColor;color:inherit;font-family:'DM Mono',monospace;font-size:0.62rem;padding:2px 8px;cursor:pointer;opacity:0.6;transition:opacity 0.15s;letter-spacing:0.06em;}
+.fetch-retry:hover{opacity:1;}
+
+/* BENCHMARK CARD */
+.benchmark-card{background:#e8eaed;color:var(--ink);padding:36px 40px 32px;margin-bottom:28px;position:relative;overflow:hidden;}
+.benchmark-card::before{content:'銀';position:absolute;right:-8px;top:-16px;font-family:'Noto Serif JP';font-size:200px;font-weight:200;color:rgba(23,20,15,0.04);pointer-events:none;line-height:1;user-select:none;}
+.benchmark-card::after{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,rgba(23,20,15,0.25) 0%,rgba(23,20,15,0.05) 100%);}
+.bc-header{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:24px;}
+.bc-label{font-family:'DM Mono',monospace;font-size:0.62rem;letter-spacing:0.2em;color:var(--ink3);text-transform:uppercase;}
+.bc-timestamp{font-family:'DM Mono',monospace;font-size:0.62rem;color:var(--ink3);letter-spacing:0.06em;text-align:right;line-height:1.6;}
+.bc-main{display:flex;align-items:baseline;gap:14px;margin-bottom:6px;}
+.bc-index-name{font-family:'DM Mono',monospace;font-size:0.8rem;letter-spacing:0.16em;color:var(--ink3);}
+.bc-price{font-family:'DM Mono',monospace;font-size:3.8rem;font-weight:300;color:var(--ink);letter-spacing:-0.01em;line-height:1;}
+.bc-currency{font-family:'DM Mono',monospace;font-size:1.1rem;color:var(--ink3);font-weight:300;}
+.bc-subtitle{font-family:'DM Mono',monospace;font-size:0.72rem;color:var(--ink3);margin-bottom:28px;font-weight:300;}
+.bc-sub-row{display:grid;grid-template-columns:repeat(3,1fr);gap:0;border-top:1px solid rgba(23,20,15,0.12);padding-top:20px;margin-top:4px;}
+.bc-sub{padding:0 20px;border-right:1px solid rgba(23,20,15,0.1);}
+.bc-sub:first-child{padding-left:0;}
+.bc-sub:last-child{border-right:none;}
+.bc-sub-tag{font-family:'DM Mono',monospace;font-size:0.6rem;letter-spacing:0.18em;color:var(--ink3);text-transform:uppercase;margin-bottom:4px;}
+.bc-sub-name{font-family:'DM Mono',monospace;font-size:0.65rem;color:var(--ink3);margin-bottom:6px;}
+.bc-sub-val{font-family:'DM Mono',monospace;font-size:1.3rem;color:var(--ink);font-weight:400;}
+.bc-footer-row{display:flex;align-items:center;justify-content:space-between;margin-top:20px;padding-top:16px;border-top:1px solid rgba(23,20,15,0.1);}
+.premium-badge{display:inline-flex;align-items:center;gap:8px;font-family:'DM Mono',monospace;font-size:0.68rem;color:var(--ink3);}
+.premium-badge .pval{color:var(--ink);font-size:0.9rem;font-weight:400;}
+.bc-methodology-note{font-family:'DM Mono',monospace;font-size:0.6rem;color:var(--ink4);text-align:right;}
+
+/* SECTION GROUP */
+.section-group{margin-bottom:28px;}
+.section-group-label{font-family:'DM Mono',monospace;font-size:0.6rem;letter-spacing:0.2em;text-transform:uppercase;color:var(--ink4);margin-bottom:10px;padding-bottom:6px;border-bottom:1px solid var(--border);display:flex;align-items:center;justify-content:space-between;}
+.sgl-badge{display:inline-block;padding:2px 7px;border-radius:1px;font-size:0.58rem;letter-spacing:0.12em;}
+.sgl-rs{background:#eaf0ea;color:#2a5c3a;border:1px solid #b8d4b8;}
+.sgl-db{background:#eaecf4;color:#2a3a6c;border:1px solid #b8c4e4;}
+.sgl-sr{background:#f4ece4;color:#6b4a2a;border:1px solid #d4b898;}
+
+/* PRICE CARDS */
+.price-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));gap:10px;}
+.price-card{background:var(--paper);border:1px solid var(--border);padding:16px 18px;position:relative;transition:border-color 0.3s,background 0.3s;}
+.price-card::before{content:'';position:absolute;top:0;left:0;width:2px;height:100%;background:var(--border2);transition:background 0.3s;}
+.price-card.loaded{border-color:#c0d8c0;background:#f8fbf8;}
+.price-card.loaded::before{background:#6aaa7a;}
+.price-card.failed{border-color:#d8c0bc;background:#fbf8f8;}
+.price-card.failed::before{background:#cc7a6a;}
+.price-card.manual{border-style:dashed;border-color:var(--border2);}
+.price-card.manual::before{background:var(--border2);}
+.pc-source{font-family:'DM Mono',monospace;font-size:0.6rem;letter-spacing:0.12em;color:var(--ink4);text-transform:uppercase;margin-bottom:10px;}
+.pc-value{font-family:'DM Mono',monospace;font-size:1.6rem;color:var(--ink);font-weight:400;line-height:1;margin-bottom:4px;transition:color 0.3s;}
+.price-card.loading-state .pc-value{color:var(--border2);font-size:1rem;font-style:italic;}
+.price-card.failed .pc-value{color:#cc7a6a;font-size:0.85rem;font-style:italic;}
+.pc-unit{font-family:'DM Mono',monospace;font-size:0.62rem;color:var(--ink4);margin-bottom:6px;}
+.pc-status{font-family:'DM Mono',monospace;font-size:0.58rem;color:var(--green);letter-spacing:0.04em;}
+.price-card.failed .pc-status{color:var(--red);}
+.price-card.manual input{background:transparent;border:none;border-bottom:1px solid var(--border2);font-family:'DM Mono',monospace;font-size:1.6rem;color:var(--ink);width:100%;padding:0 0 2px;outline:none;line-height:1;margin-bottom:4px;}
+.price-card.manual input:focus{border-bottom-color:var(--silver);}
+.price-card.manual input::placeholder{color:var(--border2);font-size:1.1rem;}
+.pc-hint{font-family:'DM Mono',monospace;font-size:0.58rem;color:var(--ink4);font-style:italic;margin-top:6px;}
+
+/* ABOUT STRIP */
+.about-strip{border:1px solid var(--border);background:var(--paper);padding:24px 28px;margin-bottom:28px;position:relative;overflow:hidden;}
+.about-strip::before{content:'日本現物金属指数';position:absolute;right:-4px;bottom:-10px;font-family:'Noto Serif JP';font-size:48px;font-weight:200;color:rgba(23,20,15,0.04);pointer-events:none;white-space:nowrap;}
+.about-headline{font-family:'DM Mono',monospace;font-size:0.88rem;font-weight:500;color:var(--ink);margin-bottom:10px;line-height:1.5;}
+.about-body{font-size:0.82rem;color:var(--ink3);line-height:1.75;max-width:640px;}
+.about-body strong{color:var(--ink2);font-weight:400;}
+.paradigm-table{margin-top:16px;display:grid;grid-template-columns:1fr auto 1fr;gap:4px 12px;font-family:'DM Mono',monospace;font-size:0.62rem;letter-spacing:0.04em;}
+.pt-header{color:var(--ink4);text-transform:uppercase;letter-spacing:0.12em;padding-bottom:4px;border-bottom:1px solid var(--border);}
+.pt-old{color:var(--ink4);text-decoration:line-through;}
+.pt-arrow{color:var(--border2);text-align:center;}
+.pt-new{color:var(--ink2);font-weight:500;}
+
+/* WEIGHTS */
+.weights-section{background:var(--paper);border:1px solid var(--border);margin-bottom:28px;}
+.ws-header{padding:14px 20px;border-bottom:1px solid var(--border);display:flex;align-items:center;gap:10px;background:rgba(23,20,15,0.018);}
+.ws-header h3{font-size:0.88rem;font-weight:400;color:var(--ink);}
+.ws-body{padding:18px 20px;}
+.weights-row{display:grid;grid-template-columns:1fr 1fr 1fr auto;gap:12px;align-items:end;margin-bottom:16px;}
+.wt-group{display:flex;flex-direction:column;gap:5px;}
+.wt-group label{font-family:'DM Mono',monospace;font-size:0.62rem;color:var(--ink4);letter-spacing:0.08em;text-transform:uppercase;}
+.wt-group input{background:var(--bg);border:1px solid var(--border2);padding:8px 10px;font-family:'DM Mono',monospace;font-size:0.9rem;color:var(--ink);width:100%;outline:none;border-radius:1px;transition:border-color 0.15s;}
+.wt-group input:focus{border-color:var(--silver);}
+.weight-sum{font-family:'DM Mono',monospace;font-size:0.72rem;padding-bottom:9px;color:var(--ink4);}
+.weight-sum.ok{color:var(--green);}
+.weight-sum.err{color:var(--red);}
+.actions{display:flex;gap:8px;flex-wrap:wrap;}
+
+/* SECTION COLOUR THEMES */
+/* RS — green */
+.price-card.rs-card{border-color:#c8dfc8;background:#f4f9f4;}
+.price-card.rs-card::before{background:#7ab87a;}
+.price-card.rs-card.loaded{border-color:#9ecf9e;background:#edf6ed;}
+.price-card.rs-card.loaded::before{background:#3a8a4a;}
+.price-card.rs-card.failed{border-color:#d8c0bc;background:#fbf8f8;}
+.price-card.rs-card.failed::before{background:#cc7a6a;}
+.price-card.rs-card .pc-source{color:#2a5c3a;}
+/* DB — blue */
+.price-card.db-card{border-color:#c4cce8;background:#f2f4fb;}
+.price-card.db-card::before{background:#7a8ec8;}
+.price-card.db-card.loaded{border-color:#9aaad8;background:#eaeefc;}
+.price-card.db-card.loaded::before{background:#3a50a0;}
+.price-card.db-card.failed{border-color:#d8c0bc;background:#fbf8f8;}
+.price-card.db-card.failed::before{background:#cc7a6a;}
+.price-card.db-card .pc-source{color:#2a3a6c;}
+/* SR — orange/amber */
+.sr-table-card{border:1px solid #dfc8a8;background:#fdf6ee;border-left:2px solid #c8843a;overflow:hidden;}
+.sr-table-card.loaded{border-color:#d4b07a;background:#fdf3e6;}
+.sr-table-card .sr-table-footnote{background:#fdf0e0;}
+
+/* BUTTONS */
+.btn{padding:8px 16px;font-family:'DM Mono',monospace;font-size:0.7rem;letter-spacing:0.08em;border:none;cursor:pointer;transition:all 0.15s;border-radius:1px;}
+.btn-primary{background:var(--ink);color:var(--paper);}
+.btn-primary:hover{background:#2a2520;}
+.btn-secondary{background:transparent;border:1px solid var(--border2);color:var(--ink2);}
+.btn-secondary:hover{background:var(--border);}
+.btn-danger{background:transparent;border:none;color:var(--ink4);padding:4px 8px;font-size:0.68rem;}
+.btn-danger:hover{color:var(--red);}
+.btn-sm{padding:5px 11px;font-size:0.65rem;}
+.badge{font-family:'DM Mono',monospace;font-size:0.58rem;letter-spacing:0.14em;padding:3px 7px;border-radius:1px;text-transform:uppercase;display:inline-block;}
+.badge-rs{background:#eaf0ea;color:#2a5c3a;border:1px solid #b8d4b8;}
+.badge-db{background:#eaecf4;color:#2a3a6c;border:1px solid #b8c4e4;}
+.badge-sr{background:#f4ece4;color:#6b4a2a;border:1px solid #d4b898;}
+.badge-jpmi{background:var(--ink);color:var(--paper);border:1px solid var(--ink);}
+
+/* FOOTER */
+.site-footer{border-top:3px double var(--border2);padding-top:20px;margin-top:48px;display:grid;grid-template-columns:1fr auto;gap:12px;align-items:start;}
+.footer-left .fl-title{font-family:'DM Mono',monospace;font-size:0.78rem;color:var(--ink3);margin-bottom:4px;}
+.footer-left .fl-sub{font-family:'DM Mono',monospace;font-size:0.6rem;color:var(--ink4);letter-spacing:0.06em;line-height:1.8;}
+.footer-right{font-family:'DM Mono',monospace;font-size:0.6rem;color:var(--ink4);text-align:right;letter-spacing:0.04em;line-height:1.8;}
+
+/* NOTIF */
+.notif{position:fixed;bottom:24px;right:24px;background:var(--ink);color:var(--paper);padding:10px 18px;font-family:'DM Mono',monospace;font-size:0.72rem;letter-spacing:0.04em;opacity:0;transform:translateY(6px);transition:all 0.2s;pointer-events:none;z-index:999;border-radius:1px;}
+.notif.show{opacity:1;transform:translateY(0);}
+
+@media(max-width:640px){
+  .masthead-top{flex-direction:column;}
+  .masthead-title{font-size:2rem;}
+  .masthead-title .kanji-inline{font-size:1.4rem;}
+  .bc-price{font-size:2.8rem;}
+  .bc-sub-row{grid-template-columns:1fr;gap:12px;}
+  .bc-sub{padding:0;border-right:none;border-bottom:1px solid rgba(255,255,255,0.06);padding-bottom:12px;}
+  .bc-sub:last-child{border-bottom:none;}
+  .ideology-strip{flex-direction:column;gap:8px;}
+  .ideology-item{border-right:none;border-bottom:1px solid var(--border);padding:6px 0;}
+  .ideology-item:last-child{border-bottom:none;}
+  .weights-row{grid-template-columns:1fr 1fr 1fr;}
+  .weights-row .weight-sum{grid-column:1/-1;}
+  .site-footer{grid-template-columns:1fr;}
+  .footer-right{text-align:left;}
+  .masthead-right{align-items:flex-start;}
+}
+</style>
+</head>
+<body>
+<div class="page">
+
+<!-- MASTHEAD -->
+<header class="masthead">
+  <div class="masthead-top">
+    <div class="masthead-identity">
+      <div class="masthead-kicker" data-en="Japan Physical Metals Index™" data-ja="日本現物金属指数™">Japan Physical Metals Index™</div>
+      <div class="masthead-title">JPMI<span class="abbr"> — </span><span class="kanji-inline">日本現物金属指数</span></div>
+      <div class="masthead-tagline" data-en="Aggregates Refinery Spot · Dealer Bid · Street &amp; Mercari prices — reflecting retail liquidity, domestic demand, real spreads, and secondary market premiums." data-ja="精錬所スポット・業者買値・フリマ価格を集計 — 国内の実需・流動性・実スプレッド・二次市場プレミアムを反映">
+        Aggregates Refinery Spot · Dealer Bid · Street &amp; Mercari prices — reflecting retail liquidity, domestic demand, real spreads, and secondary market premiums.
+      </div>
+    </div>
+    <div class="masthead-right">
+      <div class="lang-toggle">
+        <button class="lang-btn active" onclick="setLang('en')">EN</button>
+        <button class="lang-btn" onclick="setLang('ja')">日本語</button>
+      </div>
+      <div class="masthead-meta" id="masthead-date">Silver Index · JPY/g<br>Updated daily via GitHub Actions</div>
+    </div>
+  </div>
+</header>
+
+
+
+<!-- NAV -->
+<nav class="site-nav">
+  <a href="index.html" class="nav-link active" data-en="Index" data-ja="指数">Index</a>
+  <a href="about.html" class="nav-link" data-en="About &amp; Methodology" data-ja="概要・方法論">About &amp; Methodology</a>
+</nav>
+
+<!-- FETCH BANNER -->
+<div class="fetch-banner loading" id="fetch-banner">
+  <div class="fetch-dot"></div>
+  <span id="fetch-status">Loading live data from prices.json…</span>
+  <button class="fetch-retry" id="fetch-retry-btn" onclick="loadPricesJSON()" style="display:none;">↻ Retry</button>
+</div>
+
+<!-- BENCHMARK CARD -->
+<div class="benchmark-card">
+  <div class="bc-header">
+    <div class="bc-label" id="card-date-label">JPMI — SILVER · TODAY'S BENCHMARK</div>
+    <div class="bc-timestamp" id="bc-timestamp">—</div>
+  </div>
+  <div class="bc-main">
+    <div class="bc-index-name">JPMI-AG</div>
+    <div class="bc-price" id="jpsi-display">—</div>
+    <div class="bc-currency">¥ / g</div>
+  </div>
+  <div class="bc-subtitle" data-en="Japan Physical Silver Index · Weighted composite of refinery, dealer, and street prices" data-ja="日本現物銀指数 · 精錬所・業者・フリマの加重複合指数">Japan Physical Silver Index · Weighted composite of refinery, dealer, and street prices</div>
+  <div class="bc-sub-row">
+    <div class="bc-sub">
+      <div class="bc-sub-tag">RS</div>
+      <div class="bc-sub-name" data-en="Refinery Spot" data-ja="精錬所スポット">Refinery Spot</div>
+      <div class="bc-sub-val" id="rs-display">—</div>
+    </div>
+    <div class="bc-sub">
+      <div class="bc-sub-tag">DB</div>
+      <div class="bc-sub-name" data-en="Dealer / Pawn Bid" data-ja="業者・質屋買値">Dealer / Pawn Bid</div>
+      <div class="bc-sub-val" id="db-display">—</div>
+    </div>
+    <div class="bc-sub">
+      <div class="bc-sub-tag">SR</div>
+      <div class="bc-sub-name" data-en="Street Retail (Mercari)" data-ja="フリマ実売（メルカリ）">Street Retail (Mercari)</div>
+      <div class="bc-sub-val" id="sr-display">—</div>
+    </div>
+  </div>
+  <div class="bc-footer-row">
+    <div class="premium-badge">
+      <span data-en="Street premium vs RS" data-ja="RS比フリマプレミアム">Street premium vs RS</span>:&nbsp;<span class="pval" id="premium-display">—</span>
+    </div>
+    <div class="bc-methodology-note" data-en="Tanaka · Nihon Material · Nanboya · Daikichi · Mercari MSPI-B" data-ja="田中 · 日本マテリアル · ナンボヤ · 大吉 · メルカリ MSPI-B">Tanaka · Nihon Material · Nanboya · Daikichi · Mercari MSPI-B</div>
+  </div>
+</div>
+
+
+<!-- RS -->
+<div class="section-group">
+  <div class="section-group-label">
+    <span><span class="sgl-badge sgl-rs">RS</span>&nbsp;&nbsp;<span data-en="Refinery Spot — Buyback Prices" data-ja="精錬所スポット — 買取価格">Refinery Spot — Buyback Prices</span></span>
+    <button class="btn btn-secondary btn-sm" onclick="loadPricesJSON()" data-en="↻ Refresh" data-ja="↻ 更新">↻ Refresh</button>
+  </div>
+  <div class="price-grid">
+    <div class="price-card rs-card loading-state" id="pc-tanaka">
+      <div class="pc-source">Tanaka 田中貴金属</div>
+      <div class="pc-value" id="pv-tanaka">Loading…</div>
+      <div class="pc-unit" data-en="¥ / g · silver buyback" data-ja="円/g · 銀買取">¥ / g · silver buyback</div>
+      <div class="pc-status" id="ps-tanaka">Fetching…</div>
+    </div>
+    <div class="price-card rs-card loading-state" id="pc-nihon">
+      <div class="pc-source">Nihon Material 日本マテリアル</div>
+      <div class="pc-value" id="pv-nihon">Loading…</div>
+      <div class="pc-unit" data-en="¥ / g · silver buyback" data-ja="円/g · 銀買取">¥ / g · silver buyback</div>
+      <div class="pc-status" id="ps-nihon">Fetching…</div>
+    </div>
+    <div class="price-card rs-card loading-state" id="pc-mitsubishi">
+      <div class="pc-source">Mitsubishi 三菱マテリアル</div>
+      <div class="pc-value" id="pv-mitsubishi">Loading…</div>
+      <div class="pc-unit" data-en="¥ / g · retail sell price" data-ja="円/g · 小売売価">¥ / g · retail sell price</div>
+      <div class="pc-status" id="ps-mitsubishi">Fetching…</div>
+    </div>
+  </div>
+</div>
+
+<!-- DB -->
+<div class="section-group">
+  <div class="section-group-label">
+    <span><span class="sgl-badge sgl-db">DB</span>&nbsp;&nbsp;<span data-en="Dealer / Pawn Bid Prices" data-ja="業者・質屋 買取価格">Dealer / Pawn Bid Prices</span></span>
+  </div>
+  <div class="price-grid">
+    <div class="price-card db-card loading-state" id="pc-nanboya">
+      <div class="pc-source">Nanboya ナンボヤ</div>
+      <div class="pc-value" id="pv-nanboya">Loading…</div>
+      <div class="pc-unit" data-en="¥ / g · Sv1000 bid" data-ja="円/g · Sv1000 買値">¥ / g · Sv1000 bid</div>
+      <div class="pc-status" id="ps-nanboya">Fetching…</div>
+    </div>
+    <div class="price-card db-card loading-state" id="pc-daikichi">
+      <div class="pc-source">Daikichi 買取大吉</div>
+      <div class="pc-value" id="pv-daikichi">Loading…</div>
+      <div class="pc-unit" data-en="¥ / g · per gram bid" data-ja="円/g · グラム買値">¥ / g · per gram bid</div>
+      <div class="pc-status" id="ps-daikichi">Fetching…</div>
+    </div>
+  </div>
+</div>
+
+<!-- SR -->
+<div class="section-group">
+  <div class="section-group-label">
+    <span><span class="sgl-badge sgl-sr">SR</span>&nbsp;&nbsp;<span data-en="Street Retail — Mercari MSPI-B" data-ja="フリマ実売 — メルカリ MSPI-B">Street Retail — Mercari MSPI-B</span></span>
+    <span style="font-family:'DM Mono',monospace;font-size:0.58rem;color:var(--ink4);" data-en="Updated Mon · Wed · Fri · 20:00 JST · Last: 2026-02-25" data-ja="更新 月・水・金 · 20:00 JST · 最終: 2026-02-25">Updated Mon · Wed · Fri · 20:00 JST · Last: 2026-02-25</span>
+  </div>
+  <div class="price-card sr-table-card loaded" style="padding:0;">
+    <table style="width:100%;border-collapse:collapse;">
+      <thead>
+        <tr style="background:rgba(23,20,15,0.025);border-bottom:1px solid var(--border);">
+          <th style="font-family:'DM Mono',monospace;font-size:0.58rem;letter-spacing:0.12em;text-transform:uppercase;color:var(--ink4);text-align:left;padding:9px 16px;font-weight:400;">#</th>
+          <th style="font-family:'DM Mono',monospace;font-size:0.58rem;letter-spacing:0.12em;text-transform:uppercase;color:var(--ink4);text-align:left;padding:9px 16px;font-weight:400;" data-en="Coin" data-ja="銀貨">Coin</th>
+          <th style="font-family:'DM Mono',monospace;font-size:0.58rem;letter-spacing:0.12em;text-transform:uppercase;color:var(--ink4);text-align:right;padding:9px 16px;font-weight:400;" data-en="Sold (¥)" data-ja="成約（円）">Sold (¥)</th>
+          <th style="font-family:'DM Mono',monospace;font-size:0.58rem;letter-spacing:0.12em;text-transform:uppercase;color:var(--ink4);text-align:right;padding:9px 16px;font-weight:400;">¥ / g</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr style="border-bottom:1px solid var(--border);">
+          <td style="font-family:'DM Mono',monospace;font-size:0.65rem;color:var(--ink4);padding:9px 16px;">1</td>
+          <td style="font-size:0.8rem;color:var(--ink2);padding:9px 16px;" data-en="Libertad 1oz 2002" data-ja="リベルタード 1oz 2002年">Libertad 1oz 2002</td>
+          <td style="font-family:'DM Mono',monospace;font-size:0.85rem;color:var(--ink);text-align:right;padding:9px 16px;">¥21,500</td>
+          <td style="font-family:'DM Mono',monospace;font-size:0.85rem;color:var(--ink3);text-align:right;padding:9px 16px;">691.23</td>
+        </tr>
+        <tr style="border-bottom:1px solid var(--border);">
+          <td style="font-family:'DM Mono',monospace;font-size:0.65rem;color:var(--ink4);padding:9px 16px;">2</td>
+          <td style="font-size:0.8rem;color:var(--ink2);padding:9px 16px;" data-en="Philharmonic 1oz 2025" data-ja="ウィーン・フィルハーモニー 1oz 2025年">Philharmonic 1oz 2025</td>
+          <td style="font-family:'DM Mono',monospace;font-size:0.85rem;color:var(--ink);text-align:right;padding:9px 16px;">¥21,199</td>
+          <td style="font-family:'DM Mono',monospace;font-size:0.85rem;color:var(--ink3);text-align:right;padding:9px 16px;">681.54</td>
+        </tr>
+        <tr style="border-bottom:1px solid var(--border);">
+          <td style="font-family:'DM Mono',monospace;font-size:0.65rem;color:var(--ink4);padding:9px 16px;">3</td>
+          <td style="font-size:0.8rem;color:var(--ink2);padding:9px 16px;" data-en="Britannia 1oz 2020" data-ja="ブリタニア 1oz 2020年">Britannia 1oz 2020</td>
+          <td style="font-family:'DM Mono',monospace;font-size:0.85rem;color:var(--ink);text-align:right;padding:9px 16px;">¥22,000</td>
+          <td style="font-family:'DM Mono',monospace;font-size:0.85rem;color:var(--ink3);text-align:right;padding:9px 16px;">707.31</td>
+        </tr>
+        <tr style="border-bottom:1px solid var(--border);">
+          <td style="font-family:'DM Mono',monospace;font-size:0.65rem;color:var(--ink4);padding:9px 16px;">4</td>
+          <td style="font-size:0.8rem;color:var(--ink2);padding:9px 16px;" data-en="Walking Liberty Eagle 2025" data-ja="ウォーキングリバティイーグル 2025年">Walking Liberty Eagle 2025</td>
+          <td style="font-family:'DM Mono',monospace;font-size:0.85rem;color:var(--ink);text-align:right;padding:9px 16px;">¥22,800</td>
+          <td style="font-family:'DM Mono',monospace;font-size:0.85rem;color:var(--ink3);text-align:right;padding:9px 16px;">733.05</td>
+        </tr>
+        <tr style="border-bottom:1px solid var(--border);">
+          <td style="font-family:'DM Mono',monospace;font-size:0.65rem;color:var(--ink4);padding:9px 16px;">5</td>
+          <td style="font-size:0.8rem;color:var(--ink2);padding:9px 16px;" data-en="Panda 1oz 2023" data-ja="パンダ銀貨 1oz 2023年">Panda 1oz 2023</td>
+          <td style="font-family:'DM Mono',monospace;font-size:0.85rem;color:var(--ink);text-align:right;padding:9px 16px;">¥21,000</td>
+          <td style="font-family:'DM Mono',monospace;font-size:0.85rem;color:var(--ink3);text-align:right;padding:9px 16px;">675.07</td>
+        </tr>
+        <tr style="border-bottom:1px solid var(--border);">
+          <td style="font-family:'DM Mono',monospace;font-size:0.65rem;color:var(--ink4);padding:9px 16px;">6</td>
+          <td style="font-size:0.8rem;color:var(--ink2);padding:9px 16px;" data-en="Britannia 1oz 2021" data-ja="ブリタニア 1oz 2021年">Britannia 1oz 2021</td>
+          <td style="font-family:'DM Mono',monospace;font-size:0.85rem;color:var(--ink);text-align:right;padding:9px 16px;">¥21,800</td>
+          <td style="font-family:'DM Mono',monospace;font-size:0.85rem;color:var(--ink3);text-align:right;padding:9px 16px;">700.87</td>
+        </tr>
+        <tr style="background:rgba(23,20,15,0.025);">
+          <td colspan="2" style="font-family:'DM Mono',monospace;font-size:0.65rem;letter-spacing:0.1em;text-transform:uppercase;color:var(--ink4);padding:11px 16px;" data-en="MSPI-B Mean · n=6 · 1oz .999 bullion" data-ja="MSPI-B 平均 · n=6 · 1oz .999地金">MSPI-B Mean · n=6 · 1oz .999 bullion</td>
+          <td style="font-family:'DM Mono',monospace;font-size:0.85rem;color:var(--ink);text-align:right;padding:11px 16px;border-top:1px solid var(--border2);">¥21,717</td>
+          <td style="font-family:'DM Mono',monospace;font-size:1rem;font-weight:500;color:var(--ink);text-align:right;padding:11px 16px;border-top:1px solid var(--border2);">698.16</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <div style="padding:10px 16px;border-top:1px solid #dfc8a8;background:#fdf0e0;">
+    <p style="font-family:'DM Mono',monospace;font-size:0.62rem;color:var(--ink4);line-height:1.7;" data-en="⚠ Prices shown are buyer-paid sold prices. Mercari deducts a 10% seller commission plus variable delivery fees — actual seller proceeds are lower. SR reflects peer-to-peer market clearing price, not net seller return." data-ja="⚠ 表示価格は買い手の支払い成約価格です。メルカリは出品者に10%の手数料と変動配送料を徴収します。実際の売り手の手取りは低くなります。SRはP2P市場の成約価格を反映しており、売り手の純収益ではありません。">⚠ Prices shown are buyer-paid sold prices. Mercari deducts a 10% seller commission plus variable delivery fees — actual seller proceeds are lower. SR reflects peer-to-peer market clearing price, not net seller return.</p>
+  </div>
+</div>
+
+<!-- WEIGHTS -->
+<div class="weights-section">
+  <div class="ws-header">
+    <span class="badge badge-jpmi">JPMI</span>
+    <h3 data-en="Index Weights &amp; Compute" data-ja="指数ウェイトと計算">Index Weights &amp; Compute</h3>
+  </div>
+  <div class="ws-body">
+    <p style="font-size:0.75rem;color:var(--ink3);margin-bottom:14px;font-style:italic;" data-en="Fixed weights applied to composite. RS = refiners · DB = dealers/pawn · SR = Mercari peer-to-peer" data-ja="複合指数に適用される固定ウェイト。RS=精錬所 · DB=業者/質屋 · SR=メルカリ">Fixed weights applied to composite. RS = refiners · DB = dealers/pawn · SR = Mercari peer-to-peer</p>
+    <div class="weights-row" style="grid-template-columns:1fr 1fr 1fr;">
+      <div class="wt-group">
+        <label data-en="RS Weight" data-ja="RSウェイト">RS Weight</label>
+        <div style="font-family:'DM Mono',monospace;font-size:1.4rem;color:var(--ink);padding:8px 0;">0.55</div>
+      </div>
+      <div class="wt-group">
+        <label data-en="DB Weight" data-ja="DBウェイト">DB Weight</label>
+        <div style="font-family:'DM Mono',monospace;font-size:1.4rem;color:var(--ink);padding:8px 0;">0.30</div>
+      </div>
+      <div class="wt-group">
+        <label data-en="SR Weight" data-ja="SRウェイト">SR Weight</label>
+        <div style="font-family:'DM Mono',monospace;font-size:1.4rem;color:var(--ink);padding:8px 0;">0.15</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<!-- FOOTER -->
+<footer class="site-footer">
+  <div class="footer-left">
+    <div class="fl-title" data-en="JPMI — Japan Physical Metals Index™" data-ja="JPMI — 日本現物金属指数™">JPMI — Japan Physical Metals Index™</div>
+    <div class="fl-sub" data-en="Silver Index (JPMI-AG) · JPY per gram · Updated daily&#10;Sources: Tanaka · Nihon Material · Nanboya · Daikichi · Mercari MSPI-B&#10;Informational index only. Not financial advice." data-ja="銀指数（JPMI-AG）· 円/g · 毎日更新&#10;データ元：田中 · 日本マテリアル · ナンボヤ · 大吉 · メルカリ MSPI-B&#10;情報提供のみ。投資アドバイスではありません。">Silver Index (JPMI-AG) · JPY per gram · Updated daily<br>Sources: Tanaka · Nihon Material · Nanboya · Daikichi · Mercari MSPI-B<br>Informational index only. Not financial advice.</div>
+  </div>
+  <div class="footer-right" data-en="Data via GitHub Actions&#10;Physical metal · Domestic market&#10;Global spot ≠ Japanese physical reality" data-ja="GitHub Actions 経由でデータ取得&#10;現物金属 · 国内市場&#10;グローバルスポット ≠ 日本現物の実態">Data via GitHub Actions<br>Physical metal · Domestic market<br>Global spot ≠ Japanese physical reality</div>
+</footer>
+
+</div>
+
+<script>
+  const OZ_TO_G = 31.1035;
+  const W_RS = 0.55, W_DB = 0.30, W_SR = 0.15;
+  let currentLang = 'en';
+  const live = { tanaka:null, nihon:null, mitsubishi:null, nanboya:null, daikichi:null, mercari:null };
+
+  async function loadPricesJSON() {
+    const banner = document.getElementById('fetch-banner');
+    const statusEl = document.getElementById('fetch-status');
+    const retryBtn = document.getElementById('fetch-retry-btn');
+    banner.className = 'fetch-banner loading';
+    statusEl.textContent = 'Loading live data from prices.json…';
+    retryBtn.style.display = 'none';
+    ['tanaka','nihon','mitsubishi','nanboya','daikichi'].forEach(k => setCard(k, null, 'Fetching…', true));
+
+    try {
+      const res = await fetch('./prices.json?t=' + Date.now(), { signal: AbortSignal.timeout(10000) });
+      if (!res.ok) throw new Error('HTTP ' + res.status);
+      const data = await res.json();
+      const p = data.prices_jpy_per_g || {};
+      const errors = data.errors || [];
+      const updatedAt = data.updated_at_utc ? new Date(data.updated_at_utc) : null;
+
+      setCard('tanaka',     p.tanaka_silver_buy,      p.tanaka_silver_buy      ? '● Buyback price'     : 'Not available');
+      setCard('nihon',      p.nihon_silver_buy,       p.nihon_silver_buy       ? '● Buyback price'     : 'Not available');
+      setCard('mitsubishi', p.mitsubishi_silver_sell, p.mitsubishi_silver_sell ? '● Retail sell price'  : 'Not available');
+      setCard('nanboya',    p.nanboya_sv1000,         p.nanboya_sv1000         ? '● Sv1000 bid'        : 'Not available');
+      setCard('daikichi',   p.daikichi_sv1000,        p.daikichi_sv1000        ? '● Per gram bid'      : 'Not available');
+
+      // Mercari SR — static, hardcoded from prices.json
+      live.mercari = p.mercari_mspi_b || 698.16;
+
+      let tsStr = '—';
+      if (updatedAt) {
+        tsStr = updatedAt.toLocaleDateString('en-GB',{weekday:'short',day:'2-digit',month:'short',year:'numeric'})
+          + ' · ' + updatedAt.toLocaleTimeString('en-GB',{hour:'2-digit',minute:'2-digit'}) + ' UTC';
+        document.getElementById('bc-timestamp').textContent = tsStr;
+        document.getElementById('masthead-date').innerHTML = `Silver Index · JPY/g<br>${tsStr}`;
+      }
+
+      if (errors.length > 0) {
+        banner.className = 'fetch-banner partial';
+        statusEl.textContent = `⚠ ${errors.length} source(s) unavailable · ${tsStr}`;
+        retryBtn.style.display = 'inline-block';
+      } else {
+        banner.className = 'fetch-banner success';
+        statusEl.textContent = `✓ All prices loaded · ${tsStr}`;
+      }
+      recalculate();
+
+    } catch(e) {
+      banner.className = 'fetch-banner error';
+      statusEl.textContent = '⚠ Could not load prices.json — check GitHub Actions ran successfully.';
+      retryBtn.style.display = 'inline-block';
+      ['tanaka','nihon','mitsubishi','nanboya','daikichi'].forEach(k => setCard(k, null, 'Load failed'));
+    }
+  }
+
+  function setCard(key, value, statusText, loading=false) {
+    const card = document.getElementById('pc-' + key);
+    const valEl = document.getElementById('pv-' + key);
+    const statEl = document.getElementById('ps-' + key);
+    if (!card) return;
+    card.classList.remove('loaded','failed','loading-state');
+    // preserve colour theme class
+    if (loading) {
+      card.classList.add('loading-state');
+      valEl.textContent = 'Loading…';
+    } else if (value && value > 50 && value < 5000) {
+      live[key] = value;
+      valEl.textContent = value.toFixed(2);
+      card.classList.add('loaded');
+    } else {
+      live[key] = null;
+      valEl.textContent = 'N/A';
+      card.classList.add('failed');
+    }
+    statEl.textContent = statusText;
+  }
+
+  function setLang(lang) {
+    currentLang = lang;
+    document.documentElement.lang = lang === 'ja' ? 'ja' : 'en';
+    document.querySelectorAll('.lang-btn').forEach(b => b.classList.remove('active'));
+    document.querySelector(`.lang-btn[onclick="setLang('${lang}')"]`).classList.add('active');
+    document.querySelectorAll('[data-en]').forEach(el => {
+      const txt = lang==='ja' && el.dataset.ja ? el.dataset.ja : el.dataset.en;
+      if (el.tagName==='INPUT') {
+        el.placeholder = txt;
+      } else if (el.tagName==='A' || el.tagName==='BUTTON' || el.tagName==='SPAN' || el.tagName==='LABEL' || el.tagName==='TH' || el.tagName==='TD' || el.tagName==='P' || el.tagName==='DIV' || el.tagName==='H3') {
+        // For elements that may contain <br> in data attributes, use innerHTML
+        el.innerHTML = txt.replace(/\n/g, '<br>');
+      } else {
+        el.textContent = txt;
+      }
+    });
+    document.getElementById('card-date-label').textContent =
+      lang==='ja' ? 'JPMI — 銀 · 本日のベンチマーク' : "JPMI — SILVER · TODAY'S BENCHMARK";
+  }
+
+  function recalculate() {
+    const rsVals = [live.tanaka, live.nihon].filter(v=>v!==null);
+    const dbVals = [live.nanboya, live.daikichi].filter(v=>v!==null);
+    const RS = rsVals.length ? rsVals.reduce((a,b)=>a+b,0)/rsVals.length : null;
+    const DB = dbVals.length ? dbVals.reduce((a,b)=>a+b,0)/dbVals.length : null;
+    const SR = live.mercari;
+    const fmt = v => v!==null ? `¥${v.toFixed(2)}` : '—';
+    document.getElementById('rs-display').textContent = fmt(RS);
+    document.getElementById('db-display').textContent = fmt(DB);
+    document.getElementById('sr-display').textContent = fmt(SR);
+    let jpsi=0, tw=0;
+    if(RS!==null){jpsi+=RS*W_RS;tw+=W_RS;}
+    if(DB!==null){jpsi+=DB*W_DB;tw+=W_DB;}
+    if(SR!==null){jpsi+=SR*W_SR;tw+=W_SR;}
+    if(tw>0){
+      document.getElementById('jpsi-display').textContent=`¥${(jpsi/tw).toFixed(2)}`;
+      const prem=(RS&&SR)?((SR/RS)-1)*100:null;
+      document.getElementById('premium-display').textContent=prem!==null?`${prem>0?'+':''}${prem.toFixed(1)}%`:'—';
+    } else {
+      document.getElementById('jpsi-display').textContent='—';
+      document.getElementById('premium-display').textContent='—';
+    }
+  }
+
+  function exportCSV() {
+    const today=new Date().toISOString().split('T')[0];
+    const rows=[['Date','JPMI-AG (¥/g)','RS (¥/g)','DB (¥/g)','SR (¥/g)','Street Premium vs RS'],[today,...['jpsi-display','rs-display','db-display','sr-display','premium-display'].map(id=>document.getElementById(id).textContent)]];
+    const blob=new Blob([rows.map(r=>r.join(',')).join('\n')],{type:'text/csv'});
+    const a=document.createElement('a');a.href=URL.createObjectURL(blob);a.download=`jpmi_ag_${today}.csv`;a.click();
+  }
+
+  document.addEventListener('DOMContentLoaded', loadPricesJSON);
+</script>
+</body>
+</html>
