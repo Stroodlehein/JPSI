@@ -74,17 +74,6 @@ body::before{content:'';position:fixed;inset:0;background-image:repeating-linear
 .content-block p strong{color:var(--ink2);font-weight:500;}
 .pull-quote{border-left:3px solid var(--ink);padding:16px 24px;margin:28px 0;}
 .pull-quote p{font-size:0.9rem;color:var(--ink2);line-height:1.7;font-style:italic;margin:0;}
-.paradigm-wrap{margin:28px 0;}
-.paradigm-wrap h4{font-size:0.62rem;letter-spacing:0.16em;text-transform:uppercase;color:var(--ink4);margin-bottom:12px;}
-.paradigm-table{width:100%;border-collapse:collapse;font-size:0.75rem;}
-.paradigm-table thead tr{border-bottom:2px solid var(--border2);}
-.paradigm-table th{padding:8px 14px;text-align:left;color:var(--ink4);font-weight:400;letter-spacing:0.1em;font-size:0.62rem;text-transform:uppercase;}
-.paradigm-table td{padding:11px 14px;border-bottom:1px solid var(--border);}
-.paradigm-table tr:last-child td{border-bottom:none;}
-.paradigm-table .col-old{color:var(--ink4);text-decoration:line-through;}
-.paradigm-table .col-arrow{color:var(--border2);text-align:center;width:40px;}
-.paradigm-table .col-new{color:var(--ink2);font-weight:500;}
-.paradigm-table tbody tr:hover{background:rgba(23,20,15,0.02);}
 .layers{display:flex;flex-direction:column;gap:10px;margin:24px 0;}
 .layer{display:grid;grid-template-columns:80px 1fr auto;gap:0;border:1px solid var(--border);overflow:hidden;}
 .layer-badge{display:flex;align-items:center;justify-content:center;padding:18px 14px;font-size:0.65rem;letter-spacing:0.14em;font-weight:500;text-transform:uppercase;}
@@ -140,67 +129,14 @@ body::before{content:'';position:fixed;inset:0;background-image:repeating-linear
 </nav>
 
 <div class="page-header">
-  <h2 data-en="What JPMI Measures — and Why It Matters" data-ja="JPMIが測定するもの — その意義">What JPMI Measures — and Why It Matters</h2>
-  <div class="ph-sub" data-en="The case for a domestic physical metals benchmark" data-ja="国内現物金属ベンチマークの必要性">The case for a domestic physical metals benchmark</div>
-</div>
-
-<div class="content-block">
-  <h3 data-en="The Problem with Spot Price" data-ja="スポット価格の問題点">The Problem with Spot Price</h3>
-  <p data-en="Financial markets price paper claims on metals — leveraged futures contracts, synthetic supply, and institutional settlement markets. COMEX and LBMA spot prices represent what institutions agree to pay each other for metal they may never physically hold." data-ja="金融市場が価格付けするのは金属に対する紙の請求権 — レバレッジド先物契約、合成供給、機関投資家間の決済市場です。COMEXやLBMAのスポット価格は、実際には現物を保有しないかもしれない機関同士が合意した価格に過ぎません。">Financial markets price paper claims on metals — leveraged futures contracts, synthetic supply, and institutional settlement markets. COMEX and LBMA spot prices represent what institutions agree to pay each other for metal they may never physically hold.</p>
-  <p data-en="But in Japan, what actually matters is the yen-per-gram price you can buy or sell real metal for today — at a bullion dealer's counter, a pawn broker's window, a recycler's intake desk, or on Mercari between private individuals. These are not the same market. They never were." data-ja="しかし日本において本当に重要なのは、今日実際の金属を売買できる円/g価格です — 地金商のカウンター、質屋の窓口、リサイクル業者の受付、またはメルカリで個人間取引される価格です。これらは同じ市場ではありません。そして今後もそうはなりません。">But in Japan, what actually matters is the yen-per-gram price you can buy or sell real metal for today — at a bullion dealer's counter, a pawn broker's window, a recycler's intake desk, or on Mercari between private individuals. These are not the same market. They never were.</p>
-  <div class="pull-quote">
-    <p data-en="Global spot ≠ Japanese physical reality. Retail participants don't transact at &quot;spot.&quot; They transact at Tanaka's bid, Nihon Material's buyback rate, Nanboya's Sv1000 price, and Mercari's peer-to-peer premiums." data-ja="グローバルスポット ≠ 日本現物の実態。小売参加者は「スポット」では取引しません。田中貴金属の買値、日本マテリアルの買取価格、ナンボヤのSv1000価格、そしてメルカリのP2Pプレミアムで取引しています。">Global spot ≠ Japanese physical reality. Retail participants don't transact at "spot." They transact at Tanaka's bid, Nihon Material's buyback rate, Nanboya's Sv1000 price, and Mercari's peer-to-peer premiums.</p>
-  </div>
-  <p data-en="Japan's physical metals market is fragmented, opaque, locally priced, and often decoupled from global futures prices. It is subject to domestic demand surges, scrap supply constraints, dealer competition, and retail hoarding dynamics that global benchmarks simply do not capture." data-ja="日本の現物金属市場は分散化・不透明・ローカル価格形成であり、しばしばグローバル先物価格から乖離しています。国内需要急増、スクラップ供給制約、業者間競争、そして個人の買い溜め動向など、グローバルベンチマークでは捉えられないダイナミクスが存在します。">Japan's physical metals market is fragmented, opaque, locally priced, and often decoupled from global futures prices. It is subject to domestic demand surges, scrap supply constraints, dealer competition, and retail hoarding dynamics that global benchmarks simply do not capture.</p>
+  <h2 data-en="What JPMI Measures" data-ja="JPMIが測定するもの">What JPMI Measures</h2>
+  <div class="ph-sub" data-en="Mission, structure, and methodology of the Japan Physical Metals Index" data-ja="日本現物金属指数のミッション・構造・方法論">Mission, structure, and methodology of the Japan Physical Metals Index</div>
 </div>
 
 <div class="content-block">
   <h3 data-en="Mission" data-ja="ミッション">Mission</h3>
   <p data-en="JPMI aggregates real domestic dealer bids, pawn buyback rates, recycler payouts, and peer-to-peer transaction data to produce a live reference price for physical metals in Japan — reflecting retail liquidity, domestic demand, real buy/sell spreads, scrap versus bullion flows, and secondary market premiums." data-ja="JPMIは国内業者の買値、質屋の買取価格、リサイクル業者の支払額、そしてP2P取引データを集約し、日本における現物金属のリアルタイム基準価格を提供します — 小売流動性、国内需要、実際の売買スプレッド、スクラップ対地金フロー、そして二次市場プレミアムを反映しています。">JPMI aggregates real domestic dealer bids, pawn buyback rates, recycler payouts, and peer-to-peer transaction data to produce a live reference price for physical metals in Japan — reflecting retail liquidity, domestic demand, real buy/sell spreads, scrap versus bullion flows, and secondary market premiums.</p>
   <p data-en="The index is expressed in JPY per gram — the unit that Japanese retail participants actually use — not USD per troy ounce, which is the convention of a market most domestic holders never directly access." data-ja="指数は円/gで表示されます — 日本の小売参加者が実際に使用する単位です。国内保有者のほとんどが直接アクセスしないUSDトロイオンス建ての慣行とは異なります。">The index is expressed in JPY per gram — the unit that Japanese retail participants actually use — not USD per troy ounce, which is the convention of a market most domestic holders never directly access.</p>
-</div>
-
-<div class="content-block">
-  <h3 data-en="The Paradigm Shift" data-ja="パラダイムシフト">The Paradigm Shift</h3>
-  <p data-en="JPMI represents a deliberate move away from paper-market conventions toward the reality of domestic physical metal ownership." data-ja="JPMIは紙市場の慣行から離れ、国内現物金属保有の現実へと意図的に移行するものです。">JPMI represents a deliberate move away from paper-market conventions toward the reality of domestic physical metal ownership.</p>
-  <div class="paradigm-wrap">
-    <table class="paradigm-table">
-      <thead>
-        <tr>
-          <th data-en="Old Paradigm" data-ja="旧パラダイム">Old Paradigm</th>
-          <th class="col-arrow"></th>
-          <th data-en="JPMI Paradigm" data-ja="JPMIパラダイム">JPMI Paradigm</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <td class="col-old" data-en="Paper spot price" data-ja="紙スポット価格">Paper spot price</td>
-          <td class="col-arrow">→</td>
-          <td class="col-new" data-en="Physical clearing price" data-ja="現物清算価格">Physical clearing price</td>
-        </tr>
-        <tr>
-          <td class="col-old" data-en="USD / oz" data-ja="USD / オンス">USD / oz</td>
-          <td class="col-arrow">→</td>
-          <td class="col-new" data-en="JPY / g" data-ja="円 / g">JPY / g</td>
-        </tr>
-        <tr>
-          <td class="col-old" data-en="Futures market" data-ja="先物市場">Futures market</td>
-          <td class="col-arrow">→</td>
-          <td class="col-new" data-en="Domestic retail market" data-ja="国内小売市場">Domestic retail market</td>
-        </tr>
-        <tr>
-          <td class="col-old" data-en="Institutional settlement" data-ja="機関決済">Institutional settlement</td>
-          <td class="col-arrow">→</td>
-          <td class="col-new" data-en="Retail liquidation" data-ja="小売清算">Retail liquidation</td>
-        </tr>
-        <tr>
-          <td class="col-old" data-en="Synthetic supply" data-ja="合成供給">Synthetic supply</td>
-          <td class="col-arrow">→</td>
-          <td class="col-new" data-en="Real metal flows" data-ja="現物金属フロー">Real metal flows</td>
-        </tr>
-      </tbody>
-    </table>
-  </div>
 </div>
 
 <div class="content-block">
