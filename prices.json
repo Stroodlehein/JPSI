@@ -1,16 +1,16 @@
 {
-  "updated_at_utc": "2026-02-27T03:15:59+00:00",
+  "updated_at_utc": "2026-02-28T02:58:53+00:00",
   "prices_jpy_per_g": {
-    "tanaka_silver_buy": 490.82,
-    "tanaka_silver_sell": 507.87,
-    "nihon_silver_buy": 481.47,
-    "nihon_silver_sell": 498.52,
+    "tanaka_silver_buy": 480.37,
+    "tanaka_silver_sell": 513.37,
     "mitsubishi_silver_sell": 424.27,
     "mitsubishi_silver_scheme_buy": null,
-    "nanboya_sv1000": 472.0,
-    "daikichi_sv1000": 467.0
+    "nanboya_sv1000": 473.0,
+    "daikichi_sv1000": 475.0
   },
-  "errors": [],
+  "errors": [
+    "nihon: ValueError: Nihon Material: could not parse 銀 row"
+  ],
   "sources": {
     "tanaka": "https://gold.tanaka.co.jp/commodity/souba/english/index.php",
     "nihon": "https://www.material.co.jp/market.php",
