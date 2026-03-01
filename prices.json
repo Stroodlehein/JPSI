@@ -1,5 +1,5 @@
 {
-  "updated_at_utc": "2026-03-01T03:30:56+00:00",
+  "updated_at_utc": "2026-03-02T01:00:00+00:00",
   "prices_jpy_per_g": {
     "tanaka_silver_buy": 480.37,
     "tanaka_silver_sell": 513.37,
@@ -7,7 +7,7 @@
     "mitsubishi_silver_scheme_buy": null,
     "nanboya_sv1000": 473.0,
     "daikichi_sv1000": 475.0,
-    "mercari_mspi_b": 679.75
+    "mercari_mspi_b": 726.69
   },
   "errors": [
     "nihon: ValueError: Nihon Material: could not parse 銀 row"
