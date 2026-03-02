@@ -49,35 +49,35 @@
 }
 *{box-sizing:border-box;margin:0;padding:0;}
 html{scroll-behavior:smooth;}
-body{background:var(--bg);color:var(--ink);font-family:'DM Mono',monospace;font-weight:300;min-height:100vh;}
+body{background:var(--bg);color:var(--ink);font-family:'DM Mono',monospace;font-weight:400;min-height:100vh;}
 .page{max-width:900px;margin:0 auto;padding:0 24px 100px;position:relative;z-index:1;}
 .masthead{border-bottom:3px double var(--border2);padding:32px 0 20px;margin-bottom:0;}
 .masthead-top{display:flex;justify-content:space-between;align-items:flex-start;gap:16px;}
-.masthead-kicker{font-family:'DM Mono',monospace;font-size:0.62rem;letter-spacing:0.2em;color:var(--ink4);text-transform:uppercase;margin-bottom:8px;}
+.masthead-kicker{font-family:'DM Mono',monospace;font-size:0.75rem;letter-spacing:0.2em;color:var(--ink4);text-transform:uppercase;margin-bottom:8px;font-weight:500;}
 .masthead-title{font-family:'Playfair Display',Georgia,serif;font-size:2.6rem;font-weight:700;letter-spacing:-0.01em;line-height:1;color:var(--ink);}
 .masthead-title .abbr{display:none;}
 .masthead-title .kanji-inline{font-family:'Noto Serif JP';font-weight:600;font-size:1.8rem;color:var(--ink);margin-left:10px;vertical-align:middle;opacity:1;}
-.masthead-tagline{margin-top:10px;font-size:0.68rem;color:var(--ink3);font-family:'DM Mono',monospace;letter-spacing:0.04em;max-width:540px;line-height:1.8;}
+.masthead-tagline{margin-top:10px;font-size:0.78rem;color:var(--ink3);font-family:'DM Mono',monospace;letter-spacing:0.04em;max-width:540px;line-height:1.8;}
 .masthead-tagline em{color:var(--ink2);font-style:normal;}
 .masthead-right{display:flex;flex-direction:column;align-items:flex-end;gap:10px;flex-shrink:0;}
 .lang-toggle{display:flex;border:1px solid var(--border2);border-radius:2px;overflow:hidden;}
-.lang-btn{padding:5px 12px;font-family:'DM Mono',monospace;font-size:0.7rem;letter-spacing:0.08em;cursor:pointer;border:none;background:var(--paper);color:var(--ink3);transition:all 0.15s;}
+.lang-btn{padding:5px 12px;font-family:'DM Mono',monospace;font-size:0.8rem;letter-spacing:0.08em;cursor:pointer;border:none;background:var(--paper);color:var(--ink3);transition:all 0.15s;}
 .lang-btn.active{background:var(--ink);color:var(--paper);}
 .lang-btn:hover:not(.active){background:var(--border);}
 .site-nav{display:flex;gap:0;border-bottom:1px solid var(--border);margin-bottom:24px;margin-top:0;}
-.nav-link{font-family:'DM Mono',monospace;font-size:0.68rem;letter-spacing:0.1em;text-transform:uppercase;padding:10px 18px;text-decoration:none;color:var(--ink4);border-bottom:2px solid transparent;margin-bottom:-1px;transition:all 0.15s;}
+.nav-link{font-family:'DM Mono',monospace;font-size:0.78rem;letter-spacing:0.1em;text-transform:uppercase;padding:10px 18px;text-decoration:none;color:var(--ink4);border-bottom:2px solid transparent;margin-bottom:-1px;transition:all 0.15s;}
 .nav-link:hover{color:var(--ink2);}
 .nav-link.active{color:var(--ink);border-bottom-color:var(--ink);}
-.masthead-meta{font-family:'DM Mono',monospace;font-size:0.62rem;color:var(--ink4);letter-spacing:0.06em;text-align:right;line-height:1.7;}
+.masthead-meta{font-family:'DM Mono',monospace;font-size:0.72rem;color:var(--ink4);letter-spacing:0.06em;text-align:right;line-height:1.7;}
 .ideology-strip{border-bottom:1px solid var(--border);padding:14px 0;margin-bottom:28px;display:flex;align-items:center;overflow:hidden;}
 .ideology-item{flex:1;padding:0 20px;border-right:1px solid var(--border);text-align:center;}
 .ideology-item:first-child{padding-left:0;}
 .ideology-item:last-child{border-right:none;padding-right:0;}
-.ideology-contrast{font-family:'DM Mono',monospace;font-size:0.6rem;letter-spacing:0.1em;color:var(--ink4);text-transform:uppercase;display:flex;align-items:center;justify-content:center;gap:8px;}
+.ideology-contrast{font-family:'DM Mono',monospace;font-size:0.7rem;letter-spacing:0.1em;color:var(--ink4);text-transform:uppercase;display:flex;align-items:center;justify-content:center;gap:8px;}
 .ideology-contrast .old{color:var(--ink4);text-decoration:line-through;}
 .ideology-contrast .arrow{color:var(--border2);}
 .ideology-contrast .new{color:var(--ink2);font-weight:500;}
-.fetch-banner{display:flex;align-items:center;gap:10px;padding:8px 14px;font-family:'DM Mono',monospace;font-size:0.68rem;letter-spacing:0.04em;border:1px solid var(--border);background:var(--paper);color:var(--ink4);margin-bottom:20px;border-radius:1px;transition:all 0.3s;}
+.fetch-banner{display:flex;align-items:center;gap:10px;padding:8px 14px;font-family:'DM Mono',monospace;font-size:0.78rem;letter-spacing:0.04em;border:1px solid var(--border);background:var(--paper);color:var(--ink4);margin-bottom:20px;border-radius:1px;transition:all 0.3s;}
 .fetch-banner.loading{border-color:#c8d4d8;color:var(--silver);}
 .fetch-banner.success{border-color:#b0ccb8;background:var(--green-bg);color:var(--green);}
 .fetch-banner.partial{border-color:#ccc0a0;background:var(--amber-bg);color:var(--amber);}
@@ -85,33 +85,33 @@ body{background:var(--bg);color:var(--ink);font-family:'DM Mono',monospace;font-
 .fetch-dot{width:6px;height:6px;border-radius:50%;background:currentColor;flex-shrink:0;}
 .fetch-banner.loading .fetch-dot{animation:blink 1.2s ease-in-out infinite;}
 @keyframes blink{0%,100%{opacity:1}50%{opacity:0.15}}
-.fetch-retry{margin-left:auto;background:none;border:1px solid currentColor;color:inherit;font-family:'DM Mono',monospace;font-size:0.62rem;padding:2px 8px;cursor:pointer;opacity:0.6;transition:opacity 0.15s;letter-spacing:0.06em;}
+.fetch-retry{margin-left:auto;background:none;border:1px solid currentColor;color:inherit;font-family:'DM Mono',monospace;font-size:0.72rem;padding:2px 8px;cursor:pointer;opacity:0.6;transition:opacity 0.15s;letter-spacing:0.06em;}
 .fetch-retry:hover{opacity:1;}
 .benchmark-card{background:#e8eaed;color:var(--ink);padding:36px 40px 32px;margin-bottom:28px;position:relative;overflow:hidden;}
-.benchmark-card::before{content:'銀';position:absolute;right:-8px;top:-16px;font-family:'Noto Serif JP';font-size:200px;font-weight:200;color:rgba(23,20,15,0.04);pointer-events:none;line-height:1;user-select:none;}
+.benchmark-card::before{content:'銀';position:absolute;right:-8px;top:-16px;font-family:'Noto Serif JP';font-size:200px;font-weight:300;color:rgba(23,20,15,0.04);pointer-events:none;line-height:1;user-select:none;}
 .benchmark-card::after{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,rgba(23,20,15,0.25) 0%,rgba(23,20,15,0.05) 100%);}
 .bc-header{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:24px;}
-.bc-label{font-family:'DM Mono',monospace;font-size:0.62rem;letter-spacing:0.2em;color:var(--ink3);text-transform:uppercase;}
-.bc-timestamp{font-family:'DM Mono',monospace;font-size:0.62rem;color:var(--ink3);letter-spacing:0.06em;text-align:right;line-height:1.6;}
+.bc-label{font-family:'DM Mono',monospace;font-size:0.75rem;letter-spacing:0.2em;color:var(--ink3);text-transform:uppercase;font-weight:500;}
+.bc-timestamp{font-family:'DM Mono',monospace;font-size:0.72rem;color:var(--ink3);letter-spacing:0.06em;text-align:right;line-height:1.6;}
 .bc-main{display:flex;align-items:baseline;gap:14px;margin-bottom:6px;flex-wrap:nowrap;}
-.bc-index-name{font-family:'DM Mono',monospace;font-size:0.8rem;letter-spacing:0.16em;color:var(--ink3);white-space:nowrap;margin-bottom:4px;}
-.bc-price{font-family:'DM Mono',monospace;font-size:3.8rem;font-weight:300;color:var(--ink);letter-spacing:-0.01em;line-height:1;}
-.bc-currency{font-family:'DM Mono',monospace;font-size:1.1rem;color:var(--ink3);font-weight:300;white-space:nowrap;}
-.bc-subtitle{font-family:'DM Mono',monospace;font-size:0.72rem;color:var(--ink3);margin-bottom:28px;font-weight:300;}
+.bc-index-name{font-family:'DM Mono',monospace;font-size:0.9rem;letter-spacing:0.16em;color:var(--ink3);white-space:nowrap;margin-bottom:4px;}
+.bc-price{font-family:'DM Mono',monospace;font-size:3.8rem;font-weight:400;color:var(--ink);letter-spacing:-0.01em;line-height:1;}
+.bc-currency{font-family:'DM Mono',monospace;font-size:1.1rem;color:var(--ink3);font-weight:400;white-space:nowrap;}
+.bc-subtitle{font-family:'DM Mono',monospace;font-size:0.82rem;color:var(--ink3);margin-bottom:28px;font-weight:400;}
 .bc-sub-row{display:grid;grid-template-columns:repeat(3,1fr);gap:0;border-top:1px solid rgba(23,20,15,0.12);padding-top:20px;margin-top:4px;}
 .bc-sub{padding:0 20px;border-right:1px solid rgba(23,20,15,0.1);}
 .bc-sub:first-child{padding-left:0;}
 .bc-sub:last-child{border-right:none;}
-.bc-sub-tag{font-family:'DM Mono',monospace;font-size:0.6rem;letter-spacing:0.18em;color:var(--ink3);text-transform:uppercase;margin-bottom:4px;}
-.bc-sub-name{font-family:'DM Mono',monospace;font-size:0.65rem;color:var(--ink3);margin-bottom:6px;}
-.bc-sub-val{font-family:'DM Mono',monospace;font-size:1.3rem;color:var(--ink);font-weight:400;}
+.bc-sub-tag{font-family:'DM Mono',monospace;font-size:0.7rem;letter-spacing:0.18em;color:var(--ink3);text-transform:uppercase;margin-bottom:4px;}
+.bc-sub-name{font-family:'DM Mono',monospace;font-size:0.75rem;color:var(--ink3);margin-bottom:6px;}
+.bc-sub-val{font-family:'DM Mono',monospace;font-size:1.3rem;color:var(--ink);font-weight:500;}
 .bc-footer-row{display:flex;align-items:center;justify-content:space-between;margin-top:20px;padding-top:16px;border-top:1px solid rgba(23,20,15,0.1);}
-.premium-badge{display:inline-flex;align-items:center;gap:8px;font-family:'DM Mono',monospace;font-size:0.68rem;color:var(--ink3);}
-.premium-badge .pval{color:var(--ink);font-size:0.9rem;font-weight:400;}
-.bc-methodology-note{font-family:'DM Mono',monospace;font-size:0.6rem;color:var(--ink4);text-align:right;}
+.premium-badge{display:inline-flex;align-items:center;gap:8px;font-family:'DM Mono',monospace;font-size:0.78rem;color:var(--ink3);}
+.premium-badge .pval{color:var(--ink);font-size:0.9rem;font-weight:500;}
+.bc-methodology-note{font-family:'DM Mono',monospace;font-size:0.7rem;color:var(--ink4);text-align:right;}
 .section-group{margin-bottom:28px;}
-.section-group-label{font-family:'DM Mono',monospace;font-size:0.6rem;letter-spacing:0.2em;text-transform:uppercase;color:var(--ink4);margin-bottom:10px;padding-bottom:6px;border-bottom:1px solid var(--border);display:flex;align-items:center;justify-content:space-between;}
-.sgl-badge{display:inline-block;padding:2px 7px;border-radius:1px;font-size:0.58rem;letter-spacing:0.12em;}
+.section-group-label{font-family:'DM Mono',monospace;font-size:0.7rem;letter-spacing:0.2em;text-transform:uppercase;color:var(--ink4);margin-bottom:10px;padding-bottom:6px;border-bottom:1px solid var(--border);display:flex;align-items:center;justify-content:space-between;}
+.sgl-badge{display:inline-block;padding:2px 7px;border-radius:1px;font-size:0.68rem;letter-spacing:0.12em;}
 .sgl-rs{background:#eaf0ea;color:#2a5c3a;border:1px solid #b8d4b8;}
 .sgl-db{background:#eaecf4;color:#2a3a6c;border:1px solid #b8c4e4;}
 .sgl-sr{background:#f4ece4;color:#6b4a2a;border:1px solid #d4b898;}
@@ -124,12 +124,12 @@ body{background:var(--bg);color:var(--ink);font-family:'DM Mono',monospace;font-
 .price-card.failed::before{background:#cc7a6a;}
 .price-card.manual{border-style:dashed;border-color:var(--border2);}
 .price-card.manual::before{background:var(--border2);}
-.pc-source{font-family:'DM Mono',monospace;font-size:0.6rem;letter-spacing:0.12em;color:var(--ink4);text-transform:uppercase;margin-bottom:10px;}
-.pc-value{font-family:'DM Mono',monospace;font-size:1.6rem;color:var(--ink);font-weight:400;line-height:1;margin-bottom:4px;transition:color 0.3s;}
+.pc-source{font-family:'DM Mono',monospace;font-size:0.75rem;letter-spacing:0.12em;color:var(--ink4);text-transform:uppercase;margin-bottom:10px;font-weight:500;}
+.pc-value{font-family:'DM Mono',monospace;font-size:1.6rem;color:var(--ink);font-weight:500;line-height:1;margin-bottom:4px;transition:color 0.3s;}
 .price-card.loading-state .pc-value{color:var(--border2);font-size:1rem;font-style:italic;}
-.price-card.failed .pc-value{color:#cc7a6a;font-size:0.85rem;font-style:italic;}
-.pc-unit{font-family:'DM Mono',monospace;font-size:0.62rem;color:var(--ink4);margin-bottom:6px;}
-.pc-status{font-family:'DM Mono',monospace;font-size:0.58rem;color:var(--green);letter-spacing:0.04em;}
+.price-card.failed .pc-value{color:#cc7a6a;font-size:0.95rem;font-style:italic;}
+.pc-unit{font-family:'DM Mono',monospace;font-size:0.72rem;color:var(--ink4);margin-bottom:6px;}
+.pc-status{font-family:'DM Mono',monospace;font-size:0.68rem;color:var(--green);letter-spacing:0.04em;}
 .price-card.failed .pc-status{color:var(--red);}
 .price-card.rs-card{border-color:#c8dfc8;background:#f4f9f4;}
 .price-card.rs-card::before{background:#7ab87a;}
@@ -149,24 +149,24 @@ body{background:var(--bg);color:var(--ink);font-family:'DM Mono',monospace;font-
 .sr-table-card.loaded{border-color:#d4b07a;background:#fdf3e6;}
 .weights-section{background:var(--paper);border:1px solid var(--border);margin-bottom:28px;}
 .ws-header{padding:14px 20px;border-bottom:1px solid var(--border);display:flex;align-items:center;gap:10px;background:rgba(23,20,15,0.018);}
-.ws-header h3{font-size:0.88rem;font-weight:400;color:var(--ink);}
+.ws-header h3{font-size:0.98rem;font-weight:500;color:var(--ink);}
 .ws-body{padding:18px 20px;}
 .weights-row{display:grid;grid-template-columns:1fr 1fr 1fr auto;gap:12px;align-items:end;margin-bottom:16px;}
 .wt-group{display:flex;flex-direction:column;gap:5px;}
-.wt-group label{font-family:'DM Mono',monospace;font-size:0.62rem;color:var(--ink4);letter-spacing:0.08em;text-transform:uppercase;}
-.btn{padding:8px 16px;font-family:'DM Mono',monospace;font-size:0.7rem;letter-spacing:0.08em;border:none;cursor:pointer;transition:all 0.15s;border-radius:1px;}
+.wt-group label{font-family:'DM Mono',monospace;font-size:0.72rem;color:var(--ink4);letter-spacing:0.08em;text-transform:uppercase;}
+.btn{padding:8px 16px;font-family:'DM Mono',monospace;font-size:0.8rem;letter-spacing:0.08em;border:none;cursor:pointer;transition:all 0.15s;border-radius:1px;}
 .btn-primary{background:var(--ink);color:var(--paper);}
 .btn-primary:hover{background:#2a2520;}
 .btn-secondary{background:transparent;border:1px solid var(--border2);color:var(--ink2);}
 .btn-secondary:hover{background:var(--border);}
-.btn-sm{padding:5px 11px;font-size:0.65rem;}
-.badge{font-family:'DM Mono',monospace;font-size:0.58rem;letter-spacing:0.14em;padding:3px 7px;border-radius:1px;text-transform:uppercase;display:inline-block;}
+.btn-sm{padding:5px 11px;font-size:0.75rem;}
+.badge{font-family:'DM Mono',monospace;font-size:0.68rem;letter-spacing:0.14em;padding:3px 7px;border-radius:1px;text-transform:uppercase;display:inline-block;}
 .badge-jpmi{background:var(--ink);color:var(--paper);border:1px solid var(--ink);}
 .site-footer{border-top:3px double var(--border2);padding-top:20px;margin-top:48px;display:grid;grid-template-columns:1fr auto;gap:12px;align-items:start;}
-.footer-left .fl-title{font-family:'DM Mono',monospace;font-size:0.78rem;color:var(--ink3);margin-bottom:4px;}
-.footer-left .fl-sub{font-family:'DM Mono',monospace;font-size:0.6rem;color:var(--ink4);letter-spacing:0.06em;line-height:1.8;}
-.footer-right{font-family:'DM Mono',monospace;font-size:0.6rem;color:var(--ink4);text-align:right;letter-spacing:0.04em;line-height:1.8;}
-.notif{position:fixed;bottom:24px;right:24px;background:var(--ink);color:var(--paper);padding:10px 18px;font-family:'DM Mono',monospace;font-size:0.72rem;letter-spacing:0.04em;opacity:0;transform:translateY(6px);transition:all 0.2s;pointer-events:none;z-index:999;border-radius:1px;}
+.footer-left .fl-title{font-family:'DM Mono',monospace;font-size:0.88rem;color:var(--ink3);margin-bottom:4px;}
+.footer-left .fl-sub{font-family:'DM Mono',monospace;font-size:0.7rem;color:var(--ink4);letter-spacing:0.06em;line-height:1.8;}
+.footer-right{font-family:'DM Mono',monospace;font-size:0.7rem;color:var(--ink4);text-align:right;letter-spacing:0.04em;line-height:1.8;}
+.notif{position:fixed;bottom:24px;right:24px;background:var(--ink);color:var(--paper);padding:10px 18px;font-family:'DM Mono',monospace;font-size:0.82rem;letter-spacing:0.04em;opacity:0;transform:translateY(6px);transition:all 0.2s;pointer-events:none;z-index:999;border-radius:1px;}
 .notif.show{opacity:1;transform:translateY(0);}
 @media(max-width:640px){
   .masthead-top{flex-direction:column;}
@@ -305,59 +305,59 @@ body{background:var(--bg);color:var(--ink);font-family:'DM Mono',monospace;font-
 <div class="section-group">
   <div class="section-group-label">
     <span><span class="sgl-badge sgl-sr">SR</span>&nbsp;&nbsp;<span data-en="Street Retail — Mercari MSPI-B" data-ja="フリマ実売 — メルカリ MSPI-B">Street Retail — Mercari MSPI-B</span></span>
-    <span style="font-family:'DM Mono',monospace;font-size:0.58rem;color:var(--ink4);" data-en="Updated Mon · Wed · Fri · 10:00 JST · Last: 2026-03-02" data-ja="更新 月・水・金 · 10:00 JST · 最終: 2026-03-02">Updated Mon · Wed · Fri · 10:00 JST · Last: 2026-03-02</span>
+    <span style="font-family:'DM Mono',monospace;font-size:0.68rem;color:var(--ink4);" data-en="Updated Mon · Wed · Fri · 10:00 JST · Last: 2026-03-02" data-ja="更新 月・水・金 · 10:00 JST · 最終: 2026-03-02">Updated Mon · Wed · Fri · 10:00 JST · Last: 2026-03-02</span>
   </div>
   <div class="price-card sr-table-card loaded" style="padding:0;">
     <table style="width:100%;border-collapse:collapse;">
       <thead>
         <tr style="background:rgba(23,20,15,0.025);border-bottom:1px solid var(--border);">
-          <th style="font-family:'DM Mono',monospace;font-size:0.58rem;letter-spacing:0.12em;text-transform:uppercase;color:var(--ink4);text-align:left;padding:9px 16px;font-weight:400;">#</th>
-          <th style="font-family:'DM Mono',monospace;font-size:0.58rem;letter-spacing:0.12em;text-transform:uppercase;color:var(--ink4);text-align:left;padding:9px 16px;font-weight:400;" data-en="Coin" data-ja="銀貨">Coin</th>
-          <th style="font-family:'DM Mono',monospace;font-size:0.58rem;letter-spacing:0.12em;text-transform:uppercase;color:var(--ink4);text-align:right;padding:9px 16px;font-weight:400;" data-en="Sold (¥)" data-ja="成約（円）">Sold (¥)</th>
-          <th style="font-family:'DM Mono',monospace;font-size:0.58rem;letter-spacing:0.12em;text-transform:uppercase;color:var(--ink4);text-align:right;padding:9px 16px;font-weight:400;">¥ / g</th>
+          <th style="font-family:'DM Mono',monospace;font-size:0.68rem;letter-spacing:0.12em;text-transform:uppercase;color:var(--ink4);text-align:left;padding:9px 16px;font-weight:500;">#</th>
+          <th style="font-family:'DM Mono',monospace;font-size:0.68rem;letter-spacing:0.12em;text-transform:uppercase;color:var(--ink4);text-align:left;padding:9px 16px;font-weight:500;" data-en="Coin" data-ja="銀貨">Coin</th>
+          <th style="font-family:'DM Mono',monospace;font-size:0.68rem;letter-spacing:0.12em;text-transform:uppercase;color:var(--ink4);text-align:right;padding:9px 16px;font-weight:500;" data-en="Sold (¥)" data-ja="成約（円）">Sold (¥)</th>
+          <th style="font-family:'DM Mono',monospace;font-size:0.68rem;letter-spacing:0.12em;text-transform:uppercase;color:var(--ink4);text-align:right;padding:9px 16px;font-weight:500;">¥ / g</th>
         </tr>
       </thead>
       <tbody>
         <tr style="border-bottom:1px solid var(--border);">
-          <td style="font-family:'DM Mono',monospace;font-size:0.65rem;color:var(--ink4);padding:9px 16px;">1</td>
-          <td style="font-size:0.8rem;color:var(--ink2);padding:9px 16px;" data-en="Canadian Maple Leaf 1oz" data-ja="カナダ・メープルリーフ 1oz">Canadian Maple Leaf 1oz</td>
-          <td style="font-family:'DM Mono',monospace;font-size:0.85rem;color:var(--ink);text-align:right;padding:9px 16px;">¥21,000</td>
-          <td style="font-family:'DM Mono',monospace;font-size:0.85rem;color:var(--ink3);text-align:right;padding:9px 16px;">675.19</td>
+          <td style="font-family:'DM Mono',monospace;font-size:0.75rem;color:var(--ink4);padding:9px 16px;">1</td>
+          <td style="font-size:0.9rem;color:var(--ink2);padding:9px 16px;" data-en="Canadian Maple Leaf 1oz" data-ja="カナダ・メープルリーフ 1oz">Canadian Maple Leaf 1oz</td>
+          <td style="font-family:'DM Mono',monospace;font-size:0.95rem;color:var(--ink);text-align:right;padding:9px 16px;">¥21,000</td>
+          <td style="font-family:'DM Mono',monospace;font-size:0.95rem;color:var(--ink3);text-align:right;padding:9px 16px;">675.19</td>
         </tr>
         <tr style="border-bottom:1px solid var(--border);">
-          <td style="font-family:'DM Mono',monospace;font-size:0.65rem;color:var(--ink4);padding:9px 16px;">2</td>
-          <td style="font-size:0.8rem;color:var(--ink2);padding:9px 16px;" data-en="Canadian Maple Leaf 1oz" data-ja="カナダ・メープルリーフ 1oz">Canadian Maple Leaf 1oz</td>
-          <td style="font-family:'DM Mono',monospace;font-size:0.85rem;color:var(--ink);text-align:right;padding:9px 16px;">¥25,000</td>
-          <td style="font-family:'DM Mono',monospace;font-size:0.85rem;color:var(--ink3);text-align:right;padding:9px 16px;">804.09</td>
+          <td style="font-family:'DM Mono',monospace;font-size:0.75rem;color:var(--ink4);padding:9px 16px;">2</td>
+          <td style="font-size:0.9rem;color:var(--ink2);padding:9px 16px;" data-en="Canadian Maple Leaf 1oz" data-ja="カナダ・メープルリーフ 1oz">Canadian Maple Leaf 1oz</td>
+          <td style="font-family:'DM Mono',monospace;font-size:0.95rem;color:var(--ink);text-align:right;padding:9px 16px;">¥25,000</td>
+          <td style="font-family:'DM Mono',monospace;font-size:0.95rem;color:var(--ink3);text-align:right;padding:9px 16px;">804.09</td>
         </tr>
         <tr style="border-bottom:1px solid var(--border);">
-          <td style="font-family:'DM Mono',monospace;font-size:0.65rem;color:var(--ink4);padding:9px 16px;">3</td>
-          <td style="font-size:0.8rem;color:var(--ink2);padding:9px 16px;" data-en="Canadian Maple Leaf 1oz" data-ja="カナダ・メープルリーフ 1oz">Canadian Maple Leaf 1oz</td>
-          <td style="font-family:'DM Mono',monospace;font-size:0.85rem;color:var(--ink);text-align:right;padding:9px 16px;">¥22,500</td>
-          <td style="font-family:'DM Mono',monospace;font-size:0.85rem;color:var(--ink3);text-align:right;padding:9px 16px;">723.44</td>
+          <td style="font-family:'DM Mono',monospace;font-size:0.75rem;color:var(--ink4);padding:9px 16px;">3</td>
+          <td style="font-size:0.9rem;color:var(--ink2);padding:9px 16px;" data-en="Canadian Maple Leaf 1oz" data-ja="カナダ・メープルリーフ 1oz">Canadian Maple Leaf 1oz</td>
+          <td style="font-family:'DM Mono',monospace;font-size:0.95rem;color:var(--ink);text-align:right;padding:9px 16px;">¥22,500</td>
+          <td style="font-family:'DM Mono',monospace;font-size:0.95rem;color:var(--ink3);text-align:right;padding:9px 16px;">723.44</td>
         </tr>
         <tr style="border-bottom:1px solid var(--border);">
-          <td style="font-family:'DM Mono',monospace;font-size:0.65rem;color:var(--ink4);padding:9px 16px;">4</td>
-          <td style="font-size:0.8rem;color:var(--ink2);padding:9px 16px;" data-en="American Eagle 1oz" data-ja="アメリカン・イーグル 1oz">American Eagle 1oz</td>
-          <td style="font-family:'DM Mono',monospace;font-size:0.85rem;color:var(--ink);text-align:right;padding:9px 16px;">¥21,000</td>
-          <td style="font-family:'DM Mono',monospace;font-size:0.85rem;color:var(--ink3);text-align:right;padding:9px 16px;">675.19</td>
+          <td style="font-family:'DM Mono',monospace;font-size:0.75rem;color:var(--ink4);padding:9px 16px;">4</td>
+          <td style="font-size:0.9rem;color:var(--ink2);padding:9px 16px;" data-en="American Eagle 1oz" data-ja="アメリカン・イーグル 1oz">American Eagle 1oz</td>
+          <td style="font-family:'DM Mono',monospace;font-size:0.95rem;color:var(--ink);text-align:right;padding:9px 16px;">¥21,000</td>
+          <td style="font-family:'DM Mono',monospace;font-size:0.95rem;color:var(--ink3);text-align:right;padding:9px 16px;">675.19</td>
         </tr>
         <tr style="border-bottom:1px solid var(--border);">
-          <td style="font-family:'DM Mono',monospace;font-size:0.65rem;color:var(--ink4);padding:9px 16px;">5</td>
-          <td style="font-size:0.8rem;color:var(--ink2);padding:9px 16px;" data-en="American Eagle 1oz" data-ja="アメリカン・イーグル 1oz">American Eagle 1oz</td>
-          <td style="font-family:'DM Mono',monospace;font-size:0.85rem;color:var(--ink);text-align:right;padding:9px 16px;">¥23,500</td>
-          <td style="font-family:'DM Mono',monospace;font-size:0.85rem;color:var(--ink3);text-align:right;padding:9px 16px;">755.56</td>
+          <td style="font-family:'DM Mono',monospace;font-size:0.75rem;color:var(--ink4);padding:9px 16px;">5</td>
+          <td style="font-size:0.9rem;color:var(--ink2);padding:9px 16px;" data-en="American Eagle 1oz" data-ja="アメリカン・イーグル 1oz">American Eagle 1oz</td>
+          <td style="font-family:'DM Mono',monospace;font-size:0.95rem;color:var(--ink);text-align:right;padding:9px 16px;">¥23,500</td>
+          <td style="font-family:'DM Mono',monospace;font-size:0.95rem;color:var(--ink3);text-align:right;padding:9px 16px;">755.56</td>
         </tr>
         <tr style="background:rgba(23,20,15,0.025);">
-          <td colspan="2" style="font-family:'DM Mono',monospace;font-size:0.65rem;letter-spacing:0.1em;text-transform:uppercase;color:var(--ink4);padding:11px 16px;" data-en="MSPI-B Mean · n=5 · 1oz .999 bullion" data-ja="MSPI-B 平均 · n=5 · 1oz .999地金">MSPI-B Mean · n=5 · 1oz .999 bullion</td>
-          <td style="font-family:'DM Mono',monospace;font-size:0.85rem;color:var(--ink);text-align:right;padding:11px 16px;border-top:1px solid var(--border2);">¥22,600</td>
+          <td colspan="2" style="font-family:'DM Mono',monospace;font-size:0.75rem;letter-spacing:0.1em;text-transform:uppercase;color:var(--ink4);padding:11px 16px;" data-en="MSPI-B Mean · n=5 · 1oz .999 bullion" data-ja="MSPI-B 平均 · n=5 · 1oz .999地金">MSPI-B Mean · n=5 · 1oz .999 bullion</td>
+          <td style="font-family:'DM Mono',monospace;font-size:0.95rem;color:var(--ink);text-align:right;padding:11px 16px;border-top:1px solid var(--border2);">¥22,600</td>
           <td style="font-family:'DM Mono',monospace;font-size:1rem;font-weight:500;color:var(--ink);text-align:right;padding:11px 16px;border-top:1px solid var(--border2);">726.69</td>
         </tr>
       </tbody>
     </table>
   </div>
   <div style="padding:10px 16px;border-top:1px solid #dfc8a8;background:#fdf0e0;">
-    <p style="font-family:'DM Mono',monospace;font-size:0.62rem;color:var(--ink4);line-height:1.7;" data-en="⚠ Prices shown are buyer-paid sold prices. Mercari deducts a 10% seller commission plus variable delivery fees — actual seller proceeds are lower. SR reflects peer-to-peer market clearing price, not net seller return." data-ja="⚠ 表示価格は買い手の支払い成約価格です。メルカリは出品者に10%の手数料と変動配送料を徴収します。実際の売り手の手取りは低くなります。SRはP2P市場の成約価格を反映しており、売り手の純収益ではありません。">⚠ Prices shown are buyer-paid sold prices. Mercari deducts a 10% seller commission plus variable delivery fees — actual seller proceeds are lower. SR reflects peer-to-peer market clearing price, not net seller return.</p>
+    <p style="font-family:'DM Mono',monospace;font-size:0.72rem;color:var(--ink4);line-height:1.7;" data-en="⚠ Prices shown are buyer-paid sold prices. Mercari deducts a 10% seller commission plus variable delivery fees — actual seller proceeds are lower. SR reflects peer-to-peer market clearing price, not net seller return." data-ja="⚠ 表示価格は買い手の支払い成約価格です。メルカリは出品者に10%の手数料と変動配送料を徴収します。実際の売り手の手取りは低くなります。SRはP2P市場の成約価格を反映しており、売り手の純収益ではありません。">⚠ Prices shown are buyer-paid sold prices. Mercari deducts a 10% seller commission plus variable delivery fees — actual seller proceeds are lower. SR reflects peer-to-peer market clearing price, not net seller return.</p>
   </div>
 </div>
 
@@ -368,7 +368,7 @@ body{background:var(--bg);color:var(--ink);font-family:'DM Mono',monospace;font-
     <h3 data-en="Index Weights &amp; Compute" data-ja="指数ウェイトと計算">Index Weights &amp; Compute</h3>
   </div>
   <div class="ws-body">
-    <p style="font-size:0.75rem;color:var(--ink3);margin-bottom:14px;font-style:italic;" data-en="Fixed weights applied to composite. RS = refiners · DB = dealers/pawn · SR = Mercari peer-to-peer" data-ja="複合指数に適用される固定ウェイト。RS=精錬所 · DB=業者/質屋 · SR=メルカリ">Fixed weights applied to composite. RS = refiners · DB = dealers/pawn · SR = Mercari peer-to-peer</p>
+    <p style="font-size:0.85rem;color:var(--ink3);margin-bottom:14px;font-style:italic;" data-en="Fixed weights applied to composite. RS = refiners · DB = dealers/pawn · SR = Mercari peer-to-peer" data-ja="複合指数に適用される固定ウェイト。RS=精錬所 · DB=業者/質屋 · SR=メルカリ">Fixed weights applied to composite. RS = refiners · DB = dealers/pawn · SR = Mercari peer-to-peer</p>
     <div class="weights-row" style="grid-template-columns:1fr 1fr 1fr;">
       <div class="wt-group">
         <label data-en="RS Weight" data-ja="RSウェイト">RS Weight</label>
@@ -392,7 +392,7 @@ body{background:var(--bg);color:var(--ink);font-family:'DM Mono',monospace;font-
     <div class="fl-sub" data-en="Silver Index (JPMI-AG) · JPY per gram · Updated daily&#10;Sources: Tanaka · Nihon Material · Nanboya · Daikichi · Mercari MSPI-B&#10;Informational index only. Not financial advice." data-ja="銀指数（JPMI-AG）· 円/g · 毎日更新&#10;データ元：田中 · 日本マテリアル · ナンボヤ · 大吉 · メルカリ MSPI-B&#10;情報提供のみ。投資アドバイスではありません。">Silver Index (JPMI-AG) · JPY per gram · Updated daily<br>Sources: Tanaka · Nihon Material · Nanboya · Daikichi · Mercari MSPI-B<br>Informational index only. Not financial advice.</div>
   </div>
   <div class="footer-right">
-    <a href="https://x.com/JPMI_index" target="_blank" rel="noopener" style="display:inline-flex;align-items:center;gap:8px;font-family:'DM Mono',monospace;font-size:0.82rem;font-weight:500;color:var(--ink4);text-decoration:none;letter-spacing:0.06em;margin-bottom:6px;" onmouseover="this.style.color='var(--ink)'" onmouseout="this.style.color='var(--ink4)'">
+    <a href="https://x.com/JPMI_index" target="_blank" rel="noopener" style="display:inline-flex;align-items:center;gap:8px;font-family:'DM Mono',monospace;font-size:0.92rem;font-weight:500;color:var(--ink4);text-decoration:none;letter-spacing:0.06em;margin-bottom:6px;" onmouseover="this.style.color='var(--ink)'" onmouseout="this.style.color='var(--ink4)'">
       <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-4.714-6.231-5.401 6.231H2.744l7.737-8.835L1.254 2.25H8.08l4.253 5.622 5.911-5.622zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
       @JPMI_index
     </a><br>
