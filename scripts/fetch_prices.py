@@ -22,20 +22,23 @@ def get_html(url, encoding=None):
     r.encoding = encoding
   return r.text
 
-# ── Tanaka (English page, buyback = 2nd yen value on SILVER row) ──────────
+# ── Tanaka (English page, buyback = "TANAKA retail buying price" for SILVER) ─
 def parse_tanaka(html):
   soup = BeautifulSoup(html, "html.parser")
-  text = soup.get_text(" ", strip=True)
-  m = re.search(r"SILVER\s+(\d+(?:\.\d+)?)\s+yen.*?\s(\d+(?:\.\d+)?)\s+yen", text)
-  if m:
-    return float(m.group(2))
-  idx = text.find("SILVER")
-  if idx == -1:
-    raise ValueError("SILVER row not found")
-  nums = re.findall(r"(\d+(?:\.\d+)?)", text[idx:idx+800])
-  if len(nums) < 2:
-    raise ValueError("Cannot parse Tanaka buyback")
-  return float(nums[1])
+  # Table layout: SILVER | retail_sell | sell_change | retail_buy | buy_change
+  # Find the SILVER row in the first price table
+  for table in soup.find_all("table"):
+    for row in table.find_all("tr"):
+      cells = row.find_all(["td","th"])
+      if not cells:
+        continue
+      if cells[0].get_text(strip=True) == "SILVER" and len(cells) >= 4:
+        # cells[0]=SILVER, [1]=sell, [2]=sell_change, [3]=buy, [4]=buy_change
+        buy_text = cells[3].get_text(strip=True).replace(",", "").replace(" yen", "")
+        val = float(re.search(r"[\d.]+", buy_text).group())
+        if 50 <= val <= 5000:
+          return val
+  raise ValueError("Tanaka SILVER buyback row not found")
 
 # ── Nihon Material (EUC-JP page, buyback = 買取 price for 銀) ─────────────
 def parse_nihon(html):
