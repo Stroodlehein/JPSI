@@ -1,14 +1,14 @@
 {
-  "updated_at_utc": "2026-03-02T03:28:48+00:00",
+  "updated_at_utc": "2026-03-03T03:32:12+00:00",
   "prices_jpy_per_g": {
-    "tanaka_silver_buy": 506.22,
-    "tanaka_silver_sell": 523.27,
-    "nihon_silver_buy": 517.22,
-    "nihon_silver_sell": 534.27,
+    "tanaka_silver_buy": 497.53,
+    "tanaka_silver_sell": 514.58,
+    "nihon_silver_buy": 497.53,
+    "nihon_silver_sell": 514.58,
     "mitsubishi_silver_sell": 424.27,
     "mitsubishi_silver_scheme_buy": null,
-    "nanboya_sv1000": 508.0,
-    "daikichi_sv1000": 501.0
+    "nanboya_sv1000": 489.0,
+    "daikichi_sv1000": 482.0
   },
   "errors": [],
   "sources": {
