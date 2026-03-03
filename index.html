@@ -96,6 +96,14 @@ body{background:var(--bg);color:var(--ink);font-family:'DM Mono',monospace;font-
 .bc-main{display:flex;align-items:baseline;gap:14px;margin-bottom:6px;flex-wrap:nowrap;}
 .bc-index-name{font-family:'DM Mono',monospace;font-size:0.9rem;letter-spacing:0.16em;color:var(--ink3);white-space:nowrap;margin-bottom:4px;}
 .bc-price{font-family:'DM Mono',monospace;font-size:3.8rem;font-weight:400;color:var(--ink);letter-spacing:-0.01em;line-height:1;}
+.change-badge{display:inline-flex;align-items:center;gap:3px;font-family:'DM Mono',monospace;font-size:0.82rem;font-weight:500;padding:2px 7px;border-radius:3px;margin-left:10px;vertical-align:middle;line-height:1.4;}
+.change-badge.up{background:#e8f5e9;color:#2e7d32;}
+.change-badge.down{background:#fce4ec;color:#c62828;}
+.change-badge.flat{background:#f5f5f5;color:#666;}
+.pc-change{font-family:'DM Mono',monospace;font-size:0.78rem;font-weight:500;margin-top:4px;min-height:1.2em;}
+.pc-change.up{color:#2e7d32;}
+.pc-change.down{color:#c62828;}
+.pc-change.flat{color:#999;}
 .bc-currency{font-family:'DM Mono',monospace;font-size:1.1rem;color:var(--ink3);font-weight:400;white-space:nowrap;}
 .bc-subtitle{font-family:'DM Mono',monospace;font-size:0.82rem;color:var(--ink3);margin-bottom:28px;font-weight:400;}
 .bc-sub-row{display:grid;grid-template-columns:repeat(3,1fr);gap:0;border-top:1px solid rgba(23,20,15,0.12);padding-top:20px;margin-top:4px;}
@@ -223,7 +231,7 @@ body{background:var(--bg);color:var(--ink);font-family:'DM Mono',monospace;font-
   </div>
   <div class="bc-index-name">JPMI-AG</div>
   <div class="bc-main">
-    <div class="bc-price" id="jpsi-display">—</div>
+    <div class="bc-price" id="jpsi-display">—</div><span class="change-badge flat" id="jpmi-change" style="display:none"></span>
     <div class="bc-currency">¥ / g</div>
   </div>
   <div class="bc-subtitle" data-en="Japan Physical Silver Index · Weighted composite of refinery, dealer, and street prices" data-ja="日本現物銀指数 · 精錬所・業者・フリマの加重複合指数">Japan Physical Silver Index · Weighted composite of refinery, dealer, and street prices</div>
@@ -264,18 +272,21 @@ body{background:var(--bg);color:var(--ink);font-family:'DM Mono',monospace;font-
       <div class="pc-value" id="pv-tanaka">Loading…</div>
       <div class="pc-unit" data-en="¥ / g · silver buyback" data-ja="円/g · 銀買取">¥ / g · silver buyback</div>
       <div class="pc-status" id="ps-tanaka">Fetching…</div>
+      <div class="pc-change flat" id="pch-tanaka"></div>
     </div>
     <div class="price-card rs-card loading-state" id="pc-nihon">
       <div class="pc-source">Nihon Material 日本マテリアル</div>
       <div class="pc-value" id="pv-nihon">Loading…</div>
       <div class="pc-unit" data-en="¥ / g · silver buyback" data-ja="円/g · 銀買取">¥ / g · silver buyback</div>
       <div class="pc-status" id="ps-nihon">Fetching…</div>
+      <div class="pc-change flat" id="pch-nihon"></div>
     </div>
     <div class="price-card rs-card loading-state" id="pc-mitsubishi">
       <div class="pc-source">Mitsubishi 三菱マテリアル</div>
       <div class="pc-value" id="pv-mitsubishi">Loading…</div>
       <div class="pc-unit" data-en="¥ / g · silver buyback" data-ja="円/g · 銀買取">¥ / g · silver buyback</div>
       <div class="pc-status" id="ps-mitsubishi">Fetching…</div>
+      <div class="pc-change flat" id="pch-mitsubishi"></div>
     </div>
   </div>
 </div>
@@ -291,12 +302,14 @@ body{background:var(--bg);color:var(--ink);font-family:'DM Mono',monospace;font-
       <div class="pc-value" id="pv-nanboya">Loading…</div>
       <div class="pc-unit" data-en="¥ / g · Sv1000 bid" data-ja="円/g · Sv1000 買値">¥ / g · Sv1000 bid</div>
       <div class="pc-status" id="ps-nanboya">Fetching…</div>
+      <div class="pc-change flat" id="pch-nanboya"></div>
     </div>
     <div class="price-card db-card loading-state" id="pc-daikichi">
       <div class="pc-source">Daikichi 買取大吉</div>
       <div class="pc-value" id="pv-daikichi">Loading…</div>
       <div class="pc-unit" data-en="¥ / g · per gram bid" data-ja="円/g · グラム買値">¥ / g · per gram bid</div>
       <div class="pc-status" id="ps-daikichi">Fetching…</div>
+      <div class="pc-change flat" id="pch-daikichi"></div>
     </div>
   </div>
 </div>
@@ -422,16 +435,30 @@ body{background:var(--bg);color:var(--ink);font-family:'DM Mono',monospace;font-
       if (!res.ok) throw new Error('HTTP ' + res.status);
       const data = await res.json();
       const p = data.prices_jpy_per_g || {};
+      const prev = data.previous_prices_jpy_per_g || {};
       const errors = data.errors || [];
       const updatedAt = data.updated_at_utc ? new Date(data.updated_at_utc) : null;
 
-      setCard('tanaka',     p.tanaka_silver_buy,      p.tanaka_silver_buy      ? '● Buyback price'     : 'Not available');
-      setCard('nihon',      p.nihon_silver_buy,       p.nihon_silver_buy       ? '● Buyback price'     : 'Not available');
-      setCard('mitsubishi', p.mitsubishi_silver_buy,  p.mitsubishi_silver_buy  ? '● Buyback price'     : 'Not available');
-      setCard('nanboya',    p.nanboya_sv1000,         p.nanboya_sv1000         ? '● Sv1000 bid'        : 'Not available');
-      setCard('daikichi',   p.daikichi_sv1000,        p.daikichi_sv1000        ? '● Per gram bid'      : 'Not available');
+      setCard('tanaka',     p.tanaka_silver_buy,      p.tanaka_silver_buy      ? '● Buyback price'     : 'Not available', prev.tanaka_silver_buy);
+      setCard('nihon',      p.nihon_silver_buy,       p.nihon_silver_buy       ? '● Buyback price'     : 'Not available', prev.nihon_silver_buy);
+      setCard('mitsubishi', p.mitsubishi_silver_buy,  p.mitsubishi_silver_buy  ? '● Buyback price'     : 'Not available', prev.mitsubishi_silver_buy);
+      setCard('nanboya',    p.nanboya_sv1000,         p.nanboya_sv1000         ? '● Sv1000 bid'        : 'Not available', prev.nanboya_sv1000);
+      setCard('daikichi',   p.daikichi_sv1000,        p.daikichi_sv1000        ? '● Per gram bid'      : 'Not available', prev.daikichi_sv1000);
 
       live.mercari = p.mercari_mspi_b || 726.69;
+
+      // Compute previous JPMI for benchmark change badge
+      const pp = data.previous_prices_jpy_per_g || {};
+      const prevRS = [pp.tanaka_silver_buy, pp.nihon_silver_buy, pp.mitsubishi_silver_buy].filter(v=>v);
+      const prevDB = [pp.nanboya_sv1000, pp.daikichi_sv1000].filter(v=>v);
+      const prevRSavg = prevRS.length ? prevRS.reduce((a,b)=>a+b,0)/prevRS.length : null;
+      const prevDBavg = prevDB.length ? prevDB.reduce((a,b)=>a+b,0)/prevDB.length : null;
+      const prevSR = pp.mercari_mspi_b || null;
+      let prevJpmi=0, prevTw=0;
+      if(prevRSavg){prevJpmi+=prevRSavg*W_RS;prevTw+=W_RS;}
+      if(prevDBavg){prevJpmi+=prevDBavg*W_DB;prevTw+=W_DB;}
+      if(prevSR){prevJpmi+=prevSR*W_SR;prevTw+=W_SR;}
+      window._prevJpmi = prevTw > 0 ? prevJpmi/prevTw : null;
 
       let tsStr = '—';
       if (updatedAt) {
@@ -459,23 +486,44 @@ body{background:var(--bg);color:var(--ink);font-family:'DM Mono',monospace;font-
     }
   }
 
-  function setCard(key, value, statusText, loading=false) {
+  function changeBadge(cur, prev) {
+    if (!cur || !prev || prev === 0) return null;
+    const pct = ((cur - prev) / prev) * 100;
+    if (Math.abs(pct) < 0.01) return { cls: 'flat', text: '— 0.00%' };
+    return pct > 0
+      ? { cls: 'up',   text: '▲ +' + pct.toFixed(2) + '%' }
+      : { cls: 'down', text: '▼ '  + pct.toFixed(2) + '%' };
+  }
+
+  function setCard(key, value, statusText, prevValue=null, loading=false) {
     const card = document.getElementById('pc-' + key);
     const valEl = document.getElementById('pv-' + key);
     const statEl = document.getElementById('ps-' + key);
+    const chgEl = document.getElementById('pch-' + key);
     if (!card) return;
     card.classList.remove('loaded','failed','loading-state');
     if (loading) {
       card.classList.add('loading-state');
       valEl.textContent = 'Loading…';
+      if (chgEl) chgEl.textContent = '';
     } else if (value && value > 50 && value < 5000) {
       live[key] = value;
       valEl.textContent = value.toFixed(2);
       card.classList.add('loaded');
+      if (chgEl) {
+        const b = changeBadge(value, prevValue);
+        if (b) {
+          chgEl.textContent = b.text;
+          chgEl.className = 'pc-change ' + b.cls;
+        } else {
+          chgEl.textContent = '';
+        }
+      }
     } else {
       live[key] = null;
       valEl.textContent = 'N/A';
       card.classList.add('failed');
+      if (chgEl) chgEl.textContent = '';
     }
     statEl.textContent = statusText;
   }
@@ -512,7 +560,19 @@ body{background:var(--bg);color:var(--ink);font-family:'DM Mono',monospace;font-
     if(DB!==null){jpsi+=DB*W_DB;tw+=W_DB;}
     if(SR!==null){jpsi+=SR*W_SR;tw+=W_SR;}
     if(tw>0){
-      document.getElementById('jpsi-display').textContent=`¥${(jpsi/tw).toFixed(2)}`;
+      const jpmiVal = jpsi/tw;
+      document.getElementById('jpsi-display').textContent=`¥${jpmiVal.toFixed(2)}`;
+      // Benchmark change badge
+      const chgSpan = document.getElementById('jpmi-change');
+      if (chgSpan && window._prevJpmi) {
+        const b = changeBadge(jpmiVal, window._prevJpmi);
+        if (b) {
+          chgSpan.textContent = b.text;
+          chgSpan.className = 'change-badge ' + b.cls;
+          chgSpan.style.display = 'inline-flex';
+        }
+      }
+      window._curJpmi = jpmiVal;
       const prem=(RS&&SR)?((SR/RS)-1)*100:null;
       document.getElementById('premium-display').textContent=prem!==null?`${prem>0?'+':''}${prem.toFixed(1)}%`:'—';
     } else {
