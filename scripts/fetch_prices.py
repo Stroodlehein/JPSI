@@ -8,18 +8,22 @@ from bs4 import BeautifulSoup
 UA = "Mozilla/5.0 (compatible; JPMIbot/1.0)"
 
 SOURCES = {
-  "tanaka": "https://gold.tanaka.co.jp/commodity/souba/english/index.php",
+  "tanaka":     "https://gold.tanaka.co.jp/commodity/souba/english/index.php",
+  "nihon":      "https://material.co.jp/market.php",
   "mitsubishi": "https://gold.mmc.co.jp/market/silver-price/",
-  "nanboya": "https://nanboya.com/gold-kaitori/silver/silver-souba/",
-  "daikichi": "https://www.kaitori-daikichi.jp/list/gold/silver/souba/",
+  "nanboya":    "https://nanboya.com/gold-kaitori/silver/silver-souba/",
+  "daikichi":   "https://www.kaitori-daikichi.jp/list/gold/silver/souba/",
 }
 
-def get_html(url: str) -> str:
+def get_html(url, encoding=None):
   r = requests.get(url, headers={"User-Agent": UA}, timeout=30)
   r.raise_for_status()
+  if encoding:
+    r.encoding = encoding
   return r.text
 
-def parse_tanaka_silver_buy(html: str) -> float:
+# ── Tanaka (English page, buyback = 2nd yen value on SILVER row) ──────────
+def parse_tanaka(html):
   soup = BeautifulSoup(html, "html.parser")
   text = soup.get_text(" ", strip=True)
   m = re.search(r"SILVER\s+(\d+(?:\.\d+)?)\s+yen.*?\s(\d+(?:\.\d+)?)\s+yen", text)
@@ -27,63 +31,97 @@ def parse_tanaka_silver_buy(html: str) -> float:
     return float(m.group(2))
   idx = text.find("SILVER")
   if idx == -1:
-    raise ValueError("SILVER row not found on Tanaka page")
-  tail = text[idx: idx + 800]
-  nums = re.findall(r"(\d+(?:\.\d+)?)", tail)
+    raise ValueError("SILVER row not found")
+  nums = re.findall(r"(\d+(?:\.\d+)?)", text[idx:idx+800])
   if len(nums) < 2:
-    raise ValueError("Could not parse Tanaka SILVER buyback")
+    raise ValueError("Cannot parse Tanaka buyback")
   return float(nums[1])
 
-def parse_mitsubishi_silver_buy(html: str) -> float:
-  """
-  Parse Mitsubishi GOLDPARK silver buyback price (買取価格).
-  Targets the 店頭価格 row in the 最新の価格 table.
-  Row format: 店頭価格 | 小売価格 | 前日比 | 買取価格 | 前日比
-  """
+# ── Nihon Material (EUC-JP page, buyback = 買取 price for 銀) ─────────────
+def parse_nihon(html):
   soup = BeautifulSoup(html, "html.parser")
-  tables = soup.find_all("table")
-  for table in tables:
-    rows = table.find_all("tr")
-    for row in rows:
+  text = soup.get_text(" ", strip=True)
+  # Table row: 銀 | 小売価格 diff | 買取価格 diff
+  # Look for pattern: 銀 NNN.NN円 ±NNN.NN円 NNN.NN円
+  m = re.search(
+    r'銀\s+([\d,]+(?:\.\d+)?)\s*円.*?([\d,]+(?:\.\d+)?)\s*円',
+    text
+  )
+  if m:
+    buyback = float(m.group(2).replace(",", ""))
+    if 50 <= buyback <= 5000:
+      return buyback
+  # Fallback: find all prices near 銀
+  idx = text.find("銀")
+  if idx != -1:
+    tail = text[idx:idx+200]
+    prices = re.findall(r'([\d,]+(?:\.\d+)?)\s*円', tail)
+    candidates = [float(p.replace(",","")) for p in prices if 50 <= float(p.replace(",","")) <= 5000]
+    if len(candidates) >= 2:
+      return candidates[1]  # second price = buyback
+    if candidates:
+      return candidates[0]
+  raise ValueError("Nihon Material silver buyback not found")
+
+# ── Mitsubishi (HTML table, 店頭価格 row, buyback = 2nd 円/g value) ────────
+def parse_mitsubishi(html):
+  soup = BeautifulSoup(html, "html.parser")
+  # Find table containing 店頭価格
+  for table in soup.find_all("table"):
+    for row in table.find_all("tr"):
       cells = row.find_all("td")
       if not cells:
         continue
       row_text = " ".join(c.get_text(strip=True) for c in cells)
       if "店頭価格" in row_text:
-        prices = re.findall(r"([\d,]+(?:\.\d+)?)\s*円/g", row_text)
+        prices = re.findall(r'([\d,]+(?:\.\d+)?)\s*円/g', row_text)
         if len(prices) >= 2:
-          buyback = float(prices[1].replace(",", ""))
-          if 50.0 <= buyback <= 5000.0:
-            return buyback
-  # Fallback
+          val = float(prices[1].replace(",", ""))
+          if 50 <= val <= 5000:
+            return val
+  # Fallback: scan plain text
   text = soup.get_text(" ", strip=True)
   idx = text.find("店頭価格")
   if idx != -1:
-    tail = text[idx: idx + 300]
-    prices = re.findall(r"([\d,]+(?:\.\d+)?)\s*円/g", tail)
+    snippet = text[idx:idx+400]
+    prices = re.findall(r'([\d,]+(?:\.\d+)?)\s*円/g', snippet)
     if len(prices) >= 2:
-      buyback = float(prices[1].replace(",", ""))
-      if 50.0 <= buyback <= 5000.0:
-        return buyback
-  raise ValueError("Mitsubishi silver buyback price not found")
+      val = float(prices[1].replace(",", ""))
+      if 50 <= val <= 5000:
+        return val
+  raise ValueError("Mitsubishi silver buyback not found")
 
-def parse_nanboya_sv1000(html: str) -> float:
+# ── Nanboya (prices JS-rendered; parse expert commentary for today's price) ─
+def parse_nanboya(html):
   soup = BeautifulSoup(html, "html.parser")
   text = soup.get_text(" ", strip=True)
-  m = re.search(r"Sv1000.*?(\d{2,4})\s*円", text)
-  if not m:
-    raise ValueError("Nanboya Sv1000 price not found")
-  return float(m.group(1))
+  # Expert commentary contains e.g. "銀相場は489円と"
+  m = re.search(r'銀相場は\s*([\d,]+)\s*円', text)
+  if m:
+    val = float(m.group(1).replace(",", ""))
+    if 50 <= val <= 5000:
+      return val
+  # Fallback: look for "今日の買取相場価格" section with a price
+  m = re.search(r'今日の買取相場価格.*?([\d,]+)\s*円', text, re.DOTALL)
+  if m:
+    val = float(m.group(1).replace(",",""))
+    if 50 <= val <= 5000:
+      return val
+  raise ValueError("Nanboya silver price not found")
 
-def parse_daikichi_sv1000(html: str) -> float:
+# ── Daikichi (plain HTML, SV1000 NNN円) ───────────────────────────────────
+def parse_daikichi(html):
   soup = BeautifulSoup(html, "html.parser")
   text = soup.get_text(" ", strip=True)
-  m = re.search(r"1g\s+(\d{2,4})\s*円", text)
-  if not m:
-    raise ValueError("Daikichi 1g price not found")
-  return float(m.group(1))
+  # "SV1000\n482円" or "SV1000 482円"
+  m = re.search(r'SV1000\D{0,10}?([\d,]+)\s*円', text)
+  if m:
+    val = float(m.group(1).replace(",",""))
+    if 50 <= val <= 5000:
+      return val
+  raise ValueError("Daikichi SV1000 price not found")
 
-def safe_get(name: str, fn):
+def safe_get(name, fn):
   try:
     return fn(), None
   except Exception as e:
@@ -97,25 +135,25 @@ def main():
     "sources": SOURCES,
   }
 
-  # Tanaka
-  v, err = safe_get("tanaka", lambda: parse_tanaka_silver_buy(get_html(SOURCES["tanaka"])))
+  v, err = safe_get("tanaka",     lambda: parse_tanaka(get_html(SOURCES["tanaka"])))
   if err: out["errors"].append(err)
-  if v is not None: out["prices_jpy_per_g"]["tanaka_silver_buy"] = v
+  if v:   out["prices_jpy_per_g"]["tanaka_silver_buy"] = v
 
-  # Mitsubishi (replaces Tokuriki)
-  v, err = safe_get("mitsubishi", lambda: parse_mitsubishi_silver_buy(get_html(SOURCES["mitsubishi"])))
+  v, err = safe_get("nihon",      lambda: parse_nihon(get_html(SOURCES["nihon"], encoding="euc-jp")))
   if err: out["errors"].append(err)
-  if v is not None: out["prices_jpy_per_g"]["mitsubishi_silver_buy"] = v
+  if v:   out["prices_jpy_per_g"]["nihon_silver_buy"] = v
 
-  # Nanboya
-  v, err = safe_get("nanboya", lambda: parse_nanboya_sv1000(get_html(SOURCES["nanboya"])))
+  v, err = safe_get("mitsubishi", lambda: parse_mitsubishi(get_html(SOURCES["mitsubishi"])))
   if err: out["errors"].append(err)
-  if v is not None: out["prices_jpy_per_g"]["nanboya_sv1000"] = v
+  if v:   out["prices_jpy_per_g"]["mitsubishi_silver_buy"] = v
 
-  # Daikichi
-  v, err = safe_get("daikichi", lambda: parse_daikichi_sv1000(get_html(SOURCES["daikichi"])))
+  v, err = safe_get("nanboya",    lambda: parse_nanboya(get_html(SOURCES["nanboya"])))
   if err: out["errors"].append(err)
-  if v is not None: out["prices_jpy_per_g"]["daikichi_sv1000"] = v
+  if v:   out["prices_jpy_per_g"]["nanboya_sv1000"] = v
+
+  v, err = safe_get("daikichi",   lambda: parse_daikichi(get_html(SOURCES["daikichi"])))
+  if err: out["errors"].append(err)
+  if v:   out["prices_jpy_per_g"]["daikichi_sv1000"] = v
 
   with open("prices.json", "w", encoding="utf-8") as f:
     json.dump(out, f, ensure_ascii=False, indent=2)
