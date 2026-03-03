@@ -144,6 +144,24 @@ def main():
     "sources": SOURCES,
   }
 
+def main():
+  # Load previous prices before overwriting
+  previous = {}
+  try:
+    with open("prices.json", "r", encoding="utf-8") as f:
+      old = json.load(f)
+      previous = old.get("prices_jpy_per_g", {})
+  except Exception:
+    pass
+
+  out = {
+    "updated_at_utc": datetime.now(timezone.utc).isoformat(timespec="seconds"),
+    "prices_jpy_per_g": {},
+    "previous_prices_jpy_per_g": previous,
+    "errors": [],
+    "sources": SOURCES,
+  }
+
   v, err = safe_get("tanaka",     lambda: parse_tanaka(get_html(SOURCES["tanaka"])))
   if err: out["errors"].append(err)
   if v:   out["prices_jpy_per_g"]["tanaka_silver_buy"] = v
