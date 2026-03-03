@@ -63,10 +63,9 @@ def parse_nihon(html):
       return candidates[0]
   raise ValueError("Nihon Material silver buyback not found")
 
-# ── Mitsubishi (HTML table, 店頭価格 row, buyback = 2nd 円/g value) ────────
+# ── Mitsubishi (HTML table, 店頭価格 row, buyback = 2nd plausible 円/g value) ─
 def parse_mitsubishi(html):
   soup = BeautifulSoup(html, "html.parser")
-  # Find table containing 店頭価格
   for table in soup.find_all("table"):
     for row in table.find_all("tr"):
       cells = row.find_all("td")
@@ -74,21 +73,31 @@ def parse_mitsubishi(html):
         continue
       row_text = " ".join(c.get_text(strip=True) for c in cells)
       if "店頭価格" in row_text:
-        prices = re.findall(r'([\d,]+(?:\.\d+)?)\s*円/g', row_text)
+        # Filter to only plausible silver prices (50-5000 yen/g)
+        # This excludes daily change values like 29.04
+        prices = [
+          float(p.replace(",", ""))
+          for p in re.findall(r'([\d,]+(?:\.\d+)?)\s*円/g', row_text)
+          if 50 <= float(p.replace(",", "")) <= 5000
+        ]
         if len(prices) >= 2:
-          val = float(prices[1].replace(",", ""))
-          if 50 <= val <= 5000:
-            return val
-  # Fallback: scan plain text
+          return prices[1]  # index 0 = 小売, index 1 = 買取
+        if len(prices) == 1:
+          return prices[0]
+  # Fallback: plain text scan
   text = soup.get_text(" ", strip=True)
   idx = text.find("店頭価格")
   if idx != -1:
     snippet = text[idx:idx+400]
-    prices = re.findall(r'([\d,]+(?:\.\d+)?)\s*円/g', snippet)
+    prices = [
+      float(p.replace(",", ""))
+      for p in re.findall(r'([\d,]+(?:\.\d+)?)\s*円/g', snippet)
+      if 50 <= float(p.replace(",", "")) <= 5000
+    ]
     if len(prices) >= 2:
-      val = float(prices[1].replace(",", ""))
-      if 50 <= val <= 5000:
-        return val
+      return prices[1]
+    if prices:
+      return prices[0]
   raise ValueError("Mitsubishi silver buyback not found")
 
 # ── Nanboya (prices JS-rendered; parse expert commentary for today's price) ─
