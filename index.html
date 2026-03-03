@@ -422,6 +422,16 @@ body{background:var(--bg);color:var(--ink);font-family:'DM Mono',monospace;font-
       if (!res.ok) throw new Error('HTTP ' + res.status);
       const data = await res.json();
       const p = data.prices_jpy_per_g || {};
+      const errors = data.errors || [];
+      const updatedAt = data.updated_at_utc ? new Date(data.updated_at_utc) : null;
+
+      setCard('tanaka',     p.tanaka_silver_buy,      p.tanaka_silver_buy      ? '● Buyback price'     : 'Not available');
+      setCard('nihon',      p.nihon_silver_buy,       p.nihon_silver_buy       ? '● Buyback price'     : 'Not available');
+      setCard('mitsubishi', p.mitsubishi_silver_buy,  p.mitsubishi_silver_buy  ? '● Buyback price'     : 'Not available');
+      setCard('nanboya',    p.nanboya_sv1000,         p.nanboya_sv1000         ? '● Sv1000 bid'        : 'Not available');
+      setCard('daikichi',   p.daikichi_sv1000,        p.daikichi_sv1000        ? '● Per gram bid'      : 'Not available');
+
+      live.mercari = p.mercari_mspi_b || 726.69;
 
       let tsStr = '—';
       if (updatedAt) {
