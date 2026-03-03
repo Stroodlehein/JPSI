@@ -148,19 +148,9 @@ def main():
   }
 
 def main():
-  # Load previous prices before overwriting
-  previous = {}
-  try:
-    with open("prices.json", "r", encoding="utf-8") as f:
-      old = json.load(f)
-      previous = old.get("prices_jpy_per_g", {})
-  except Exception:
-    pass
-
   out = {
     "updated_at_utc": datetime.now(timezone.utc).isoformat(timespec="seconds"),
     "prices_jpy_per_g": {},
-    "previous_prices_jpy_per_g": previous,
     "errors": [],
     "sources": SOURCES,
   }
