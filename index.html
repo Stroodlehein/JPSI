@@ -274,7 +274,7 @@ body{background:var(--bg);color:var(--ink);font-family:'DM Mono',monospace;font-
     <div class="price-card rs-card loading-state" id="pc-mitsubishi">
       <div class="pc-source">Mitsubishi 三菱マテリアル</div>
       <div class="pc-value" id="pv-mitsubishi">Loading…</div>
-      <div class="pc-unit" data-en="¥ / g · retail sell price" data-ja="円/g · 小売売価">¥ / g · retail sell price</div>
+      <div class="pc-unit" data-en="¥ / g · silver buyback" data-ja="円/g · 銀買取">¥ / g · silver buyback</div>
       <div class="pc-status" id="ps-mitsubishi">Fetching…</div>
     </div>
   </div>
@@ -427,7 +427,7 @@ body{background:var(--bg);color:var(--ink);font-family:'DM Mono',monospace;font-
 
       setCard('tanaka',     p.tanaka_silver_buy,      p.tanaka_silver_buy      ? '● Buyback price'     : 'Not available');
       setCard('nihon',      p.nihon_silver_buy,       p.nihon_silver_buy       ? '● Buyback price'     : 'Not available');
-      setCard('mitsubishi', p.mitsubishi_silver_sell, p.mitsubishi_silver_sell ? '● Retail sell price'  : 'Not available');
+      setCard('mitsubishi', p.mitsubishi_silver_buy,  p.mitsubishi_silver_buy  ? '● Buyback price'     : 'Not available');
       setCard('nanboya',    p.nanboya_sv1000,         p.nanboya_sv1000         ? '● Sv1000 bid'        : 'Not available');
       setCard('daikichi',   p.daikichi_sv1000,        p.daikichi_sv1000        ? '● Per gram bid'      : 'Not available');
 
@@ -498,7 +498,7 @@ body{background:var(--bg);color:var(--ink);font-family:'DM Mono',monospace;font-
   }
 
   function recalculate() {
-    const rsVals = [live.tanaka, live.nihon].filter(v=>v!==null);
+    const rsVals = [live.tanaka, live.nihon, live.mitsubishi].filter(v=>v!==null);
     const dbVals = [live.nanboya, live.daikichi].filter(v=>v!==null);
     const RS = rsVals.length ? rsVals.reduce((a,b)=>a+b,0)/rsVals.length : null;
     const DB = dbVals.length ? dbVals.reduce((a,b)=>a+b,0)/dbVals.length : null;
