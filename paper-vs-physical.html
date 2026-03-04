@@ -50,8 +50,8 @@ body{background:var(--bg);color:var(--ink);font-family:'DM Mono',monospace;font-
 .masthead-meta{font-family:‘DM Mono’,monospace;font-size:0.72rem;color:var(–ink4);letter-spacing:0.06em;text-align:right;line-height:1.7;}
 
 /* ── Nav ── */
-.site-nav{display:flex;gap:0;border-bottom:1px solid var(–border);margin-bottom:32px;}
-.nav-link{font-family:‘DM Mono’,monospace;font-size:0.78rem;letter-spacing:0.1em;text-transform:uppercase;padding:10px 18px;text-decoration:none;color:var(–ink4);border-bottom:2px solid transparent;margin-bottom:-1px;transition:all 0.15s;}
+.site-nav{display:flex;gap:0;border-bottom:1px solid var(–border);margin-bottom:32px;overflow-x:auto;-webkit-overflow-scrolling:touch;}
+.nav-link{font-family:‘DM Mono’,monospace;font-size:0.78rem;letter-spacing:0.1em;text-transform:uppercase;padding:10px 18px;text-decoration:none;color:var(–ink4);border-bottom:2px solid transparent;margin-bottom:-1px;transition:all 0.15s;white-space:nowrap;}
 .nav-link:hover{color:var(–ink2);}
 .nav-link.active{color:var(–ink);border-bottom-color:var(–ink);}
 
@@ -110,16 +110,16 @@ body{background:var(--bg);color:var(--ink);font-family:'DM Mono',monospace;font-
 
 /* ── Explanation ── */
 .explainer{margin-bottom:40px;}
-.explainer-grid{display:grid;grid-template-columns:1fr 1fr;gap:24px;margin-bottom:24px;}
-.explainer-card{border:1px solid var(–border);padding:20px 22px;}
+.explainer-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:16px;margin-bottom:24px;}
+.explainer-card{border:1px solid var(–border);padding:20px 22px;box-sizing:border-box;background:var(–paper);}
 .explainer-card-title{font-family:‘DM Mono’,monospace;font-size:0.7rem;letter-spacing:0.14em;text-transform:uppercase;color:var(–ink3);margin-bottom:10px;font-weight:500;}
 .explainer-card-body{font-size:0.82rem;color:var(–ink2);line-height:1.8;}
 
 /* ── Chart bar ── */
 .bar-chart{margin-bottom:40px;}
 .bar-row{display:flex;align-items:center;gap:16px;margin-bottom:12px;}
-.bar-label{font-family:‘DM Mono’,monospace;font-size:0.72rem;color:var(–ink3);width:160px;flex-shrink:0;letter-spacing:0.04em;}
-.bar-track{flex:1;height:36px;background:var(–border);position:relative;overflow:hidden;}
+.bar-label{font-family:‘DM Mono’,monospace;font-size:0.72rem;color:var(–ink3);width:120px;flex-shrink:0;letter-spacing:0.04em;}
+.bar-track{flex:1;min-width:0;height:36px;background:var(–border);position:relative;overflow:hidden;}
 .bar-fill{height:100%;transition:width 1.2s cubic-bezier(0.4,0,0.2,1);display:flex;align-items:center;padding-left:10px;}
 .bar-fill.comex-bar{background:var(–comex);}
 .bar-fill.street-bar{background:var(–street);}
