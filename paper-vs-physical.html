@@ -86,6 +86,9 @@ body{background:var(--bg);color:var(--ink);font-family:'DM Mono',monospace;font-
 .premium-sublabel{font-family:‘DM Mono’,monospace;font-size:0.65rem;color:var(–ink4);letter-spacing:0.08em;margin-top:8px;text-align:center;line-height:1.5;}
 .premium-arrow{font-size:1.4rem;color:var(–premium);margin:8px 0;}
 
+/* ── Mobile card wrapper (hidden on desktop) ── */
+.mobile-card{display:contents;}
+
 /* ── Loading state ── */
 .loading-val{color:var(–ink4) !important;font-size:1.8rem !important;}
 
@@ -150,58 +153,58 @@ body{background:var(--bg);color:var(--ink);font-family:'DM Mono',monospace;font-
 .masthead-title .kanji-inline{display:none;}
 .masthead-tagline{font-size:0.68rem;letter-spacing:0;line-height:1.5;margin-top:4px;}
 .masthead-meta{font-size:0.6rem;text-align:right;}
-
-/* Nav */
 .nav-link{padding:10px 10px;font-size:0.68rem;letter-spacing:0.05em;}
-
-/* Page header */
 .page-title{font-size:1.4rem;}
 .page-subtitle{font-size:0.65rem;}
 
-/* Comparison block — full width vertical stack, explicit borders */
+/* Comparison block — switch to simple vertical stack */
 .comparison-block{
-display:block;
-margin-bottom:24px;
-border:1px solid var(–border2);
-}
-.price-panel{
-display:block;
-width:100%;
-padding:24px 20px;
+display:flex;
+flex-direction:column;
+gap:12px;
 border:none;
-border-bottom:1px solid var(–border2);
+background:transparent;
+margin-bottom:24px;
 }
+
+/* Each mobile-card becomes a proper bordered box */
+.mobile-card{
+display:block;
+border:1px solid var(–border2);
+overflow:hidden;
+}
+
+/* Panels fill their card */
+.price-panel{padding:20px 18px;}
 .price-panel.comex{
 background:var(–comex-bg);
 border-right:none;
-border-bottom:1px solid var(–border2);
+border-bottom:none;
 }
 .price-panel.street{
 background:var(–street-bg);
-border-top:none;
-border-bottom:none;
 }
-.panel-price{font-size:2.6rem;}
+.panel-price{font-size:2.4rem;}
 .panel-name{font-size:1rem;}
 
-/* Premium — horizontal strip */
+/* Premium strip — full bordered box */
 .premium-center{
 display:flex;
 flex-direction:row;
 justify-content:center;
 align-items:center;
-gap:12px;
+gap:16px;
 padding:16px 20px;
 min-width:unset;
-border:none;
-border-top:1px solid var(–border2);
-border-bottom:1px solid var(–border2);
+border:1px solid var(–border2);
+border-left:1px solid var(–border2);
+border-right:1px solid var(–border2);
 background:var(–premium-bg);
 }
 .premium-label{margin-bottom:0;text-align:left;white-space:nowrap;}
 .premium-arrow{margin:0;font-size:1.2rem;}
-.premium-value{font-size:2.2rem;}
-.premium-sublabel{margin-top:0;text-align:left;}
+.premium-value{font-size:2rem;}
+.premium-sublabel{margin-top:0;}
 
 /* Context bar */
 .context-bar{grid-template-columns:1fr 1fr;margin-bottom:24px;}
@@ -212,13 +215,9 @@ background:var(–premium-bg);
 .bar-label{width:100px;font-size:0.65rem;}
 .bar-track{height:30px;}
 
-/* Formula */
-.formula-box{padding:14px 16px;font-size:0.72rem;}
-
 /* Explainer */
 .explainer-grid{grid-template-columns:1fr;}
-
-/* Footer */
+.formula-box{padding:14px 16px;font-size:0.72rem;}
 .site-footer{flex-direction:column;gap:16px;}
 }
 </style>
@@ -274,6 +273,7 @@ background:var(–premium-bg);
 
 ```
 <!-- COMEX panel -->
+<div class="mobile-card">
 <div class="price-panel comex">
   <div class="panel-badge comex">COMEX</div>
   <div class="panel-label" data-en="Paper Market · Futures" data-ja="先物市場">Paper Market · Futures</div>
@@ -284,6 +284,7 @@ background:var(–premium-bg);
   <div class="panel-jpy" id="comex-jpy">≈ ¥— / g</div>
   <div class="panel-source" data-en="Global futures price. Represents paper contracts for silver delivery. Source: live market data." data-ja="グローバル先物価格。銀の受渡契約を表します。出典：リアルタイム市場データ。">Global futures price. Represents paper contracts for silver delivery. Source: live market data.</div>
 </div>
+</div><!-- /mobile-card -->
 
 <!-- Premium center -->
 <div class="premium-center">
@@ -294,6 +295,7 @@ background:var(–premium-bg);
 </div>
 
 <!-- Street panel -->
+<div class="mobile-card">
 <div class="price-panel street">
   <div class="panel-badge street">MSPI-B</div>
   <div class="panel-label" data-en="Physical Market · Street Retail" data-ja="現物市場・フリマ実売">Physical Market · Street Retail</div>
@@ -304,6 +306,7 @@ background:var(–premium-bg);
   <div class="panel-jpy" id="street-jpy">≈ ¥— / g</div>
   <div class="panel-source" data-en="Real peer-to-peer sold prices for 1oz .999 silver bullion on Mercari Japan. JPMI MSPI-B · Updated Mon/Wed/Fri." data-ja="メルカリ日本での1oz .999銀地金のP2P成約価格。JPMI MSPI-B · 月・水・金更新。">Real peer-to-peer sold prices for 1oz .999 silver bullion on Mercari Japan. JPMI MSPI-B · Updated Mon/Wed/Fri.</div>
 </div>
+</div><!-- /mobile-card -->
 ```
 
   </div>
