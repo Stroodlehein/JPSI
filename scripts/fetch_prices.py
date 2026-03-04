@@ -20,28 +20,57 @@ def get_comex_and_fx():
   comex_usd = None
   usd_jpy = None
 
-  # Try gold-api.com (no API key required)
+  # Try goldprice.org JSON feed (no API key required)
   try:
-    r = requests.get("https://gold-api.com/price/silver", headers={"User-Agent": UA}, timeout=15)
+    r = requests.get(
+      "https://data-asg.goldprice.org/dbXRates/USD",
+      headers={"User-Agent": UA, "Referer": "https://goldprice.org/"},
+      timeout=15
+    )
     if r.ok:
       d = r.json()
-      # Returns: {"price": 32.45, ...} in USD/oz
-      val = d.get("price") or d.get("silver") or d.get("XAG")
-      if val and 10 < float(val) < 500:
-        comex_usd = float(val)
+      # Returns: {"items": [{"xagPrice": 32.45, ...}]}
+      items = d.get("items", [])
+      if items:
+        val = items[0].get("xagPrice")
+        if val and 10 < float(val) < 500:
+          comex_usd = float(val)
   except Exception:
     pass
 
-  # Fallback: frankfurter for USD/JPY (no key required)
-  try:
-    r = requests.get("https://api.frankfurter.app/latest?from=USD&to=JPY", timeout=10)
-    if r.ok:
-      d = r.json()
-      rate = d.get("rates", {}).get("JPY")
-      if rate and 50 < float(rate) < 300:
-        usd_jpy = float(rate)
-  except Exception:
-    pass
+  # Fallback: scrape silverprice.org
+  if not comex_usd:
+    try:
+      r = requests.get(
+        "https://data-asg.goldprice.org/dbXRates/JPY",
+        headers={"User-Agent": UA, "Referer": "https://goldprice.org/"},
+        timeout=15
+      )
+      if r.ok:
+        d = r.json()
+        items = d.get("items", [])
+        if items:
+          # xagPrice is in JPY/oz when base is JPY
+          jpy_oz = items[0].get("xagPrice")
+          jpy_usd = items[0].get("usdXJpy")  # USD/JPY rate
+          if jpy_usd and 50 < float(jpy_usd) < 300:
+            usd_jpy = float(jpy_usd)
+          if jpy_oz and jpy_usd and jpy_oz > 100:
+            comex_usd = float(jpy_oz) / float(jpy_usd)
+    except Exception:
+      pass
+
+  # USD/JPY: frankfurter (no key required)
+  if not usd_jpy:
+    try:
+      r = requests.get("https://api.frankfurter.app/latest?from=USD&to=JPY", timeout=10)
+      if r.ok:
+        d = r.json()
+        rate = d.get("rates", {}).get("JPY")
+        if rate and 50 < float(rate) < 300:
+          usd_jpy = float(rate)
+    except Exception:
+      pass
 
   return comex_usd, usd_jpy
 
