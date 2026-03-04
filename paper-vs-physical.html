@@ -158,34 +158,45 @@ body{background:var(--bg);color:var(--ink);font-family:'DM Mono',monospace;font-
 .page-title{font-size:1.4rem;}
 .page-subtitle{font-size:0.65rem;}
 
-/* Comparison block — full width vertical stack */
+/* Comparison block — full width vertical stack, explicit borders */
 .comparison-block{
-grid-template-columns:1fr;
+display:block;
 margin-bottom:24px;
+border:1px solid var(–border2);
 }
-.price-panel{padding:24px 20px;}
+.price-panel{
+display:block;
+width:100%;
+padding:24px 20px;
+border:none;
+border-bottom:1px solid var(–border2);
+}
 .price-panel.comex{
+background:var(–comex-bg);
 border-right:none;
 border-bottom:1px solid var(–border2);
 }
 .price-panel.street{
-border-top:1px solid var(–border2);
+background:var(–street-bg);
+border-top:none;
+border-bottom:none;
 }
 .panel-price{font-size:2.6rem;}
 .panel-name{font-size:1rem;}
 
-/* Premium — horizontal strip between panels */
+/* Premium — horizontal strip */
 .premium-center{
-border-left:none;
-border-right:none;
-border-top:1px solid var(–border2);
-border-bottom:1px solid var(–border2);
+display:flex;
 flex-direction:row;
 justify-content:center;
 align-items:center;
 gap:12px;
 padding:16px 20px;
 min-width:unset;
+border:none;
+border-top:1px solid var(–border2);
+border-bottom:1px solid var(–border2);
+background:var(–premium-bg);
 }
 .premium-label{margin-bottom:0;text-align:left;white-space:nowrap;}
 .premium-arrow{margin:0;font-size:1.2rem;}
