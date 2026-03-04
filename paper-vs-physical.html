@@ -321,67 +321,42 @@ const OZ_TO_G = 31.1035;
 let MSPI_B_JPY_G = 716.46;
 
 async function loadPrices() {
-  // Load MSPI-B from prices.json
   try {
     const res = await fetch('./prices.json?t=' + Date.now(), { signal: AbortSignal.timeout(8000) });
-    if (res.ok) {
-      const data = await res.json();
-      const p = data.prices_jpy_per_g || {};
-      if (p.mercari_mspi_b) MSPI_B_JPY_G = p.mercari_mspi_b;
-      const updatedAt = data.updated_at_utc ? new Date(data.updated_at_utc) : null;
-      if (updatedAt) {
-        const ts = updatedAt.toLocaleDateString('en-GB',{weekday:'short',day:'2-digit',month:'short',year:'numeric'})
-          + ' · ' + updatedAt.toLocaleTimeString('en-GB',{hour:'2-digit',minute:'2-digit'}) + ' UTC';
-        document.getElementById('masthead-date').textContent = 'Paper vs Physical · ' + ts;
-        document.getElementById('ts-text').textContent = 'MSPI-B last updated: ' + ts;
-      }
-    }
-  } catch(e) {}
+    if (!res.ok) throw new Error('HTTP ' + res.status);
+    const data = await res.json();
+    const p = data.prices_jpy_per_g || {};
 
-  // Fetch live COMEX price + USD/JPY via free API
-  try {
-    // Use frankfurter for FX, and metals-api fallback
-    const fxRes = await fetch('https://api.frankfurter.app/latest?from=USD&to=JPY');
-    const fxData = await fxRes.json();
-    const usdJpy = fxData.rates?.JPY || 150;
+    // Pull all values from prices.json (written by GitHub Actions 3x daily)
+    if (p.mercari_mspi_b) MSPI_B_JPY_G = p.mercari_mspi_b;
+    const comexUsd = p.comex_silver_usd_oz || null;
+    const usdJpy = p.usd_jpy || null;
 
-    // Fetch COMEX silver price via public metals API
-    // Using metals.live free tier
-    const metalRes = await fetch('https://metals.live/api/latest/silver');
-    let comexUsd = null;
-    if (metalRes.ok) {
-      const mData = await metalRes.json();
-      // metals.live returns price per troy oz in USD
-      comexUsd = mData?.price || mData?.silver || null;
-    }
-
-    // Fallback: try another free source
-    if (!comexUsd) {
-      try {
-        const r2 = await fetch('https://api.metalpriceapi.com/v1/latest?api_key=demo&base=XAG&currencies=USD');
-        if (r2.ok) {
-          const d2 = await r2.json();
-          // This gives XAG per USD, need to invert
-          if (d2?.rates?.USD) comexUsd = 1 / d2.rates.USD;
-        }
-      } catch(e2) {}
+    const updatedAt = data.updated_at_utc ? new Date(data.updated_at_utc) : null;
+    if (updatedAt) {
+      const ts = updatedAt.toLocaleDateString('en-GB',{weekday:'short',day:'2-digit',month:'short',year:'numeric'})
+        + ' · ' + updatedAt.toLocaleTimeString('en-GB',{hour:'2-digit',minute:'2-digit'}) + ' UTC';
+      document.getElementById('masthead-date').textContent = 'Paper vs Physical · ' + ts;
+      document.getElementById('ts-text').textContent = 'Last updated: ' + ts;
     }
 
     renderPrices(comexUsd, usdJpy);
 
   } catch(e) {
-    renderPrices(null, 150);
+    document.getElementById('ts-text').textContent = 'Could not load prices.json';
+    renderPrices(null, null);
   }
 }
 
 function renderPrices(comexUsd, usdJpy) {
+  const effectiveUsdJpy = usdJpy || 150;
   // Street price: convert MSPI-B from JPY/g to USD/oz
   const streetJpyG = MSPI_B_JPY_G;
   const streetJpyOz = streetJpyG * OZ_TO_G;
-  const streetUsd = streetJpyOz / usdJpy;
+  const streetUsd = streetJpyOz / effectiveUsdJpy;
 
   // Context bar
-  document.getElementById('ctx-fx').textContent = usdJpy ? '¥' + usdJpy.toFixed(2) : '—';
+  document.getElementById('ctx-fx').textContent = usdJpy ? '¥' + usdJpy.toFixed(2) : '¥' + effectiveUsdJpy.toFixed(2) + ' (est)';
   document.getElementById('ctx-street-jpy').textContent = streetJpyG ? '¥' + streetJpyG.toFixed(2) : '—';
 
   // Street panel
@@ -390,7 +365,7 @@ function renderPrices(comexUsd, usdJpy) {
 
   if (comexUsd) {
     // COMEX in JPY/g
-    const comexJpyOz = comexUsd * usdJpy;
+    const comexJpyOz = comexUsd * effectiveUsdJpy;
     const comexJpyG = comexJpyOz / OZ_TO_G;
 
     document.getElementById('comex-usd').textContent = comexUsd.toFixed(2);
