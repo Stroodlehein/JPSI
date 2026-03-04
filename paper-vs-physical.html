@@ -142,55 +142,70 @@ body{background:var(--bg);color:var(--ink);font-family:'DM Mono',monospace;font-
 @media(max-width:680px){
 .page{padding:0 16px 80px;}
 
-/* Masthead — collapse cleanly */
-.masthead{padding:20px 0 16px;}
-.masthead-top{flex-direction:column;gap:8px;}
+/* Masthead */
+.masthead{padding:20px 0 14px;}
+.masthead-top{flex-direction:column;gap:6px;}
 .masthead-right{flex-direction:row;align-items:center;justify-content:space-between;width:100%;}
-.masthead-title{font-size:1.6rem;}
+.masthead-title{font-size:1.7rem;}
 .masthead-title .kanji-inline{display:none;}
-.masthead-tagline{font-size:0.68rem;letter-spacing:0;line-height:1.5;margin-top:6px;}
-.masthead-meta{font-size:0.62rem;text-align:right;}
+.masthead-tagline{font-size:0.68rem;letter-spacing:0;line-height:1.5;margin-top:4px;}
+.masthead-meta{font-size:0.6rem;text-align:right;}
 
 /* Nav */
-.nav-link{padding:10px 12px;font-size:0.7rem;letter-spacing:0.06em;}
+.nav-link{padding:10px 10px;font-size:0.68rem;letter-spacing:0.05em;}
 
 /* Page header */
-.page-title{font-size:1.5rem;}
-.page-subtitle{font-size:0.68rem;letter-spacing:0.04em;}
+.page-title{font-size:1.4rem;}
+.page-subtitle{font-size:0.65rem;}
 
-/* Comparison block — keep side by side but shrink */
-.comparison-block{grid-template-columns:1fr 80px 1fr;margin-bottom:24px;}
-.price-panel{padding:16px 12px;}
-.panel-badge{font-size:0.55rem;padding:2px 6px;margin-bottom:10px;}
-.panel-label{font-size:0.6rem;letter-spacing:0.06em;}
-.panel-name{font-size:0.85rem;margin-bottom:12px;line-height:1.2;}
-.panel-price{font-size:1.8rem;letter-spacing:-0.01em;}
-.panel-price .currency{font-size:1rem;}
-.panel-price .unit{font-size:0.7rem;}
-.panel-jpy{font-size:0.7rem;margin-top:6px;}
-.panel-source{font-size:0.6rem;margin-top:10px;padding-top:8px;}
+/* Comparison block — full width vertical stack */
+.comparison-block{
+grid-template-columns:1fr;
+margin-bottom:24px;
+}
+.price-panel{padding:24px 20px;}
+.price-panel.comex{
+border-right:none;
+border-bottom:1px solid var(–border2);
+}
+.price-panel.street{
+border-top:1px solid var(–border2);
+}
+.panel-price{font-size:2.6rem;}
+.panel-name{font-size:1rem;}
 
-/* Premium center — keep vertical, just smaller */
-.premium-center{padding:12px 8px;min-width:unset;}
-.premium-label{font-size:0.52rem;letter-spacing:0.08em;margin-bottom:6px;}
-.premium-value{font-size:1.6rem;}
-.premium-arrow{font-size:1rem;margin:4px 0;}
-.premium-sublabel{font-size:0.55rem;margin-top:4px;}
+/* Premium — horizontal strip between panels */
+.premium-center{
+border-left:none;
+border-right:none;
+border-top:1px solid var(–border2);
+border-bottom:1px solid var(–border2);
+flex-direction:row;
+justify-content:center;
+align-items:center;
+gap:12px;
+padding:16px 20px;
+min-width:unset;
+}
+.premium-label{margin-bottom:0;text-align:left;white-space:nowrap;}
+.premium-arrow{margin:0;font-size:1.2rem;}
+.premium-value{font-size:2.2rem;}
+.premium-sublabel{margin-top:0;text-align:left;}
 
 /* Context bar */
-.context-bar{grid-template-columns:1fr;margin-bottom:24px;}
-.context-cell{padding:12px 16px;}
+.context-bar{grid-template-columns:1fr 1fr;margin-bottom:24px;}
+.context-cell:last-child{grid-column:1/-1;}
+.context-cell{padding:12px 14px;}
 
 /* Bar chart */
-.bar-label{width:90px;font-size:0.62rem;}
-.bar-track{height:28px;}
+.bar-label{width:100px;font-size:0.65rem;}
+.bar-track{height:30px;}
 
 /* Formula */
 .formula-box{padding:14px 16px;font-size:0.72rem;}
 
 /* Explainer */
 .explainer-grid{grid-template-columns:1fr;}
-.explainer-card{padding:16px;}
 
 /* Footer */
 .site-footer{flex-direction:column;gap:16px;}
