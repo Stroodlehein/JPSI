@@ -140,17 +140,49 @@ body{background:var(--bg);color:var(--ink);font-family:'DM Mono',monospace;font-
 
 /* ── Responsive ── */
 @media(max-width:680px){
-.masthead-title{font-size:1.9rem;white-space:nowrap;}
+/* Masthead */
+.masthead-top{flex-direction:column;gap:12px;}
+.masthead-right{align-items:flex-start;}
+.masthead-title{font-size:1.8rem;}
 .masthead-title .kanji-inline{display:none;}
-.masthead-tagline{font-size:0.7rem;letter-spacing:0;word-break:normal;overflow-wrap:normal;}
-.comparison-block{grid-template-columns:1fr;grid-template-rows:auto auto auto;}
+.masthead-tagline{font-size:0.7rem;letter-spacing:0;line-height:1.6;}
+.masthead-meta{text-align:left;}
+
+/* Comparison block — stack vertically */
+.comparison-block{grid-template-columns:1fr;border:1px solid var(–border2);}
+.price-panel{padding:24px 20px;}
 .price-panel.comex{border-right:none;border-bottom:1px solid var(–border2);}
-.premium-center{border-left:none;border-right:none;border-top:1px solid var(–border2);border-bottom:1px solid var(–border2);flex-direction:row;justify-content:space-around;padding:20px;}
+.price-panel.street{border-left:none;}
+.premium-center{
+grid-column:1;
+border:none;
+border-top:1px solid var(–border2);
+border-bottom:1px solid var(–border2);
+flex-direction:row;
+justify-content:center;
+align-items:center;
+gap:16px;
+padding:20px;
+min-width:unset;
+}
+.premium-label{margin-bottom:0;text-align:left;}
+.premium-arrow{margin:0;}
+
+/* Prices */
+.panel-price{font-size:2.4rem;}
+.premium-value{font-size:2.4rem;}
+
+/* Context bar */
+.context-bar{grid-template-columns:1fr 1fr;}
+.context-cell:last-child{grid-column:1/-1;}
+
+/* Bar chart */
+.bar-label{width:90px;font-size:0.62rem;}
+
+/* Explainer */
 .explainer-grid{grid-template-columns:1fr;}
-.context-bar{grid-template-columns:1fr;}
-.bar-label{width:110px;font-size:0.65rem;}
-.panel-price{font-size:2.2rem;}
-.premium-value{font-size:2.2rem;}
+
+/* Footer */
 .site-footer{flex-direction:column;}
 }
 </style>
