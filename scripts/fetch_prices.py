@@ -15,6 +15,36 @@ SOURCES = {
   "daikichi":   "https://www.kaitori-daikichi.jp/list/gold/silver/souba/",
 }
 
+def get_comex_and_fx():
+  """Fetch COMEX silver spot (USD/oz) and USD/JPY rate."""
+  comex_usd = None
+  usd_jpy = None
+
+  # Try gold-api.com (no API key required)
+  try:
+    r = requests.get("https://gold-api.com/price/silver", headers={"User-Agent": UA}, timeout=15)
+    if r.ok:
+      d = r.json()
+      # Returns: {"price": 32.45, ...} in USD/oz
+      val = d.get("price") or d.get("silver") or d.get("XAG")
+      if val and 10 < float(val) < 500:
+        comex_usd = float(val)
+  except Exception:
+    pass
+
+  # Fallback: frankfurter for USD/JPY (no key required)
+  try:
+    r = requests.get("https://api.frankfurter.app/latest?from=USD&to=JPY", timeout=10)
+    if r.ok:
+      d = r.json()
+      rate = d.get("rates", {}).get("JPY")
+      if rate and 50 < float(rate) < 300:
+        usd_jpy = float(rate)
+  except Exception:
+    pass
+
+  return comex_usd, usd_jpy
+
 def get_html(url, encoding=None):
   r = requests.get(url, headers={"User-Agent": UA}, timeout=30)
   r.raise_for_status()
@@ -154,6 +184,15 @@ def main():
     "errors": [],
     "sources": SOURCES,
   }
+
+  # Fetch COMEX silver price and USD/JPY rate
+  comex_usd, usd_jpy = get_comex_and_fx()
+  if comex_usd:
+    out["prices_jpy_per_g"]["comex_silver_usd_oz"] = comex_usd
+  if usd_jpy:
+    out["prices_jpy_per_g"]["usd_jpy"] = usd_jpy
+  if comex_usd and usd_jpy:
+    out["prices_jpy_per_g"]["comex_silver_jpy_g"] = round((comex_usd * usd_jpy) / 31.1035, 2)
 
   v, err = safe_get("tanaka",     lambda: parse_tanaka(get_html(SOURCES["tanaka"])))
   if err: out["errors"].append(err)
