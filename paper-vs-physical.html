@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+
 <html lang="en">
 <head>
 <meta charset="UTF-8">
@@ -35,127 +36,131 @@ body{background:var(--bg);color:var(--ink);font-family:'DM Mono',monospace;font-
 .page{max-width:900px;margin:0 auto;padding:0 24px 100px;position:relative;z-index:1;}
 
 /* ── Masthead ── */
-.masthead{border-bottom:3px double var(--border2);padding:32px 0 20px;margin-bottom:0;}
+.masthead{border-bottom:3px double var(–border2);padding:32px 0 20px;margin-bottom:0;}
 .masthead-top{display:flex;justify-content:space-between;align-items:flex-start;gap:16px;}
-.masthead-kicker{font-family:'DM Mono',monospace;font-size:0.75rem;letter-spacing:0.2em;color:var(--ink4);text-transform:uppercase;margin-bottom:8px;font-weight:500;}
-.masthead-title{font-family:'Playfair Display',Georgia,serif;font-size:2.6rem;font-weight:700;letter-spacing:-0.01em;line-height:1;color:var(--ink);}
-.masthead-title .kanji-inline{font-family:'Noto Serif JP';font-weight:600;font-size:1.8rem;color:var(--ink);margin-left:10px;vertical-align:middle;}
-.masthead-tagline{margin-top:10px;font-size:0.78rem;color:var(--ink3);font-family:'DM Mono',monospace;letter-spacing:0.04em;max-width:540px;line-height:1.8;}
+.masthead-kicker{font-family:‘DM Mono’,monospace;font-size:0.75rem;letter-spacing:0.2em;color:var(–ink4);text-transform:uppercase;margin-bottom:8px;font-weight:500;}
+.masthead-title{font-family:‘Playfair Display’,Georgia,serif;font-size:2.6rem;font-weight:700;letter-spacing:-0.01em;line-height:1;color:var(–ink);}
+.masthead-title .kanji-inline{font-family:‘Noto Serif JP’;font-weight:600;font-size:1.8rem;color:var(–ink);margin-left:10px;vertical-align:middle;}
+.masthead-tagline{margin-top:10px;font-size:0.78rem;color:var(–ink3);font-family:‘DM Mono’,monospace;letter-spacing:0.04em;max-width:540px;line-height:1.8;word-break:normal;overflow-wrap:anywhere;}
 .masthead-right{display:flex;flex-direction:column;align-items:flex-end;gap:10px;flex-shrink:0;}
-.lang-toggle{display:flex;border:1px solid var(--border2);border-radius:2px;overflow:hidden;}
-.lang-btn{padding:5px 12px;font-family:'DM Mono',monospace;font-size:0.8rem;letter-spacing:0.08em;cursor:pointer;border:none;background:var(--paper);color:var(--ink3);transition:all 0.15s;}
-.lang-btn.active{background:var(--ink);color:var(--paper);}
-.lang-btn:hover:not(.active){background:var(--border);}
-.masthead-meta{font-family:'DM Mono',monospace;font-size:0.72rem;color:var(--ink4);letter-spacing:0.06em;text-align:right;line-height:1.7;}
+.lang-toggle{display:flex;border:1px solid var(–border2);border-radius:2px;overflow:hidden;}
+.lang-btn{padding:5px 12px;font-family:‘DM Mono’,monospace;font-size:0.8rem;letter-spacing:0.08em;cursor:pointer;border:none;background:var(–paper);color:var(–ink3);transition:all 0.15s;}
+.lang-btn.active{background:var(–ink);color:var(–paper);}
+.lang-btn:hover:not(.active){background:var(–border);}
+.masthead-meta{font-family:‘DM Mono’,monospace;font-size:0.72rem;color:var(–ink4);letter-spacing:0.06em;text-align:right;line-height:1.7;}
 
 /* ── Nav ── */
-.site-nav{display:flex;gap:0;border-bottom:1px solid var(--border);margin-bottom:32px;}
-.nav-link{font-family:'DM Mono',monospace;font-size:0.78rem;letter-spacing:0.1em;text-transform:uppercase;padding:10px 18px;text-decoration:none;color:var(--ink4);border-bottom:2px solid transparent;margin-bottom:-1px;transition:all 0.15s;}
-.nav-link:hover{color:var(--ink2);}
-.nav-link.active{color:var(--ink);border-bottom-color:var(--ink);}
+.site-nav{display:flex;gap:0;border-bottom:1px solid var(–border);margin-bottom:32px;}
+.nav-link{font-family:‘DM Mono’,monospace;font-size:0.78rem;letter-spacing:0.1em;text-transform:uppercase;padding:10px 18px;text-decoration:none;color:var(–ink4);border-bottom:2px solid transparent;margin-bottom:-1px;transition:all 0.15s;}
+.nav-link:hover{color:var(–ink2);}
+.nav-link.active{color:var(–ink);border-bottom-color:var(–ink);}
 
 /* ── Page header ── */
 .page-header{margin-bottom:32px;}
-.page-title{font-family:'Playfair Display',Georgia,serif;font-size:2rem;font-weight:700;color:var(--ink);line-height:1.1;margin-bottom:8px;}
-.page-subtitle{font-size:0.8rem;color:var(--ink4);letter-spacing:0.08em;text-transform:uppercase;}
+.page-title{font-family:‘Playfair Display’,Georgia,serif;font-size:2rem;font-weight:700;color:var(–ink);line-height:1.1;margin-bottom:8px;}
+.page-subtitle{font-size:0.8rem;color:var(–ink4);letter-spacing:0.08em;text-transform:uppercase;}
 
 /* ── Main comparison block ── */
-.comparison-block{display:grid;grid-template-columns:1fr auto 1fr;gap:0;margin-bottom:40px;border:1px solid var(--border2);}
+.comparison-block{display:grid;grid-template-columns:1fr auto 1fr;gap:0;margin-bottom:40px;border:1px solid var(–border2);}
 
 .price-panel{padding:32px 28px;}
-.price-panel.comex{background:var(--comex-bg);border-right:1px solid var(--border2);}
-.price-panel.street{background:var(--street-bg);}
+.price-panel.comex{background:var(–comex-bg);border-right:1px solid var(–border2);}
+.price-panel.street{background:var(–street-bg);}
 
-.panel-badge{display:inline-block;font-family:'DM Mono',monospace;font-size:0.62rem;letter-spacing:0.18em;text-transform:uppercase;padding:3px 8px;border-radius:2px;margin-bottom:14px;font-weight:500;}
-.panel-badge.comex{background:var(--comex);color:#fff;}
-.panel-badge.street{background:var(--street);color:#fff;}
+.panel-badge{display:inline-block;font-family:‘DM Mono’,monospace;font-size:0.62rem;letter-spacing:0.18em;text-transform:uppercase;padding:3px 8px;border-radius:2px;margin-bottom:14px;font-weight:500;}
+.panel-badge.comex{background:var(–comex);color:#fff;}
+.panel-badge.street{background:var(–street);color:#fff;}
 
-.panel-label{font-family:'DM Mono',monospace;font-size:0.72rem;letter-spacing:0.1em;text-transform:uppercase;color:var(--ink3);margin-bottom:6px;}
-.panel-name{font-family:'Playfair Display',Georgia,serif;font-size:1.15rem;font-weight:700;color:var(--ink);margin-bottom:20px;line-height:1.2;}
-.panel-price{font-family:'DM Mono',monospace;font-size:3rem;font-weight:400;color:var(--ink);letter-spacing:-0.02em;line-height:1;}
+.panel-label{font-family:‘DM Mono’,monospace;font-size:0.72rem;letter-spacing:0.1em;text-transform:uppercase;color:var(–ink3);margin-bottom:6px;}
+.panel-name{font-family:‘Playfair Display’,Georgia,serif;font-size:1.15rem;font-weight:700;color:var(–ink);margin-bottom:20px;line-height:1.2;}
+.panel-price{font-family:‘DM Mono’,monospace;font-size:3rem;font-weight:400;color:var(–ink);letter-spacing:-0.02em;line-height:1;}
 .panel-price .currency{font-size:1.6rem;vertical-align:super;margin-right:2px;font-weight:300;}
-.panel-price .unit{font-size:0.85rem;color:var(--ink4);font-weight:300;margin-left:4px;}
-.panel-jpy{margin-top:8px;font-family:'DM Mono',monospace;font-size:0.82rem;color:var(--ink3);}
-.panel-source{margin-top:16px;font-size:0.68rem;color:var(--ink4);letter-spacing:0.06em;line-height:1.6;border-top:1px solid var(--border);padding-top:12px;}
+.panel-price .unit{font-size:0.85rem;color:var(–ink4);font-weight:300;margin-left:4px;}
+.panel-jpy{margin-top:8px;font-family:‘DM Mono’,monospace;font-size:0.82rem;color:var(–ink3);}
+.panel-source{margin-top:16px;font-size:0.68rem;color:var(–ink4);letter-spacing:0.06em;line-height:1.6;border-top:1px solid var(–border);padding-top:12px;}
 
 /* ── Premium center panel ── */
-.premium-center{display:flex;flex-direction:column;align-items:center;justify-content:center;padding:28px 20px;background:var(--premium-bg);border-left:1px solid var(--border2);border-right:1px solid var(--border2);min-width:160px;}
-.premium-label{font-family:'DM Mono',monospace;font-size:0.62rem;letter-spacing:0.16em;text-transform:uppercase;color:var(--ink4);margin-bottom:10px;text-align:center;}
-.premium-value{font-family:'Playfair Display',Georgia,serif;font-size:2.8rem;font-weight:700;color:var(--premium);line-height:1;text-align:center;}
-.premium-sublabel{font-family:'DM Mono',monospace;font-size:0.65rem;color:var(--ink4);letter-spacing:0.08em;margin-top:8px;text-align:center;line-height:1.5;}
-.premium-arrow{font-size:1.4rem;color:var(--premium);margin:8px 0;}
+.premium-center{display:flex;flex-direction:column;align-items:center;justify-content:center;padding:28px 20px;background:var(–premium-bg);border-left:1px solid var(–border2);border-right:1px solid var(–border2);min-width:160px;}
+.premium-label{font-family:‘DM Mono’,monospace;font-size:0.62rem;letter-spacing:0.16em;text-transform:uppercase;color:var(–ink4);margin-bottom:10px;text-align:center;}
+.premium-value{font-family:‘Playfair Display’,Georgia,serif;font-size:2.8rem;font-weight:700;color:var(–premium);line-height:1;text-align:center;}
+.premium-sublabel{font-family:‘DM Mono’,monospace;font-size:0.65rem;color:var(–ink4);letter-spacing:0.08em;margin-top:8px;text-align:center;line-height:1.5;}
+.premium-arrow{font-size:1.4rem;color:var(–premium);margin:8px 0;}
 
 /* ── Loading state ── */
-.loading-val{color:var(--ink4) !important;font-size:1.8rem !important;}
+.loading-val{color:var(–ink4) !important;font-size:1.8rem !important;}
 
 /* ── Context bar ── */
-.context-bar{display:grid;grid-template-columns:1fr 1fr 1fr;gap:1px;background:var(--border);border:1px solid var(--border2);margin-bottom:40px;}
-.context-cell{background:var(--paper);padding:16px 20px;}
-.context-cell-label{font-size:0.62rem;letter-spacing:0.14em;text-transform:uppercase;color:var(--ink4);margin-bottom:4px;}
-.context-cell-value{font-family:'DM Mono',monospace;font-size:1rem;font-weight:500;color:var(--ink);}
-.context-cell-sub{font-size:0.68rem;color:var(--ink4);margin-top:2px;}
+.context-bar{display:grid;grid-template-columns:1fr 1fr 1fr;gap:1px;background:var(–border);border:1px solid var(–border2);margin-bottom:40px;}
+.context-cell{background:var(–paper);padding:16px 20px;}
+.context-cell-label{font-size:0.62rem;letter-spacing:0.14em;text-transform:uppercase;color:var(–ink4);margin-bottom:4px;}
+.context-cell-value{font-family:‘DM Mono’,monospace;font-size:1rem;font-weight:500;color:var(–ink);}
+.context-cell-sub{font-size:0.68rem;color:var(–ink4);margin-top:2px;}
 
 /* ── Section divider ── */
-.section-label{font-family:'DM Mono',monospace;font-size:0.65rem;letter-spacing:0.18em;text-transform:uppercase;color:var(--ink4);margin-bottom:16px;padding-bottom:8px;border-bottom:1px solid var(--border);}
+.section-label{font-family:‘DM Mono’,monospace;font-size:0.65rem;letter-spacing:0.18em;text-transform:uppercase;color:var(–ink4);margin-bottom:16px;padding-bottom:8px;border-bottom:1px solid var(–border);}
 
 /* ── Explanation ── */
 .explainer{margin-bottom:40px;}
 .explainer-grid{display:grid;grid-template-columns:1fr 1fr;gap:24px;margin-bottom:24px;}
-.explainer-card{border:1px solid var(--border);padding:20px 22px;}
-.explainer-card-title{font-family:'DM Mono',monospace;font-size:0.7rem;letter-spacing:0.14em;text-transform:uppercase;color:var(--ink3);margin-bottom:10px;font-weight:500;}
-.explainer-card-body{font-size:0.82rem;color:var(--ink2);line-height:1.8;}
+.explainer-card{border:1px solid var(–border);padding:20px 22px;}
+.explainer-card-title{font-family:‘DM Mono’,monospace;font-size:0.7rem;letter-spacing:0.14em;text-transform:uppercase;color:var(–ink3);margin-bottom:10px;font-weight:500;}
+.explainer-card-body{font-size:0.82rem;color:var(–ink2);line-height:1.8;}
 
 /* ── Chart bar ── */
 .bar-chart{margin-bottom:40px;}
 .bar-row{display:flex;align-items:center;gap:16px;margin-bottom:12px;}
-.bar-label{font-family:'DM Mono',monospace;font-size:0.72rem;color:var(--ink3);width:160px;flex-shrink:0;letter-spacing:0.04em;}
-.bar-track{flex:1;height:36px;background:var(--border);position:relative;overflow:hidden;}
+.bar-label{font-family:‘DM Mono’,monospace;font-size:0.72rem;color:var(–ink3);width:160px;flex-shrink:0;letter-spacing:0.04em;}
+.bar-track{flex:1;height:36px;background:var(–border);position:relative;overflow:hidden;}
 .bar-fill{height:100%;transition:width 1.2s cubic-bezier(0.4,0,0.2,1);display:flex;align-items:center;padding-left:10px;}
-.bar-fill.comex-bar{background:var(--comex);}
-.bar-fill.street-bar{background:var(--street);}
-.bar-val{font-family:'DM Mono',monospace;font-size:0.75rem;color:#fff;font-weight:500;white-space:nowrap;}
+.bar-fill.comex-bar{background:var(–comex);}
+.bar-fill.street-bar{background:var(–street);}
+.bar-val{font-family:‘DM Mono’,monospace;font-size:0.75rem;color:#fff;font-weight:500;white-space:nowrap;}
 
 /* ── Formula ── */
-.formula-box{background:#f7f4f0;border:1px solid var(--border2);padding:20px 24px;margin-bottom:40px;font-family:'DM Mono',monospace;font-size:0.8rem;color:var(--ink2);line-height:2;}
-.formula-box .formula-title{font-size:0.65rem;letter-spacing:0.16em;text-transform:uppercase;color:var(--ink4);margin-bottom:12px;}
-.formula-box .formula-line{color:var(--ink);font-weight:500;}
-.formula-box .formula-result{color:var(--premium);font-size:1rem;font-weight:500;margin-top:8px;}
+.formula-box{background:#f7f4f0;border:1px solid var(–border2);padding:20px 24px;margin-bottom:40px;font-family:‘DM Mono’,monospace;font-size:0.8rem;color:var(–ink2);line-height:2;}
+.formula-box .formula-title{font-size:0.65rem;letter-spacing:0.16em;text-transform:uppercase;color:var(–ink4);margin-bottom:12px;}
+.formula-box .formula-line{color:var(–ink);font-weight:500;}
+.formula-box .formula-result{color:var(–premium);font-size:1rem;font-weight:500;margin-top:8px;}
 
 /* ── Disclaimer ── */
-.disclaimer{font-size:0.72rem;color:var(--ink4);line-height:1.8;border-top:1px solid var(--border);padding-top:16px;margin-bottom:40px;}
+.disclaimer{font-size:0.72rem;color:var(–ink4);line-height:1.8;border-top:1px solid var(–border);padding-top:16px;margin-bottom:40px;}
 
 /* ── Footer ── */
-.site-footer{border-top:3px double var(--border2);padding-top:20px;display:flex;justify-content:space-between;align-items:flex-start;gap:24px;flex-wrap:wrap;}
-.footer-brand{font-family:'Playfair Display',serif;font-size:1.1rem;font-weight:700;color:var(--ink);margin-bottom:4px;}
-.footer-sub{font-size:0.68rem;color:var(--ink4);line-height:1.7;}
+.site-footer{border-top:3px double var(–border2);padding-top:20px;display:flex;justify-content:space-between;align-items:flex-start;gap:24px;flex-wrap:wrap;}
+.footer-brand{font-family:‘Playfair Display’,serif;font-size:1.1rem;font-weight:700;color:var(–ink);margin-bottom:4px;}
+.footer-sub{font-size:0.68rem;color:var(–ink4);line-height:1.7;}
 .footer-links{display:flex;gap:20px;font-size:0.7rem;letter-spacing:0.08em;text-transform:uppercase;}
-.footer-links a{color:var(--ink4);text-decoration:none;}
-.footer-links a:hover{color:var(--ink2);}
+.footer-links a{color:var(–ink4);text-decoration:none;}
+.footer-links a:hover{color:var(–ink2);}
 
 /* ── Timestamp ── */
-.timestamp-bar{display:flex;justify-content:space-between;align-items:center;font-size:0.68rem;color:var(--ink4);margin-bottom:24px;letter-spacing:0.06em;flex-wrap:wrap;gap:8px;}
-.timestamp-bar .live-dot{width:6px;height:6px;background:var(--green);border-radius:50%;display:inline-block;margin-right:6px;animation:pulse 2s infinite;}
+.timestamp-bar{display:flex;justify-content:space-between;align-items:center;font-size:0.68rem;color:var(–ink4);margin-bottom:24px;letter-spacing:0.06em;flex-wrap:wrap;gap:8px;}
+.timestamp-bar .live-dot{width:6px;height:6px;background:var(–green);border-radius:50%;display:inline-block;margin-right:6px;animation:pulse 2s infinite;}
 @keyframes pulse{0%,100%{opacity:1;}50%{opacity:0.4;}}
 
 /* ── Responsive ── */
 @media(max-width:680px){
-  .masthead-title{font-size:1.9rem;}
-  .comparison-block{grid-template-columns:1fr;grid-template-rows:auto auto auto;}
-  .price-panel.comex{border-right:none;border-bottom:1px solid var(--border2);}
-  .premium-center{border-left:none;border-right:none;border-top:1px solid var(--border2);border-bottom:1px solid var(--border2);flex-direction:row;justify-content:space-around;padding:20px;}
-  .explainer-grid{grid-template-columns:1fr;}
-  .context-bar{grid-template-columns:1fr;}
-  .bar-label{width:110px;font-size:0.65rem;}
-  .panel-price{font-size:2.2rem;}
-  .premium-value{font-size:2.2rem;}
-  .site-footer{flex-direction:column;}
+.masthead-title{font-size:1.9rem;white-space:nowrap;}
+.masthead-title .kanji-inline{display:none;}
+.masthead-tagline{font-size:0.7rem;letter-spacing:0;word-break:normal;overflow-wrap:normal;}
+.comparison-block{grid-template-columns:1fr;grid-template-rows:auto auto auto;}
+.price-panel.comex{border-right:none;border-bottom:1px solid var(–border2);}
+.premium-center{border-left:none;border-right:none;border-top:1px solid var(–border2);border-bottom:1px solid var(–border2);flex-direction:row;justify-content:space-around;padding:20px;}
+.explainer-grid{grid-template-columns:1fr;}
+.context-bar{grid-template-columns:1fr;}
+.bar-label{width:110px;font-size:0.65rem;}
+.panel-price{font-size:2.2rem;}
+.premium-value{font-size:2.2rem;}
+.site-footer{flex-direction:column;}
 }
 </style>
+
 </head>
 <body>
 <div class="page">
 
   <!-- Masthead -->
+
   <header class="masthead">
     <div class="masthead-top">
       <div>
@@ -174,6 +179,7 @@ body{background:var(--bg);color:var(--ink);font-family:'DM Mono',monospace;font-
   </header>
 
   <!-- Nav -->
+
   <nav class="site-nav">
     <a href="index.html" class="nav-link" data-en="Index" data-ja="指数">Index</a>
     <a href="paper-vs-physical.html" class="nav-link active" data-en="Paper vs Physical" data-ja="先物 vs 現物">Paper vs Physical</a>
@@ -181,54 +187,61 @@ body{background:var(--bg);color:var(--ink);font-family:'DM Mono',monospace;font-
   </nav>
 
   <!-- Page header -->
+
   <div class="page-header">
     <div class="page-title" data-en="Paper vs Physical Silver" data-ja="先物 vs 現物銀">Paper vs Physical Silver</div>
     <div class="page-subtitle" data-en="COMEX Futures · Japan Street Retail (Mercari) · Live Premium" data-ja="COMEX先物 · 日本フリマ実売（メルカリ）· リアルタイムプレミアム">COMEX Futures · Japan Street Retail (Mercari) · Live Premium</div>
   </div>
 
   <!-- Timestamp -->
+
   <div class="timestamp-bar">
     <span><span class="live-dot"></span><span id="ts-text">Loading…</span></span>
-    <span id="ts-right" style="color:var(--ink4);font-size:0.65rem;">COMEX: live · MSPI-B: Mon/Wed/Fri 10:00 JST</span>
+    <span id="ts-right" style="color:var(--ink4);font-size:0.65rem;">COMEX: every 10 min · MSPI-B: Mon/Wed/Fri 10:00 JST</span>
   </div>
 
   <!-- Main comparison block -->
+
   <div class="comparison-block">
 
-    <!-- COMEX panel -->
-    <div class="price-panel comex">
-      <div class="panel-badge comex">COMEX</div>
-      <div class="panel-label" data-en="Paper Market · Futures" data-ja="先物市場">Paper Market · Futures</div>
-      <div class="panel-name" data-en="COMEX Silver Futures (XAG)" data-ja="COMEX 銀先物（XAG）">COMEX Silver Futures (XAG)</div>
-      <div class="panel-price">
-        <span class="currency">$</span><span id="comex-usd">—</span><span class="unit">/ oz</span>
-      </div>
-      <div class="panel-jpy" id="comex-jpy">≈ ¥— / g</div>
-      <div class="panel-source" data-en="Global futures price. Represents paper contracts for silver delivery. Source: live market data." data-ja="グローバル先物価格。銀の受渡契約を表します。出典：リアルタイム市場データ。">Global futures price. Represents paper contracts for silver delivery. Source: live market data.</div>
-    </div>
+```
+<!-- COMEX panel -->
+<div class="price-panel comex">
+  <div class="panel-badge comex">COMEX</div>
+  <div class="panel-label" data-en="Paper Market · Futures" data-ja="先物市場">Paper Market · Futures</div>
+  <div class="panel-name" data-en="COMEX Silver Futures (XAG)" data-ja="COMEX 銀先物（XAG）">COMEX Silver Futures (XAG)</div>
+  <div class="panel-price">
+    <span class="currency">$</span><span id="comex-usd">—</span><span class="unit">/ oz</span>
+  </div>
+  <div class="panel-jpy" id="comex-jpy">≈ ¥— / g</div>
+  <div class="panel-source" data-en="Global futures price. Represents paper contracts for silver delivery. Source: live market data." data-ja="グローバル先物価格。銀の受渡契約を表します。出典：リアルタイム市場データ。">Global futures price. Represents paper contracts for silver delivery. Source: live market data.</div>
+</div>
 
-    <!-- Premium center -->
-    <div class="premium-center">
-      <div class="premium-label" data-en="Japan Physical Premium" data-ja="日本現物プレミアム">Japan<br>Physical<br>Premium</div>
-      <div class="premium-arrow">↑</div>
-      <div class="premium-value" id="premium-pct">—</div>
-      <div class="premium-sublabel" data-en="vs COMEX" data-ja="COMEX比">vs COMEX</div>
-    </div>
+<!-- Premium center -->
+<div class="premium-center">
+  <div class="premium-label" data-en="Japan Physical Premium" data-ja="日本現物プレミアム">Japan<br>Physical<br>Premium</div>
+  <div class="premium-arrow">↑</div>
+  <div class="premium-value" id="premium-pct">—</div>
+  <div class="premium-sublabel" data-en="vs COMEX" data-ja="COMEX比">vs COMEX</div>
+</div>
 
-    <!-- Street panel -->
-    <div class="price-panel street">
-      <div class="panel-badge street">MSPI-B</div>
-      <div class="panel-label" data-en="Physical Market · Street Retail" data-ja="現物市場・フリマ実売">Physical Market · Street Retail</div>
-      <div class="panel-name" data-en="Japan Street Silver (Mercari)" data-ja="日本現物銀（メルカリ）">Japan Street Silver (Mercari)</div>
-      <div class="panel-price">
-        <span class="currency">$</span><span id="street-usd">—</span><span class="unit">/ oz</span>
-      </div>
-      <div class="panel-jpy" id="street-jpy">≈ ¥— / g</div>
-      <div class="panel-source" data-en="Real peer-to-peer sold prices for 1oz .999 silver bullion on Mercari Japan. JPMI MSPI-B · Updated Mon/Wed/Fri." data-ja="メルカリ日本での1oz .999銀地金のP2P成約価格。JPMI MSPI-B · 月・水・金更新。">Real peer-to-peer sold prices for 1oz .999 silver bullion on Mercari Japan. JPMI MSPI-B · Updated Mon/Wed/Fri.</div>
-    </div>
+<!-- Street panel -->
+<div class="price-panel street">
+  <div class="panel-badge street">MSPI-B</div>
+  <div class="panel-label" data-en="Physical Market · Street Retail" data-ja="現物市場・フリマ実売">Physical Market · Street Retail</div>
+  <div class="panel-name" data-en="Japan Street Silver (Mercari)" data-ja="日本現物銀（メルカリ）">Japan Street Silver (Mercari)</div>
+  <div class="panel-price">
+    <span class="currency">$</span><span id="street-usd">—</span><span class="unit">/ oz</span>
+  </div>
+  <div class="panel-jpy" id="street-jpy">≈ ¥— / g</div>
+  <div class="panel-source" data-en="Real peer-to-peer sold prices for 1oz .999 silver bullion on Mercari Japan. JPMI MSPI-B · Updated Mon/Wed/Fri." data-ja="メルカリ日本での1oz .999銀地金のP2P成約価格。JPMI MSPI-B · 月・水・金更新。">Real peer-to-peer sold prices for 1oz .999 silver bullion on Mercari Japan. JPMI MSPI-B · Updated Mon/Wed/Fri.</div>
+</div>
+```
+
   </div>
 
   <!-- Context bar -->
+
   <div class="context-bar">
     <div class="context-cell">
       <div class="context-cell-label" data-en="USD/JPY Rate" data-ja="ドル円レート">USD/JPY Rate</div>
@@ -248,6 +261,7 @@ body{background:var(--bg);color:var(--ink);font-family:'DM Mono',monospace;font-
   </div>
 
   <!-- Bar chart -->
+
   <div class="bar-chart">
     <div class="section-label" data-en="Visual Comparison · $/oz" data-ja="視覚比較 · ドル/オンス">Visual Comparison · $/oz</div>
     <div class="bar-row">
@@ -269,6 +283,7 @@ body{background:var(--bg);color:var(--ink);font-family:'DM Mono',monospace;font-
   </div>
 
   <!-- Formula -->
+
   <div class="formula-box">
     <div class="formula-title" data-en="Premium Formula" data-ja="プレミアム計算式">Premium Formula</div>
     <div class="formula-line">Japan Physical Premium = (Japan Street − COMEX) ÷ COMEX</div>
@@ -277,6 +292,7 @@ body{background:var(--bg);color:var(--ink);font-family:'DM Mono',monospace;font-
   </div>
 
   <!-- Explainer -->
+
   <div class="explainer">
     <div class="section-label" data-en="What This Measures" data-ja="何を計測しているか">What This Measures</div>
     <div class="explainer-grid">
@@ -296,9 +312,11 @@ body{background:var(--bg);color:var(--ink);font-family:'DM Mono',monospace;font-
   </div>
 
   <!-- Disclaimer -->
+
   <div class="disclaimer" data-en="⚠ COMEX price fetched via live market data API and converted to JPY using live USD/JPY rate. MSPI-B updated Mon/Wed/Fri 10:00 JST from Mercari sold listings. Mercari prices are buyer-paid — actual seller proceeds are lower after 10% commission and delivery fees. This page is for informational purposes only and does not constitute financial advice." data-ja="⚠ COMEX価格はリアルタイム市場データAPIから取得し、USD/JPY為替レートで円換算しています。MSPI-Bは月・水・金10:00 JSTにメルカリ成約価格から更新されます。メルカリ価格は買い手の支払い価格であり、10%手数料と配送料控除後の売り手手取りは異なります。本ページは情報提供のみを目的とし、投資アドバイスではありません。">⚠ COMEX price fetched via live market data API and converted to JPY using live USD/JPY rate. MSPI-B updated Mon/Wed/Fri 10:00 JST from Mercari sold listings. Mercari prices are buyer-paid — actual seller proceeds are lower after 10% commission and delivery fees. This page is for informational purposes only and does not constitute financial advice.</div>
 
   <!-- Footer -->
+
   <footer class="site-footer">
     <div>
       <div class="footer-brand">JPMI</div>
@@ -333,10 +351,15 @@ async function loadPrices() {
     const usdJpy = p.usd_jpy || null;
 
     const updatedAt = data.updated_at_utc ? new Date(data.updated_at_utc) : null;
-    if (updatedAt) {
+    const comexUpdatedAt = data.comex_updated_at_utc ? new Date(data.comex_updated_at_utc) : null;
+    if (comexUpdatedAt) {
+      const ts = comexUpdatedAt.toLocaleDateString('en-GB',{weekday:'short',day:'2-digit',month:'short',year:'numeric'})
+        + ' · ' + comexUpdatedAt.toLocaleTimeString('en-GB',{hour:'2-digit',minute:'2-digit'}) + ' UTC';
+      document.getElementById('masthead-date').textContent = 'Paper vs Physical · COMEX: ' + ts;
+      document.getElementById('ts-text').textContent = 'COMEX last updated: ' + ts;
+    } else if (updatedAt) {
       const ts = updatedAt.toLocaleDateString('en-GB',{weekday:'short',day:'2-digit',month:'short',year:'numeric'})
         + ' · ' + updatedAt.toLocaleTimeString('en-GB',{hour:'2-digit',minute:'2-digit'}) + ' UTC';
-      document.getElementById('masthead-date').textContent = 'Paper vs Physical · ' + ts;
       document.getElementById('ts-text').textContent = 'Last updated: ' + ts;
     }
 
@@ -422,5 +445,6 @@ function setLang(lang) {
 
 document.addEventListener('DOMContentLoaded', loadPrices);
 </script>
+
 </body>
 </html>
