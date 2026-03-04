@@ -1,0 +1,451 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>JPMI — Paper vs Physical Silver · COMEX vs Japan Street</title>
+<meta name="description" content="Live comparison of COMEX paper silver futures vs real physical silver prices on Japan's street market (Mercari). The Japan Physical Premium — updated daily.">
+<meta name="keywords" content="COMEX silver price, physical silver premium, Japan silver premium, paper vs physical silver, 銀 現物 プレミアム, JPMI">
+<meta name="author" content="JPMI — Japan Physical Metals Index">
+<meta name="robots" content="index, follow">
+<link rel="icon" type="image/x-icon" href="favicon.ico">
+<link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="favicon-16.png">
+<link rel="apple-touch-icon" sizes="180x180" href="favicon-180.png">
+<link rel="canonical" href="https://www.japanphysicalmetals.jp/paper-vs-physical">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://www.japanphysicalmetals.jp/paper-vs-physical">
+<meta property="og:title" content="Paper vs Physical Silver · COMEX vs Japan Street">
+<meta property="og:description" content="How much more does physical silver cost vs COMEX futures? Live Japan Physical Premium data.">
+<meta property="og:image" content="https://www.japanphysicalmetals.jp/og-image.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:site" content="@JPMI_index">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@200;300;400;600&family=DM+Mono:wght@300;400;500&family=Playfair+Display:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg:#ffffff; --paper:#ffffff; --ink:#17140f; --ink2:#3d3830; --ink3:#7a7368; --ink4:#a89f94;
+  --silver:#8a98a8; --border:#ddd8cf; --border2:#ccc6bb; --red:#8c2e22; --green:#2a5c3a;
+  --green-bg:#f0f6f1; --amber:#7a5a18; --amber-bg:#faf5e8; --red-bg:#faf0ee;
+  --comex:#1a3a5c; --comex-bg:#f0f4f8; --street:#2a5c3a; --street-bg:#f0f6f1;
+  --premium:#6b2a0a; --premium-bg:#fdf3ee;
+}
+*{box-sizing:border-box;margin:0;padding:0;}
+html{scroll-behavior:smooth;}
+body{background:var(--bg);color:var(--ink);font-family:'DM Mono',monospace;font-weight:400;min-height:100vh;}
+.page{max-width:900px;margin:0 auto;padding:0 24px 100px;position:relative;z-index:1;}
+
+/* ── Masthead ── */
+.masthead{border-bottom:3px double var(--border2);padding:32px 0 20px;margin-bottom:0;}
+.masthead-top{display:flex;justify-content:space-between;align-items:flex-start;gap:16px;}
+.masthead-kicker{font-family:'DM Mono',monospace;font-size:0.75rem;letter-spacing:0.2em;color:var(--ink4);text-transform:uppercase;margin-bottom:8px;font-weight:500;}
+.masthead-title{font-family:'Playfair Display',Georgia,serif;font-size:2.6rem;font-weight:700;letter-spacing:-0.01em;line-height:1;color:var(--ink);}
+.masthead-title .kanji-inline{font-family:'Noto Serif JP';font-weight:600;font-size:1.8rem;color:var(--ink);margin-left:10px;vertical-align:middle;}
+.masthead-tagline{margin-top:10px;font-size:0.78rem;color:var(--ink3);font-family:'DM Mono',monospace;letter-spacing:0.04em;max-width:540px;line-height:1.8;}
+.masthead-right{display:flex;flex-direction:column;align-items:flex-end;gap:10px;flex-shrink:0;}
+.lang-toggle{display:flex;border:1px solid var(--border2);border-radius:2px;overflow:hidden;}
+.lang-btn{padding:5px 12px;font-family:'DM Mono',monospace;font-size:0.8rem;letter-spacing:0.08em;cursor:pointer;border:none;background:var(--paper);color:var(--ink3);transition:all 0.15s;}
+.lang-btn.active{background:var(--ink);color:var(--paper);}
+.lang-btn:hover:not(.active){background:var(--border);}
+.masthead-meta{font-family:'DM Mono',monospace;font-size:0.72rem;color:var(--ink4);letter-spacing:0.06em;text-align:right;line-height:1.7;}
+
+/* ── Nav ── */
+.site-nav{display:flex;gap:0;border-bottom:1px solid var(--border);margin-bottom:32px;}
+.nav-link{font-family:'DM Mono',monospace;font-size:0.78rem;letter-spacing:0.1em;text-transform:uppercase;padding:10px 18px;text-decoration:none;color:var(--ink4);border-bottom:2px solid transparent;margin-bottom:-1px;transition:all 0.15s;}
+.nav-link:hover{color:var(--ink2);}
+.nav-link.active{color:var(--ink);border-bottom-color:var(--ink);}
+
+/* ── Page header ── */
+.page-header{margin-bottom:32px;}
+.page-title{font-family:'Playfair Display',Georgia,serif;font-size:2rem;font-weight:700;color:var(--ink);line-height:1.1;margin-bottom:8px;}
+.page-subtitle{font-size:0.8rem;color:var(--ink4);letter-spacing:0.08em;text-transform:uppercase;}
+
+/* ── Main comparison block ── */
+.comparison-block{display:grid;grid-template-columns:1fr auto 1fr;gap:0;margin-bottom:40px;border:1px solid var(--border2);}
+
+.price-panel{padding:32px 28px;}
+.price-panel.comex{background:var(--comex-bg);border-right:1px solid var(--border2);}
+.price-panel.street{background:var(--street-bg);}
+
+.panel-badge{display:inline-block;font-family:'DM Mono',monospace;font-size:0.62rem;letter-spacing:0.18em;text-transform:uppercase;padding:3px 8px;border-radius:2px;margin-bottom:14px;font-weight:500;}
+.panel-badge.comex{background:var(--comex);color:#fff;}
+.panel-badge.street{background:var(--street);color:#fff;}
+
+.panel-label{font-family:'DM Mono',monospace;font-size:0.72rem;letter-spacing:0.1em;text-transform:uppercase;color:var(--ink3);margin-bottom:6px;}
+.panel-name{font-family:'Playfair Display',Georgia,serif;font-size:1.15rem;font-weight:700;color:var(--ink);margin-bottom:20px;line-height:1.2;}
+.panel-price{font-family:'DM Mono',monospace;font-size:3rem;font-weight:400;color:var(--ink);letter-spacing:-0.02em;line-height:1;}
+.panel-price .currency{font-size:1.6rem;vertical-align:super;margin-right:2px;font-weight:300;}
+.panel-price .unit{font-size:0.85rem;color:var(--ink4);font-weight:300;margin-left:4px;}
+.panel-jpy{margin-top:8px;font-family:'DM Mono',monospace;font-size:0.82rem;color:var(--ink3);}
+.panel-source{margin-top:16px;font-size:0.68rem;color:var(--ink4);letter-spacing:0.06em;line-height:1.6;border-top:1px solid var(--border);padding-top:12px;}
+
+/* ── Premium center panel ── */
+.premium-center{display:flex;flex-direction:column;align-items:center;justify-content:center;padding:28px 20px;background:var(--premium-bg);border-left:1px solid var(--border2);border-right:1px solid var(--border2);min-width:160px;}
+.premium-label{font-family:'DM Mono',monospace;font-size:0.62rem;letter-spacing:0.16em;text-transform:uppercase;color:var(--ink4);margin-bottom:10px;text-align:center;}
+.premium-value{font-family:'Playfair Display',Georgia,serif;font-size:2.8rem;font-weight:700;color:var(--premium);line-height:1;text-align:center;}
+.premium-sublabel{font-family:'DM Mono',monospace;font-size:0.65rem;color:var(--ink4);letter-spacing:0.08em;margin-top:8px;text-align:center;line-height:1.5;}
+.premium-arrow{font-size:1.4rem;color:var(--premium);margin:8px 0;}
+
+/* ── Loading state ── */
+.loading-val{color:var(--ink4) !important;font-size:1.8rem !important;}
+
+/* ── Context bar ── */
+.context-bar{display:grid;grid-template-columns:1fr 1fr 1fr;gap:1px;background:var(--border);border:1px solid var(--border2);margin-bottom:40px;}
+.context-cell{background:var(--paper);padding:16px 20px;}
+.context-cell-label{font-size:0.62rem;letter-spacing:0.14em;text-transform:uppercase;color:var(--ink4);margin-bottom:4px;}
+.context-cell-value{font-family:'DM Mono',monospace;font-size:1rem;font-weight:500;color:var(--ink);}
+.context-cell-sub{font-size:0.68rem;color:var(--ink4);margin-top:2px;}
+
+/* ── Section divider ── */
+.section-label{font-family:'DM Mono',monospace;font-size:0.65rem;letter-spacing:0.18em;text-transform:uppercase;color:var(--ink4);margin-bottom:16px;padding-bottom:8px;border-bottom:1px solid var(--border);}
+
+/* ── Explanation ── */
+.explainer{margin-bottom:40px;}
+.explainer-grid{display:grid;grid-template-columns:1fr 1fr;gap:24px;margin-bottom:24px;}
+.explainer-card{border:1px solid var(--border);padding:20px 22px;}
+.explainer-card-title{font-family:'DM Mono',monospace;font-size:0.7rem;letter-spacing:0.14em;text-transform:uppercase;color:var(--ink3);margin-bottom:10px;font-weight:500;}
+.explainer-card-body{font-size:0.82rem;color:var(--ink2);line-height:1.8;}
+
+/* ── Chart bar ── */
+.bar-chart{margin-bottom:40px;}
+.bar-row{display:flex;align-items:center;gap:16px;margin-bottom:12px;}
+.bar-label{font-family:'DM Mono',monospace;font-size:0.72rem;color:var(--ink3);width:160px;flex-shrink:0;letter-spacing:0.04em;}
+.bar-track{flex:1;height:36px;background:var(--border);position:relative;overflow:hidden;}
+.bar-fill{height:100%;transition:width 1.2s cubic-bezier(0.4,0,0.2,1);display:flex;align-items:center;padding-left:10px;}
+.bar-fill.comex-bar{background:var(--comex);}
+.bar-fill.street-bar{background:var(--street);}
+.bar-val{font-family:'DM Mono',monospace;font-size:0.75rem;color:#fff;font-weight:500;white-space:nowrap;}
+
+/* ── Formula ── */
+.formula-box{background:#f7f4f0;border:1px solid var(--border2);padding:20px 24px;margin-bottom:40px;font-family:'DM Mono',monospace;font-size:0.8rem;color:var(--ink2);line-height:2;}
+.formula-box .formula-title{font-size:0.65rem;letter-spacing:0.16em;text-transform:uppercase;color:var(--ink4);margin-bottom:12px;}
+.formula-box .formula-line{color:var(--ink);font-weight:500;}
+.formula-box .formula-result{color:var(--premium);font-size:1rem;font-weight:500;margin-top:8px;}
+
+/* ── Disclaimer ── */
+.disclaimer{font-size:0.72rem;color:var(--ink4);line-height:1.8;border-top:1px solid var(--border);padding-top:16px;margin-bottom:40px;}
+
+/* ── Footer ── */
+.site-footer{border-top:3px double var(--border2);padding-top:20px;display:flex;justify-content:space-between;align-items:flex-start;gap:24px;flex-wrap:wrap;}
+.footer-brand{font-family:'Playfair Display',serif;font-size:1.1rem;font-weight:700;color:var(--ink);margin-bottom:4px;}
+.footer-sub{font-size:0.68rem;color:var(--ink4);line-height:1.7;}
+.footer-links{display:flex;gap:20px;font-size:0.7rem;letter-spacing:0.08em;text-transform:uppercase;}
+.footer-links a{color:var(--ink4);text-decoration:none;}
+.footer-links a:hover{color:var(--ink2);}
+
+/* ── Timestamp ── */
+.timestamp-bar{display:flex;justify-content:space-between;align-items:center;font-size:0.68rem;color:var(--ink4);margin-bottom:24px;letter-spacing:0.06em;flex-wrap:wrap;gap:8px;}
+.timestamp-bar .live-dot{width:6px;height:6px;background:var(--green);border-radius:50%;display:inline-block;margin-right:6px;animation:pulse 2s infinite;}
+@keyframes pulse{0%,100%{opacity:1;}50%{opacity:0.4;}}
+
+/* ── Responsive ── */
+@media(max-width:680px){
+  .masthead-title{font-size:1.9rem;}
+  .comparison-block{grid-template-columns:1fr;grid-template-rows:auto auto auto;}
+  .price-panel.comex{border-right:none;border-bottom:1px solid var(--border2);}
+  .premium-center{border-left:none;border-right:none;border-top:1px solid var(--border2);border-bottom:1px solid var(--border2);flex-direction:row;justify-content:space-around;padding:20px;}
+  .explainer-grid{grid-template-columns:1fr;}
+  .context-bar{grid-template-columns:1fr;}
+  .bar-label{width:110px;font-size:0.65rem;}
+  .panel-price{font-size:2.2rem;}
+  .premium-value{font-size:2.2rem;}
+  .site-footer{flex-direction:column;}
+}
+</style>
+</head>
+<body>
+<div class="page">
+
+  <!-- Masthead -->
+  <header class="masthead">
+    <div class="masthead-top">
+      <div>
+        <div class="masthead-kicker">Japan Physical Metals Index</div>
+        <div class="masthead-title">JPMI<span class="kanji-inline">日本現物銀</span></div>
+        <div class="masthead-tagline" data-en="Paper vs Physical Silver · COMEX futures vs Japan street market · Live premium tracker" data-ja="先物 vs 現物銀 · COMEX先物 vs 日本市場 · リアルタイムプレミアム追跡">Paper vs Physical Silver · COMEX futures vs Japan street market · Live premium tracker</div>
+      </div>
+      <div class="masthead-right">
+        <div class="lang-toggle">
+          <button class="lang-btn active" onclick="setLang('en')">EN</button>
+          <button class="lang-btn" onclick="setLang('ja')">JP</button>
+        </div>
+        <div class="masthead-meta" id="masthead-date">Paper vs Physical · JPY/g</div>
+      </div>
+    </div>
+  </header>
+
+  <!-- Nav -->
+  <nav class="site-nav">
+    <a href="index.html" class="nav-link" data-en="Index" data-ja="指数">Index</a>
+    <a href="paper-vs-physical.html" class="nav-link active" data-en="Paper vs Physical" data-ja="先物 vs 現物">Paper vs Physical</a>
+    <a href="about.html" class="nav-link" data-en="About" data-ja="概要">About</a>
+  </nav>
+
+  <!-- Page header -->
+  <div class="page-header">
+    <div class="page-title" data-en="Paper vs Physical Silver" data-ja="先物 vs 現物銀">Paper vs Physical Silver</div>
+    <div class="page-subtitle" data-en="COMEX Futures · Japan Street Retail (Mercari) · Live Premium" data-ja="COMEX先物 · 日本フリマ実売（メルカリ）· リアルタイムプレミアム">COMEX Futures · Japan Street Retail (Mercari) · Live Premium</div>
+  </div>
+
+  <!-- Timestamp -->
+  <div class="timestamp-bar">
+    <span><span class="live-dot"></span><span id="ts-text">Loading…</span></span>
+    <span id="ts-right" style="color:var(--ink4);font-size:0.65rem;">COMEX: live · MSPI-B: Mon/Wed/Fri 10:00 JST</span>
+  </div>
+
+  <!-- Main comparison block -->
+  <div class="comparison-block">
+
+    <!-- COMEX panel -->
+    <div class="price-panel comex">
+      <div class="panel-badge comex">COMEX</div>
+      <div class="panel-label" data-en="Paper Market · Futures" data-ja="先物市場">Paper Market · Futures</div>
+      <div class="panel-name" data-en="COMEX Silver Futures (XAG)" data-ja="COMEX 銀先物（XAG）">COMEX Silver Futures (XAG)</div>
+      <div class="panel-price">
+        <span class="currency">$</span><span id="comex-usd">—</span><span class="unit">/ oz</span>
+      </div>
+      <div class="panel-jpy" id="comex-jpy">≈ ¥— / g</div>
+      <div class="panel-source" data-en="Global futures price. Represents paper contracts for silver delivery. Source: live market data." data-ja="グローバル先物価格。銀の受渡契約を表します。出典：リアルタイム市場データ。">Global futures price. Represents paper contracts for silver delivery. Source: live market data.</div>
+    </div>
+
+    <!-- Premium center -->
+    <div class="premium-center">
+      <div class="premium-label" data-en="Japan Physical Premium" data-ja="日本現物プレミアム">Japan<br>Physical<br>Premium</div>
+      <div class="premium-arrow">↑</div>
+      <div class="premium-value" id="premium-pct">—</div>
+      <div class="premium-sublabel" data-en="vs COMEX" data-ja="COMEX比">vs COMEX</div>
+    </div>
+
+    <!-- Street panel -->
+    <div class="price-panel street">
+      <div class="panel-badge street">MSPI-B</div>
+      <div class="panel-label" data-en="Physical Market · Street Retail" data-ja="現物市場・フリマ実売">Physical Market · Street Retail</div>
+      <div class="panel-name" data-en="Japan Street Silver (Mercari)" data-ja="日本現物銀（メルカリ）">Japan Street Silver (Mercari)</div>
+      <div class="panel-price">
+        <span class="currency">$</span><span id="street-usd">—</span><span class="unit">/ oz</span>
+      </div>
+      <div class="panel-jpy" id="street-jpy">≈ ¥— / g</div>
+      <div class="panel-source" data-en="Real peer-to-peer sold prices for 1oz .999 silver bullion on Mercari Japan. JPMI MSPI-B · Updated Mon/Wed/Fri." data-ja="メルカリ日本での1oz .999銀地金のP2P成約価格。JPMI MSPI-B · 月・水・金更新。">Real peer-to-peer sold prices for 1oz .999 silver bullion on Mercari Japan. JPMI MSPI-B · Updated Mon/Wed/Fri.</div>
+    </div>
+  </div>
+
+  <!-- Context bar -->
+  <div class="context-bar">
+    <div class="context-cell">
+      <div class="context-cell-label" data-en="USD/JPY Rate" data-ja="ドル円レート">USD/JPY Rate</div>
+      <div class="context-cell-value" id="ctx-fx">—</div>
+      <div class="context-cell-sub" data-en="Used for conversion" data-ja="換算に使用">Used for conversion</div>
+    </div>
+    <div class="context-cell">
+      <div class="context-cell-label" data-en="COMEX in JPY/g" data-ja="COMEX 円/g換算">COMEX in JPY/g</div>
+      <div class="context-cell-value" id="ctx-comex-jpy">—</div>
+      <div class="context-cell-sub" data-en="Paper price" data-ja="先物価格">Paper price</div>
+    </div>
+    <div class="context-cell">
+      <div class="context-cell-label" data-en="MSPI-B in JPY/g" data-ja="MSPI-B 円/g">MSPI-B in JPY/g</div>
+      <div class="context-cell-value" id="ctx-street-jpy">—</div>
+      <div class="context-cell-sub" data-en="Street retail price" data-ja="フリマ実売価格">Street retail price</div>
+    </div>
+  </div>
+
+  <!-- Bar chart -->
+  <div class="bar-chart">
+    <div class="section-label" data-en="Visual Comparison · $/oz" data-ja="視覚比較 · ドル/オンス">Visual Comparison · $/oz</div>
+    <div class="bar-row">
+      <div class="bar-label">COMEX (Paper)</div>
+      <div class="bar-track">
+        <div class="bar-fill comex-bar" id="bar-comex" style="width:0%">
+          <span class="bar-val" id="bar-comex-val"></span>
+        </div>
+      </div>
+    </div>
+    <div class="bar-row">
+      <div class="bar-label" data-en="Japan Street" data-ja="日本フリマ">Japan Street</div>
+      <div class="bar-track">
+        <div class="bar-fill street-bar" id="bar-street" style="width:0%">
+          <span class="bar-val" id="bar-street-val"></span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Formula -->
+  <div class="formula-box">
+    <div class="formula-title" data-en="Premium Formula" data-ja="プレミアム計算式">Premium Formula</div>
+    <div class="formula-line">Japan Physical Premium = (Japan Street − COMEX) ÷ COMEX</div>
+    <div style="margin-top:8px;color:var(--ink4);font-size:0.75rem;" data-en="Street price: JPMI MSPI-B (Mercari 1oz .999 bullion sold listings, JPY/g converted to USD/oz)" data-ja="ストリート価格：JPMI MSPI-B（メルカリ1oz .999地金成約価格、円/gをドル/ozに換算）">Street price: JPMI MSPI-B (Mercari 1oz .999 bullion sold listings, JPY/g converted to USD/oz)</div>
+    <div class="formula-result" id="formula-live">Premium: —</div>
+  </div>
+
+  <!-- Explainer -->
+  <div class="explainer">
+    <div class="section-label" data-en="What This Measures" data-ja="何を計測しているか">What This Measures</div>
+    <div class="explainer-grid">
+      <div class="explainer-card">
+        <div class="explainer-card-title" data-en="COMEX — The Paper Market" data-ja="COMEX — 先物市場">COMEX — The Paper Market</div>
+        <div class="explainer-card-body" data-en="COMEX silver futures represent contracts for future silver delivery. Most are settled in cash and never result in physical silver changing hands. The COMEX price is the globally-referenced benchmark for silver." data-ja="COMEX銀先物は将来の銀の受渡契約を表します。ほとんどは現金決済で、実際に現物が移動することはありません。COMEX価格は銀のグローバル基準価格です。">COMEX silver futures represent contracts for future silver delivery. Most are settled in cash and never result in physical silver changing hands. The COMEX price is the globally-referenced benchmark for silver.</div>
+      </div>
+      <div class="explainer-card">
+        <div class="explainer-card-title" data-en="MSPI-B — The Physical Market" data-ja="MSPI-B — 現物市場">MSPI-B — The Physical Market</div>
+        <div class="explainer-card-body" data-en="The JPMI MSPI-B tracks real peer-to-peer sold prices for 1oz .999 silver bullion coins on Mercari Japan. These are actual transactions — real buyers paying real money for physical silver in Japan today." data-ja="JPMI MSPI-Bは、メルカリ日本での1oz .999銀地金コインのP2P実成約価格を追跡します。これは実際の取引であり、日本で現物銀を購入する実際の買い手が支払った価格です。">The JPMI MSPI-B tracks real peer-to-peer sold prices for 1oz .999 silver bullion coins on Mercari Japan. These are actual transactions — real buyers paying real money for physical silver in Japan today.</div>
+      </div>
+    </div>
+    <div class="explainer-card" style="margin-bottom:24px;">
+      <div class="explainer-card-title" data-en="Why The Premium Exists" data-ja="プレミアムが存在する理由">Why The Premium Exists</div>
+      <div class="explainer-card-body" data-en="Physical silver trades at a premium to COMEX because of fabrication costs, dealer margins, supply chain friction, and real-world supply and demand dynamics. When premiums expand, it signals that physical silver is tight relative to paper market pricing. The Japan Physical Premium captures this signal directly from retail market transactions." data-ja="現物銀がCOMEXよりプレミアムで取引されるのは、製造コスト、業者マージン、サプライチェーンの摩擦、そして現実の需給ダイナミクスが存在するためです。プレミアムが拡大すると、先物価格に対して現物銀が逼迫していることを示すシグナルとなります。日本現物プレミアムはこのシグナルを小売市場の取引から直接捕捉します。">Physical silver trades at a premium to COMEX because of fabrication costs, dealer margins, supply chain friction, and real-world supply and demand dynamics. When premiums expand, it signals that physical silver is tight relative to paper market pricing. The Japan Physical Premium captures this signal directly from retail market transactions.</div>
+    </div>
+  </div>
+
+  <!-- Disclaimer -->
+  <div class="disclaimer" data-en="⚠ COMEX price fetched via live market data API and converted to JPY using live USD/JPY rate. MSPI-B updated Mon/Wed/Fri 10:00 JST from Mercari sold listings. Mercari prices are buyer-paid — actual seller proceeds are lower after 10% commission and delivery fees. This page is for informational purposes only and does not constitute financial advice." data-ja="⚠ COMEX価格はリアルタイム市場データAPIから取得し、USD/JPY為替レートで円換算しています。MSPI-Bは月・水・金10:00 JSTにメルカリ成約価格から更新されます。メルカリ価格は買い手の支払い価格であり、10%手数料と配送料控除後の売り手手取りは異なります。本ページは情報提供のみを目的とし、投資アドバイスではありません。">⚠ COMEX price fetched via live market data API and converted to JPY using live USD/JPY rate. MSPI-B updated Mon/Wed/Fri 10:00 JST from Mercari sold listings. Mercari prices are buyer-paid — actual seller proceeds are lower after 10% commission and delivery fees. This page is for informational purposes only and does not constitute financial advice.</div>
+
+  <!-- Footer -->
+  <footer class="site-footer">
+    <div>
+      <div class="footer-brand">JPMI</div>
+      <div class="footer-sub" data-en="Japan Physical Metals Index · japanphysicalmetals.jp" data-ja="日本現物金属指数 · japanphysicalmetals.jp">Japan Physical Metals Index · japanphysicalmetals.jp</div>
+      <div class="footer-sub" style="margin-top:4px;" data-en="Not affiliated with COMEX, CME Group, or Mercari, Inc." data-ja="COMEX、CMEグループ、メルカリ株式会社とは無関係です。">Not affiliated with COMEX, CME Group, or Mercari, Inc.</div>
+    </div>
+    <div class="footer-links">
+      <a href="index.html" data-en="Index" data-ja="指数">Index</a>
+      <a href="about.html" data-en="About" data-ja="概要">About</a>
+      <a href="https://x.com/JPMI_index" target="_blank">𝕏 @JPMI_index</a>
+    </div>
+  </footer>
+
+</div>
+
+<script>
+let currentLang = 'en';
+const OZ_TO_G = 31.1035;
+// MSPI-B hardcoded (updated Mon/Wed/Fri from prices.json)
+let MSPI_B_JPY_G = 716.46;
+
+async function loadPrices() {
+  // Load MSPI-B from prices.json
+  try {
+    const res = await fetch('./prices.json?t=' + Date.now(), { signal: AbortSignal.timeout(8000) });
+    if (res.ok) {
+      const data = await res.json();
+      const p = data.prices_jpy_per_g || {};
+      if (p.mercari_mspi_b) MSPI_B_JPY_G = p.mercari_mspi_b;
+      const updatedAt = data.updated_at_utc ? new Date(data.updated_at_utc) : null;
+      if (updatedAt) {
+        const ts = updatedAt.toLocaleDateString('en-GB',{weekday:'short',day:'2-digit',month:'short',year:'numeric'})
+          + ' · ' + updatedAt.toLocaleTimeString('en-GB',{hour:'2-digit',minute:'2-digit'}) + ' UTC';
+        document.getElementById('masthead-date').textContent = 'Paper vs Physical · ' + ts;
+        document.getElementById('ts-text').textContent = 'MSPI-B last updated: ' + ts;
+      }
+    }
+  } catch(e) {}
+
+  // Fetch live COMEX price + USD/JPY via free API
+  try {
+    // Use frankfurter for FX, and metals-api fallback
+    const fxRes = await fetch('https://api.frankfurter.app/latest?from=USD&to=JPY');
+    const fxData = await fxRes.json();
+    const usdJpy = fxData.rates?.JPY || 150;
+
+    // Fetch COMEX silver price via public metals API
+    // Using metals.live free tier
+    const metalRes = await fetch('https://metals.live/api/latest/silver');
+    let comexUsd = null;
+    if (metalRes.ok) {
+      const mData = await metalRes.json();
+      // metals.live returns price per troy oz in USD
+      comexUsd = mData?.price || mData?.silver || null;
+    }
+
+    // Fallback: try another free source
+    if (!comexUsd) {
+      try {
+        const r2 = await fetch('https://api.metalpriceapi.com/v1/latest?api_key=demo&base=XAG&currencies=USD');
+        if (r2.ok) {
+          const d2 = await r2.json();
+          // This gives XAG per USD, need to invert
+          if (d2?.rates?.USD) comexUsd = 1 / d2.rates.USD;
+        }
+      } catch(e2) {}
+    }
+
+    renderPrices(comexUsd, usdJpy);
+
+  } catch(e) {
+    renderPrices(null, 150);
+  }
+}
+
+function renderPrices(comexUsd, usdJpy) {
+  // Street price: convert MSPI-B from JPY/g to USD/oz
+  const streetJpyG = MSPI_B_JPY_G;
+  const streetJpyOz = streetJpyG * OZ_TO_G;
+  const streetUsd = streetJpyOz / usdJpy;
+
+  // Context bar
+  document.getElementById('ctx-fx').textContent = usdJpy ? '¥' + usdJpy.toFixed(2) : '—';
+  document.getElementById('ctx-street-jpy').textContent = streetJpyG ? '¥' + streetJpyG.toFixed(2) : '—';
+
+  // Street panel
+  document.getElementById('street-usd').textContent = streetUsd ? streetUsd.toFixed(2) : '—';
+  document.getElementById('street-jpy').textContent = streetJpyG ? '≈ ¥' + streetJpyG.toFixed(2) + ' / g' : '—';
+
+  if (comexUsd) {
+    // COMEX in JPY/g
+    const comexJpyOz = comexUsd * usdJpy;
+    const comexJpyG = comexJpyOz / OZ_TO_G;
+
+    document.getElementById('comex-usd').textContent = comexUsd.toFixed(2);
+    document.getElementById('comex-jpy').textContent = '≈ ¥' + comexJpyG.toFixed(2) + ' / g';
+    document.getElementById('ctx-comex-jpy').textContent = '¥' + comexJpyG.toFixed(2);
+
+    // Premium
+    const premium = ((streetUsd - comexUsd) / comexUsd) * 100;
+    const premiumStr = (premium >= 0 ? '+' : '') + premium.toFixed(1) + '%';
+    document.getElementById('premium-pct').textContent = premiumStr;
+    document.getElementById('formula-live').textContent = 'Premium: ' + premiumStr + ' (' + streetUsd.toFixed(2) + ' − ' + comexUsd.toFixed(2) + ') ÷ ' + comexUsd.toFixed(2);
+
+    // Bar chart — scale both bars relative to street (larger)
+    const maxVal = Math.max(comexUsd, streetUsd) * 1.15;
+    const comexPct = (comexUsd / maxVal) * 100;
+    const streetPct = (streetUsd / maxVal) * 100;
+
+    setTimeout(() => {
+      document.getElementById('bar-comex').style.width = comexPct + '%';
+      document.getElementById('bar-comex-val').textContent = '$' + comexUsd.toFixed(2);
+      document.getElementById('bar-street').style.width = streetPct + '%';
+      document.getElementById('bar-street-val').textContent = '$' + streetUsd.toFixed(2);
+    }, 200);
+
+  } else {
+    document.getElementById('comex-usd').textContent = 'N/A';
+    document.getElementById('comex-jpy').textContent = 'Live data unavailable';
+    document.getElementById('ctx-comex-jpy').textContent = '—';
+    document.getElementById('premium-pct').textContent = '—';
+    document.getElementById('formula-live').textContent = 'COMEX price unavailable';
+
+    // Still show street bar
+    setTimeout(() => {
+      document.getElementById('bar-street').style.width = '70%';
+      document.getElementById('bar-street-val').textContent = '$' + streetUsd.toFixed(2);
+    }, 200);
+  }
+}
+
+function setLang(lang) {
+  currentLang = lang;
+  document.documentElement.lang = lang === 'ja' ? 'ja' : 'en';
+  document.querySelectorAll('.lang-btn').forEach(b => b.classList.remove('active'));
+  document.querySelector(`.lang-btn[onclick="setLang('${lang}')"]`).classList.add('active');
+  document.querySelectorAll('[data-en]').forEach(el => {
+    const txt = lang === 'ja' && el.dataset.ja ? el.dataset.ja : el.dataset.en;
+    if (el.tagName === 'INPUT') {
+      el.placeholder = txt;
+    } else {
+      el.innerHTML = txt.replace(/\n/g, '<br>');
+    }
+  });
+}
+
+document.addEventListener('DOMContentLoaded', loadPrices);
+</script>
+</body>
+</html>
