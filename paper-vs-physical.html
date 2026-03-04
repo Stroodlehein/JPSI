@@ -150,6 +150,8 @@ body{background:var(--bg);color:var(--ink);font-family:'DM Mono',monospace;font-
 /* ── Responsive ── */
 @media(max-width:680px){
 .page{padding:0 16px 80px;}
+
+/* Masthead */
 .masthead{padding:20px 0 14px;}
 .masthead-top{flex-direction:column;gap:6px;}
 .masthead-right{flex-direction:row;align-items:center;justify-content:space-between;width:100%;}
@@ -157,9 +159,14 @@ body{background:var(--bg);color:var(--ink);font-family:'DM Mono',monospace;font-
 .masthead-title .kanji-inline{display:none;}
 .masthead-tagline{font-size:0.68rem;letter-spacing:0;line-height:1.5;margin-top:4px;}
 .masthead-meta{font-size:0.6rem;text-align:right;}
-.nav-link{padding:10px 10px;font-size:0.68rem;letter-spacing:0.05em;}
+
+/* Nav — shrink text so all 3 fit on one line */
+.site-nav{overflow-x:auto;}
+.nav-link{padding:10px 8px;font-size:0.62rem;letter-spacing:0.04em;white-space:nowrap;}
+
+/* Page header */
 .page-title{font-size:1.4rem;}
-.page-subtitle{font-size:0.65rem;}
+.page-subtitle{font-size:0.65rem;letter-spacing:0.03em;}
 
 /* Hide desktop grid, show mobile stack */
 .comparison-block{display:none !important;}
@@ -170,14 +177,31 @@ body{background:var(--bg);color:var(--ink);font-family:'DM Mono',monospace;font-
 .context-cell:last-child{grid-column:1/-1;}
 .context-cell{padding:12px 14px;}
 
-/* Bar chart */
-.bar-label{width:100px;font-size:0.65rem;}
-.bar-track{height:30px;}
+/* Bar chart — fix label + track layout */
+.bar-chart{margin-bottom:32px;}
+.bar-row{flex-wrap:nowrap;gap:8px;}
+.bar-label{width:80px;font-size:0.6rem;flex-shrink:0;}
+.bar-track{height:28px;min-width:0;}
+.bar-val{font-size:0.68rem;}
 
-/* Explainer */
-.explainer-grid{grid-template-columns:1fr;}
-.formula-box{padding:14px 16px;font-size:0.72rem;}
+/* Formula */
+.formula-box{padding:14px 16px;font-size:0.7rem;line-height:1.8;word-break:break-word;}
+
+/* Explainer cards — add explicit border and background */
+.explainer-grid{grid-template-columns:1fr;gap:12px;}
+.explainer-card{
+border:1px solid var(–border) !important;
+background:var(–paper) !important;
+padding:16px !important;
+display:block !important;
+}
+
+/* Disclaimer */
+.disclaimer{font-size:0.68rem;}
+
+/* Footer */
 .site-footer{flex-direction:column;gap:16px;}
+.footer-links{flex-wrap:wrap;gap:12px;}
 }
 </style>
 
