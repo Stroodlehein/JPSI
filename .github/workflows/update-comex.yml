@@ -1,0 +1,35 @@
+name: Update COMEX Price
+
+on:
+  schedule:
+    - cron: '*/10 * * * *'   # Every 10 minutes, 24/7
+  workflow_dispatch:           # Allow manual trigger
+
+jobs:
+  update-comex:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Install dependencies
+        run: pip install requests
+
+      - name: Fetch COMEX price and USD/JPY
+        run: python scripts/fetch_comex.py
+
+      - name: Commit and push prices.json
+        run: |
+          git config user.name "JPMI Bot"
+          git config user.email "bot@japanphysicalmetals.jp"
+          git add prices.json
+          git diff --cached --quiet || git commit -m "COMEX update $(date -u +'%Y-%m-%d %H:%M UTC')"
+          git push
