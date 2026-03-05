@@ -1,8 +1,14 @@
 import json
+import os
 import requests
 from datetime import datetime, timezone
 
 UA = "Mozilla/5.0 (compatible; JPMIbot/1.0)"
+
+# Always write to repo root regardless of where script is called from
+REPO_ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+PRICES_JSON = os.path.join(REPO_ROOT, "prices.json")
+HISTORY_JSON = os.path.join(REPO_ROOT, "prices-history.json")
 
 def get_comex_and_fx():
   comex_usd = None
@@ -60,7 +66,7 @@ def get_comex_and_fx():
 def main():
   # Load existing prices.json
   try:
-    with open("prices.json", "r", encoding="utf-8") as f:
+    with open(PRICES_JSON, "r", encoding="utf-8") as f:
       data = json.load(f)
   except Exception:
     data = {"prices_jpy_per_g": {}, "errors": []}
@@ -82,11 +88,32 @@ def main():
   if comex_usd and usd_jpy:
     data["prices_jpy_per_g"]["comex_silver_jpy_g"] = round((comex_usd * usd_jpy) / 31.1035, 2)
 
-  # Update the COMEX timestamp separately so we know when it last refreshed
-  data["comex_updated_at_utc"] = datetime.now(timezone.utc).isoformat(timespec="seconds")
+  now = datetime.now(timezone.utc)
+  data["comex_updated_at_utc"] = now.isoformat(timespec="seconds")
 
-  with open("prices.json", "w", encoding="utf-8") as f:
+  with open(PRICES_JSON, "w", encoding="utf-8") as f:
     json.dump(data, f, ensure_ascii=False, indent=2)
+
+  # Append to price history (COMEX + USD/JPY only, every 10 min)
+  if comex_usd and usd_jpy:
+    snapshot = {
+      "t": now.isoformat(timespec="minutes"),
+      "comex_usd": round(comex_usd, 4),
+      "usd_jpy": round(usd_jpy, 4),
+      "comex_jpy_g": round((comex_usd * usd_jpy) / 31.1035, 2),
+    }
+    try:
+      with open(HISTORY_JSON, "r", encoding="utf-8") as f:
+        history = json.load(f)
+    except Exception:
+      history = []
+    history.append(snapshot)
+    # Keep last 30 days at 10-min intervals = ~4320 entries max
+    if len(history) > 4320:
+      history = history[-4320:]
+    with open(HISTORY_JSON, "w", encoding="utf-8") as f:
+      json.dump(history, f, ensure_ascii=False, separators=(",", ":"))
+    print(f"History logged: {snapshot['t']}")
 
   print("prices.json updated with COMEX data")
 
