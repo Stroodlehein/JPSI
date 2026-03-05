@@ -59,6 +59,8 @@ body{background:var(--bg);color:var(--ink);font-family:'DM Mono',monospace;font-
 .masthead-kicker{font-family:'DM Mono',monospace;font-size:0.75rem;letter-spacing:0.2em;color:var(--ink4);text-transform:uppercase;margin-bottom:8px;font-weight:500;}
 .masthead-title{font-family:'Playfair Display',Georgia,serif;font-size:2.6rem;font-weight:700;letter-spacing:-0.01em;line-height:1;color:var(--ink);}
 .masthead-title .abbr{display:none;}
+.masthead-home{color:inherit;text-decoration:none;}
+.masthead-home:hover{opacity:0.75;}
 .masthead-title .kanji-inline{font-family:'DM Mono',monospace;font-weight:600;font-size:1.8rem;color:var(--ink);margin-left:10px;vertical-align:middle;opacity:1;}
 .masthead-tagline{margin-top:10px;font-size:0.78rem;color:var(--ink3);font-family:'DM Mono',monospace;letter-spacing:0.04em;max-width:540px;line-height:1.8;}
 .masthead-right{display:flex;flex-direction:column;align-items:flex-end;gap:10px;flex-shrink:0;}
@@ -67,7 +69,7 @@ body{background:var(--bg);color:var(--ink);font-family:'DM Mono',monospace;font-
 .lang-btn.active{background:var(--ink);color:var(--paper);}
 .lang-btn:hover:not(.active){background:var(--border);}
 .site-nav{display:flex;gap:0;border-bottom:1px solid var(--border);margin-bottom:48px;}
-.nav-link{font-family:'DM Mono',monospace;font-size:0.78rem;letter-spacing:0.1em;text-transform:uppercase;padding:10px 18px;text-decoration:none;color:var(--ink4);border-bottom:2px solid transparent;margin-bottom:-1px;transition:all 0.15s;}
+.nav-link{font-family:'DM Mono',monospace;font-size:0.75rem;letter-spacing:0.06em;text-transform:uppercase;padding:10px 14px;text-decoration:none;color:var(--ink4);border-bottom:2px solid transparent;margin-bottom:-1px;transition:all 0.15s;white-space:nowrap;}
 .nav-link:hover{color:var(--ink2);}
 .nav-link.active{color:var(--ink);border-bottom-color:var(--ink);}
 .page-header{margin-bottom:40px;}
@@ -117,14 +119,15 @@ body{background:var(--bg);color:var(--ink);font-family:'DM Mono',monospace;font-
   <div class="masthead-top">
     <div class="masthead-identity">
       <div class="masthead-kicker" data-en="Japan Physical Metals Index™" data-ja="日本現物金属指数™">Japan Physical Metals Index™</div>
-      <div class="masthead-title">JPMI<span class="abbr"> — </span><span class="kanji-inline">日本現物金属指数</span></div>
-      <div class="masthead-tagline" data-en="About &amp; Methodology" data-ja="概要・方法論">About &amp; Methodology</div>
+      <div class="masthead-title"><a href="index.html" class="masthead-home">JPMI</a><span class="abbr"> — </span><span class="kanji-inline">日本現物金属指数</span></div>
+      <div class="masthead-tagline" data-en="Aggregates Refinery Spot · Dealer Bid · Street &amp; Mercari prices — reflecting retail liquidity, domestic demand, real spreads, and secondary market premiums." data-ja="精錬所スポット・業者買値・フリマ価格を集計 — 国内の実需・流動性・実スプレッド・二次市場プレミアムを反映">Aggregates Refinery Spot · Dealer Bid · Street &amp; Mercari prices — reflecting retail liquidity, domestic demand, real spreads, and secondary market premiums.</div>
     </div>
     <div class="masthead-right">
       <div class="lang-toggle">
         <button class="lang-btn active" onclick="setLang('en')">EN</button>
-        <button class="lang-btn" onclick="setLang('ja')">日本語</button>
+        <button class="lang-btn" onclick="setLang('ja')">JP</button>
       </div>
+      <div class="masthead-meta">About &amp; Methodology</div>
     </div>
   </div>
 </header>
