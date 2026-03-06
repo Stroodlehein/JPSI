@@ -115,6 +115,19 @@ body{background:var(--bg);color:var(--ink);font-family:'DM Mono',monospace;font-
 .formula-line{color:var(--ink);font-weight:500;}
 .formula-result{color:var(--premium);font-size:1rem;font-weight:500;margin-top:8px;}
 
+/* CHART */
+.chart-wrap{margin-bottom:40px;}
+.chart-box{background:var(--paper);border:1px solid var(--border);padding:20px 20px 12px;position:relative;}
+.chart-legend{display:flex;gap:20px;margin-bottom:16px;flex-wrap:wrap;}
+.chart-legend-item{display:flex;align-items:center;gap:6px;font-size:0.68rem;letter-spacing:0.1em;text-transform:uppercase;color:var(--ink3);}
+.chart-legend-dot{width:10px;height:10px;border-radius:50%;flex-shrink:0;}
+.chart-legend-dot.comex{background:var(--comex);}
+.chart-legend-dot.street{background:var(--street);}
+.chart-legend-dot.premium{background:var(--premium);}
+.chart-canvas-wrap{position:relative;width:100%;height:280px;}
+canvas#price-chart{width:100%;height:100%;}
+.chart-note{font-size:0.62rem;color:var(--ink4);margin-top:10px;letter-spacing:0.04em;}
+
 /* EXPLAINER */
 .explainer{margin-bottom:40px;}
 .explainer-grid{display:grid;grid-template-columns:1fr 1fr;gap:20px;margin-bottom:20px;}
@@ -231,7 +244,22 @@ body{background:var(--bg);color:var(--ink);font-family:'DM Mono',monospace;font-
 
   <div class="timestamp-bar">
     <span><span class="live-dot"></span><span id="ts-text">Loading…</span></span>
-    <span style="font-size:0.65rem;color:var(--ink4);">COMEX: every 10 min · MSPI-B: Mon/Wed/Fri 10:00 JST</span>
+    <span style="font-size:0.65rem;color:var(--ink4);">COMEX: every 10 min · MSPI-B: Daily 10:00 JST</span>
+  </div>
+
+  <!-- Chart — top of page -->
+  <div class="chart-wrap">
+    <div class="section-label" data-en="Price History · COMEX vs Japan Street ($/oz)" data-ja="価格履歴 · COMEX vs 日本フリマ（ドル/oz）">Price History · COMEX vs Japan Street ($/oz)</div>
+    <div class="chart-box">
+      <div class="chart-legend">
+        <div class="chart-legend-item"><div class="chart-legend-dot comex"></div><span data-en="COMEX ($/oz)" data-ja="COMEX（ドル/oz）">COMEX ($/oz)</span></div>
+        <div class="chart-legend-item"><div class="chart-legend-dot street"></div><span data-en="Japan Street MSPI-B ($/oz)" data-ja="日本フリマ MSPI-B（ドル/oz）">Japan Street MSPI-B ($/oz)</span></div>
+      </div>
+      <div class="chart-canvas-wrap">
+        <canvas id="price-chart"></canvas>
+      </div>
+      <div class="chart-note" id="chart-note">Loading history data…</div>
+    </div>
   </div>
 
   <!-- Comparison panels -->
@@ -259,7 +287,7 @@ body{background:var(--bg);color:var(--ink);font-family:'DM Mono',monospace;font-
       <div class="panel-name" data-en="Japan Street Silver (Mercari)" data-ja="日本現物銀（メルカリ）">Japan Street Silver (Mercari)</div>
       <div class="panel-price"><span class="cur">$</span><span id="street-usd">—</span><span class="unit">/ oz</span></div>
       <div class="panel-jpy" id="street-jpy">≈ ¥— / g</div>
-      <div class="panel-src" data-en="Real peer-to-peer sold prices for 1oz .999 silver bullion on Mercari Japan. JPMI MSPI-B · Updated Mon/Wed/Fri." data-ja="メルカリ日本での1oz .999銀地金のP2P成約価格。JPMI MSPI-B · 月・水・金更新。">Real peer-to-peer sold prices for 1oz .999 silver bullion on Mercari Japan. JPMI MSPI-B · Updated Mon/Wed/Fri.</div>
+      <div class="panel-src" data-en="Real peer-to-peer sold prices for 1oz .999 silver bullion on Mercari Japan. JPMI MSPI-B · Updated daily at 10:00 JST." data-ja="メルカリ日本での1oz .999銀地金のP2P成約価格。JPMI MSPI-B · 毎日10:00 JST更新。">Real peer-to-peer sold prices for 1oz .999 silver bullion on Mercari Japan. JPMI MSPI-B · Updated daily at 10:00 JST.</div>
     </div>
 
   </div>
@@ -325,7 +353,7 @@ body{background:var(--bg);color:var(--ink);font-family:'DM Mono',monospace;font-
     </div>
   </div>
 
-  <div class="disclaimer" data-en="⚠ COMEX price fetched via live market data and converted to JPY using live USD/JPY rate. MSPI-B updated Mon/Wed/Fri 10:00 JST from Mercari sold listings. Mercari prices are buyer-paid — actual seller proceeds are lower after 10% commission and delivery fees. This page is for informational purposes only and does not constitute financial advice." data-ja="⚠ COMEX価格はリアルタイム市場データから取得し、USD/JPY為替レートで円換算しています。MSPI-Bは月・水・金10:00 JSTにメルカリ成約価格から更新されます。本ページは情報提供のみを目的とし、投資アドバイスではありません。">⚠ COMEX price fetched via live market data and converted to JPY using live USD/JPY rate. MSPI-B updated Mon/Wed/Fri 10:00 JST from Mercari sold listings. Mercari prices are buyer-paid — actual seller proceeds are lower after 10% commission and delivery fees. This page is for informational purposes only and does not constitute financial advice.</div>
+  <div class="disclaimer" data-en="⚠ COMEX price fetched via live market data and converted to JPY using live USD/JPY rate. MSPI-B updated daily at 10:00 JST from Mercari sold listings. Mercari prices are buyer-paid — actual seller proceeds are lower after 10% commission and delivery fees. This page is for informational purposes only and does not constitute financial advice." data-ja="⚠ COMEX価格はリアルタイム市場データから取得し、USD/JPY為替レートで円換算しています。MSPI-Bは毎日10:00 JSTにメルカリ成約価格から更新されます。本ページは情報提供のみを目的とし、投資アドバイスではありません。">⚠ COMEX price fetched via live market data and converted to JPY using live USD/JPY rate. MSPI-B updated daily at 10:00 JST from Mercari sold listings. Mercari prices are buyer-paid — actual seller proceeds are lower after 10% commission and delivery fees. This page is for informational purposes only and does not constitute financial advice.</div>
 
   <footer class="site-footer">
     <div>
@@ -417,7 +445,172 @@ function setLang(lang) {
   });
 }
 
-document.addEventListener('DOMContentLoaded', loadPrices);
+document.addEventListener('DOMContentLoaded', () => { loadPrices(); loadChart(); });
+
+const OZ = 31.1035;
+const SEED_DATA = [{"t":"2026-03-05T11:46+00:00","comex_usd":84.2505,"usd_jpy":157.11},{"t":"2026-03-05T12:28+00:00","comex_usd":84.388,"usd_jpy":157.11},{"t":"2026-03-05T13:43+00:00","comex_usd":82.9112,"usd_jpy":157.11},{"t":"2026-03-05T14:33+00:00","comex_usd":82.4312,"usd_jpy":157.11},{"t":"2026-03-05T15:32+00:00","comex_usd":81.8418,"usd_jpy":157.54},{"t":"2026-03-05T17:43+00:00","comex_usd":81.6701,"usd_jpy":157.54},{"t":"2026-03-05T19:01+00:00","comex_usd":81.7701,"usd_jpy":157.54},{"t":"2026-03-05T19:59+00:00","comex_usd":81.002,"usd_jpy":157.54},{"t":"2026-03-05T20:49+00:00","comex_usd":82.074,"usd_jpy":157.54},{"t":"2026-03-05T21:21+00:00","comex_usd":82.0095,"usd_jpy":157.54},{"t":"2026-03-05T21:57+00:00","comex_usd":82.2799,"usd_jpy":157.54},{"t":"2026-03-05T23:10+00:00","comex_usd":82.2867,"usd_jpy":157.54},{"t":"2026-03-05T23:57+00:00","comex_usd":82.8077,"usd_jpy":157.54},{"t":"2026-03-06T01:06+00:00","comex_usd":82.8077,"usd_jpy":157.54,"mspi_b_jpy_g":668.73}];
+
+async function loadChart() {
+  const noteEl = document.getElementById('chart-note');
+  try {
+    const res = await fetch('./prices-history.json?t=' + Date.now(), {signal: AbortSignal.timeout(10000)});
+    if (!res.ok) throw new Error('HTTP ' + res.status);
+    const raw = await res.json();
+    drawChart(raw && raw.length > 0 ? raw : SEED_DATA, noteEl);
+  } catch(e) {
+    drawChart(SEED_DATA, noteEl);
+  }
+}
+
+function drawChart(raw, noteEl) {
+  const canvas = document.getElementById('price-chart');
+  const wrap = canvas.parentElement;
+  const DPR = window.devicePixelRatio || 1;
+  const W = wrap.clientWidth;
+  const H = wrap.clientHeight;
+  canvas.width  = W * DPR;
+  canvas.height = H * DPR;
+  canvas.style.width  = W + 'px';
+  canvas.style.height = H + 'px';
+  const ctx = canvas.getContext('2d');
+  ctx.scale(DPR, DPR);
+
+  // Convert all to USD/oz
+  // COMEX: use comex_usd directly, or derive from comex_jpy_g / usd_jpy
+  const comexPts = raw
+    .filter(d => d.comex_usd || (d.comex_jpy_g && d.usd_jpy))
+    .map(d => ({
+      t: new Date(d.t),
+      v: d.comex_usd || (d.comex_jpy_g * OZ / d.usd_jpy)
+    }));
+
+  // MSPI-B: convert ¥/g to $/oz using usd_jpy at that snapshot
+  const streetPts = raw
+    .filter(d => d.mspi_b_jpy_g && d.usd_jpy)
+    .map(d => ({
+      t: new Date(d.t),
+      v: (d.mspi_b_jpy_g * OZ) / d.usd_jpy
+    }));
+
+  if (comexPts.length === 0) { noteEl.textContent = 'No chart data yet.'; return; }
+
+  const allVals  = [...comexPts.map(d=>d.v), ...streetPts.map(d=>d.v)];
+  const allTimes = [...comexPts.map(d=>d.t), ...streetPts.map(d=>d.t)];
+  const minV = Math.min(...allVals) * 0.94;
+  const maxV = Math.max(...allVals) * 1.04;
+  const minT = Math.min(...allTimes.map(t=>t.getTime()));
+  const maxT = Math.max(...allTimes.map(t=>t.getTime()));
+
+  const PAD = {top:16, right:20, bottom:48, left:64};
+  const cW = W - PAD.left - PAD.right;
+  const cH = H - PAD.top  - PAD.bottom;
+
+  const xPos = t => PAD.left + ((t.getTime() - minT) / (maxT - minT || 1)) * cW;
+  const yPos = v => PAD.top  + (1 - (v - minV) / (maxV - minV)) * cH;
+
+  // Shaded gap between COMEX and street (visual wow)
+  if (streetPts.length > 0 && comexPts.length > 0) {
+    ctx.fillStyle = 'rgba(107,42,10,0.07)';
+    ctx.beginPath();
+    // Top edge: street step line from left to right
+    const firstStreetY = yPos(streetPts[0].v);
+    ctx.moveTo(PAD.left, firstStreetY);
+    streetPts.forEach((d, i) => {
+      const x = xPos(d.t), y = yPos(d.v);
+      if (i === 0) { ctx.lineTo(x, y); }
+      else { ctx.lineTo(x, yPos(streetPts[i-1].v)); ctx.lineTo(x, y); }
+    });
+    ctx.lineTo(PAD.left + cW, yPos(streetPts[streetPts.length-1].v));
+    // Bottom edge: COMEX line right to left
+    for (let i = comexPts.length - 1; i >= 0; i--) {
+      ctx.lineTo(xPos(comexPts[i].t), yPos(comexPts[i].v));
+    }
+    ctx.closePath();
+    ctx.fill();
+  }
+
+  // Grid lines + Y labels
+  const yTicks = 6;
+  ctx.strokeStyle = '#e8e2d8';
+  ctx.lineWidth = 1;
+  for (let i = 0; i <= yTicks; i++) {
+    const v = minV + (maxV - minV) * (i / yTicks);
+    const y = yPos(v);
+    ctx.beginPath(); ctx.moveTo(PAD.left, y); ctx.lineTo(PAD.left + cW, y); ctx.stroke();
+    ctx.fillStyle = '#a89f94';
+    ctx.font = '10px DM Mono, monospace';
+    ctx.textAlign = 'right';
+    ctx.fillText('$' + v.toFixed(0), PAD.left - 6, y + 4);
+  }
+
+  // X axis labels
+  const xLabelCount = Math.min(comexPts.length, 6);
+  const step = Math.max(1, Math.floor(comexPts.length / xLabelCount));
+  ctx.fillStyle = '#a89f94';
+  ctx.font = '10px DM Mono, monospace';
+  ctx.textAlign = 'center';
+  for (let i = 0; i < comexPts.length; i += step) {
+    const d = comexPts[i];
+    const x = xPos(d.t);
+    const label = d.t.toLocaleDateString('en-GB',{month:'short',day:'2-digit'})
+      + ' ' + d.t.toLocaleTimeString('en-GB',{hour:'2-digit',minute:'2-digit'});
+    ctx.fillText(label, x, H - PAD.bottom + 16);
+  }
+
+  // COMEX line (blue)
+  ctx.strokeStyle = '#1a3a5c';
+  ctx.lineWidth = 1.5;
+  ctx.lineJoin = 'round';
+  ctx.beginPath();
+  comexPts.forEach((d, i) => {
+    i === 0 ? ctx.moveTo(xPos(d.t), yPos(d.v)) : ctx.lineTo(xPos(d.t), yPos(d.v));
+  });
+  ctx.stroke();
+
+  // MSPI-B step line (green)
+  if (streetPts.length > 0) {
+    ctx.strokeStyle = '#2a5c3a';
+    ctx.lineWidth = 2.5;
+    ctx.beginPath();
+    streetPts.forEach((d, i) => {
+      const x = xPos(d.t), y = yPos(d.v);
+      if (i === 0) { ctx.moveTo(PAD.left, y); ctx.lineTo(x, y); }
+      else { ctx.lineTo(x, yPos(streetPts[i-1].v)); ctx.lineTo(x, y); }
+    });
+    ctx.lineTo(PAD.left + cW, yPos(streetPts[streetPts.length-1].v));
+    ctx.stroke();
+
+    // Dots + price labels on MSPI-B points
+    streetPts.forEach(d => {
+      ctx.fillStyle = '#2a5c3a';
+      ctx.beginPath();
+      ctx.arc(xPos(d.t), yPos(d.v), 5, 0, Math.PI*2);
+      ctx.fill();
+      ctx.fillStyle = '#2a5c3a';
+      ctx.font = 'bold 10px DM Mono, monospace';
+      ctx.textAlign = 'center';
+      ctx.fillText('$' + d.v.toFixed(2), xPos(d.t), yPos(d.v) - 10);
+    });
+
+    // Premium label in the gap
+    if (comexPts.length > 0) {
+      const lastComex = comexPts[comexPts.length-1].v;
+      const lastStreet = streetPts[streetPts.length-1].v;
+      const prem = ((lastStreet - lastComex) / lastComex * 100).toFixed(1);
+      const midY = (yPos(lastComex) + yPos(lastStreet)) / 2;
+      ctx.fillStyle = 'rgba(107,42,10,0.7)';
+      ctx.font = 'bold 11px DM Mono, monospace';
+      ctx.textAlign = 'right';
+      ctx.fillText('+' + prem + '% premium', PAD.left + cW - 4, midY + 4);
+    }
+  }
+
+  const dateRange = comexPts.length > 1
+    ? comexPts[0].t.toLocaleDateString('en-GB',{day:'2-digit',month:'short'})
+      + ' – ' + comexPts[comexPts.length-1].t.toLocaleDateString('en-GB',{day:'2-digit',month:'short'})
+    : comexPts[0].t.toLocaleDateString('en-GB',{day:'2-digit',month:'short'});
+  noteEl.textContent = comexPts.length + ' COMEX points · ' + streetPts.length + ' MSPI-B points · ' + dateRange;
+}
 </script>
 </body>
 </html>
