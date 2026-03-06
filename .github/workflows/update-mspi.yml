@@ -3,13 +3,96 @@ name: Update MSPI-B Street Price
 on:
   workflow_dispatch:
     inputs:
-      mspi_b:
-        description: 'MSPI-B price (JPY per gram) e.g. 675.16'
+      listing_1_coin:
+        description: 'Listing 1 — Coin name'
         required: true
-      listings:
-        description: 'Number of Mercari listings used'
+      listing_1_jpy:
+        description: 'Listing 1 — Sold price (¥)'
+        required: true
+      listing_1_jpy_g:
+        description: 'Listing 1 — ¥ per gram'
+        required: true
+      listing_2_coin:
+        description: 'Listing 2 — Coin name'
         required: false
-        default: ''
+      listing_2_jpy:
+        description: 'Listing 2 — Sold price (¥)'
+        required: false
+      listing_2_jpy_g:
+        description: 'Listing 2 — ¥ per gram'
+        required: false
+      listing_3_coin:
+        description: 'Listing 3 — Coin name'
+        required: false
+      listing_3_jpy:
+        description: 'Listing 3 — Sold price (¥)'
+        required: false
+      listing_3_jpy_g:
+        description: 'Listing 3 — ¥ per gram'
+        required: false
+      listing_4_coin:
+        description: 'Listing 4 — Coin name'
+        required: false
+      listing_4_jpy:
+        description: 'Listing 4 — Sold price (¥)'
+        required: false
+      listing_4_jpy_g:
+        description: 'Listing 4 — ¥ per gram'
+        required: false
+      listing_5_coin:
+        description: 'Listing 5 — Coin name'
+        required: false
+      listing_5_jpy:
+        description: 'Listing 5 — Sold price (¥)'
+        required: false
+      listing_5_jpy_g:
+        description: 'Listing 5 — ¥ per gram'
+        required: false
+      listing_6_coin:
+        description: 'Listing 6 — Coin name'
+        required: false
+      listing_6_jpy:
+        description: 'Listing 6 — Sold price (¥)'
+        required: false
+      listing_6_jpy_g:
+        description: 'Listing 6 — ¥ per gram'
+        required: false
+      listing_7_coin:
+        description: 'Listing 7 — Coin name'
+        required: false
+      listing_7_jpy:
+        description: 'Listing 7 — Sold price (¥)'
+        required: false
+      listing_7_jpy_g:
+        description: 'Listing 7 — ¥ per gram'
+        required: false
+      listing_8_coin:
+        description: 'Listing 8 — Coin name'
+        required: false
+      listing_8_jpy:
+        description: 'Listing 8 — Sold price (¥)'
+        required: false
+      listing_8_jpy_g:
+        description: 'Listing 8 — ¥ per gram'
+        required: false
+      listing_9_coin:
+        description: 'Listing 9 — Coin name'
+        required: false
+      listing_9_jpy:
+        description: 'Listing 9 — Sold price (¥)'
+        required: false
+      listing_9_jpy_g:
+        description: 'Listing 9 — ¥ per gram'
+        required: false
+      listing_10_coin:
+        description: 'Listing 10 — Coin name'
+        required: false
+      listing_10_jpy:
+        description: 'Listing 10 — Sold price (¥)'
+        required: false
+      listing_10_jpy_g:
+        description: 'Listing 10 — ¥ per gram'
+        required: false
 
 jobs:
   update-mspi:
@@ -26,13 +109,73 @@ jobs:
         with:
           python-version: '3.11'
 
-      - name: Update MSPI-B in prices.json and prices-history.json
-        run: python scripts/update_mspi.py ${{ github.event.inputs.mspi_b }} ${{ github.event.inputs.listings }}
+      - name: Build listings JSON and run update
+        env:
+          L1_COIN:  ${{ github.event.inputs.listing_1_coin }}
+          L1_JPY:   ${{ github.event.inputs.listing_1_jpy }}
+          L1_JPYG:  ${{ github.event.inputs.listing_1_jpy_g }}
+          L2_COIN:  ${{ github.event.inputs.listing_2_coin }}
+          L2_JPY:   ${{ github.event.inputs.listing_2_jpy }}
+          L2_JPYG:  ${{ github.event.inputs.listing_2_jpy_g }}
+          L3_COIN:  ${{ github.event.inputs.listing_3_coin }}
+          L3_JPY:   ${{ github.event.inputs.listing_3_jpy }}
+          L3_JPYG:  ${{ github.event.inputs.listing_3_jpy_g }}
+          L4_COIN:  ${{ github.event.inputs.listing_4_coin }}
+          L4_JPY:   ${{ github.event.inputs.listing_4_jpy }}
+          L4_JPYG:  ${{ github.event.inputs.listing_4_jpy_g }}
+          L5_COIN:  ${{ github.event.inputs.listing_5_coin }}
+          L5_JPY:   ${{ github.event.inputs.listing_5_jpy }}
+          L5_JPYG:  ${{ github.event.inputs.listing_5_jpy_g }}
+          L6_COIN:  ${{ github.event.inputs.listing_6_coin }}
+          L6_JPY:   ${{ github.event.inputs.listing_6_jpy }}
+          L6_JPYG:  ${{ github.event.inputs.listing_6_jpy_g }}
+          L7_COIN:  ${{ github.event.inputs.listing_7_coin }}
+          L7_JPY:   ${{ github.event.inputs.listing_7_jpy }}
+          L7_JPYG:  ${{ github.event.inputs.listing_7_jpy_g }}
+          L8_COIN:  ${{ github.event.inputs.listing_8_coin }}
+          L8_JPY:   ${{ github.event.inputs.listing_8_jpy }}
+          L8_JPYG:  ${{ github.event.inputs.listing_8_jpy_g }}
+          L9_COIN:  ${{ github.event.inputs.listing_9_coin }}
+          L9_JPY:   ${{ github.event.inputs.listing_9_jpy }}
+          L9_JPYG:  ${{ github.event.inputs.listing_9_jpy_g }}
+          L10_COIN: ${{ github.event.inputs.listing_10_coin }}
+          L10_JPY:  ${{ github.event.inputs.listing_10_jpy }}
+          L10_JPYG: ${{ github.event.inputs.listing_10_jpy_g }}
+        run: |
+          python3 - << 'EOF'
+          import json, os, subprocess, sys
+
+          def make(coin, jpy, jpy_g):
+              if not coin or not jpy or not jpy_g:
+                  return None
+              try:
+                  return {"coin": coin, "jpy": int(float(jpy)), "jpy_g": float(jpy_g)}
+              except:
+                  return None
+
+          listings = []
+          for i in range(1, 11):
+              l = make(
+                  os.environ.get(f"L{i}_COIN", ""),
+                  os.environ.get(f"L{i}_JPY", ""),
+                  os.environ.get(f"L{i}_JPYG", ""),
+              )
+              if l:
+                  listings.append(l)
+
+          if not listings:
+              print("No valid listings found")
+              sys.exit(1)
+
+          print(f"Building JSON for {len(listings)} listings")
+          j = json.dumps(listings)
+          subprocess.run(["python", "scripts/update_mspi.py", j], check=True)
+          EOF
 
       - name: Commit and push
         run: |
           git config user.name "JPMI Bot"
           git config user.email "bot@japanphysicalmetals.jp"
           git add prices.json prices-history.json
-          git diff --cached --quiet || git commit -m "MSPI-B update: ¥${{ github.event.inputs.mspi_b }}/g"
+          git diff --cached --quiet || git commit -m "MSPI-B update $(date -u +'%Y-%m-%d')"
           git push
