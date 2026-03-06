@@ -75,24 +75,6 @@ on:
       listing_8_jpy_g:
         description: 'Listing 8 — ¥ per gram'
         required: false
-      listing_9_coin:
-        description: 'Listing 9 — Coin name'
-        required: false
-      listing_9_jpy:
-        description: 'Listing 9 — Sold price (¥)'
-        required: false
-      listing_9_jpy_g:
-        description: 'Listing 9 — ¥ per gram'
-        required: false
-      listing_10_coin:
-        description: 'Listing 10 — Coin name'
-        required: false
-      listing_10_jpy:
-        description: 'Listing 10 — Sold price (¥)'
-        required: false
-      listing_10_jpy_g:
-        description: 'Listing 10 — ¥ per gram'
-        required: false
 
 jobs:
   update-mspi:
@@ -135,12 +117,6 @@ jobs:
           L8_COIN:  ${{ github.event.inputs.listing_8_coin }}
           L8_JPY:   ${{ github.event.inputs.listing_8_jpy }}
           L8_JPYG:  ${{ github.event.inputs.listing_8_jpy_g }}
-          L9_COIN:  ${{ github.event.inputs.listing_9_coin }}
-          L9_JPY:   ${{ github.event.inputs.listing_9_jpy }}
-          L9_JPYG:  ${{ github.event.inputs.listing_9_jpy_g }}
-          L10_COIN: ${{ github.event.inputs.listing_10_coin }}
-          L10_JPY:  ${{ github.event.inputs.listing_10_jpy }}
-          L10_JPYG: ${{ github.event.inputs.listing_10_jpy_g }}
         run: python scripts/update_mspi.py
 
       - name: Commit and push
