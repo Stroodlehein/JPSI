@@ -1,17 +1,14 @@
 {
-  "updated_at_utc": "2026-03-05T08:43:30+00:00",
+  "updated_at_utc": "2026-03-06T03:25:27+00:00",
   "prices_jpy_per_g": {
-    "comex_silver_usd_oz": 83.6185,
+    "comex_silver_usd_oz": 84.5914,
     "usd_jpy": 157.54,
-    "comex_silver_jpy_g": 423.53,
-    "tanaka_silver_buy": 449.57,
-    "nihon_silver_buy": 460.68,
-    "mitsubishi_silver_buy": 450.23,
-    "nanboya_sv1000": 452.0,
-    "daikichi_sv1000": 448.0,
-    "mercari_mspi_b": 668.73,
-    "mercari_mspi_b_listings": 5,
-    "mercari_mspi_b_avg_jpy": 20800
+    "comex_silver_jpy_g": 428.46,
+    "tanaka_silver_buy": 457.49,
+    "nihon_silver_buy": 457.49,
+    "mitsubishi_silver_buy": 455.84,
+    "nanboya_sv1000": 449.0,
+    "daikichi_sv1000": 443.0
   },
   "errors": [],
   "sources": {
@@ -20,35 +17,5 @@
     "mitsubishi": "https://gold.mmc.co.jp/market/silver-price/",
     "nanboya": "https://nanboya.com/gold-kaitori/silver/silver-souba/",
     "daikichi": "https://www.kaitori-daikichi.jp/list/gold/silver/souba/"
-  },
-  "comex_updated_at_utc": "2026-03-06T02:40:28+00:00",
-  "mercari_listings": [
-    {
-      "coin": "Canadian Maple Leaf 2023 1oz",
-      "jpy": 18000,
-      "jpy_g": 578.71
-    },
-    {
-      "coin": "Wien Philharmonic 1oz",
-      "jpy": 20000,
-      "jpy_g": 643.01
-    },
-    {
-      "coin": "Canadian Maple Leaf 2021 1oz",
-      "jpy": 21000,
-      "jpy_g": 675.16
-    },
-    {
-      "coin": "Wien Philharmonic 1oz",
-      "jpy": 23000,
-      "jpy_g": 739.46
-    },
-    {
-      "coin": "American Silver Eagle 1oz",
-      "jpy": 22000,
-      "jpy_g": 707.31
-    }
-  ],
-  "mspi_updated_at_utc": "2026-03-06T01:06:48+00:00",
-  "mspi_updated_date": "2026-03-06"
+  }
 }
