@@ -1,0 +1,38 @@
+name: Update MSPI-B Street Price
+
+on:
+  workflow_dispatch:
+    inputs:
+      mspi_b:
+        description: 'MSPI-B price (JPY per gram) e.g. 675.16'
+        required: true
+      listings:
+        description: 'Number of Mercari listings used'
+        required: false
+        default: ''
+
+jobs:
+  update-mspi:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Update MSPI-B in prices.json and prices-history.json
+        run: python scripts/update_mspi.py ${{ github.event.inputs.mspi_b }} ${{ github.event.inputs.listings }}
+
+      - name: Commit and push
+        run: |
+          git config user.name "JPMI Bot"
+          git config user.email "bot@japanphysicalmetals.jp"
+          git add prices.json prices-history.json
+          git diff --cached --quiet || git commit -m "MSPI-B update: ¥${{ github.event.inputs.mspi_b }}/g"
+          git push
