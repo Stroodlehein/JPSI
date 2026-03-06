@@ -9,9 +9,9 @@
     "mitsubishi_silver_buy": 450.23,
     "nanboya_sv1000": 452.0,
     "daikichi_sv1000": 448.0,
-    "mercari_mspi_b": 578.71,
-    "mercari_mspi_b_listings": 1,
-    "mercari_mspi_b_avg_jpy": 18000
+    "mercari_mspi_b": 668.73,
+    "mercari_mspi_b_listings": 5,
+    "mercari_mspi_b_avg_jpy": 20800
   },
   "errors": [],
   "sources": {
@@ -27,8 +27,28 @@
       "coin": "Canadian Maple Leaf 2023 1oz",
       "jpy": 18000,
       "jpy_g": 578.71
+    },
+    {
+      "coin": "Wien Philharmonic 1oz",
+      "jpy": 20000,
+      "jpy_g": 643.01
+    },
+    {
+      "coin": "Canadian Maple Leaf 2021 1oz",
+      "jpy": 21000,
+      "jpy_g": 675.16
+    },
+    {
+      "coin": "Wien Philharmonic 1oz",
+      "jpy": 23000,
+      "jpy_g": 739.46
+    },
+    {
+      "coin": "American Silver Eagle 1oz",
+      "jpy": 22000,
+      "jpy_g": 707.31
     }
   ],
-  "mspi_updated_at_utc": "2026-03-06T01:01:50+00:00",
+  "mspi_updated_at_utc": "2026-03-06T01:06:48+00:00",
   "mspi_updated_date": "2026-03-06"
 }
