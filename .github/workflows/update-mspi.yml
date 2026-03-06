@@ -109,7 +109,7 @@ jobs:
         with:
           python-version: '3.11'
 
-      - name: Build listings JSON and run update
+      - name: Update MSPI-B
         env:
           L1_COIN:  ${{ github.event.inputs.listing_1_coin }}
           L1_JPY:   ${{ github.event.inputs.listing_1_jpy }}
@@ -141,36 +141,7 @@ jobs:
           L10_COIN: ${{ github.event.inputs.listing_10_coin }}
           L10_JPY:  ${{ github.event.inputs.listing_10_jpy }}
           L10_JPYG: ${{ github.event.inputs.listing_10_jpy_g }}
-        run: |
-          python3 - << 'EOF'
-          import json, os, subprocess, sys
-
-          def make(coin, jpy, jpy_g):
-              if not coin or not jpy or not jpy_g:
-                  return None
-              try:
-                  return {"coin": coin, "jpy": int(float(jpy)), "jpy_g": float(jpy_g)}
-              except:
-                  return None
-
-          listings = []
-          for i in range(1, 11):
-              l = make(
-                  os.environ.get(f"L{i}_COIN", ""),
-                  os.environ.get(f"L{i}_JPY", ""),
-                  os.environ.get(f"L{i}_JPYG", ""),
-              )
-              if l:
-                  listings.append(l)
-
-          if not listings:
-              print("No valid listings found")
-              sys.exit(1)
-
-          print(f"Building JSON for {len(listings)} listings")
-          j = json.dumps(listings)
-          subprocess.run(["python", "scripts/update_mspi.py", j], check=True)
-          EOF
+        run: python scripts/update_mspi.py
 
       - name: Commit and push
         run: |
