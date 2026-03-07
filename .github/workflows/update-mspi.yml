@@ -92,32 +92,16 @@ jobs:
           python-version: '3.11'
 
       - name: Update MSPI-B
-        env:
-          L1_COIN:  ${{ github.event.inputs.listing_1_coin }}
-          L1_JPY:   ${{ github.event.inputs.listing_1_jpy }}
-          L1_JPYG:  ${{ github.event.inputs.listing_1_jpy_g }}
-          L2_COIN:  ${{ github.event.inputs.listing_2_coin }}
-          L2_JPY:   ${{ github.event.inputs.listing_2_jpy }}
-          L2_JPYG:  ${{ github.event.inputs.listing_2_jpy_g }}
-          L3_COIN:  ${{ github.event.inputs.listing_3_coin }}
-          L3_JPY:   ${{ github.event.inputs.listing_3_jpy }}
-          L3_JPYG:  ${{ github.event.inputs.listing_3_jpy_g }}
-          L4_COIN:  ${{ github.event.inputs.listing_4_coin }}
-          L4_JPY:   ${{ github.event.inputs.listing_4_jpy }}
-          L4_JPYG:  ${{ github.event.inputs.listing_4_jpy_g }}
-          L5_COIN:  ${{ github.event.inputs.listing_5_coin }}
-          L5_JPY:   ${{ github.event.inputs.listing_5_jpy }}
-          L5_JPYG:  ${{ github.event.inputs.listing_5_jpy_g }}
-          L6_COIN:  ${{ github.event.inputs.listing_6_coin }}
-          L6_JPY:   ${{ github.event.inputs.listing_6_jpy }}
-          L6_JPYG:  ${{ github.event.inputs.listing_6_jpy_g }}
-          L7_COIN:  ${{ github.event.inputs.listing_7_coin }}
-          L7_JPY:   ${{ github.event.inputs.listing_7_jpy }}
-          L7_JPYG:  ${{ github.event.inputs.listing_7_jpy_g }}
-          L8_COIN:  ${{ github.event.inputs.listing_8_coin }}
-          L8_JPY:   ${{ github.event.inputs.listing_8_jpy }}
-          L8_JPYG:  ${{ github.event.inputs.listing_8_jpy_g }}
-        run: python scripts/update_mspi.py
+        run: |
+          python scripts/update_mspi.py \
+            "${{ github.event.inputs.listing_1_coin }}" "${{ github.event.inputs.listing_1_jpy }}" "${{ github.event.inputs.listing_1_jpy_g }}" \
+            "${{ github.event.inputs.listing_2_coin }}" "${{ github.event.inputs.listing_2_jpy }}" "${{ github.event.inputs.listing_2_jpy_g }}" \
+            "${{ github.event.inputs.listing_3_coin }}" "${{ github.event.inputs.listing_3_jpy }}" "${{ github.event.inputs.listing_3_jpy_g }}" \
+            "${{ github.event.inputs.listing_4_coin }}" "${{ github.event.inputs.listing_4_jpy }}" "${{ github.event.inputs.listing_4_jpy_g }}" \
+            "${{ github.event.inputs.listing_5_coin }}" "${{ github.event.inputs.listing_5_jpy }}" "${{ github.event.inputs.listing_5_jpy_g }}" \
+            "${{ github.event.inputs.listing_6_coin }}" "${{ github.event.inputs.listing_6_jpy }}" "${{ github.event.inputs.listing_6_jpy_g }}" \
+            "${{ github.event.inputs.listing_7_coin }}" "${{ github.event.inputs.listing_7_jpy }}" "${{ github.event.inputs.listing_7_jpy_g }}" \
+            "${{ github.event.inputs.listing_8_coin }}" "${{ github.event.inputs.listing_8_jpy }}" "${{ github.event.inputs.listing_8_jpy_g }}"
 
       - name: Commit and push
         run: |
