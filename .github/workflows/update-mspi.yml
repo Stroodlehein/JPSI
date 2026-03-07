@@ -86,6 +86,9 @@ jobs:
       - name: Checkout repo
         uses: actions/checkout@v4
 
+      - name: Pull latest
+        run: git pull --rebase origin main
+
       - name: Set up Python
         uses: actions/setup-python@v5
         with:
@@ -107,7 +110,6 @@ jobs:
         run: |
           git config user.name "JPMI Bot"
           git config user.email "bot@japanphysicalmetals.jp"
-          git pull --rebase origin main
           git add prices.json prices-history.json
           git diff --cached --quiet || git commit -m "MSPI-B update $(date -u +'%Y-%m-%d')"
           git push
