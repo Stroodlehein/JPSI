@@ -69,7 +69,7 @@ def main():
     with open(PRICES_JSON, "r", encoding="utf-8") as f:
       data = json.load(f)
   except Exception:
-    data = {"prices_jpy_per_g": {}, "errors": []}
+    data = {"prices_jpy_per_g": {}, "errors": [], "mercari_listings": []}
 
   comex_usd, usd_jpy = get_comex_and_fx()
 
