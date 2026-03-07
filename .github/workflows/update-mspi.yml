@@ -1,1 +1,113 @@
+name: Update MSPI-B Street Price
 
+on:
+  workflow_dispatch:
+    inputs:
+      listing_1_coin:
+        description: 'Listing 1 — Coin name'
+        required: true
+      listing_1_jpy:
+        description: 'Listing 1 — Sold price (¥)'
+        required: true
+      listing_1_jpy_g:
+        description: 'Listing 1 — ¥ per gram'
+        required: true
+      listing_2_coin:
+        description: 'Listing 2 — Coin name'
+        required: false
+      listing_2_jpy:
+        description: 'Listing 2 — Sold price (¥)'
+        required: false
+      listing_2_jpy_g:
+        description: 'Listing 2 — ¥ per gram'
+        required: false
+      listing_3_coin:
+        description: 'Listing 3 — Coin name'
+        required: false
+      listing_3_jpy:
+        description: 'Listing 3 — Sold price (¥)'
+        required: false
+      listing_3_jpy_g:
+        description: 'Listing 3 — ¥ per gram'
+        required: false
+      listing_4_coin:
+        description: 'Listing 4 — Coin name'
+        required: false
+      listing_4_jpy:
+        description: 'Listing 4 — Sold price (¥)'
+        required: false
+      listing_4_jpy_g:
+        description: 'Listing 4 — ¥ per gram'
+        required: false
+      listing_5_coin:
+        description: 'Listing 5 — Coin name'
+        required: false
+      listing_5_jpy:
+        description: 'Listing 5 — Sold price (¥)'
+        required: false
+      listing_5_jpy_g:
+        description: 'Listing 5 — ¥ per gram'
+        required: false
+      listing_6_coin:
+        description: 'Listing 6 — Coin name'
+        required: false
+      listing_6_jpy:
+        description: 'Listing 6 — Sold price (¥)'
+        required: false
+      listing_6_jpy_g:
+        description: 'Listing 6 — ¥ per gram'
+        required: false
+      listing_7_coin:
+        description: 'Listing 7 — Coin name'
+        required: false
+      listing_7_jpy:
+        description: 'Listing 7 — Sold price (¥)'
+        required: false
+      listing_7_jpy_g:
+        description: 'Listing 7 — ¥ per gram'
+        required: false
+      listing_8_coin:
+        description: 'Listing 8 — Coin name'
+        required: false
+      listing_8_jpy:
+        description: 'Listing 8 — Sold price (¥)'
+        required: false
+      listing_8_jpy_g:
+        description: 'Listing 8 — ¥ per gram'
+        required: false
+
+jobs:
+  update-mspi:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Update MSPI-B
+        run: |
+          python scripts/update_mspi.py \
+            "${{ github.event.inputs.listing_1_coin }}" "${{ github.event.inputs.listing_1_jpy }}" "${{ github.event.inputs.listing_1_jpy_g }}" \
+            "${{ github.event.inputs.listing_2_coin }}" "${{ github.event.inputs.listing_2_jpy }}" "${{ github.event.inputs.listing_2_jpy_g }}" \
+            "${{ github.event.inputs.listing_3_coin }}" "${{ github.event.inputs.listing_3_jpy }}" "${{ github.event.inputs.listing_3_jpy_g }}" \
+            "${{ github.event.inputs.listing_4_coin }}" "${{ github.event.inputs.listing_4_jpy }}" "${{ github.event.inputs.listing_4_jpy_g }}" \
+            "${{ github.event.inputs.listing_5_coin }}" "${{ github.event.inputs.listing_5_jpy }}" "${{ github.event.inputs.listing_5_jpy_g }}" \
+            "${{ github.event.inputs.listing_6_coin }}" "${{ github.event.inputs.listing_6_jpy }}" "${{ github.event.inputs.listing_6_jpy_g }}" \
+            "${{ github.event.inputs.listing_7_coin }}" "${{ github.event.inputs.listing_7_jpy }}" "${{ github.event.inputs.listing_7_jpy_g }}" \
+            "${{ github.event.inputs.listing_8_coin }}" "${{ github.event.inputs.listing_8_jpy }}" "${{ github.event.inputs.listing_8_jpy_g }}"
+
+      - name: Commit and push
+        run: |
+          git config user.name "JPMI Bot"
+          git config user.email "bot@japanphysicalmetals.jp"
+          git pull --rebase origin main
+          git add prices.json prices-history.json
+          git diff --cached --quiet || git commit -m "MSPI-B update $(date -u +'%Y-%m-%d')"
+          git push
