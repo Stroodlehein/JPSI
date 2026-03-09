@@ -64,6 +64,14 @@ def get_comex_and_fx():
   return comex_usd, usd_jpy
 
 def main():
+  # Pull latest before reading to avoid race condition with MSPI-B workflow
+  try:
+    import subprocess
+    subprocess.run(["git", "-C", REPO_ROOT, "pull", "--rebase", "origin", "main"],
+                   capture_output=True, timeout=30)
+  except Exception:
+    pass
+
   # Load existing prices.json
   try:
     with open(PRICES_JSON, "r", encoding="utf-8") as f:
