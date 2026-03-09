@@ -1,9 +1,9 @@
 {
   "updated_at_utc": "2026-03-09T08:47:43+00:00",
   "prices_jpy_per_g": {
-    "comex_silver_usd_oz": 86.418,
+    "comex_silver_usd_oz": 87.0059,
     "usd_jpy": 158.5,
-    "comex_silver_jpy_g": 440.38,
+    "comex_silver_jpy_g": 443.37,
     "tanaka_silver_buy": 452.1,
     "nihon_silver_buy": 449.68,
     "mitsubishi_silver_buy": 455.73,
@@ -21,7 +21,7 @@
     "nanboya": "https://nanboya.com/gold-kaitori/silver/silver-souba/",
     "daikichi": "https://www.kaitori-daikichi.jp/list/gold/silver/souba/"
   },
-  "comex_updated_at_utc": "2026-03-09T20:42:16+00:00",
+  "comex_updated_at_utc": "2026-03-09T21:17:25+00:00",
   "mercari_listings": [
     {
       "coin": "Australian Kangaroo",
