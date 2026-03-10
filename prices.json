@@ -1,17 +1,14 @@
 {
-  "updated_at_utc": "2026-03-09T08:47:43+00:00",
+  "updated_at_utc": "2026-03-10T03:24:43+00:00",
   "prices_jpy_per_g": {
-    "comex_silver_usd_oz": 89.3712,
+    "comex_silver_usd_oz": 88.6803,
     "usd_jpy": 158.5,
-    "comex_silver_jpy_g": 455.43,
-    "tanaka_silver_buy": 452.1,
-    "nihon_silver_buy": 449.68,
-    "mitsubishi_silver_buy": 455.73,
-    "nanboya_sv1000": 406.0,
-    "daikichi_sv1000": 447.0,
-    "mercari_mspi_b": 698.0,
-    "mercari_mspi_b_listings": 4,
-    "mercari_mspi_b_avg_jpy": 21900
+    "comex_silver_jpy_g": 451.91,
+    "tanaka_silver_buy": 493.46,
+    "nihon_silver_buy": 480.26,
+    "mitsubishi_silver_buy": 487.41,
+    "nanboya_sv1000": 471.0,
+    "daikichi_sv1000": 479.0
   },
   "errors": [],
   "sources": {
@@ -20,30 +17,5 @@
     "mitsubishi": "https://gold.mmc.co.jp/market/silver-price/",
     "nanboya": "https://nanboya.com/gold-kaitori/silver/silver-souba/",
     "daikichi": "https://www.kaitori-daikichi.jp/list/gold/silver/souba/"
-  },
-  "comex_updated_at_utc": "2026-03-10T02:02:46+00:00",
-  "mercari_listings": [
-    {
-      "coin": "American Silver Eagle",
-      "jpy": 20400,
-      "jpy_g": 655.0
-    },
-    {
-      "coin": "American Silver Eagle",
-      "jpy": 23000,
-      "jpy_g": 739.0
-    },
-    {
-      "coin": "Australian Kangaroo",
-      "jpy": 20500,
-      "jpy_g": 659.0
-    },
-    {
-      "coin": "Wien Philharmonic",
-      "jpy": 23700,
-      "jpy_g": 739.0
-    }
-  ],
-  "mspi_updated_at_utc": "2026-03-09T23:55:17+00:00",
-  "mspi_updated_date": "2026-03-09"
+  }
 }
