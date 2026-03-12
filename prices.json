@@ -1,9 +1,9 @@
 {
   "updated_at_utc": "2026-03-10T05:45:54+00:00",
   "prices_jpy_per_g": {
-    "comex_silver_usd_oz": 84.8119,
+    "comex_silver_usd_oz": 84.5031,
     "usd_jpy": 158.86,
-    "comex_silver_jpy_g": 433.17,
+    "comex_silver_jpy_g": 431.6,
     "tanaka_silver_buy": 482.46,
     "nihon_silver_buy": 480.26,
     "mitsubishi_silver_buy": 487.41,
@@ -21,7 +21,7 @@
     "nanboya": "https://nanboya.com/gold-kaitori/silver/silver-souba/",
     "daikichi": "https://www.kaitori-daikichi.jp/list/gold/silver/souba/"
   },
-  "comex_updated_at_utc": "2026-03-12T19:28:14+00:00",
+  "comex_updated_at_utc": "2026-03-12T20:00:47+00:00",
   "mercari_listings": [
     {
       "coin": "American Silver Eagle",
