@@ -1,9 +1,9 @@
 {
   "updated_at_utc": "2026-03-10T05:45:54+00:00",
   "prices_jpy_per_g": {
-    "comex_silver_usd_oz": 80.5618,
+    "comex_silver_usd_oz": 80.1639,
     "usd_jpy": 159.33,
-    "comex_silver_jpy_g": 412.68,
+    "comex_silver_jpy_g": 410.65,
     "tanaka_silver_buy": 482.46,
     "nihon_silver_buy": 480.26,
     "mitsubishi_silver_buy": 487.41,
@@ -21,7 +21,7 @@
     "nanboya": "https://nanboya.com/gold-kaitori/silver/silver-souba/",
     "daikichi": "https://www.kaitori-daikichi.jp/list/gold/silver/souba/"
   },
-  "comex_updated_at_utc": "2026-03-16T04:10:31+00:00",
+  "comex_updated_at_utc": "2026-03-16T05:59:04+00:00",
   "mercari_listings": [
     {
       "coin": "Canadian Maple Leaf",
