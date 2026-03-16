@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>JPMI — Japan Physical Silver Price Index · Tanaka · Nanboya · Mercari</title>
-<meta name="description" content="Live Japan physical silver prices from Tanaka, Nihon Material, Nanboya, Daikichi and Mercari. Daily benchmark in JPY/g — updated every 10 minutes. Japan's only physical silver index.">
+<meta name="description" content="JPMI aggregates refinery buyback, dealer bid, and Mercari peer-to-peer prices to produce a live physical silver benchmark for Japan — expressed in JPY per gram.">
 <meta name="keywords" content="JPMI, Japan silver price, Tanaka silver price, Nanboya silver, Nihon Material silver, physical silver Japan, 銀 価格 日本, 田中 銀 価格, なんぼや 銀, 日本現物銀指数, silver index Japan, JPY per gram">
 <meta name="author" content="JPMI — Japan Physical Metals Index">
 <meta name="robots" content="index, follow">
@@ -71,14 +71,6 @@ body{background:var(--bg);color:var(--ink);font-family:'DM Mono',monospace;font-
 .nav-link:hover{color:var(--ink2);}
 .nav-link.active{color:var(--ink);border-bottom-color:var(--ink);}
 .masthead-meta{font-family:'DM Mono',monospace;font-size:0.72rem;color:var(--ink4);letter-spacing:0.06em;text-align:right;line-height:1.7;}
-.ideology-strip{border-bottom:1px solid var(--border);padding:14px 0;margin-bottom:28px;display:flex;align-items:center;overflow:hidden;}
-.ideology-item{flex:1;padding:0 20px;border-right:1px solid var(--border);text-align:center;}
-.ideology-item:first-child{padding-left:0;}
-.ideology-item:last-child{border-right:none;padding-right:0;}
-.ideology-contrast{font-family:'DM Mono',monospace;font-size:0.7rem;letter-spacing:0.1em;color:var(--ink4);text-transform:uppercase;display:flex;align-items:center;justify-content:center;gap:8px;}
-.ideology-contrast .old{color:var(--ink4);text-decoration:line-through;}
-.ideology-contrast .arrow{color:var(--border2);}
-.ideology-contrast .new{color:var(--ink2);font-weight:500;}
 .fetch-banner{display:flex;align-items:center;gap:10px;padding:8px 14px;font-family:'DM Mono',monospace;font-size:0.78rem;letter-spacing:0.04em;border:1px solid var(--border);background:var(--paper);color:var(--ink4);margin-bottom:20px;border-radius:1px;transition:all 0.3s;}
 .fetch-banner.loading{border-color:#c8d4d8;color:var(--silver);}
 .fetch-banner.success{border-color:#b0ccb8;background:var(--green-bg);color:var(--green);}
@@ -124,8 +116,6 @@ body{background:var(--bg);color:var(--ink);font-family:'DM Mono',monospace;font-
 .price-card.loaded::before{background:#6aaa7a;}
 .price-card.failed{border-color:#d8c0bc;background:#fbf8f8;}
 .price-card.failed::before{background:#cc7a6a;}
-.price-card.manual{border-style:dashed;border-color:var(--border2);}
-.price-card.manual::before{background:var(--border2);}
 .pc-source{font-family:'DM Mono',monospace;font-size:0.75rem;letter-spacing:0.12em;color:var(--ink4);text-transform:uppercase;margin-bottom:10px;font-weight:500;}
 .pc-value{font-family:'DM Mono',monospace;font-size:1.6rem;color:var(--ink);font-weight:500;line-height:1;margin-bottom:4px;transition:color 0.3s;}
 .price-card.loading-state .pc-value{color:var(--border2);font-size:1rem;font-style:italic;}
@@ -153,12 +143,9 @@ body{background:var(--bg);color:var(--ink);font-family:'DM Mono',monospace;font-
 .ws-header{padding:14px 20px;border-bottom:1px solid var(--border);display:flex;align-items:center;gap:10px;background:rgba(23,20,15,0.018);}
 .ws-header h3{font-size:0.98rem;font-weight:500;color:var(--ink);}
 .ws-body{padding:18px 20px;}
-.weights-row{display:grid;grid-template-columns:1fr 1fr 1fr auto;gap:12px;align-items:end;margin-bottom:16px;}
 .wt-group{display:flex;flex-direction:column;gap:5px;}
 .wt-group label{font-family:'DM Mono',monospace;font-size:0.72rem;color:var(--ink4);letter-spacing:0.08em;text-transform:uppercase;}
 .btn{padding:8px 16px;font-family:'DM Mono',monospace;font-size:0.8rem;letter-spacing:0.08em;border:none;cursor:pointer;transition:all 0.15s;border-radius:1px;}
-.btn-primary{background:var(--ink);color:var(--paper);}
-.btn-primary:hover{background:#2a2520;}
 .btn-secondary{background:transparent;border:1px solid var(--border2);color:var(--ink2);}
 .btn-secondary:hover{background:var(--border);}
 .btn-sm{padding:5px 11px;font-size:0.75rem;}
@@ -209,13 +196,13 @@ body{background:var(--bg);color:var(--ink);font-family:'DM Mono',monospace;font-
 <nav class="site-nav">
   <a href="index.html" class="nav-link active" data-en="Index" data-ja="指数">Index</a>
   <a href="paper-vs-physical.html" class="nav-link" data-en="Paper vs Physical" data-ja="先物 vs 現物">Paper vs Physical</a>
-    <a href="about.html" class="nav-link" data-en="About &amp; Methodology" data-ja="概要・方法論">About &amp; Methodology</a>
+  <a href="about.html" class="nav-link" data-en="About &amp; Methodology" data-ja="概要・方法論">About &amp; Methodology</a>
 </nav>
 
 <div class="fetch-banner loading" id="fetch-banner">
   <div class="fetch-dot"></div>
-  <span id="fetch-status">Loading live data from prices.json…</span>
-  <button class="fetch-retry" id="fetch-retry-btn" onclick="loadPricesJSON()" style="display:none;">↻ Retry</button>
+  <span id="fetch-status">Loading live data…</span>
+  <button class="fetch-retry" id="fetch-retry-btn" onclick="init()" style="display:none;">↻ Retry</button>
 </div>
 
 <div class="benchmark-card">
@@ -258,7 +245,7 @@ body{background:var(--bg);color:var(--ink);font-family:'DM Mono',monospace;font-
 <div class="section-group">
   <div class="section-group-label">
     <span><span class="sgl-badge sgl-rs">RS</span>&nbsp;&nbsp;<span data-en="Refinery Spot — Buyback Prices" data-ja="精錬所スポット — 買取価格">Refinery Spot — Buyback Prices</span></span>
-    <button class="btn btn-secondary btn-sm" onclick="loadPricesJSON()" data-en="↻ Refresh" data-ja="↻ 更新">↻ Refresh</button>
+    <button class="btn btn-secondary btn-sm" onclick="init()" data-en="↻ Refresh" data-ja="↻ 更新">↻ Refresh</button>
   </div>
   <div class="price-grid">
     <div class="price-card rs-card loading-state" id="pc-tanaka">
@@ -307,7 +294,7 @@ body{background:var(--bg);color:var(--ink);font-family:'DM Mono',monospace;font-
 <div class="section-group">
   <div class="section-group-label">
     <span><span class="sgl-badge sgl-sr">SR</span>&nbsp;&nbsp;<span data-en="Street Retail — Mercari MSPI-B" data-ja="フリマ実売 — メルカリ MSPI-B">Street Retail — Mercari MSPI-B</span></span>
-    <span style="font-family:'DM Mono',monospace;font-size:0.68rem;color:var(--ink4);" id="sr-last-updated">Updated —</span>
+    <span style="font-family:'DM Mono',monospace;font-size:0.68rem;color:var(--ink4);" id="sr-last-updated"></span>
   </div>
   <div id="sr-table-container" class="price-card sr-table-card loaded" style="padding:0;">
     <table style="width:100%;border-collapse:collapse;">
@@ -337,7 +324,7 @@ body{background:var(--bg);color:var(--ink);font-family:'DM Mono',monospace;font-
   </div>
   <div class="ws-body">
     <p style="font-size:0.85rem;color:var(--ink3);margin-bottom:14px;font-style:italic;" data-en="Fixed weights applied to composite. RS = refiners · DB = dealers/pawn · SR = Mercari peer-to-peer" data-ja="複合指数に適用される固定ウェイト。RS=精錬所 · DB=業者/質屋 · SR=メルカリ">Fixed weights applied to composite. RS = refiners · DB = dealers/pawn · SR = Mercari peer-to-peer</p>
-    <div class="weights-row" style="grid-template-columns:1fr 1fr 1fr;">
+    <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px;">
       <div class="wt-group">
         <label data-en="RS Weight" data-ja="RSウェイト">RS Weight</label>
         <div style="font-family:'DM Mono',monospace;font-size:1.4rem;color:var(--ink);padding:8px 0;">0.55</div>
@@ -376,12 +363,28 @@ body{background:var(--bg);color:var(--ink);font-family:'DM Mono',monospace;font-
   let currentLang = 'en';
   const live = { tanaka:null, nihon:null, mitsubishi:null, nanboya:null, daikichi:null, mercari:null };
 
+  // Format a UTC date string nicely e.g. "Mon, 16 Mar 2026 · 01:02 UTC"
+  function fmtTimestamp(isoStr) {
+    const d = new Date(isoStr);
+    return d.toLocaleDateString('en-GB', {weekday:'short', day:'2-digit', month:'short', year:'numeric'})
+      + ' · ' + d.toLocaleTimeString('en-GB', {hour:'2-digit', minute:'2-digit'}) + ' UTC';
+  }
+
+  // Format just the date e.g. "2026-03-16"
+  function fmtDate(isoStr) {
+    return isoStr.slice(0, 10);
+  }
+
+  async function init() {
+    await Promise.all([loadPricesJSON(), loadHistory()]);
+  }
+
   async function loadPricesJSON() {
     const banner = document.getElementById('fetch-banner');
     const statusEl = document.getElementById('fetch-status');
     const retryBtn = document.getElementById('fetch-retry-btn');
     banner.className = 'fetch-banner loading';
-    statusEl.textContent = 'Loading live data from prices.json…';
+    statusEl.textContent = 'Loading live data…';
     retryBtn.style.display = 'none';
     ['tanaka','nihon','mitsubishi','nanboya','daikichi'].forEach(k => setCard(k, null, 'Fetching…', true));
 
@@ -391,41 +394,30 @@ body{background:var(--bg);color:var(--ink);font-family:'DM Mono',monospace;font-
       const data = await res.json();
       const p = data.prices_jpy_per_g || {};
       const errors = data.errors || [];
-      const updatedAt = data.updated_at_utc ? new Date(data.updated_at_utc) : null;
 
-      setCard('tanaka',     p.tanaka_silver_buy,      p.tanaka_silver_buy      ? '● Buyback price'     : 'Not available');
-      setCard('nihon',      p.nihon_silver_buy,       p.nihon_silver_buy       ? '● Buyback price'     : 'Not available');
-      setCard('mitsubishi', p.mitsubishi_silver_buy,  p.mitsubishi_silver_buy  ? '● Buyback price'     : 'Not available');
-      setCard('nanboya',    p.nanboya_sv1000,         p.nanboya_sv1000         ? '● Sv1000 bid'        : 'Not available');
-      setCard('daikichi',   p.daikichi_sv1000,        p.daikichi_sv1000        ? '● Per gram bid'      : 'Not available');
+      setCard('tanaka',     p.tanaka_silver_buy,     p.tanaka_silver_buy     ? '● Buyback price'  : 'Not available');
+      setCard('nihon',      p.nihon_silver_buy,      p.nihon_silver_buy      ? '● Buyback price'  : 'Not available');
+      setCard('mitsubishi', p.mitsubishi_silver_buy, p.mitsubishi_silver_buy ? '● Buyback price'  : 'Not available');
+      setCard('nanboya',    p.nanboya_sv1000,        p.nanboya_sv1000        ? '● Sv1000 bid'     : 'Not available');
+      setCard('daikichi',   p.daikichi_sv1000,       p.daikichi_sv1000       ? '● Per gram bid'   : 'Not available');
 
-      live.mercari = p.mercari_mspi_b || 716.46;
-
-      // Render SR listings table dynamically
+      // Render SR listings if present in prices.json
       const listings = data.mercari_listings || [];
       const mspi = p.mercari_mspi_b;
       const n = p.mercari_mspi_b_listings || listings.length;
       const avgJpy = p.mercari_mspi_b_avg_jpy;
-      const srDate = data.mspi_updated_date || '—';
-      const srEl = document.getElementById('sr-last-updated');
-      if (srEl) srEl.textContent = 'Last updated: ' + srDate;
-      renderSRTable(listings, mspi, n, avgJpy);
-
-      let tsStr = '—';
-      if (updatedAt) {
-        tsStr = updatedAt.toLocaleDateString('en-GB',{weekday:'short',day:'2-digit',month:'short',year:'numeric'})
-          + ' · ' + updatedAt.toLocaleTimeString('en-GB',{hour:'2-digit',minute:'2-digit'}) + ' UTC';
-        document.getElementById('bc-timestamp').textContent = tsStr;
-        document.getElementById('masthead-date').innerHTML = `Silver Index · JPY/g<br>${tsStr}`;
+      if (listings.length > 0) {
+        live.mercari = mspi;
+        renderSRTable(listings, mspi, n, avgJpy);
       }
 
       if (errors.length > 0) {
         banner.className = 'fetch-banner partial';
-        statusEl.textContent = `⚠ ${errors.length} source(s) unavailable · ${tsStr}`;
+        statusEl.textContent = `⚠ ${errors.length} source(s) unavailable`;
         retryBtn.style.display = 'inline-block';
       } else {
         banner.className = 'fetch-banner success';
-        statusEl.textContent = `✓ All prices loaded · ${tsStr}`;
+        statusEl.textContent = `✓ All prices loaded`;
       }
       recalculate();
 
@@ -437,6 +429,46 @@ body{background:var(--bg);color:var(--ink);font-family:'DM Mono',monospace;font-
     }
   }
 
+  async function loadHistory() {
+    try {
+      const res = await fetch('./prices-history.json?t=' + Date.now());
+      if (!res.ok) return;
+      const history = await res.json();
+
+      // Get last COMEX entry for main timestamp
+      const lastComex = [...history].reverse().find(d => d.comex_usd !== undefined);
+      if (lastComex) {
+        const tsStr = fmtTimestamp(lastComex.t);
+        document.getElementById('bc-timestamp').textContent = tsStr;
+        document.getElementById('masthead-date').innerHTML = `Silver Index · JPY/g<br>${tsStr}`;
+        // Update banner if already success
+        const banner = document.getElementById('fetch-banner');
+        const statusEl = document.getElementById('fetch-status');
+        if (banner.classList.contains('success')) {
+          statusEl.textContent = `✓ All prices loaded · ${tsStr}`;
+        } else if (banner.classList.contains('partial')) {
+          const errCount = statusEl.textContent.match(/\d+/)?.[0] || '1';
+          statusEl.textContent = `⚠ ${errCount} source(s) unavailable · ${tsStr}`;
+        }
+      }
+
+      // Get last MSPI-B entry for SR timestamp
+      const lastMspi = [...history].reverse().find(d => d.mspi_b_jpy_g !== undefined);
+      if (lastMspi) {
+        const srEl = document.getElementById('sr-last-updated');
+        if (srEl) srEl.textContent = 'Last updated: ' + fmtDate(lastMspi.t);
+
+        // Also use this for SR value if prices.json didn't have listings
+        if (live.mercari === null) {
+          live.mercari = lastMspi.mspi_b_jpy_g;
+          recalculate();
+        }
+      }
+
+    } catch(e) {
+      console.log('Could not load prices-history.json', e);
+    }
+  }
 
   function renderSRTable(listings, mspi, n, avgJpy) {
     const tbody = document.getElementById('sr-table-body');
@@ -527,7 +559,7 @@ body{background:var(--bg);color:var(--ink);font-family:'DM Mono',monospace;font-
     }
   }
 
-  document.addEventListener('DOMContentLoaded', loadPricesJSON);
+  document.addEventListener('DOMContentLoaded', init);
 </script>
 </body>
 </html>
