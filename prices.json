@@ -5,7 +5,10 @@
     "nihon_silver_buy": 453.97,
     "mitsubishi_silver_buy": 446.27,
     "nanboya_sv1000": 445.0,
-    "daikichi_sv1000": 447.0
+    "daikichi_sv1000": 447.0,
+    "comex_silver_usd_oz": 80.7982,
+    "usd_jpy": 159.14,
+    "comex_silver_jpy_g": 413.4
   },
   "errors": [],
   "sources": {
@@ -14,5 +17,6 @@
     "mitsubishi": "https://gold.mmc.co.jp/market/silver-price/",
     "nanboya": "https://nanboya.com/gold-kaitori/silver/silver-souba/",
     "daikichi": "https://www.kaitori-daikichi.jp/list/gold/silver/souba/"
-  }
+  },
+  "comex_updated_at_utc": "2026-03-16T15:16:23+00:00"
 }
