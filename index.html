@@ -401,7 +401,7 @@ body{background:var(--bg);color:var(--ink);font-family:'DM Mono',monospace;font-
       setCard('nanboya',    p.nanboya_sv1000,        p.nanboya_sv1000        ? '● Sv1000 bid'     : 'Not available');
       setCard('daikichi',   p.daikichi_sv1000,       p.daikichi_sv1000       ? '● Per gram bid'   : 'Not available');
 
-      // Render SR listings if present in prices.json
+      // Render SR listings from prices.json — has individual coin data
       const listings = data.mercari_listings || [];
       const mspi = p.mercari_mspi_b;
       const n = p.mercari_mspi_b_listings || listings.length;
@@ -410,6 +410,10 @@ body{background:var(--bg);color:var(--ink);font-family:'DM Mono',monospace;font-
         live.mercari = mspi;
         renderSRTable(listings, mspi, n, avgJpy);
       }
+      // SR last updated date from prices.json
+      const srDate = data.mspi_updated_date || null;
+      const srEl = document.getElementById('sr-last-updated');
+      if (srEl && srDate) srEl.textContent = 'Last updated: ' + srDate;
 
       if (errors.length > 0) {
         banner.className = 'fetch-banner partial';
@@ -452,38 +456,18 @@ body{background:var(--bg);color:var(--ink);font-family:'DM Mono',monospace;font-
         }
       }
 
-      // Get last MSPI-B entry for SR timestamp and table
+      // Get last MSPI-B entry — only use as fallback if prices.json had no listings
       const lastMspi = [...history].reverse().find(d => d.mspi_b_jpy_g !== undefined);
       if (lastMspi) {
+        // Only update SR date if prices.json didn't already set it
         const srEl = document.getElementById('sr-last-updated');
-        if (srEl) srEl.textContent = 'Last updated: ' + fmtDate(lastMspi.t);
+        if (srEl && !srEl.textContent) srEl.textContent = 'Last updated: ' + fmtDate(lastMspi.t);
 
-        // Always populate SR table from prices-history.json
-        live.mercari = lastMspi.mspi_b_jpy_g;
-
-        // Build SR table from all entries on the same day as lastMspi
-        const lastDay = lastMspi.t.slice(0, 10);
-        const dayEntries = history.filter(d => d.mspi_b_jpy_g !== undefined && d.t.slice(0, 10) === lastDay);
-        const best = dayEntries.reduce((a, b) => b.listings > a.listings ? b : a, dayEntries[0]);
-
-        const tbody = document.getElementById('sr-table-body');
-        if (tbody && best) {
-          const tdBase = "font-family:'DM Mono',monospace;font-size:0.95rem;text-align:right;padding:9px 16px;";
-          let rows = `<tr style="border-bottom:1px solid var(--border);">
-            <td style="font-family:'DM Mono',monospace;font-size:0.75rem;color:var(--ink4);padding:9px 16px;">1</td>
-            <td style="font-size:0.9rem;color:var(--ink2);padding:9px 16px;" data-en="1oz .999 Bullion Coins" data-ja="1oz .999地金コイン">1oz .999 Bullion Coins</td>
-            <td style="${tdBase}color:var(--ink);">—</td>
-            <td style="${tdBase}color:var(--ink3);">${best.mspi_b_jpy_g.toFixed(2)}</td>
-          </tr>`;
-          rows += `<tr style="background:rgba(23,20,15,0.025);">
-            <td colspan="2" style="font-family:'DM Mono',monospace;font-size:0.75rem;letter-spacing:0.1em;text-transform:uppercase;color:var(--ink4);padding:11px 16px;">MSPI-B Mean · n=${best.listings} · 1oz .999 bullion</td>
-            <td style="${tdBase}color:var(--ink);border-top:1px solid var(--border2);">—</td>
-            <td style="${tdBase}font-size:1rem;font-weight:500;color:var(--ink);border-top:1px solid var(--border2);">${best.mspi_b_jpy_g.toFixed(2)}</td>
-          </tr>`;
-          tbody.innerHTML = rows;
+        // Only use history for SR value/table if prices.json had no listings
+        if (live.mercari === null) {
+          live.mercari = lastMspi.mspi_b_jpy_g;
+          recalculate();
         }
-
-        recalculate();
       }
 
     } catch(e) {
