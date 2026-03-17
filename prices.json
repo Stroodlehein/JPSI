@@ -5,7 +5,10 @@
     "nihon_silver_buy": 447.04,
     "mitsubishi_silver_buy": 449.79,
     "nanboya_sv1000": 445.0,
-    "daikichi_sv1000": 441.0
+    "daikichi_sv1000": 441.0,
+    "mercari_mspi_b": 726.62,
+    "mercari_mspi_b_listings": 4,
+    "mercari_mspi_b_avg_jpy": 22600
   },
   "errors": [],
   "sources": {
@@ -14,5 +17,29 @@
     "mitsubishi": "https://gold.mmc.co.jp/market/silver-price/",
     "nanboya": "https://nanboya.com/gold-kaitori/silver/silver-souba/",
     "daikichi": "https://www.kaitori-daikichi.jp/list/gold/silver/souba/"
-  }
+  },
+  "mercari_listings": [
+    {
+      "coin": "Canadian Maple Leaf",
+      "jpy": 23000,
+      "jpy_g": 739.5
+    },
+    {
+      "coin": "American Silver Eagle",
+      "jpy": 21500,
+      "jpy_g": 691.3
+    },
+    {
+      "coin": "American Silver Eagle",
+      "jpy": 23900,
+      "jpy_g": 768.4
+    },
+    {
+      "coin": "Austrian Philharmonic",
+      "jpy": 22000,
+      "jpy_g": 707.3
+    }
+  ],
+  "mspi_updated_at_utc": "2026-03-17T04:07:41+00:00",
+  "mspi_updated_date": "2026-03-17"
 }
