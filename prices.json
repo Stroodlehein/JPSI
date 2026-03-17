@@ -8,7 +8,10 @@
     "daikichi_sv1000": 441.0,
     "mercari_mspi_b": 726.62,
     "mercari_mspi_b_listings": 4,
-    "mercari_mspi_b_avg_jpy": 22600
+    "mercari_mspi_b_avg_jpy": 22600,
+    "comex_silver_usd_oz": 82.4216,
+    "usd_jpy": 159.14,
+    "comex_silver_jpy_g": 421.71
   },
   "errors": [],
   "sources": {
@@ -41,5 +44,6 @@
     }
   ],
   "mspi_updated_at_utc": "2026-03-17T04:07:41+00:00",
-  "mspi_updated_date": "2026-03-17"
+  "mspi_updated_date": "2026-03-17",
+  "comex_updated_at_utc": "2026-03-17T04:52:05+00:00"
 }
