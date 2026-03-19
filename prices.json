@@ -6,9 +6,9 @@
     "mitsubishi_silver_buy": 425.81,
     "nanboya_sv1000": 418.0,
     "daikichi_sv1000": 420.0,
-    "mercari_mspi_b": 667.1,
-    "mercari_mspi_b_listings": 4,
-    "mercari_mspi_b_avg_jpy": 20750,
+    "mercari_mspi_b": 643.03,
+    "mercari_mspi_b_listings": 3,
+    "mercari_mspi_b_avg_jpy": 20000,
     "comex_silver_usd_oz": 76.0025,
     "usd_jpy": 159.56,
     "comex_silver_jpy_g": 389.89
@@ -23,27 +23,22 @@
   },
   "mercari_listings": [
     {
-      "coin": "American Silver Eagle",
-      "jpy": 20000,
-      "jpy_g": 643.0
+      "coin": "Austrian Philharmonic",
+      "jpy": 19500,
+      "jpy_g": 627.0
     },
     {
       "coin": "Austrian Philharmonic",
-      "jpy": 22000,
-      "jpy_g": 707.3
+      "jpy": 19500,
+      "jpy_g": 627.0
     },
     {
       "coin": "Britannia",
       "jpy": 21000,
       "jpy_g": 675.1
-    },
-    {
-      "coin": "Austrian Philharmonic",
-      "jpy": 20000,
-      "jpy_g": 643.0
     }
   ],
-  "mspi_updated_at_utc": "2026-03-18T02:14:41+00:00",
-  "mspi_updated_date": "2026-03-18",
+  "mspi_updated_at_utc": "2026-03-19T04:23:09+00:00",
+  "mspi_updated_date": "2026-03-19",
   "comex_updated_at_utc": "2026-03-19T03:44:11+00:00"
 }
