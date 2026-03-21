@@ -287,33 +287,49 @@ let _chartPrice = null;
 let _chartPrem  = null;
 
 async function loadPrices() {
+  let history = null;
+  let comexUsd = null;
+  let usdJpy = null;
+  let mspiJpyG = 613.27;
+
+  // Try prices-history.json first
   try {
     const res = await fetch('./prices-history.json?t=' + Date.now(), {signal: AbortSignal.timeout(10000)});
-    if (!res.ok) throw new Error('HTTP ' + res.status);
-    const history = await res.json();
-
-    const lastComex = [...history].reverse().find(d => d.comex_usd !== undefined);
-    const lastMspi  = [...history].reverse().find(d => d.mspi_b_jpy_g !== undefined);
-
-    const comexUsd = lastComex ? lastComex.comex_usd : null;
-    const usdJpy   = lastComex ? lastComex.usd_jpy   : null;
-    const mspiJpyG = lastMspi  ? lastMspi.mspi_b_jpy_g : 613.27;
-
-    if (lastComex) {
-      const d  = new Date(lastComex.t);
-      const ts = d.toLocaleDateString('en-GB',{weekday:'short',day:'2-digit',month:'short',year:'numeric'})
-        + ' · ' + d.toLocaleTimeString('en-GB',{hour:'2-digit',minute:'2-digit'}) + ' UTC';
-      document.getElementById('masthead-date').textContent = 'COMEX: ' + ts;
-      document.getElementById('ts-text').textContent = 'COMEX last updated: ' + ts;
+    if (res.ok) {
+      history = await res.json();
+      const lastComex = [...history].reverse().find(d => d.comex_usd !== undefined);
+      const lastMspi  = [...history].reverse().find(d => d.mspi_b_jpy_g !== undefined);
+      if (lastComex) { comexUsd = lastComex.comex_usd; usdJpy = lastComex.usd_jpy; }
+      if (lastMspi)  { mspiJpyG = lastMspi.mspi_b_jpy_g; }
     }
+  } catch(e) { history = null; }
 
-    render(comexUsd, usdJpy, mspiJpyG);
-    drawCharts(history);
-
-  } catch(e) {
-    document.getElementById('ts-text').textContent = 'Could not load prices';
-    render(null, null, 613.27);
+  // Fallback: try prices.json for COMEX and MSPI-B
+  if (!comexUsd) {
+    try {
+      const res2 = await fetch('./prices.json?t=' + Date.now(), {signal: AbortSignal.timeout(10000)});
+      if (res2.ok) {
+        const data = await res2.json();
+        const p = data.prices_jpy_per_g || {};
+        comexUsd = p.comex_silver_usd_oz || null;
+        usdJpy   = p.usd_jpy || null;
+        if (p.mercari_mspi_b) mspiJpyG = p.mercari_mspi_b;
+      }
+    } catch(e2) {}
   }
+
+  if (comexUsd && usdJpy) {
+    const d  = new Date();
+    const ts = d.toLocaleDateString('en-GB',{weekday:'short',day:'2-digit',month:'short',year:'numeric'})
+      + ' · ' + d.toLocaleTimeString('en-GB',{hour:'2-digit',minute:'2-digit'}) + ' UTC';
+    document.getElementById('masthead-date').textContent = 'COMEX: ' + ts;
+    document.getElementById('ts-text').textContent = 'COMEX last updated: ' + ts;
+  } else {
+    document.getElementById('ts-text').textContent = 'Live data unavailable';
+  }
+
+  render(comexUsd, usdJpy, mspiJpyG);
+  if (history) drawCharts(history);
 }
 
 function render(comexUsd, usdJpy, mspiJpyG) {
