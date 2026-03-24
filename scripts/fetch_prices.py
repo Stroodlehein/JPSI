@@ -1,6 +1,7 @@
 import json
 import re
 from datetime import datetime, timezone
+
 import requests
 from bs4 import BeautifulSoup
 
@@ -23,6 +24,7 @@ def get_html(url, encoding=None):
     return r.text
 
 
+# ── Tanaka (English page, buyback = "TANAKA retail buying price" for SILVER) ──
 def parse_tanaka(html):
     soup = BeautifulSoup(html, "html.parser")
     for table in soup.find_all("table"):
@@ -38,29 +40,68 @@ def parse_tanaka(html):
     raise ValueError("Tanaka SILVER buyback row not found")
 
 
+# ── Nihon Material ────────────────────────────────────────────────────────────
 def parse_nihon(html):
     soup = BeautifulSoup(html, "html.parser")
-    text = soup.get_text(" ", strip=True)
 
-    m = re.search(r"銀\s+([\d,]+(?:\.\d+)?)\s*円.*?([\d,]+(?:\.\d+)?)\s*円", text)
+    # 1) Best path: find the actual silver row and extract row-local prices only.
+    for row in soup.find_all("tr"):
+        cells = row.find_all(["td", "th"])
+        if not cells:
+            continue
+
+        cell_texts = [c.get_text(" ", strip=True) for c in cells]
+        joined = " ".join(cell_texts)
+
+        # Must be the silver row
+        if "銀" not in joined:
+            continue
+
+        # Extract plausible positive prices from that row only
+        nums = [
+            float(x.replace(",", ""))
+            for x in re.findall(r"([\d,]+(?:\.\d+)?)\s*円", joined)
+        ]
+        nums = [n for n in nums if 100 <= n <= 5000]
+
+        # Nihon row usually has sell / buy / change.
+        # We want the buyback price, which is typically the smaller of the two
+        # main price columns, not the small change value.
+        if len(nums) >= 2:
+            top_two = sorted(nums, reverse=True)[:2]
+            buyback = min(top_two)
+            if 100 <= buyback <= 5000:
+                return buyback
+
+    # 2) Fallback: use page text, but still anchor tightly around the silver section
+    text = soup.get_text(" ", strip=True)
+    m = re.search(r"銀\s*([\d,]+(?:\.\d+)?)\s*円.*?([\d,]+(?:\.\d+)?)\s*円", text)
     if m:
-        buyback = float(m.group(2).replace(",", ""))
-        if 50 <= buyback <= 5000:
+        sell = float(m.group(1).replace(",", ""))
+        buy = float(m.group(2).replace(",", ""))
+        # Return the smaller of the two main prices as buyback
+        buyback = min(sell, buy)
+        if 100 <= buyback <= 5000:
             return buyback
 
+    # 3) Narrow local fallback near the first silver match
     idx = text.find("銀")
     if idx != -1:
-        tail = text[idx:idx + 200]
-        prices = re.findall(r"([\d,]+(?:\.\d+)?)\s*円", tail)
-        candidates = [float(p.replace(",", "")) for p in prices if 50 <= float(p.replace(",", "")) <= 5000]
-        if len(candidates) >= 2:
-            return candidates[1]
-        if candidates:
-            return candidates[0]
+        tail = text[idx:idx + 300]
+        nums = [
+            float(x.replace(",", ""))
+            for x in re.findall(r"([\d,]+(?:\.\d+)?)\s*円", tail)
+        ]
+        nums = [n for n in nums if 100 <= n <= 5000]
+        if len(nums) >= 2:
+            top_two = sorted(nums, reverse=True)[:2]
+            buyback = min(top_two)
+            return buyback
 
     raise ValueError("Nihon Material silver buyback not found")
 
 
+# ── Mitsubishi ────────────────────────────────────────────────────────────────
 def parse_mitsubishi(html):
     soup = BeautifulSoup(html, "html.parser")
 
@@ -98,16 +139,20 @@ def parse_mitsubishi(html):
     raise ValueError("Mitsubishi silver buyback not found")
 
 
+# ── Nanboya ───────────────────────────────────────────────────────────────────
 def parse_nanboya(html):
     soup = BeautifulSoup(html, "html.parser")
     text = soup.get_text(" ", strip=True)
 
+    # Method 1: expert commentary "銀相場はXXX円"
     m = re.search(r"銀相場は\s*([\d,]+)\s*円", text)
     if m:
         val = float(m.group(1).replace(",", ""))
         if 50 <= val <= 5000:
             return val
 
+    # Method 2: look for price near "銀" that is plausible yen/g value
+    # Must be > 100 to avoid accidentally grabbing "1000" purity marker
     for pattern in [
         r"銀[^\d]{0,30}?([\d,]+(?:\.\d+)?)\s*円/g",
         r"銀[^\d]{0,30}?([\d,]+(?:\.\d+)?)\s*円",
@@ -118,6 +163,7 @@ def parse_nanboya(html):
             if 100 <= val <= 999:
                 return val
 
+    # Method 3: 今日の買取相場価格
     m = re.search(r"今日の買取相場価格.*?([\d,]+)\s*円", text, re.DOTALL)
     if m:
         val = float(m.group(1).replace(",", ""))
@@ -127,6 +173,7 @@ def parse_nanboya(html):
     raise ValueError("Nanboya silver price not found")
 
 
+# ── Daikichi ──────────────────────────────────────────────────────────────────
 def parse_daikichi(html):
     soup = BeautifulSoup(html, "html.parser")
     text = soup.get_text(" ", strip=True)
@@ -151,59 +198,54 @@ def load_existing_prices():
     try:
         with open("prices.json", "r", encoding="utf-8") as f:
             data = json.load(f)
-            if not isinstance(data, dict):
-                return {}
-            return data
+            if isinstance(data, dict):
+                return data
     except Exception:
-        return {}
+        pass
+    return {}
 
 
 def main():
-    data = load_existing_prices()
-
-    # Preserve existing top-level fields such as mercari_listings
-    data.setdefault("prices_jpy_per_g", {})
-    data.setdefault("errors", [])
-
-    # Reset only the dealer-fetch section
-    data["updated_at_utc"] = datetime.now(timezone.utc).isoformat(timespec="seconds")
-    data["sources"] = SOURCES
-    data["errors"] = []
-
-    p = data["prices_jpy_per_g"]
+    # Preserve any existing fields (e.g. Mercari/MSPI blocks) and only update dealer section
+    out = load_existing_prices()
+    out["updated_at_utc"] = datetime.now(timezone.utc).isoformat(timespec="seconds")
+    out.setdefault("prices_jpy_per_g", {})
+    out["errors"] = []
+    out["sources"] = SOURCES
 
     v, err = safe_get("tanaka", lambda: parse_tanaka(get_html(SOURCES["tanaka"])))
     if err:
-        data["errors"].append(err)
+        out["errors"].append(err)
     if v is not None:
-        p["tanaka_silver_buy"] = v
+        out["prices_jpy_per_g"]["tanaka_silver_buy"] = v
 
+    # Nihon Material sometimes needs explicit encoding on this page
     v, err = safe_get("nihon", lambda: parse_nihon(get_html(SOURCES["nihon"], encoding="euc-jp")))
     if err:
-        data["errors"].append(err)
+        out["errors"].append(err)
     if v is not None:
-        p["nihon_silver_buy"] = v
+        out["prices_jpy_per_g"]["nihon_silver_buy"] = v
 
     v, err = safe_get("mitsubishi", lambda: parse_mitsubishi(get_html(SOURCES["mitsubishi"])))
     if err:
-        data["errors"].append(err)
+        out["errors"].append(err)
     if v is not None:
-        p["mitsubishi_silver_buy"] = v
+        out["prices_jpy_per_g"]["mitsubishi_silver_buy"] = v
 
     v, err = safe_get("nanboya", lambda: parse_nanboya(get_html(SOURCES["nanboya"])))
     if err:
-        data["errors"].append(err)
+        out["errors"].append(err)
     if v is not None:
-        p["nanboya_sv1000"] = v
+        out["prices_jpy_per_g"]["nanboya_sv1000"] = v
 
     v, err = safe_get("daikichi", lambda: parse_daikichi(get_html(SOURCES["daikichi"])))
     if err:
-        data["errors"].append(err)
+        out["errors"].append(err)
     if v is not None:
-        p["daikichi_sv1000"] = v
+        out["prices_jpy_per_g"]["daikichi_sv1000"] = v
 
     with open("prices.json", "w", encoding="utf-8") as f:
-        json.dump(data, f, ensure_ascii=False, indent=2)
+        json.dump(out, f, ensure_ascii=False, indent=2)
 
     print("prices.json updated:")
     for k in [
@@ -216,12 +258,12 @@ def main():
         "mercari_mspi_b_listings",
         "mercari_mspi_b_avg_jpy",
     ]:
-        if k in p:
-            print(f"  {k}: {p[k]}")
+        if k in out.get("prices_jpy_per_g", {}):
+            print(f"  {k}: {out['prices_jpy_per_g'][k]}")
 
-    if data["errors"]:
+    if out["errors"]:
         print("Warnings:")
-        for e in data["errors"]:
+        for e in out["errors"]:
             print(" -", e)
 
 
