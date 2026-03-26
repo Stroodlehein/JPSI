@@ -23,7 +23,12 @@
   },
   "mercari_listings": [
     {
-      "coin": "Canadian Maple Leaf",
+      "coin": "Britannia",
+      "jpy": 18800,
+      "jpy_g": 604.0
+    },
+    {
+      "coin": "Austrian Philharmonic",
       "jpy": 18000,
       "jpy_g": 578.0
     },
@@ -31,14 +36,9 @@
       "coin": "Austrian Philharmonic",
       "jpy": 18500,
       "jpy_g": 594.0
-    },
-    {
-      "coin": "Britannia",
-      "jpy": 18800,
-      "jpy_g": 604.0
     }
   ],
-  "mspi_updated_at_utc": "2026-03-25T00:04:11+00:00",
-  "mspi_updated_date": "2026-03-25",
+  "mspi_updated_at_utc": "2026-03-26T00:32:04+00:00",
+  "mspi_updated_date": "2026-03-26",
   "comex_updated_at_utc": "2026-03-26T00:03:00+00:00"
 }
