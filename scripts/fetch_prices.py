@@ -187,7 +187,9 @@ def parse_daikichi(html):
     soup = BeautifulSoup(html, "html.parser")
     text = soup.get_text(" ", strip=True)
 
-    m = re.search(r"SV1000\D{0,10}?([\d,]+)\s*円", text)
+    # More tolerant than the old pattern: allows more text/layout noise
+    # between SV1000 and the yen amount.
+    m = re.search(r"SV1000.*?([\d,]+)\s*円", text, re.DOTALL)
     if m:
         val = float(m.group(1).replace(",", ""))
         if is_valid_silver_price(val):
