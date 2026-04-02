@@ -185,17 +185,16 @@ def parse_nanboya(html):
 # ── Daikichi ──────────────────────────────────────────────────────────────────
 def parse_daikichi(html):
     soup = BeautifulSoup(html, "html.parser")
-    text = soup.get_text(" ", strip=True)
+    text = soup.get_text("\n", strip=True)
 
-    # More tolerant than the old pattern: allows more text/layout noise
-    # between SV1000 and the yen amount.
-    m = re.search(r"SV1000.*?([\d,]+)\s*円", text, re.DOTALL)
+    # Prefer the lower detail table row: "1g ... 400 円"
+    m = re.search(r"1g\s*([\d,]+)\s*円", text)
     if m:
         val = float(m.group(1).replace(",", ""))
         if is_valid_silver_price(val):
             return val
 
-    raise ValueError("Daikichi SV1000 price not found")
+    raise ValueError("Daikichi 1g table price not found")
 
 
 def safe_get(name, fn):
