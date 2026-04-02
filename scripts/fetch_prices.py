@@ -155,31 +155,23 @@ def parse_mitsubishi(html):
 # ── Nanboya ───────────────────────────────────────────────────────────────────
 def parse_nanboya(html):
     soup = BeautifulSoup(html, "html.parser")
-    text = soup.get_text(" ", strip=True)
+    text = soup.get_text("\n", strip=True)
 
+    # Prefer plain Sv1000 row, not "Sv1000 インゴット"
+    m = re.search(r"Sv1000\s*\n?\s*([\d,]+)\s*円", text)
+    if m:
+        val = float(m.group(1).replace(",", ""))
+        if is_valid_silver_price(val):
+            return val
+
+    # Fallback: old commentary-style text
     m = re.search(r"銀相場は\s*([\d,]+)\s*円", text)
     if m:
         val = float(m.group(1).replace(",", ""))
         if is_valid_silver_price(val):
             return val
 
-    for pattern in [
-        r"銀[^\d]{0,30}?([\d,]+(?:\.\d+)?)\s*円/g",
-        r"銀[^\d]{0,30}?([\d,]+(?:\.\d+)?)\s*円",
-    ]:
-        matches = re.findall(pattern, text)
-        for match in matches:
-            val = float(match.replace(",", ""))
-            if is_valid_silver_price(val):
-                return val
-
-    m = re.search(r"今日の買取相場価格.*?([\d,]+)\s*円", text, re.DOTALL)
-    if m:
-        val = float(m.group(1).replace(",", ""))
-        if is_valid_silver_price(val):
-            return val
-
-    raise ValueError("Nanboya silver price not found")
+    raise ValueError("Nanboya Sv1000 price not found")
 
 
 # ── Daikichi ──────────────────────────────────────────────────────────────────
