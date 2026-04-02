@@ -9,9 +9,9 @@
     "mercari_mspi_b": 587.33,
     "mercari_mspi_b_listings": 3,
     "mercari_mspi_b_avg_jpy": 18267,
-    "comex_silver_usd_oz": 70.614,
+    "comex_silver_usd_oz": 70.2135,
     "usd_jpy": 158.32,
-    "comex_silver_jpy_g": 359.43
+    "comex_silver_jpy_g": 357.39
   },
   "errors": [],
   "sources": {
@@ -40,5 +40,5 @@
   ],
   "mspi_updated_at_utc": "2026-04-02T00:19:14+00:00",
   "mspi_updated_date": "2026-04-02",
-  "comex_updated_at_utc": "2026-04-02T11:57:10+00:00"
+  "comex_updated_at_utc": "2026-04-02T13:40:22+00:00"
 }
