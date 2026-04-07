@@ -155,16 +155,39 @@ def parse_mitsubishi(html):
 # ── Nanboya ───────────────────────────────────────────────────────────────────
 def parse_nanboya(html):
     soup = BeautifulSoup(html, "html.parser")
-    text = soup.get_text("\n", strip=True)
 
-    # Prefer plain Sv1000 row, not "Sv1000 インゴット"
-    m = re.search(r"Sv1000\s*\n?\s*([\d,]+)\s*円", text)
-    if m:
+    # Work from row-level text so we can avoid accidentally grabbing
+    # "Sv1000 インゴット" (IG) and instead prefer the plain "Sv1000" row.
+    candidate_rows = []
+
+    for row in soup.find_all(["tr", "li", "div", "section"]):
+        row_text = row.get_text(" ", strip=True)
+        if "Sv1000" in row_text and "円" in row_text:
+            candidate_rows.append(row_text)
+
+    # 1) Prefer plain Sv1000 row that does NOT mention インゴット / IG
+    for row_text in candidate_rows:
+        if "インゴット" in row_text or re.search(r"\bIG\b", row_text, re.I):
+            continue
+        m = re.search(r"Sv1000\s*([0-9,]+)\s*円", row_text)
+        if not m:
+            m = re.search(r"Sv1000.*?([0-9,]+)\s*円", row_text)
+        if m:
+            val = float(m.group(1).replace(",", ""))
+            if is_valid_silver_price(val):
+                return val
+
+    # 2) Fallback on page text, but explicitly exclude インゴット / IG nearby
+    text = soup.get_text("\n", strip=True)
+    for m in re.finditer(r"Sv1000.*?([0-9,]+)\s*円", text, re.S):
+        snippet = m.group(0)
+        if "インゴット" in snippet or re.search(r"\bIG\b", snippet, re.I):
+            continue
         val = float(m.group(1).replace(",", ""))
         if is_valid_silver_price(val):
             return val
 
-    # Fallback: old commentary-style text
+    # 3) Old commentary-style fallback
     m = re.search(r"銀相場は\s*([\d,]+)\s*円", text)
     if m:
         val = float(m.group(1).replace(",", ""))
