@@ -450,6 +450,44 @@ body{background:var(--bg);color:var(--ink);font-family:'DM Mono',monospace;font-
     return null;
   }
 
+  function extractMercariListings(data) {
+    const candidates = [
+      data?.mercari_listings,
+      data?.mercariListings,
+      data?.mspi_b_listings,
+      data?.mspiBListings,
+      data?.prices_jpy_per_g?.mercari_listings,
+      data?.prices_jpy_per_g?.mercariListings,
+      data?.prices_jpy_per_g?.mspi_b_listings,
+      data?.prices_jpy_per_g?.mspiBListings
+    ];
+
+    for (const candidate of candidates) {
+      if (Array.isArray(candidate) && candidate.length) return candidate;
+    }
+    return [];
+  }
+
+  function normalizeListing(item) {
+    if (!item || typeof item !== 'object') return null;
+
+    const coin = item.coin || item.name || item.title || item.label || '1oz silver';
+    const jpy = toNumberOrNull(item.jpy ?? item.price_jpy ?? item.price ?? item.sold_jpy ?? item.amount_jpy);
+    const jpy_g = toNumberOrNull(item.jpy_g ?? item.jpyPerGram ?? item.price_per_g ?? item.pricePerGram);
+
+    if (jpy === null && jpy_g === null) return null;
+
+    let finalJpy = jpy;
+    let finalJpyG = jpy_g;
+
+    if (finalJpyG === null && finalJpy !== null) finalJpyG = finalJpy / OZ_TO_G;
+    if (finalJpy === null && finalJpyG !== null) finalJpy = finalJpyG * OZ_TO_G;
+
+    if (finalJpy === null || finalJpyG === null) return null;
+
+    return { coin, jpy: finalJpy, jpy_g: finalJpyG };
+  }
+
   function setUsdJpy(v) {
     const n = toNumberOrNull(v);
     if (isValidFx(n)) currentUsdJpy = n;
@@ -501,16 +539,19 @@ body{background:var(--bg);color:var(--ink);font-family:'DM Mono',monospace;font-
       setCard('nanboya',    p.nanboya_sv1000,        p.nanboya_sv1000        ? '● Sv1000 bid'     : 'Not available');
       setCard('daikichi',   p.daikichi_sv1000,       p.daikichi_sv1000       ? '● Per gram bid'   : 'Not available');
 
-      const listings = data.mercari_listings || [];
-      const mspi = p.mercari_mspi_b;
-      const n = p.mercari_mspi_b_listings || listings.length;
-      const avgJpy = p.mercari_mspi_b_avg_jpy;
-      if (listings.length > 0) {
+      const rawListings = extractMercariListings(data);
+      const listings = rawListings.map(normalizeListing).filter(Boolean);
+      const mspi = toNumberOrNull(p.mercari_mspi_b ?? data.mercari_mspi_b ?? data.mspi_b_jpy_g);
+      const n = toNumberOrNull(p.mercari_mspi_b_listings ?? data.mercari_mspi_b_listings) || listings.length;
+      const avgJpy = toNumberOrNull(p.mercari_mspi_b_avg_jpy ?? data.mercari_mspi_b_avg_jpy);
+
+      if (mspi !== null) {
         live.mercari = mspi;
-        renderSRTable(listings, mspi, n, avgJpy);
       }
 
-      const srDate = data.mspi_updated_date || null;
+      renderSRTable(listings, mspi, n, avgJpy);
+
+      const srDate = data.mspi_updated_date || data.mercari_updated_date || null;
       const srEl = document.getElementById('sr-last-updated');
       if (srEl && srDate) srEl.textContent = 'Last updated: ' + srDate;
 
@@ -529,6 +570,7 @@ body{background:var(--bg);color:var(--ink);font-family:'DM Mono',monospace;font-
       statusEl.textContent = '⚠ Could not load prices.json — check GitHub Actions ran successfully.';
       retryBtn.style.display = 'inline-block';
       ['tanaka','nihon','mitsubishi','nanboya','daikichi'].forEach(k => setCard(k, null, 'Load failed'));
+      renderSRTable([], null, 0, null);
       updateUsdDisplays(null);
     }
   }
@@ -560,13 +602,13 @@ body{background:var(--bg);color:var(--ink);font-family:'DM Mono',monospace;font-
         recalculate();
       }
 
-      const lastMspi = [...history].reverse().find(d => d.mspi_b_jpy_g !== undefined);
+      const lastMspi = [...history].reverse().find(d => d.mspi_b_jpy_g !== undefined || d.mercari_mspi_b !== undefined);
       if (lastMspi) {
         const srEl = document.getElementById('sr-last-updated');
         if (srEl && !srEl.textContent) srEl.textContent = 'Last updated: ' + fmtDate(lastMspi.t);
 
         if (live.mercari === null) {
-          live.mercari = lastMspi.mspi_b_jpy_g;
+          live.mercari = toNumberOrNull(lastMspi.mspi_b_jpy_g ?? lastMspi.mercari_mspi_b);
           recalculate();
         }
       }
@@ -579,27 +621,32 @@ body{background:var(--bg);color:var(--ink);font-family:'DM Mono',monospace;font-
   function renderSRTable(listings, mspi, n, avgJpy) {
     const tbody = document.getElementById('sr-table-body');
     if (!tbody) return;
+
     const tdBase = "font-family:'DM Mono',monospace;font-size:0.95rem;text-align:right;padding:9px 16px;";
     let rows = '';
-    if (listings && listings.length > 0) {
+
+    if (Array.isArray(listings) && listings.length > 0) {
       listings.forEach((l, i) => {
         rows += `<tr style="border-bottom:1px solid var(--border);">
-          <td style="font-family:'DM Mono',monospace;font-size:0.75rem;color:var(--ink4);padding:9px 16px;">${i+1}</td>
+          <td style="font-family:'DM Mono',monospace;font-size:0.75rem;color:var(--ink4);padding:9px 16px;">${i + 1}</td>
           <td style="font-size:0.9rem;color:var(--ink2);padding:9px 16px;">${l.coin}</td>
-          <td style="${tdBase}color:var(--ink);">¥${l.jpy.toLocaleString()}</td>
+          <td style="${tdBase}color:var(--ink);">¥${Math.round(l.jpy).toLocaleString()}</td>
           <td style="${tdBase}color:var(--ink3);">${l.jpy_g.toFixed(2)}</td>
         </tr>`;
       });
     } else {
       rows = `<tr><td colspan="4" style="font-family:'DM Mono',monospace;font-size:0.8rem;color:var(--ink4);padding:14px 16px;text-align:center;">No listings data</td></tr>`;
     }
+
     const meanJpy = avgJpy ? '¥' + Math.round(avgJpy).toLocaleString() : '—';
     const meanG = mspi ? mspi.toFixed(2) : '—';
+
     rows += `<tr style="background:rgba(23,20,15,0.025);">
-      <td colspan="2" style="font-family:'DM Mono',monospace;font-size:0.75rem;letter-spacing:0.1em;text-transform:uppercase;color:var(--ink4);padding:11px 16px;">MSPI-B Mean · n=${n} · 1oz .999 bullion</td>
+      <td colspan="2" style="font-family:'DM Mono',monospace;font-size:0.75rem;letter-spacing:0.1em;text-transform:uppercase;color:var(--ink4);padding:11px 16px;">MSPI-B Mean · n=${n || 0} · 1oz .999 bullion</td>
       <td style="${tdBase}color:var(--ink);border-top:1px solid var(--border2);">${meanJpy}</td>
       <td style="${tdBase}font-size:1rem;font-weight:500;color:var(--ink);border-top:1px solid var(--border2);">${meanG}</td>
     </tr>`;
+
     tbody.innerHTML = rows;
   }
 
@@ -651,19 +698,21 @@ body{background:var(--bg);color:var(--ink);font-family:'DM Mono',monospace;font-
     document.getElementById('rs-display').textContent = fmt(RS);
     document.getElementById('db-display').textContent = fmt(DB);
     document.getElementById('sr-display').textContent = fmt(SR);
-    let jpsi=0, tw=0;
-    if(RS!==null){jpsi+=RS*W_RS;tw+=W_RS;}
-    if(DB!==null){jpsi+=DB*W_DB;tw+=W_DB;}
-    if(SR!==null){jpsi+=SR*W_SR;tw+=W_SR;}
-    if(tw>0){
-      const jpsiValue = jpsi/tw;
-      document.getElementById('jpsi-display').textContent=`¥${jpsiValue.toFixed(2)}`;
+
+    let jpsi = 0, tw = 0;
+    if (RS !== null) { jpsi += RS * W_RS; tw += W_RS; }
+    if (DB !== null) { jpsi += DB * W_DB; tw += W_DB; }
+    if (SR !== null) { jpsi += SR * W_SR; tw += W_SR; }
+
+    if (tw > 0) {
+      const jpsiValue = jpsi / tw;
+      document.getElementById('jpsi-display').textContent = `¥${jpsiValue.toFixed(2)}`;
       updateUsdDisplays(jpsiValue);
-      const prem=(RS&&SR)?((SR/RS)-1)*100:null;
-      document.getElementById('premium-display').textContent=prem!==null?`${prem>0?'+':''}${prem.toFixed(1)}%`:'—';
+      const prem = (RS && SR) ? ((SR / RS) - 1) * 100 : null;
+      document.getElementById('premium-display').textContent = prem !== null ? `${prem > 0 ? '+' : ''}${prem.toFixed(1)}%` : '—';
     } else {
-      document.getElementById('jpsi-display').textContent='—';
-      document.getElementById('premium-display').textContent='—';
+      document.getElementById('jpsi-display').textContent = '—';
+      document.getElementById('premium-display').textContent = '—';
       updateUsdDisplays(null);
     }
   }
