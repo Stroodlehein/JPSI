@@ -3,7 +3,10 @@
   "prices_jpy_per_g": {
     "tanaka_silver_buy": 391.71,
     "mitsubishi_silver_buy": 61.0,
-    "daikichi_sv1000": 395.0
+    "daikichi_sv1000": 395.0,
+    "comex_silver_usd_oz": 72.618,
+    "usd_jpy": 159.6,
+    "comex_silver_jpy_g": 372.62
   },
   "errors": [],
   "sources": {
@@ -12,5 +15,6 @@
     "mitsubishi": "https://gold.mmc.co.jp/market/silver-price/",
     "nanboya": "https://nanboya.com/gold-kaitori/silver/silver-souba/",
     "daikichi": "https://www.kaitori-daikichi.jp/list/gold/silver/souba/"
-  }
+  },
+  "comex_updated_at_utc": "2026-04-07T08:12:51+00:00"
 }
