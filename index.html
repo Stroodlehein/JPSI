@@ -96,10 +96,14 @@ body{background:var(--bg);color:var(--ink);font-family:'DM Mono',monospace;font-
 .bc-header{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:24px;}
 .bc-label{font-family:'DM Mono',monospace;font-size:0.75rem;letter-spacing:0.2em;color:var(--ink3);text-transform:uppercase;font-weight:500;}
 .bc-timestamp{font-family:'DM Mono',monospace;font-size:0.72rem;color:var(--ink3);letter-spacing:0.06em;text-align:right;line-height:1.6;}
-.bc-main{display:flex;align-items:baseline;gap:14px;margin-bottom:6px;flex-wrap:nowrap;}
 .bc-index-name{font-family:'DM Mono',monospace;font-size:0.9rem;letter-spacing:0.16em;color:var(--ink3);white-space:nowrap;margin-bottom:4px;}
+.bc-main{display:flex;align-items:flex-start;justify-content:space-between;gap:22px;margin-bottom:6px;flex-wrap:wrap;}
+.bc-main-left{display:flex;align-items:baseline;gap:14px;flex-wrap:nowrap;}
 .bc-price{font-family:'DM Mono',monospace;font-size:3.8rem;font-weight:400;color:var(--ink);letter-spacing:-0.01em;line-height:1;}
 .bc-currency{font-family:'DM Mono',monospace;font-size:1.1rem;color:var(--ink3);font-weight:400;white-space:nowrap;}
+.bc-main-right{display:flex;flex-direction:column;align-items:flex-end;justify-content:center;gap:6px;min-width:160px;padding-top:2px;}
+.bc-fx-line{font-family:'DM Mono',monospace;font-size:1.05rem;color:var(--ink2);line-height:1.2;white-space:nowrap;}
+.bc-fx-line.muted{color:var(--ink3);}
 .bc-subtitle{font-family:'DM Mono',monospace;font-size:0.82rem;color:var(--ink3);margin-bottom:28px;font-weight:400;}
 .bc-sub-row{display:grid;grid-template-columns:repeat(3,1fr);gap:0;border-top:1px solid rgba(23,20,15,0.12);padding-top:20px;margin-top:4px;}
 .bc-sub{padding:0 20px;border-right:1px solid rgba(23,20,15,0.1);}
@@ -173,6 +177,9 @@ body{background:var(--bg);color:var(--ink);font-family:'DM Mono',monospace;font-
   .masthead-tagline{font-size:0.7rem;letter-spacing:0;}
   .bc-price{font-size:2.8rem;}
   .bc-currency{font-size:0.9rem;}
+  .bc-main{flex-direction:column;align-items:flex-start;gap:14px;}
+  .bc-main-right{align-items:flex-start;min-width:0;padding-top:0;}
+  .bc-fx-line{font-size:0.95rem;}
   .bc-sub-row{grid-template-columns:1fr;gap:12px;}
   .bc-sub{padding:0;border-right:none;border-bottom:1px solid rgba(23,20,15,0.1);padding-bottom:12px;}
   .bc-sub:last-child{border-bottom:none;}
@@ -221,8 +228,14 @@ body{background:var(--bg);color:var(--ink);font-family:'DM Mono',monospace;font-
   </div>
   <div class="bc-index-name">JPMI-AG</div>
   <div class="bc-main">
-    <div class="bc-price" id="jpsi-display">—</div>
-    <div class="bc-currency">¥ / g</div>
+    <div class="bc-main-left">
+      <div class="bc-price" id="jpsi-display">—</div>
+      <div class="bc-currency">¥ / g</div>
+    </div>
+    <div class="bc-main-right">
+      <div class="bc-fx-line" id="jpsi-usd-g">$— / g</div>
+      <div class="bc-fx-line muted" id="jpsi-usd-oz">$— / oz</div>
+    </div>
   </div>
   <div class="bc-subtitle" data-en="Japan Physical Silver Index · Weighted composite of refinery, dealer, and street prices" data-ja="日本現物銀指数 · 精錬所・業者・フリマの加重複合指数">Japan Physical Silver Index · Weighted composite of refinery, dealer, and street prices</div>
   <div class="bc-sub-row">
@@ -370,18 +383,92 @@ body{background:var(--bg);color:var(--ink);font-family:'DM Mono',monospace;font-
   const OZ_TO_G = 31.1035;
   const W_RS = 0.55, W_DB = 0.30, W_SR = 0.15;
   let currentLang = 'en';
+  let currentUsdJpy = null;
   const live = { tanaka:null, nihon:null, mitsubishi:null, nanboya:null, daikichi:null, mercari:null };
 
-  // Format a UTC date string nicely e.g. "Mon, 16 Mar 2026 · 01:02 UTC"
   function fmtTimestamp(isoStr) {
     const d = new Date(isoStr);
     return d.toLocaleDateString('en-GB', {weekday:'short', day:'2-digit', month:'short', year:'numeric'})
       + ' · ' + d.toLocaleTimeString('en-GB', {hour:'2-digit', minute:'2-digit'}) + ' UTC';
   }
 
-  // Format just the date e.g. "2026-03-16"
   function fmtDate(isoStr) {
     return isoStr.slice(0, 10);
+  }
+
+  function isValidFx(v) {
+    return typeof v === 'number' && isFinite(v) && v > 50 && v < 250;
+  }
+
+  function toNumberOrNull(v) {
+    if (v === null || v === undefined || v === '') return null;
+    const n = Number(v);
+    return Number.isFinite(n) ? n : null;
+  }
+
+  function extractUsdJpyFromObject(obj) {
+    if (!obj || typeof obj !== 'object') return null;
+
+    const directCandidates = [
+      obj.usdjpy,
+      obj.usd_jpy,
+      obj.usdJpy,
+      obj.fx_usdjpy,
+      obj.fxUsdJpy
+    ];
+
+    for (const c of directCandidates) {
+      const n = toNumberOrNull(c);
+      if (isValidFx(n)) return n;
+    }
+
+    if (obj.fx && typeof obj.fx === 'object') {
+      const fxCandidates = [
+        obj.fx.usdjpy,
+        obj.fx.usd_jpy,
+        obj.fx.usdJpy
+      ];
+      for (const c of fxCandidates) {
+        const n = toNumberOrNull(c);
+        if (isValidFx(n)) return n;
+      }
+    }
+
+    if (obj.prices_jpy_per_g && typeof obj.prices_jpy_per_g === 'object') {
+      const nestedCandidates = [
+        obj.prices_jpy_per_g.usdjpy,
+        obj.prices_jpy_per_g.usd_jpy,
+        obj.prices_jpy_per_g.usdJpy
+      ];
+      for (const c of nestedCandidates) {
+        const n = toNumberOrNull(c);
+        if (isValidFx(n)) return n;
+      }
+    }
+
+    return null;
+  }
+
+  function setUsdJpy(v) {
+    const n = toNumberOrNull(v);
+    if (isValidFx(n)) currentUsdJpy = n;
+  }
+
+  function updateUsdDisplays(jpyPerGram) {
+    const usdGEl = document.getElementById('jpsi-usd-g');
+    const usdOzEl = document.getElementById('jpsi-usd-oz');
+
+    if (!usdGEl || !usdOzEl) return;
+
+    if (jpyPerGram !== null && isValidFx(currentUsdJpy)) {
+      const usdPerGram = jpyPerGram / currentUsdJpy;
+      const usdPerOz = usdPerGram * OZ_TO_G;
+      usdGEl.textContent = `$${usdPerGram.toFixed(2)} / g`;
+      usdOzEl.textContent = `$${usdPerOz.toFixed(2)} / oz`;
+    } else {
+      usdGEl.textContent = `$— / g`;
+      usdOzEl.textContent = `$— / oz`;
+    }
   }
 
   async function init() {
@@ -404,13 +491,15 @@ body{background:var(--bg);color:var(--ink);font-family:'DM Mono',monospace;font-
       const p = data.prices_jpy_per_g || {};
       const errors = data.errors || [];
 
+      const fxFromPrices = extractUsdJpyFromObject(data) ?? extractUsdJpyFromObject(p);
+      if (fxFromPrices !== null) setUsdJpy(fxFromPrices);
+
       setCard('tanaka',     p.tanaka_silver_buy,     p.tanaka_silver_buy     ? '● Buyback price'  : 'Not available');
       setCard('nihon',      p.nihon_silver_buy,      p.nihon_silver_buy      ? '● Buyback price'  : 'Not available');
       setCard('mitsubishi', p.mitsubishi_silver_buy, p.mitsubishi_silver_buy ? '● Buyback price'  : 'Not available');
       setCard('nanboya',    p.nanboya_sv1000,        p.nanboya_sv1000        ? '● Sv1000 bid'     : 'Not available');
       setCard('daikichi',   p.daikichi_sv1000,       p.daikichi_sv1000       ? '● Per gram bid'   : 'Not available');
 
-      // Render SR listings from prices.json — has individual coin data
       const listings = data.mercari_listings || [];
       const mspi = p.mercari_mspi_b;
       const n = p.mercari_mspi_b_listings || listings.length;
@@ -419,7 +508,7 @@ body{background:var(--bg);color:var(--ink);font-family:'DM Mono',monospace;font-
         live.mercari = mspi;
         renderSRTable(listings, mspi, n, avgJpy);
       }
-      // SR last updated date from prices.json
+
       const srDate = data.mspi_updated_date || null;
       const srEl = document.getElementById('sr-last-updated');
       if (srEl && srDate) srEl.textContent = 'Last updated: ' + srDate;
@@ -439,6 +528,7 @@ body{background:var(--bg);color:var(--ink);font-family:'DM Mono',monospace;font-
       statusEl.textContent = '⚠ Could not load prices.json — check GitHub Actions ran successfully.';
       retryBtn.style.display = 'inline-block';
       ['tanaka','nihon','mitsubishi','nanboya','daikichi'].forEach(k => setCard(k, null, 'Load failed'));
+      updateUsdDisplays(null);
     }
   }
 
@@ -448,13 +538,11 @@ body{background:var(--bg);color:var(--ink);font-family:'DM Mono',monospace;font-
       if (!res.ok) return;
       const history = await res.json();
 
-      // Get last COMEX entry for main timestamp
       const lastComex = [...history].reverse().find(d => d.comex_usd !== undefined);
       if (lastComex) {
         const tsStr = fmtTimestamp(lastComex.t);
         document.getElementById('bc-timestamp').textContent = tsStr;
         document.getElementById('masthead-date').innerHTML = `Silver Index · JPY/g<br>${tsStr}`;
-        // Update banner if already success
         const banner = document.getElementById('fetch-banner');
         const statusEl = document.getElementById('fetch-status');
         if (banner.classList.contains('success')) {
@@ -465,14 +553,17 @@ body{background:var(--bg);color:var(--ink);font-family:'DM Mono',monospace;font-
         }
       }
 
-      // Get last MSPI-B entry — only use as fallback if prices.json had no listings
+      const historyFx = [...history].reverse().map(extractUsdJpyFromObject).find(v => v !== null);
+      if (historyFx !== null) {
+        setUsdJpy(historyFx);
+        recalculate();
+      }
+
       const lastMspi = [...history].reverse().find(d => d.mspi_b_jpy_g !== undefined);
       if (lastMspi) {
-        // Only update SR date if prices.json didn't already set it
         const srEl = document.getElementById('sr-last-updated');
         if (srEl && !srEl.textContent) srEl.textContent = 'Last updated: ' + fmtDate(lastMspi.t);
 
-        // Only use history for SR value/table if prices.json had no listings
         if (live.mercari === null) {
           live.mercari = lastMspi.mspi_b_jpy_g;
           recalculate();
@@ -564,12 +655,15 @@ body{background:var(--bg);color:var(--ink);font-family:'DM Mono',monospace;font-
     if(DB!==null){jpsi+=DB*W_DB;tw+=W_DB;}
     if(SR!==null){jpsi+=SR*W_SR;tw+=W_SR;}
     if(tw>0){
-      document.getElementById('jpsi-display').textContent=`¥${(jpsi/tw).toFixed(2)}`;
+      const jpsiValue = jpsi/tw;
+      document.getElementById('jpsi-display').textContent=`¥${jpsiValue.toFixed(2)}`;
+      updateUsdDisplays(jpsiValue);
       const prem=(RS&&SR)?((SR/RS)-1)*100:null;
       document.getElementById('premium-display').textContent=prem!==null?`${prem>0?'+':''}${prem.toFixed(1)}%`:'—';
     } else {
       document.getElementById('jpsi-display').textContent='—';
       document.getElementById('premium-display').textContent='—';
+      updateUsdDisplays(null);
     }
   }
 
