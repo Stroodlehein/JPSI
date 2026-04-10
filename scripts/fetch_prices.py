@@ -15,10 +15,6 @@ SOURCES = {
     "daikichi": "https://www.kaitori-daikichi.jp/list/gold/silver/souba/",
 }
 
-# Nanboya is still safest as a manual fallback unless the scrape clearly finds
-# the plain Sv1000 value. Update this when you manually verify a new value.
-NANBOYA_SV1000_FALLBACK = 376.0
-
 
 def get_html(url, encoding=None):
     r = requests.get(url, headers={"User-Agent": UA}, timeout=30)
@@ -70,7 +66,6 @@ def parse_nihon(html):
         if "銀" not in row_text:
             continue
 
-        # Silver row usually contains sell and buy values; buy is the lower one.
         nums = [
             safe_float(x)
             for x in re.findall(r"([\d,]+(?:\.\d+)?)\s*円", row_text)
@@ -135,25 +130,28 @@ def parse_mitsubishi(html):
 
 
 # ---------------- Nanboya ----------------
-# Try to find plain Sv1000 row, not インゴット. If not trustworthy, use fallback.
+# The Sv1000 table values are blank in static HTML, but the commentary line
+# contains today's silver price, e.g. "2026年4月9日(木)の銀相場は396円..."
+# Use that as the automated Nanboya source.
 def parse_nanboya(html):
     soup = BeautifulSoup(html, "html.parser")
     text = soup.get_text("\n", strip=True)
 
-    # Prefer plain Sv1000, avoid インゴット / IG
-    matches = re.finditer(r"Sv1000.*?([\d,]+(?:\.\d+)?)\s*円", text, re.S)
-    for m in matches:
-        snippet = m.group(0)
-        if "インゴット" in snippet or re.search(r"\bIG\b", snippet, re.I):
-            continue
-        val = safe_float(m.group(1))
-        if is_valid_silver_price(val):
-            return val
+    # Best available automated source on the static page:
+    # "今日の銀相場は396円" or similar dated version
+    patterns = [
+        r"今日の銀相場は\s*([\d,]+(?:\.\d+)?)\s*円",
+        r"\d{4}年\d{1,2}月\d{1,2}日.*?銀相場は\s*([\d,]+(?:\.\d+)?)\s*円",
+    ]
 
-    if is_valid_silver_price(NANBOYA_SV1000_FALLBACK):
-        return NANBOYA_SV1000_FALLBACK
+    for pat in patterns:
+        m = re.search(pat, text, re.S)
+        if m:
+            val = safe_float(m.group(1))
+            if is_valid_silver_price(val):
+                return val
 
-    raise ValueError("Nanboya price not found")
+    raise ValueError("Nanboya automated silver price not found")
 
 
 # ---------------- Daikichi ----------------
