@@ -2,8 +2,8 @@ name: Update JPSI price feeds
 
 on:
   schedule:
-    - cron: "35 0 * * *"   # Once daily at 00:35 UTC
-  workflow_dispatch:        # Allow manual trigger
+    - cron: "*/10 0-3 * * *"   # Every 10 min from 00:00–03:59 UTC = 09:00–12:59 JST
+  workflow_dispatch:           # Allow manual trigger
 
 permissions:
   contents: write
@@ -37,5 +37,5 @@ jobs:
           git config user.name "JPMI Bot"
           git config user.email "bot@japanphysicalmetals.jp"
           git add prices.json
-          git diff --cached --quiet || git commit -m "Update price feeds $(date -u +'%Y-%m-%d')"
+          git diff --cached --quiet || git commit -m "Update price feeds $(date -u +'%Y-%m-%d %H:%M')"
           git push
