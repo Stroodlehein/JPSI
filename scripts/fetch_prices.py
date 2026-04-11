@@ -1,11 +1,13 @@
 import json
 import re
-from datetime import datetime, timezone
-
+import time
+import schedule
+from datetime import datetime
 import requests
 from bs4 import BeautifulSoup
 
-UA = "Mozilla/5.0 (compatible; JPMIbot/1.0)"
+# ====================== CONFIG ======================
+UA = "Mozilla/5.0 (compatible; JPMIbot/1.0 +https://japanphysicalmetals.jp)"
 
 SOURCES = {
     "tanaka": "https://gold.tanaka.co.jp/commodity/souba/english/index.php",
@@ -15,13 +17,23 @@ SOURCES = {
     "daikichi": "https://www.kaitori-daikichi.jp/list/gold/silver/souba/",
 }
 
+UPDATE_TIMES_JST = ["09:45", "10:45", "12:15", "14:15", "16:15", "17:45"]
+# ====================================================
 
-def get_html(url, encoding=None):
-    r = requests.get(url, headers={"User-Agent": UA}, timeout=30)
-    r.raise_for_status()
-    if encoding:
-        r.encoding = encoding
-    return r.text
+
+def get_html(url, encoding=None, retries=2):
+    for attempt in range(retries + 1):
+        try:
+            r = requests.get(url, headers={"User-Agent": UA}, timeout=25)
+            r.raise_for_status()
+            if encoding:
+                r.encoding = encoding
+            return r.text
+        except Exception as e:
+            if attempt == retries:
+                raise
+            print(f"Retry {attempt+1} for {url}: {e}")
+            time.sleep(2)
 
 
 def is_valid_silver_price(price):
@@ -35,156 +47,90 @@ def safe_float(value):
         return None
 
 
-# ---------------- Tanaka ----------------
-# SILVER row, buying column (4th cell)
+# ---------------- Parsers (improved for current pages) ----------------
 def parse_tanaka(html):
     soup = BeautifulSoup(html, "html.parser")
-    for table in soup.find_all("table"):
-        for row in table.find_all("tr"):
-            cells = row.find_all(["td", "th"])
-            if len(cells) < 4:
-                continue
-            label = cells[0].get_text(" ", strip=True).upper()
-            if label == "SILVER":
-                buy_text = cells[3].get_text(" ", strip=True)
-                m = re.search(r"([\d,]+(?:\.\d+)?)", buy_text)
-                if m:
-                    val = safe_float(m.group(1))
-                    if is_valid_silver_price(val):
-                        return val
-    raise ValueError("Tanaka SILVER buying price not found")
-
-
-# ---------------- Nihon ----------------
-# Target silver buyback specifically, not arbitrary nearby numbers.
-def parse_nihon(html):
-    soup = BeautifulSoup(html, "html.parser")
-
-    # Try row/table-based extraction first
-    for row in soup.find_all("tr"):
-        row_text = row.get_text(" ", strip=True)
-        if "銀" not in row_text:
-            continue
-
-        nums = [
-            safe_float(x)
-            for x in re.findall(r"([\d,]+(?:\.\d+)?)\s*円", row_text)
-        ]
-        nums = [n for n in nums if is_valid_silver_price(n)]
-        if len(nums) >= 2:
-            return min(nums)
-
-    # Fallback: look only in the silver section and take the lower of first two valid values
     text = soup.get_text(" ", strip=True)
-    idx = text.find("銀")
-    if idx != -1:
-        snippet = text[idx:idx + 400]
-        nums = [
-            safe_float(x)
-            for x in re.findall(r"([\d,]+(?:\.\d+)?)\s*円", snippet)
-        ]
-        nums = [n for n in nums if is_valid_silver_price(n)]
-        if len(nums) >= 2:
-            return min(nums)
-
-    raise ValueError("Nihon Material silver buyback not found")
-
-
-# ---------------- Mitsubishi ----------------
-# Must return BUYBACK, not retail selling.
-# In the visible row the first valid price is retail, second valid price is buyback.
-def parse_mitsubishi(html):
-    soup = BeautifulSoup(html, "html.parser")
-
-    for row in soup.find_all("tr"):
-        row_text = row.get_text(" ", strip=True)
-        if "店頭価格" not in row_text:
-            continue
-
-        nums = [
-            safe_float(x)
-            for x in re.findall(r"([\d,]+(?:\.\d+)?)\s*円/g", row_text)
-        ]
-        nums = [n for n in nums if is_valid_silver_price(n)]
-
-        if len(nums) >= 2:
-            return nums[1]
-        if len(nums) == 1:
-            return nums[0]
-
-    text = soup.get_text(" ", strip=True)
-    idx = text.find("店頭価格")
-    if idx != -1:
-        snippet = text[idx:idx + 300]
-        nums = [
-            safe_float(x)
-            for x in re.findall(r"([\d,]+(?:\.\d+)?)\s*円/g", snippet)
-        ]
-        nums = [n for n in nums if is_valid_silver_price(n)]
-        if len(nums) >= 2:
-            return nums[1]
-        if len(nums) == 1:
-            return nums[0]
-
-    raise ValueError("Mitsubishi silver buyback not found")
-
-
-# ---------------- Nanboya ----------------
-# The Sv1000 table values are blank in static HTML, but the commentary line
-# contains today's silver price, e.g. "2026年4月9日(木)の銀相場は396円..."
-# Use that as the automated Nanboya source.
-def parse_nanboya(html):
-    soup = BeautifulSoup(html, "html.parser")
-    text = soup.get_text("\n", strip=True)
-
-    # Best available automated source on the static page:
-    # "今日の銀相場は396円" or similar dated version
-    patterns = [
-        r"今日の銀相場は\s*([\d,]+(?:\.\d+)?)\s*円",
-        r"\d{4}年\d{1,2}月\d{1,2}日.*?銀相場は\s*([\d,]+(?:\.\d+)?)\s*円",
-    ]
-
-    for pat in patterns:
-        m = re.search(pat, text, re.S)
-        if m:
-            val = safe_float(m.group(1))
-            if is_valid_silver_price(val):
-                return val
-
-    raise ValueError("Nanboya automated silver price not found")
-
-
-# ---------------- Daikichi ----------------
-# Prefer the explicit 1g row price.
-def parse_daikichi(html):
-    soup = BeautifulSoup(html, "html.parser")
-    text = soup.get_text("\n", strip=True)
-
-    m = re.search(r"1g\s*([\d,]+(?:\.\d+)?)\s*円", text)
+    m = re.search(r"SILVER.*?[\d,]+\.\d+.*?[\d,]+\.\d+.*?([\d,]+\.\d+)", text)
     if m:
         val = safe_float(m.group(1))
         if is_valid_silver_price(val):
             return val
+    raise ValueError("Tanaka silver buyback not found")
 
-    raise ValueError("Daikichi price not found")
+
+def parse_nihon(html):
+    soup = BeautifulSoup(html, "html.parser")
+    text = soup.get_text(" ", strip=True)
+    nums = [safe_float(x) for x in re.findall(r"([\d,]+\.\d{2})", text)]
+    nums = [n for n in nums if is_valid_silver_price(n)]
+    if len(nums) >= 2:
+        return min(nums)          # buyback is usually the smaller one
+    raise ValueError("Nihon Material silver buyback not found")
+
+
+def parse_mitsubishi(html):
+    soup = BeautifulSoup(html, "html.parser")
+    text = soup.get_text(" ", strip=True)
+    m = re.search(r"買取価格.*?([\d,]+\.\d{2})", text)
+    if m:
+        val = safe_float(m.group(1))
+        if is_valid_silver_price(val):
+            return val
+    nums = [safe_float(x) for x in re.findall(r"([\d,]+\.\d{2})", text)]
+    nums = [n for n in nums if is_valid_silver_price(n)]
+    if len(nums) >= 2:
+        return nums[1]            # second price is usually buyback
+    raise ValueError("Mitsubishi silver buyback not found")
+
+
+def parse_nanboya(html):
+    soup = BeautifulSoup(html, "html.parser")
+    text = soup.get_text(" ", strip=True)
+    patterns = [
+        r"Sv1000.*?([\d,]+)\s*円",
+        r"今日の銀相場は\s*([\d,]+)\s*円",
+        r"\d{4}年.*?銀相場は\s*([\d,]+)\s*円",
+    ]
+    for pat in patterns:
+        m = re.search(pat, text)
+        if m:
+            val = safe_float(m.group(1))
+            if is_valid_silver_price(val):
+                return val
+    raise ValueError("Nanboya silver price not found")
+
+
+def parse_daikichi(html):
+    soup = BeautifulSoup(html, "html.parser")
+    text = soup.get_text(" ", strip=True)
+    m = re.search(r"1g.*?([\d,]+)\s*円", text)
+    if m:
+        val = safe_float(m.group(1))
+        if is_valid_silver_price(val):
+            return val
+    m = re.search(r"SV1000.*?([\d,]+)\s*円", text)
+    if m:
+        val = safe_float(m.group(1))
+        if is_valid_silver_price(val):
+            return val
+    raise ValueError("Daikichi silver price not found")
 
 
 def safe_get(name, fn):
     try:
         return fn(), None
     except Exception as e:
-        return None, f"{name}: {type(e).__name__}: {e}"
+        return None, f"{name}: {type(e).__name__}: {str(e)[:180]}"
 
 
 def load_existing_prices():
     try:
         with open("prices.json", "r", encoding="utf-8") as f:
             data = json.load(f)
-            if isinstance(data, dict):
-                return data
+            return data if isinstance(data, dict) else {}
     except Exception:
-        pass
-    return {}
+        return {}
 
 
 def set_price_or_keep_existing(out, key, value, source_name):
@@ -196,101 +142,85 @@ def set_price_or_keep_existing(out, key, value, source_name):
         return
 
     if is_valid_silver_price(existing):
-        out["errors"].append(f"{source_name}: fetch failed, kept previous valid value {existing}")
+        out["errors"].append(f"{source_name}: fetch failed, kept previous value {existing}")
         return
 
     prices.pop(key, None)
-    out["errors"].append(f"{source_name}: fetch failed and no previous valid value available")
+    out["errors"].append(f"{source_name}: fetch failed, no previous value kept")
 
 
-def main():
+def fetch_all_prices():
     existing = load_existing_prices()
+    preserved = {k: existing.get(k) for k in ["mercari_listings", "mspi_updated_at_utc", "mspi_updated_date", "comex_updated_at_utc"]}
+    preserved_prices = {k: v for k, v in existing.get("prices_jpy_per_g", {}).items() 
+                       if k.startswith(("mercari", "usd", "comex"))}
 
-    # -------- preserve MSPI / Mercari / FX / COMEX block ----------
-    preserved = {
-        "mercari_listings": existing.get("mercari_listings"),
-        "mspi_updated_at_utc": existing.get("mspi_updated_at_utc"),
-        "mspi_updated_date": existing.get("mspi_updated_date"),
-        "comex_updated_at_utc": existing.get("comex_updated_at_utc"),
-    }
-
-    preserved_prices = {}
-    for k in [
-        "mercari_mspi_b",
-        "mercari_mspi_b_listings",
-        "mercari_mspi_b_avg_jpy",
-        "usd_jpy",
-        "comex_silver_usd_oz",
-        "comex_silver_jpy_g",
-    ]:
-        if k in existing.get("prices_jpy_per_g", {}):
-            preserved_prices[k] = existing["prices_jpy_per_g"][k]
-
-    out = existing
-    out["updated_at_utc"] = datetime.now(timezone.utc).isoformat(timespec="seconds")
+    out = existing.copy()
+    out["updated_at_utc"] = datetime.now().astimezone().isoformat(timespec="seconds")
     out["sources"] = SOURCES
     out["errors"] = []
 
-    # ------- fetch live prices -------
-    v, err = safe_get("tanaka", lambda: parse_tanaka(get_html(SOURCES["tanaka"])))
-    if err:
-        out["errors"].append(err)
-    set_price_or_keep_existing(out, "tanaka_silver_buy", v, "tanaka")
+    for name, url in SOURCES.items():
+        try:
+            encoding = "euc-jp" if name == "nihon" else None
+            html = get_html(url, encoding=encoding)
 
-    v, err = safe_get("nihon", lambda: parse_nihon(get_html(SOURCES["nihon"], encoding="euc-jp")))
-    if err:
-        out["errors"].append(err)
-    set_price_or_keep_existing(out, "nihon_silver_buy", v, "nihon")
+            if name == "tanaka":
+                v, err = safe_get(name, lambda: parse_tanaka(html))
+                key = "tanaka_silver_buy"
+            elif name == "nihon":
+                v, err = safe_get(name, lambda: parse_nihon(html))
+                key = "nihon_silver_buy"
+            elif name == "mitsubishi":
+                v, err = safe_get(name, lambda: parse_mitsubishi(html))
+                key = "mitsubishi_silver_buy"
+            elif name == "nanboya":
+                v, err = safe_get(name, lambda: parse_nanboya(html))
+                key = "nanboya_sv1000"
+            elif name == "daikichi":
+                v, err = safe_get(name, lambda: parse_daikichi(html))
+                key = "daikichi_sv1000"
 
-    v, err = safe_get("mitsubishi", lambda: parse_mitsubishi(get_html(SOURCES["mitsubishi"])))
-    if err:
-        out["errors"].append(err)
-    set_price_or_keep_existing(out, "mitsubishi_silver_buy", v, "mitsubishi")
+            if err:
+                out["errors"].append(err)
+            set_price_or_keep_existing(out, key, v, name)
 
-    v, err = safe_get("nanboya", lambda: parse_nanboya(get_html(SOURCES["nanboya"])))
-    if err:
-        out["errors"].append(err)
-    set_price_or_keep_existing(out, "nanboya_sv1000", v, "nanboya")
+        except Exception as e:
+            out["errors"].append(f"{name}: Critical - {type(e).__name__}")
 
-    v, err = safe_get("daikichi", lambda: parse_daikichi(get_html(SOURCES["daikichi"])))
-    if err:
-        out["errors"].append(err)
-    set_price_or_keep_existing(out, "daikichi_sv1000", v, "daikichi")
-
-    # -------- restore preserved MSPI / FX / COMEX ----------
-    out["mercari_listings"] = preserved["mercari_listings"]
-    out["mspi_updated_at_utc"] = preserved["mspi_updated_at_utc"]
-    out["mspi_updated_date"] = preserved["mspi_updated_date"]
-    out["comex_updated_at_utc"] = preserved["comex_updated_at_utc"]
-
-    out.setdefault("prices_jpy_per_g", {})
+    # Restore preserved data
+    for k, v in preserved.items():
+        if v is not None:
+            out[k] = v
     for k, v in preserved_prices.items():
-        out["prices_jpy_per_g"][k] = v
+        out.setdefault("prices_jpy_per_g", {})[k] = v
 
     with open("prices.json", "w", encoding="utf-8") as f:
         json.dump(out, f, ensure_ascii=False, indent=2)
 
-    print("prices.json updated safely")
-    for k in [
-        "tanaka_silver_buy",
-        "nihon_silver_buy",
-        "mitsubishi_silver_buy",
-        "nanboya_sv1000",
-        "daikichi_sv1000",
-        "mercari_mspi_b",
-        "mercari_mspi_b_listings",
-        "mercari_mspi_b_avg_jpy",
-        "usd_jpy",
-        "comex_silver_usd_oz",
-        "comex_silver_jpy_g",
-    ]:
-        if k in out.get("prices_jpy_per_g", {}):
-            print(f"  {k}: {out['prices_jpy_per_g'][k]}")
+    print(f"[{datetime.now().strftime('%H:%M:%S')}] prices.json updated")
+    for k in ["tanaka_silver_buy", "nihon_silver_buy", "mitsubishi_silver_buy", "nanboya_sv1000", "daikichi_sv1000"]:
+        val = out.get("prices_jpy_per_g", {}).get(k)
+        print(f"   {k}: {val}")
 
     if out["errors"]:
-        print("Warnings:")
-        for e in out["errors"]:
-            print(" -", e)
+        print("Errors:", out["errors"])
+
+
+# ====================== SCHEDULER ======================
+def main():
+    print("JPMI Silver Price Updater started")
+    print(f"Will run at JST times: {', '.join(UPDATE_TIMES_JST)}")
+
+    for t in UPDATE_TIMES_JST:
+        schedule.every().day.at(t).do(fetch_all_prices)
+
+    # Optional: run once immediately when starting
+    fetch_all_prices()
+
+    while True:
+        schedule.run_pending()
+        time.sleep(60)
 
 
 if __name__ == "__main__":
