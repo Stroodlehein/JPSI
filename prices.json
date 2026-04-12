@@ -1,5 +1,5 @@
 {
-  "updated_at_utc": "2026-04-12T02:48:28+00:00",
+  "updated_at_utc": "2026-04-12T05:13:53+00:00",
   "prices_jpy_per_g": {
     "tanaka_silver_buy": 415.47,
     "mitsubishi_silver_buy": 418.77,
@@ -14,7 +14,7 @@
     "mercari_mspi_b_avg_jpy": 19212
   },
   "errors": [
-    "nihon: ConnectTimeout: HTTPSConnectionPool(host='material.co.jp', port=443): Max retries exceeded with url: /market.php (Caused by ConnectTimeoutError(<HTTPSConnection(host='material.co.jp', port=443) at 0x7f8085c54ed0>, 'Connection to material.co.jp timed out. (connect timeout=30)'))",
+    "nihon: ValueError: Nihon Material silver buyback not found",
     "nihon: fetch failed, kept previous valid value 416.02"
   ],
   "sources": {
