@@ -1,7 +1,7 @@
 {
-  "updated_at_utc": "2026-04-13T02:53:08+00:00",
+  "updated_at_utc": "2026-04-13T04:16:49+00:00",
   "prices_jpy_per_g": {
-    "tanaka_silver_buy": 415.47,
+    "tanaka_silver_buy": 409.64,
     "mitsubishi_silver_buy": 412.39,
     "daikichi_sv1000": 397.0,
     "comex_silver_usd_oz": 74.629,
@@ -13,10 +13,7 @@
     "mercari_mspi_b_listings": 4,
     "mercari_mspi_b_avg_jpy": 19200
   },
-  "errors": [
-    "tanaka: Tanaka not found",
-    "nanboya: Nanboya Sv1000 not found"
-  ],
+  "errors": [],
   "sources": {
     "tanaka": "https://gold.tanaka.co.jp/commodity/souba/english/index.php",
     "nihon": "https://material.co.jp/market.php",
