@@ -38,19 +38,31 @@ def is_valid_silver_price(price):
 
 
 # ---------------- Tanaka ----------------
+# Parse the flattened SILVER line and return the BUYING price (second valid number).
 def parse_tanaka(html):
     soup = BeautifulSoup(html, "html.parser")
+    text = soup.get_text(" ", strip=True)
 
-    for row in soup.find_all("tr"):
-        cells = row.find_all(["td", "th"])
-        if not cells:
+    # Example live structure:
+    # SILVER 456.50 yen +19.14 yen 439.45 yen +19.14 yen
+    m = re.search(
+        r"SILVER\s+([\d,]+(?:\.\d+)?)\s+yen\s+[+\-−]?\d+(?:\.\d+)?\s+yen\s+([\d,]+(?:\.\d+)?)\s+yen",
+        text,
+        re.I,
+    )
+    if m:
+        val = safe_float(m.group(2))
+        if is_valid_silver_price(val):
+            return val
+
+    # Fallback: find the SILVER line and take the second valid silver-range number
+    for line in soup.get_text("\n", strip=True).splitlines():
+        if "SILVER" not in line.upper():
             continue
-
-        if cells[0].get_text(strip=True).upper() == "SILVER":
-            if len(cells) >= 4:
-                val = safe_float(cells[3].get_text())
-                if is_valid_silver_price(val):
-                    return val
+        nums = [safe_float(x) for x in re.findall(r"([\d,]+(?:\.\d+)?)", line)]
+        nums = [n for n in nums if is_valid_silver_price(n)]
+        if len(nums) >= 2:
+            return nums[1]
 
     raise ValueError("Tanaka not found")
 
