@@ -100,11 +100,12 @@ body{background:var(--bg);color:var(--ink);font-family:'DM Mono',monospace;font-
 .exp-card-title{font-size:0.7rem;letter-spacing:0.14em;text-transform:uppercase;color:var(--ink3);margin-bottom:10px;font-weight:500;}
 .exp-card-body{font-size:0.82rem;color:var(--ink2);line-height:1.8;}
 .disclaimer{font-size:0.72rem;color:var(--ink4);line-height:1.8;border-top:1px solid var(--border);padding-top:16px;margin-bottom:40px;}
-.site-footer{border-top:3px double var(--border2);padding-top:20px;display:flex;justify-content:space-between;align-items:flex-start;gap:24px;flex-wrap:wrap;}
-.footer-brand{font-family:'Playfair Display',serif;font-size:1.1rem;font-weight:700;color:var(--ink);margin-bottom:4px;}
-.footer-sub{font-size:0.68rem;color:var(--ink4);line-height:1.7;}
-.footer-links{display:flex;gap:20px;font-size:0.7rem;letter-spacing:0.08em;text-transform:uppercase;}
-.footer-links a{color:var(--ink4);text-decoration:none;}
+.site-footer{border-top:3px double var(--border2);padding-top:20px;margin-top:48px;display:grid;grid-template-columns:1fr auto;gap:12px;align-items:start;}
+.footer-left .fl-title{font-family:'DM Mono',monospace;font-size:0.88rem;color:var(--ink3);margin-bottom:4px;}
+.footer-left .fl-sub{font-family:'DM Mono',monospace;font-size:0.7rem;color:var(--ink4);letter-spacing:0.06em;line-height:1.8;}
+.footer-right{font-family:'DM Mono',monospace;font-size:0.7rem;color:var(--ink4);text-align:right;letter-spacing:0.04em;line-height:1.8;}
+.footer-right a{color:var(--ink3);text-decoration:none;}
+.footer-right a:hover{color:var(--ink);}
 @media(max-width:640px){
   .page{padding:0 16px 80px;}
   .masthead-top{flex-direction:column;gap:8px;}
@@ -132,8 +133,8 @@ body{background:var(--bg);color:var(--ink);font-family:'DM Mono',monospace;font-
   .ctx-cell{padding:12px 14px;}
   .explainer-grid{grid-template-columns:1fr;}
   .exp-card{padding:16px;}
-  .site-footer{flex-direction:column;gap:12px;}
-  .footer-links{flex-wrap:wrap;gap:12px;}
+  .site-footer{grid-template-columns:1fr;}
+  .footer-right{text-align:left;}
 }
 </style>
 </head>
@@ -263,15 +264,15 @@ body{background:var(--bg);color:var(--ink);font-family:'DM Mono',monospace;font-
   <div class="disclaimer" data-en="⚠ COMEX price sourced from prices-history.json updated every 10 minutes via GitHub Actions. MSPI-B updated daily Mon–Fri from Mercari sold listings. Mercari prices are buyer-paid — actual seller proceeds are lower after 10% commission and delivery fees. This page is for informational purposes only and does not constitute financial advice." data-ja="⚠ COMEX価格はGitHub Actionsで10分ごとに更新されるprices-history.jsonから取得しています。MSPI-Bは月〜金の毎日メルカリ成約価格から更新されます。本ページは情報提供のみを目的とし、投資アドバイスではありません。">⚠ COMEX price sourced from prices-history.json updated every 10 minutes via GitHub Actions. MSPI-B updated daily Mon–Fri from Mercari sold listings. Mercari prices are buyer-paid — actual seller proceeds are lower after 10% commission and delivery fees. This page is for informational purposes only and does not constitute financial advice.</div>
 
   <footer class="site-footer">
-    <div>
-      <div class="footer-brand">JPMI</div>
-      <div class="footer-sub" data-en="Japan Physical Metals Index · japanphysicalmetals.jp" data-ja="日本現物金属指数 · japanphysicalmetals.jp">Japan Physical Metals Index · japanphysicalmetals.jp</div>
-      <div class="footer-sub" style="margin-top:4px;" data-en="Not affiliated with COMEX, CME Group, or Mercari, Inc." data-ja="COMEX、CMEグループ、メルカリ株式会社とは無関係です。">Not affiliated with COMEX, CME Group, or Mercari, Inc.</div>
+    <div class="footer-left">
+      <div class="fl-title" data-en="JPMI — Japan Physical Metals Index™" data-ja="JPMI — 日本現物金属指数™">JPMI — Japan Physical Metals Index™</div>
+      <div class="fl-sub" data-en="Independent research on Japan physical silver,&#10;global benchmarks, and regional pricing divergence." data-ja="日本の現物銀、グローバル指標、&#10;地域別価格乖離に関する独立リサーチ。">Independent research on Japan physical silver,<br>global benchmarks, and regional pricing divergence.</div>
     </div>
-    <div class="footer-links">
-      <a href="index.html" data-en="Index" data-ja="指数">Index</a>
-      <a href="about.html" data-en="About" data-ja="概要">About</a>
-      <a href="https://x.com/JPMI_index" target="_blank">𝕏 @JPMI_index</a>
+
+    <div class="footer-right">
+      <a href="https://buymeacoffee.com/jpmi" target="_blank" rel="noopener" data-en="Support JPMI Research →" data-ja="JPMIリサーチを支援 →">Support JPMI Research →</a><br>
+      <a href="https://x.com/JPMI_index" target="_blank" rel="noopener">X @JPMI_index</a><br>
+      <span data-en="Informational research only.&#10;Not financial advice." data-ja="情報提供のみ。&#10;投資助言ではありません。">Informational research only.<br>Not financial advice.</span>
     </div>
   </footer>
 
