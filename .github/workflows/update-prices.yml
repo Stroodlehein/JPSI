@@ -2,7 +2,7 @@ name: Update JPSI price feeds
 
 on:
   schedule:
-    - cron: "0 0-9 * * 1-5"   # Hourly 09:00–18:00 JST Mon–Fri
+    - cron: "17 0-9 * * 1-5"   # Hourly at :17, 09:17–18:17 JST, Mon–Fri
   workflow_dispatch:
 
 permissions:
