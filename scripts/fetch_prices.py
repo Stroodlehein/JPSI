@@ -119,18 +119,11 @@ def parse_daikichi(html):
     raise ValueError("Daikichi not found")
 
 
-def safe_get(name, fn):
-    try:
-        return fn(), None
-    except Exception as e:
-        return None, f"{name}: {type(e).__name__}: {e}"
-
-
 def load_existing_prices():
     try:
         with open("prices.json", "r", encoding="utf-8") as f:
             return json.load(f)
-    except:
+    except Exception:
         return {}
 
 
@@ -140,22 +133,30 @@ def set_price_or_keep_existing(out, key, value, source_name):
 
     # NEVER overwrite manual keys
     if key in MANUAL_KEYS:
+        print(f"{source_name}: manual key preserved, not overwritten")
         return
 
     if is_valid_silver_price(value):
         prices[key] = value
+        print(f"{source_name}: saved {value}")
         return
 
     if is_valid_silver_price(existing):
+        msg = f"{source_name}: invalid fetch, kept previous valid value {existing}"
+        out["errors"].append(msg)
+        print(msg)
         return
 
     prices.pop(key, None)
+    msg = f"{source_name}: invalid fetch and no previous valid value available"
+    out["errors"].append(msg)
+    print(msg)
 
 
 def main():
     existing = load_existing_prices()
 
-    # preserve manual + mercari + fx
+    # Preserve manual + Mercari + FX + COMEX values
     preserved_prices = existing.get("prices_jpy_per_g", {}).copy()
 
     out = existing
@@ -163,7 +164,6 @@ def main():
     out["sources"] = SOURCES
     out["errors"] = []
 
-    # auto sources
     parsers = {
         "tanaka": parse_tanaka,
         "nihon": parse_nihon,
@@ -172,32 +172,71 @@ def main():
     }
 
     for name, url in SOURCES.items():
-        try:
-            encoding = "euc-jp" if name == "nihon" else None
-            html = get_html(url, encoding=encoding)
+        encoding = "euc-jp" if name == "nihon" else None
 
+        key = (
+            f"{name}_silver_buy"
+            if name in ["tanaka", "nihon", "mitsubishi"]
+            else f"{name}_sv1000"
+        )
+
+        try:
+            html = get_html(url, encoding=encoding)
             val = parsers[name](html)
 
-            key = (
-                f"{name}_silver_buy"
-                if name in ["tanaka", "nihon", "mitsubishi"]
-                else f"{name}_sv1000"
-            )
-
+            print(f"{name}: fetched {val}")
             set_price_or_keep_existing(out, key, val, name)
 
-        except Exception:
-            pass
+        except Exception as e:
+            msg = f"{name}: {type(e).__name__}: {e}"
+            out["errors"].append(msg)
+            print(msg)
 
-    # restore manual keys (Nanboya + Mercari)
+            existing_value = out.setdefault("prices_jpy_per_g", {}).get(key)
+            if is_valid_silver_price(existing_value):
+                keep_msg = f"{name}: kept previous valid value {existing_value}"
+                out["errors"].append(keep_msg)
+                print(keep_msg)
+            else:
+                out["prices_jpy_per_g"].pop(key, None)
+                no_value_msg = f"{name}: no previous valid value available"
+                out["errors"].append(no_value_msg)
+                print(no_value_msg)
+
+    # Restore manual keys and manually managed data
     for k, v in preserved_prices.items():
-        if k.startswith("mercari") or k == "nanboya_sv1000":
+        if (
+            k.startswith("mercari")
+            or k == "nanboya_sv1000"
+            or k == "usd_jpy"
+            or k == "comex_silver_usd_oz"
+            or k == "comex_silver_jpy_g"
+        ):
             out.setdefault("prices_jpy_per_g", {})[k] = v
 
     with open("prices.json", "w", encoding="utf-8") as f:
         json.dump(out, f, ensure_ascii=False, indent=2)
 
     print("prices.json updated")
+    print("Final prices:")
+    for k in [
+        "tanaka_silver_buy",
+        "nihon_silver_buy",
+        "mitsubishi_silver_buy",
+        "daikichi_sv1000",
+        "nanboya_sv1000",
+        "mercari_mspi_b",
+        "usd_jpy",
+        "comex_silver_usd_oz",
+        "comex_silver_jpy_g",
+    ]:
+        value = out.get("prices_jpy_per_g", {}).get(k)
+        print(f"  {k}: {value}")
+
+    if out["errors"]:
+        print("Errors / warnings:")
+        for error in out["errors"]:
+            print(f"  - {error}")
 
 
 if __name__ == "__main__":
