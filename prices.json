@@ -9,9 +9,9 @@
     "comex_silver_jpy_g": 349.78,
     "nihon_silver_buy": 405.9,
     "nanboya_sv1000": 380.0,
-    "mercari_mspi_b": 533.0,
-    "mercari_mspi_b_listings": 2,
-    "mercari_mspi_b_avg_jpy": 16600
+    "mercari_mspi_b": 480.33,
+    "mercari_mspi_b_listings": 3,
+    "mercari_mspi_b_avg_jpy": 14892
   },
   "errors": [
     "nihon: ConnectTimeout: HTTPSConnectionPool(host='material.co.jp', port=443): Max retries exceeded with url: /market.php (Caused by ConnectTimeoutError(<HTTPSConnection(host='material.co.jp', port=443) at 0x7f4fe8c9a9d0>, 'Connection to material.co.jp timed out. (connect timeout=30)'))",
@@ -26,16 +26,21 @@
   "comex_updated_at_utc": "2026-06-07T23:53:03+00:00",
   "mercari_listings": [
     {
-      "coin": "Canadian Maple Leaf",
-      "jpy": 16700,
-      "jpy_g": 536.0
+      "coin": "American Silver Eagle",
+      "jpy": 15000,
+      "jpy_g": 482.0
+    },
+    {
+      "coin": "Britannia",
+      "jpy": 14675,
+      "jpy_g": 471.0
     },
     {
       "coin": "Canadian Maple Leaf",
-      "jpy": 16500,
-      "jpy_g": 530.0
+      "jpy": 15000,
+      "jpy_g": 488.0
     }
   ],
-  "mspi_updated_at_utc": "2026-06-05T00:01:52+00:00",
-  "mspi_updated_date": "2026-06-05"
+  "mspi_updated_at_utc": "2026-06-08T00:01:02+00:00",
+  "mspi_updated_date": "2026-06-08"
 }
