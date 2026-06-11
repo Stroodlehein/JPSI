@@ -101,8 +101,11 @@ body{background:var(--bg);color:var(--ink);font-family:'DM Mono',monospace;font-
 .bc-main-left{display:flex;align-items:baseline;gap:14px;flex-wrap:nowrap;}
 .bc-price{font-family:'DM Mono',monospace;font-size:3.8rem;font-weight:400;color:var(--ink);letter-spacing:-0.01em;line-height:1;}
 .bc-currency{font-family:'DM Mono',monospace;font-size:1.1rem;color:var(--ink3);font-weight:400;white-space:nowrap;}
-.bc-main-right{display:flex;flex-direction:column;align-items:flex-start;justify-content:flex-end;gap:4px;padding-bottom:6px;}
-.bc-fx-line{font-family:'DM Mono',monospace;font-size:1.05rem;color:var(--ink2);line-height:1.2;white-space:nowrap;}
+.bc-price-meta{display:flex;flex-direction:column;justify-content:flex-end;gap:6px;padding-bottom:10px;}
+.bc-top-row{display:flex;align-items:center;gap:28px;}
+.bc-fx-line{font-family:'DM Mono',monospace;line-height:1.2;white-space:nowrap;}
+.bc-oz-line{font-size:1.45rem;color:var(--ink2);font-weight:500;}
+.bc-g-line{font-size:1.15rem;color:var(--ink3);padding-left:92px;}
 .bc-fx-line.muted{color:var(--ink3);}
 .bc-subtitle{font-family:'DM Mono',monospace;font-size:0.82rem;color:var(--ink3);margin-bottom:28px;font-weight:400;}
 .bc-sub-row{display:grid;grid-template-columns:repeat(3,1fr);gap:0;border-top:1px solid rgba(23,20,15,0.12);padding-top:20px;margin-top:4px;}
@@ -181,8 +184,10 @@ body{background:var(--bg);color:var(--ink);font-family:'DM Mono',monospace;font-
   .bc-currency{font-size:0.9rem;}
   .bc-main{flex-direction:column;align-items:flex-start;gap:12px;}
   .bc-main-left{flex-wrap:wrap;}
-  .bc-main-right{align-items:flex-start;padding-bottom:0;}
-  .bc-fx-line{font-size:0.95rem;}
+  .bc-price-meta{padding-bottom:0;}
+  .bc-top-row{gap:18px;}
+  .bc-oz-line{font-size:1.05rem;}
+  .bc-g-line{font-size:0.95rem;padding-left:58px;}
   .bc-sub-row{grid-template-columns:1fr;gap:12px;}
   .bc-sub{padding:0;border-right:none;border-bottom:1px solid rgba(23,20,15,0.1);padding-bottom:12px;}
   .bc-sub:last-child{border-bottom:none;}
@@ -235,10 +240,12 @@ body{background:var(--bg);color:var(--ink);font-family:'DM Mono',monospace;font-
   <div class="bc-main">
     <div class="bc-main-left">
       <div class="bc-price" id="jpsi-display">—</div>
-      <div class="bc-currency">¥ / g</div>
-      <div class="bc-main-right">
-        <div class="bc-fx-line" id="jpsi-usd-g">$— / g</div>
-        <div class="bc-fx-line muted" id="jpsi-usd-oz">$— / oz</div>
+      <div class="bc-price-meta">
+        <div class="bc-top-row">
+          <span class="bc-currency">¥ / g</span>
+          <span class="bc-fx-line bc-oz-line" id="jpsi-usd-oz">$— / oz</span>
+        </div>
+        <div class="bc-fx-line bc-g-line" id="jpsi-usd-g">$— / g</div>
       </div>
     </div>
   </div>
