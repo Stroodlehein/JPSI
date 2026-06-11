@@ -383,9 +383,22 @@ function drawCharts(history) {
 
   if (daily.length === 0) return;
 
+  // Keep full daily labels for hover tooltips.
+  // The x-axis itself only displays the month when a new month begins.
   const labels = daily.map(d =>
     new Date(d.t).toLocaleDateString('en-GB', { month:'short', day:'numeric' })
   );
+
+  const monthAxisLabels = daily.map((d, i) => {
+    const current = new Date(d.t);
+    const previous = i > 0 ? new Date(daily[i - 1].t) : null;
+
+    if (!previous || current.getMonth() !== previous.getMonth() || current.getFullYear() !== previous.getFullYear()) {
+      return current.toLocaleDateString('en-GB', { month:'short' });
+    }
+
+    return '';
+  });
 
   const comexPrices = daily.map(d => parseFloat(d.comex_usd.toFixed(2)));
   const physPrices = daily.map(d =>
@@ -455,7 +468,15 @@ function drawCharts(history) {
       scales: {
         x: {
           grid: { color: gc },
-          ticks: { color: tc, font: { size: 11 }, maxRotation: 45, autoSkip: false },
+          ticks: {
+            color: tc,
+            font: { size: 12 },
+            maxRotation: 0,
+            autoSkip: false,
+            callback: function(value, index) {
+              return monthAxisLabels[index] || '';
+            }
+          },
           border: { color: gc }
         },
         y: {
@@ -502,7 +523,15 @@ function drawCharts(history) {
       scales: {
         x: {
           grid: { color: gc },
-          ticks: { color: tc, font: { size: 11 }, maxRotation: 45, autoSkip: false },
+          ticks: {
+            color: tc,
+            font: { size: 12 },
+            maxRotation: 0,
+            autoSkip: false,
+            callback: function(value, index) {
+              return monthAxisLabels[index] || '';
+            }
+          },
           border: { color: gc }
         },
         y: {
