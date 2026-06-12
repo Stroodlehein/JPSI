@@ -405,7 +405,7 @@ body.modal-locked{overflow:hidden;}
   </div>
 
   <div class="research-feed">
-    <a class="article-card featured" href="#" onclick="openResearchModal(event)">
+    <a class="article-card featured" href="#" onclick="openResearchModal(event, 'research-modal-japan')">
       <div class="article-meta">
         <span data-en="Research note" data-ja="リサーチノート">Research note</span>
         <span>·</span>
@@ -433,11 +433,15 @@ body.modal-locked{overflow:hidden;}
   </div>
 
   <div class="research-feed">
-    <a class="article-card coming-card" href="#" onclick="return false;">
+    <a class="article-card" href="#" onclick="openResearchModal(event, 'research-modal-regional')">
       <div class="article-meta">
-        <span data-en="Coming soon" data-ja="近日公開">Coming soon</span>
+        <span data-en="Research note" data-ja="リサーチノート">Research note</span>
+        <span>·</span>
+        <span data-en="June 2026" data-ja="2026年6月">June 2026</span>
         <span>·</span>
         <span data-en="Market structure" data-ja="市場構造">Market structure</span>
+        <span>·</span>
+        <span data-en="~700 words" data-ja="約700語">~700 words</span>
       </div>
       <h2 class="article-title" data-en="Regional Physical Pricing Divergence: Japan, Shanghai, Germany, and India" data-ja="地域別現物価格の乖離：日本、上海、ドイツ、インド">Regional Physical Pricing Divergence: Japan, Shanghai, Germany, and India</h2>
       <div class="article-summary" data-en="If multiple physical markets begin pricing above global benchmarks at the same time, the signal becomes larger than one country. It becomes a question of regional market fragmentation." data-ja="複数の現物市場が同時にグローバル指標を上回る価格を付け始める場合、そのシグナルは一国の問題を超え、地域別市場分断の問題になります。">If multiple physical markets begin pricing above global benchmarks at the same time, the signal becomes larger than one country. It becomes a question of regional market fragmentation.</div>
@@ -445,8 +449,9 @@ body.modal-locked{overflow:hidden;}
         <div class="article-tags">
           <span class="article-tag" data-en="Regional divergence" data-ja="地域別乖離">Regional divergence</span>
           <span class="article-tag" data-en="Global benchmarks" data-ja="グローバル指標">Global benchmarks</span>
+          <span class="article-tag" data-en="Physical silver" data-ja="現物銀">Physical silver</span>
         </div>
-        <div class="read-link" data-en="Coming soon" data-ja="近日公開">Coming soon</div>
+        <div class="read-link" data-en="Read research →" data-ja="リサーチを読む →">Read research →</div>
       </div>
     </a>
 
@@ -503,25 +508,35 @@ body.modal-locked{overflow:hidden;}
   let currentLang = 'en';
 
 
-  function openResearchModal(event) {
+  function openResearchModal(event, modalId = 'research-modal-japan') {
     if (event) event.preventDefault();
-    const modal = document.getElementById('research-modal');
+    const modal = document.getElementById(modalId);
     if (!modal) return;
     modal.classList.add('open');
     modal.setAttribute('aria-hidden', 'false');
     document.body.classList.add('modal-locked');
   }
 
-  function closeResearchModal() {
-    const modal = document.getElementById('research-modal');
-    if (!modal) return;
-    modal.classList.remove('open');
-    modal.setAttribute('aria-hidden', 'true');
-    document.body.classList.remove('modal-locked');
+  function closeResearchModal(modalId) {
+    const modals = modalId
+      ? [document.getElementById(modalId)]
+      : Array.from(document.querySelectorAll('.modal-overlay.open'));
+
+    modals.forEach(modal => {
+      if (!modal) return;
+      modal.classList.remove('open');
+      modal.setAttribute('aria-hidden', 'true');
+    });
+
+    if (!document.querySelector('.modal-overlay.open')) {
+      document.body.classList.remove('modal-locked');
+    }
   }
 
   function overlayClose(event) {
-    if (event.target && event.target.id === 'research-modal') closeResearchModal();
+    if (event.target && event.target.classList.contains('modal-overlay')) {
+      closeResearchModal(event.target.id);
+    }
   }
 
   document.addEventListener('keydown', function(event) {
@@ -540,7 +555,7 @@ body.modal-locked{overflow:hidden;}
   }
 </script>
 
-<div class="modal-overlay" id="research-modal" aria-hidden="true" onclick="overlayClose(event)">
+<div class="modal-overlay" id="research-modal-japan" aria-hidden="true" onclick="overlayClose(event)">
   <article class="article-modal" role="dialog" aria-modal="true" aria-labelledby="research-modal-title">
     <div class="modal-top">
       <div>
@@ -578,6 +593,54 @@ body.modal-locked{overflow:hidden;}
 
         <h3 data-en="Conclusion" data-ja="結論">Conclusion</h3>
         <p data-en="The Japan silver premium should not be viewed only as a local oddity. It is a window into how physical markets actually behave when global benchmarks meet local demand, currency weakness, and real-world supply chains. JPMI exists to track this gap. Not to predict the future, but to observe when paper pricing and physical pricing begin telling different stories." data-ja="日本の銀プレミアムは、単なる地域的な例外として見るべきではありません。それは、グローバル指標が国内需要、通貨安、現実の供給網と交差するとき、現物市場がどのように振る舞うかを示す窓です。JPMIはこのギャップを追跡するために存在します。将来を予測するためではなく、紙の価格と現物価格が異なる物語を語り始める瞬間を観測するためです。">The Japan silver premium should not be viewed only as a local oddity. It is a window into how physical markets actually behave when global benchmarks meet local demand, currency weakness, and real-world supply chains. JPMI exists to track this gap. Not to predict the future, but to observe when paper pricing and physical pricing begin telling different stories.</p>
+
+        <div class="article-disclaimer" data-en="Informational research only. This article is not financial, investment, legal, or tax advice. JPMI tracks market structure and pricing divergence for educational purposes." data-ja="情報提供のみを目的としたリサーチです。本記事は金融、投資、法律、税務アドバイスではありません。JPMIは教育目的で市場構造と価格乖離を追跡しています。">Informational research only. This article is not financial, investment, legal, or tax advice. JPMI tracks market structure and pricing divergence for educational purposes.</div>
+      </div>
+    </div>
+  </article>
+</div>
+
+<div class="modal-overlay" id="research-modal-regional" aria-hidden="true" onclick="overlayClose(event)">
+  <article class="article-modal" role="dialog" aria-modal="true" aria-labelledby="research-modal-title-regional">
+    <div class="modal-top">
+      <div>
+        <div class="modal-kicker" data-en="JPMI Research Note · June 2026 · Market Structure" data-ja="JPMI リサーチノート · 2026年6月 · 市場構造">JPMI Research Note · June 2026 · Market Structure</div>
+        <h2 class="modal-title" id="research-modal-title-regional" data-en="Regional Physical Pricing Divergence: Japan, Shanghai, Germany, and India" data-ja="地域別現物価格の乖離：日本、上海、ドイツ、インド">Regional Physical Pricing Divergence: Japan, Shanghai, Germany, and India</h2>
+      </div>
+      <button class="modal-close" type="button" onclick="closeResearchModal('research-modal-regional')" aria-label="Close">×</button>
+    </div>
+
+    <div class="modal-body">
+      <div class="article-dek" data-en="Physical silver is often quoted as a single global market, but local pricing can diverge sharply when demand, inventory, taxes, currency pressure, and distribution constraints differ by region." data-ja="現物銀は単一のグローバル市場として語られることが多いものの、需要、在庫、税制、通貨圧力、流通制約が地域ごとに異なる場合、国内価格は大きく乖離することがあります。">Physical silver is often quoted as a single global market, but local pricing can diverge sharply when demand, inventory, taxes, currency pressure, and distribution constraints differ by region.</div>
+
+      <div class="article-body">
+        <h3 data-en="A global price, but not always a global reality" data-ja="グローバル価格と現実の違い">A global price, but not always a global reality</h3>
+        <p data-en="Physical silver is often described as a global market. Prices are quoted in U.S. dollars, benchmarked against COMEX futures, and referenced by investors around the world. Yet anyone who has attempted to buy physical silver in different countries quickly discovers that the global market is not as uniform as it appears." data-ja="現物銀はグローバル市場として語られることが多く、価格は米ドル建てで表示され、COMEX先物を基準にし、世界中の投資家に参照されています。しかし、異なる国で現物銀を購入しようとすると、その市場が見かけほど均一ではないことがすぐに分かります。">Physical silver is often described as a global market. Prices are quoted in U.S. dollars, benchmarked against COMEX futures, and referenced by investors around the world. Yet anyone who has attempted to buy physical silver in different countries quickly discovers that the global market is not as uniform as it appears.</p>
+
+        <p data-en="In practice, physical silver frequently trades at different prices depending on location, local demand, available inventory, import costs, taxes, and distribution networks. During periods of market stress, these differences can become substantial. What appears to be a single global silver market can instead behave as a collection of regional physical markets connected by a common benchmark but influenced by local conditions." data-ja="実際には、現物銀は地域、国内需要、入手可能な在庫、輸入コスト、税制、流通網によって異なる価格で取引されることがあります。市場ストレス時には、その差は大きくなる可能性があります。単一のグローバル銀市場に見えるものが、実際には共通の指標でつながりながらも、地域条件に左右される複数の現物市場として振る舞うことがあります。">In practice, physical silver frequently trades at different prices depending on location, local demand, available inventory, import costs, taxes, and distribution networks. During periods of market stress, these differences can become substantial. What appears to be a single global silver market can instead behave as a collection of regional physical markets connected by a common benchmark but influenced by local conditions.</p>
+
+        <h3 data-en="Japan: local demand and physical access" data-ja="日本：国内需要と現物アクセス">Japan: local demand and physical access</h3>
+        <p data-en="Japan provides a useful example. JPMI tracks physical silver pricing across refiners, dealers, and street-level retail transactions. At various points, physical silver available through Japanese retail channels has traded significantly above COMEX-derived pricing. This divergence is not necessarily caused by a shortage of silver itself. More often, it reflects local supply and demand conditions, retail investor activity, and the costs associated with moving physical metal through the distribution chain." data-ja="日本は分かりやすい事例です。JPMIは、精錬所、業者、フリマ実売取引を通じて現物銀価格を追跡しています。日本の小売チャネルで入手可能な現物銀は、COMEX換算価格を大きく上回って取引されることがあります。この乖離は必ずしも銀そのものの不足を意味するわけではありません。多くの場合、国内の需給、小売投資家の動き、現物金属を流通させるコストを反映しています。">Japan provides a useful example. JPMI tracks physical silver pricing across refiners, dealers, and street-level retail transactions. At various points, physical silver available through Japanese retail channels has traded significantly above COMEX-derived pricing. This divergence is not necessarily caused by a shortage of silver itself. More often, it reflects local supply and demand conditions, retail investor activity, and the costs associated with moving physical metal through the distribution chain.</p>
+
+        <h3 data-en="Shanghai: another physical pricing center" data-ja="上海：もう一つの現物価格拠点">Shanghai: another physical pricing center</h3>
+        <p data-en="Shanghai represents another important physical pricing center. China is one of the world's largest consumers and importers of precious metals. When domestic demand rises, physical premiums within the Chinese market can increase independently of developments in North America or Europe. The Shanghai market has at times traded at meaningful premiums to international benchmarks, creating regional pricing signals that may not be immediately visible in futures markets." data-ja="上海も重要な現物価格の拠点です。中国は世界最大級の貴金属消費国・輸入国です。国内需要が高まると、中国市場内の現物プレミアムは北米や欧州の動きとは独立して上昇することがあります。上海市場が国際指標に対して意味のあるプレミアムで取引される場合、それは先物市場だけではすぐに見えない地域別価格シグナルとなります。">Shanghai represents another important physical pricing center. China is one of the world's largest consumers and importers of precious metals. When domestic demand rises, physical premiums within the Chinese market can increase independently of developments in North America or Europe. The Shanghai market has at times traded at meaningful premiums to international benchmarks, creating regional pricing signals that may not be immediately visible in futures markets.</p>
+
+        <div class="article-pullquote" data-en="A single silver benchmark does not guarantee a single physical market." data-ja="単一の銀指標は、単一の現物市場を保証するものではない。">A single silver benchmark does not guarantee a single physical market.</div>
+
+        <h3 data-en="India and Germany: different drivers, same question" data-ja="インドとドイツ：異なる要因、同じ問い">India and Germany: different drivers, same question</h3>
+        <p data-en="India offers a different but equally important case study. Silver ownership has deep cultural and economic roots throughout the country. Demand can be influenced by seasonal purchasing patterns, agricultural income, currency movements, and local investment sentiment. Physical premiums in India often respond to factors that have little connection to trading activity on COMEX. As a result, local pricing may strengthen even during periods when international benchmark prices appear stable." data-ja="インドは別の重要な事例です。同国では銀の保有が文化的・経済的に深く根付いています。需要は季節的な購入パターン、農業所得、通貨変動、国内投資家心理に影響されます。インドの現物プレミアムは、COMEXでの取引活動とあまり関係のない要因に反応することがあります。そのため、国際指標価格が安定しているように見える時期でも、国内価格が強含む可能性があります。">India offers a different but equally important case study. Silver ownership has deep cultural and economic roots throughout the country. Demand can be influenced by seasonal purchasing patterns, agricultural income, currency movements, and local investment sentiment. Physical premiums in India often respond to factors that have little connection to trading activity on COMEX. As a result, local pricing may strengthen even during periods when international benchmark prices appear stable.</p>
+
+        <p data-en="Germany provides a European perspective on physical market behavior. European investors have historically maintained strong interest in physical precious metals as a form of savings and wealth preservation. Tax policies, regulatory changes, and shifts in investor demand can all influence physical pricing. During periods of economic uncertainty, demand for coins and bars may increase rapidly, creating temporary dislocations between physical products and futures-based benchmarks." data-ja="ドイツは欧州における現物市場の視点を提供します。欧州の投資家は、貯蓄や資産保全の手段として現物貴金属に強い関心を持ってきました。税制、規制変更、投資家需要の変化はすべて現物価格に影響し得ます。経済的不確実性が高まる局面では、コインやバーへの需要が急増し、現物商品と先物ベースの指標との間に一時的な乖離が生じることがあります。">Germany provides a European perspective on physical market behavior. European investors have historically maintained strong interest in physical precious metals as a form of savings and wealth preservation. Tax policies, regulatory changes, and shifts in investor demand can all influence physical pricing. During periods of economic uncertainty, demand for coins and bars may increase rapidly, creating temporary dislocations between physical products and futures-based benchmarks.</p>
+
+        <h3 data-en="When regional premiums become a larger signal" data-ja="地域別プレミアムが大きなシグナルになる時">When regional premiums become a larger signal</h3>
+        <p data-en="The key observation is that these regional markets do not always move in lockstep. A premium developing in Japan may be driven by entirely different factors than a premium emerging in Shanghai or India. Yet when multiple regions begin exhibiting elevated physical pricing at the same time, the signal becomes more significant." data-ja="重要なのは、これらの地域市場が常に同じように動くわけではないという点です。日本で発生するプレミアムは、上海やインドで発生するプレミアムとはまったく異なる要因によって生じる可能性があります。しかし、複数の地域で同時に現物価格の上振れが見られる場合、そのシグナルはより重要になります。">The key observation is that these regional markets do not always move in lockstep. A premium developing in Japan may be driven by entirely different factors than a premium emerging in Shanghai or India. Yet when multiple regions begin exhibiting elevated physical pricing at the same time, the signal becomes more significant.</p>
+
+        <p data-en="If physical premiums appear simultaneously across several major markets, it may suggest that demand for immediate ownership of silver is strengthening globally. Futures markets continue to establish the benchmark price, but physical buyers may be assigning greater value to actual possession and available inventory. The result is a widening gap between paper benchmarks and physical market realities." data-ja="複数の主要市場で同時に現物プレミアムが現れる場合、それは銀の即時所有に対する需要が世界的に強まっている可能性を示します。先物市場は引き続き基準価格を形成しますが、現物買い手は実際の保有と入手可能な在庫により大きな価値を付けている可能性があります。その結果、紙の指標と現物市場の現実との間にギャップが広がります。">If physical premiums appear simultaneously across several major markets, it may suggest that demand for immediate ownership of silver is strengthening globally. Futures markets continue to establish the benchmark price, but physical buyers may be assigning greater value to actual possession and available inventory. The result is a widening gap between paper benchmarks and physical market realities.</p>
+
+        <h3 data-en="Conclusion" data-ja="結論">Conclusion</h3>
+        <p data-en="For investors, these divergences provide additional information that is often overlooked. Futures prices alone may not fully capture conditions within physical supply chains. Monitoring regional premiums can offer insight into where demand is strongest, how inventory is moving, and whether physical markets are becoming tighter than benchmark prices imply." data-ja="投資家にとって、これらの乖離は見落とされがちな追加情報を提供します。先物価格だけでは、現物供給網の状況を十分に捉えられない場合があります。地域別プレミアムを観察することで、需要がどこで強いのか、在庫がどのように動いているのか、そして現物市場が指標価格が示す以上にタイトになっているのかを理解する手がかりになります。">For investors, these divergences provide additional information that is often overlooked. Futures prices alone may not fully capture conditions within physical supply chains. Monitoring regional premiums can offer insight into where demand is strongest, how inventory is moving, and whether physical markets are becoming tighter than benchmark prices imply.</p>
+
+        <p data-en="The global silver market may share a common reference price, but it does not always share a common reality. Understanding regional physical pricing divergence may become increasingly important as investors seek to understand the relationship between paper benchmarks and the markets where actual metal changes hands." data-ja="グローバル銀市場は共通の参照価格を持っているかもしれませんが、常に共通の現実を持っているわけではありません。紙の指標と実際に金属が取引される市場との関係を理解するうえで、地域別現物価格の乖離を理解することはますます重要になる可能性があります。">The global silver market may share a common reference price, but it does not always share a common reality. Understanding regional physical pricing divergence may become increasingly important as investors seek to understand the relationship between paper benchmarks and the markets where actual metal changes hands.</p>
 
         <div class="article-disclaimer" data-en="Informational research only. This article is not financial, investment, legal, or tax advice. JPMI tracks market structure and pricing divergence for educational purposes." data-ja="情報提供のみを目的としたリサーチです。本記事は金融、投資、法律、税務アドバイスではありません。JPMIは教育目的で市場構造と価格乖離を追跡しています。">Informational research only. This article is not financial, investment, legal, or tax advice. JPMI tracks market structure and pricing divergence for educational purposes.</div>
       </div>
