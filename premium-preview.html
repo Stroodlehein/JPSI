@@ -1,0 +1,373 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="robots" content="noindex, nofollow" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>JPMI Premium Preview</title>
+
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+  <style>
+    body {
+      margin: 0;
+      background: #050505;
+      color: #f5f5f5;
+      font-family: Arial, sans-serif;
+    }
+
+    .page {
+      max-width: 1180px;
+      margin: 0 auto;
+      padding: 60px 20px;
+    }
+
+    .badge {
+      display: inline-block;
+      margin-bottom: 18px;
+      padding: 8px 14px;
+      border: 1px solid rgba(245, 197, 24, 0.45);
+      border-radius: 999px;
+      color: #f5c518;
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      background: rgba(245, 197, 24, 0.08);
+    }
+
+    h1 {
+      margin: 0;
+      max-width: 820px;
+      font-size: clamp(40px, 6vw, 72px);
+      line-height: 0.95;
+      letter-spacing: -0.06em;
+    }
+
+    .subtitle {
+      max-width: 720px;
+      margin-top: 24px;
+      color: #b8b8b8;
+      font-size: 18px;
+      line-height: 1.7;
+    }
+
+    .chart-card {
+      margin-top: 48px;
+      border: 1px solid rgba(245, 197, 24, 0.22);
+      border-radius: 28px;
+      background:
+        radial-gradient(circle at top left, rgba(245, 197, 24, 0.14), transparent 30%),
+        linear-gradient(180deg, #111111, #070707);
+      box-shadow: 0 30px 90px rgba(0,0,0,0.55);
+      overflow: hidden;
+    }
+
+    .chart-header {
+      display: flex;
+      justify-content: space-between;
+      gap: 24px;
+      padding: 28px;
+      border-bottom: 1px solid rgba(255,255,255,0.08);
+    }
+
+    .chart-title h2 {
+      margin: 0;
+      font-size: 30px;
+      letter-spacing: -0.03em;
+    }
+
+    .chart-title p {
+      margin: 10px 0 0;
+      color: #aaa;
+      font-size: 14px;
+    }
+
+    .premium-tag {
+      align-self: start;
+      padding: 10px 14px;
+      border-radius: 14px;
+      background: rgba(245, 197, 24, 0.12);
+      color: #f5c518;
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      border: 1px solid rgba(245, 197, 24, 0.35);
+    }
+
+    .stats {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 14px;
+      padding: 24px 28px;
+      border-bottom: 1px solid rgba(255,255,255,0.08);
+    }
+
+    .stat {
+      padding: 18px;
+      border: 1px solid rgba(255,255,255,0.08);
+      border-radius: 18px;
+      background: rgba(255,255,255,0.035);
+    }
+
+    .stat span {
+      display: block;
+      color: #777;
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+    }
+
+    .stat strong {
+      display: block;
+      margin-top: 10px;
+      font-family: "Courier New", monospace;
+      font-size: 25px;
+      color: #fff;
+    }
+
+    .stat small {
+      display: block;
+      margin-top: 6px;
+      color: #888;
+      font-size: 12px;
+    }
+
+    .chart-area {
+      position: relative;
+      padding: 28px;
+    }
+
+    .chart-wrap {
+      height: 430px;
+      padding: 18px;
+      border-radius: 22px;
+      border: 1px solid rgba(255,255,255,0.08);
+      background: rgba(0,0,0,0.35);
+    }
+
+    .lock-overlay {
+      margin-top: 20px;
+      padding: 18px;
+      border: 1px solid rgba(245, 197, 24, 0.25);
+      border-radius: 18px;
+      text-align: center;
+      background: rgba(0,0,0,0.55);
+      backdrop-filter: blur(10px);
+    }
+
+    .lock-overlay strong {
+      color: #f5c518;
+    }
+
+    .actions {
+      display: flex;
+      gap: 12px;
+      margin-top: 22px;
+      flex-wrap: wrap;
+    }
+
+    .primary-btn {
+      padding: 13px 18px;
+      border-radius: 999px;
+      background: #f5c518;
+      color: #050505;
+      font-weight: 800;
+      text-decoration: none;
+    }
+
+    .locked-btn {
+      padding: 13px 18px;
+      border-radius: 999px;
+      border: 1px solid rgba(255,255,255,0.12);
+      color: #777;
+      text-decoration: none;
+      pointer-events: none;
+    }
+
+    @media (max-width: 800px) {
+      .chart-header {
+        flex-direction: column;
+      }
+
+      .stats {
+        grid-template-columns: 1fr 1fr;
+      }
+
+      .chart-wrap {
+        height: 330px;
+      }
+    }
+
+    @media (max-width: 520px) {
+      .stats {
+        grid-template-columns: 1fr;
+      }
+
+      .chart-area,
+      .chart-header,
+      .stats {
+        padding: 20px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <main class="page">
+    <div class="badge">JPMI Premium Preview</div>
+
+    <h1>Historical Japan Physical Silver Intelligence</h1>
+
+    <p class="subtitle">
+      Access the JPMI-AG historical chart, downloadable CSV data, and monthly
+      research notes covering Japan's physical silver market.
+    </p>
+
+    <section class="chart-card">
+      <div class="chart-header">
+        <div class="chart-title">
+          <h2>JPMI-AG Historical Chart</h2>
+          <p>Japan physical silver pricing · March 2026 onward</p>
+        </div>
+        <div class="premium-tag">Premium Dataset</div>
+      </div>
+
+      <div class="stats">
+        <div class="stat">
+          <span>Latest JPMI-AG</span>
+          <strong>¥488/g</strong>
+          <small>Japan physical silver</small>
+        </div>
+        <div class="stat">
+          <span>COMEX Equivalent</span>
+          <strong>¥424/g</strong>
+          <small>Paper benchmark</small>
+        </div>
+        <div class="stat">
+          <span>Physical Premium</span>
+          <strong>+15.1%</strong>
+          <small>JPMI vs COMEX</small>
+        </div>
+        <div class="stat">
+          <span>Database</span>
+          <strong>Mar 2026+</strong>
+          <small>Daily observations</small>
+        </div>
+      </div>
+
+      <div class="chart-area">
+        <div class="chart-wrap">
+          <canvas id="jpmiPremiumChart"></canvas>
+        </div>
+
+        <div class="lock-overlay">
+          <strong>🔒 Full interactive chart and CSV export available to JPMI Premium members.</strong>
+          <br />
+          Historical JPMI-AG data · COMEX comparison · premium history · downloadable CSV
+        </div>
+
+        <div class="actions">
+          <a class="primary-btn" href="mailto:cryptoblockcats@gmail.com?subject=JPMI%20Premium%20Access">
+            Request Premium Access
+          </a>
+          <a class="locked-btn" href="#">CSV Export 🔒</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <script>
+    const ctx = document.getElementById("jpmiPremiumChart");
+
+    new Chart(ctx, {
+      type: "line",
+      data: {
+        labels: [
+          "Mar 18", "Mar 25", "Apr 01", "Apr 08", "Apr 15",
+          "Apr 22", "Apr 29", "May 06", "May 13", "May 20",
+          "May 27", "Jun 03", "Jun 10"
+        ],
+        datasets: [
+          {
+            label: "JPMI-AG",
+            data: [512, 505, 498, 486, 475, 468, 472, 481, 492, 485, 476, 480, 488],
+            borderColor: "#f5c518",
+            backgroundColor: "rgba(245, 197, 24, 0.12)",
+            fill: true,
+            tension: 0.42,
+            pointRadius: 0,
+            pointHoverRadius: 5,
+            borderWidth: 3
+          },
+          {
+            label: "COMEX Equivalent",
+            data: [398, 402, 406, 410, 414, 418, 421, 425, 431, 428, 422, 420, 424],
+            borderColor: "#9ca3af",
+            backgroundColor: "rgba(156, 163, 175, 0)",
+            fill: false,
+            tension: 0.42,
+            pointRadius: 0,
+            pointHoverRadius: 4,
+            borderWidth: 2,
+            borderDash: [6, 6]
+          }
+        ]
+      },
+      options: {
+        responsive: true,
+        maintainAspectRatio: false,
+        interaction: {
+          mode: "index",
+          intersect: false
+        },
+        plugins: {
+          legend: {
+            labels: {
+              color: "#d4d4d4",
+              boxWidth: 12,
+              boxHeight: 12
+            }
+          },
+          tooltip: {
+            backgroundColor: "#090909",
+            titleColor: "#f5c518",
+            bodyColor: "#ffffff",
+            borderColor: "rgba(245, 197, 24, 0.35)",
+            borderWidth: 1,
+            padding: 12,
+            callbacks: {
+              label: function(context) {
+                return context.dataset.label + ": ¥" + context.parsed.y.toFixed(2) + "/g";
+              }
+            }
+          }
+        },
+        scales: {
+          x: {
+            ticks: {
+              color: "#9ca3af"
+            },
+            grid: {
+              color: "rgba(255,255,255,0.06)"
+            }
+          },
+          y: {
+            ticks: {
+              color: "#9ca3af",
+              callback: function(value) {
+                return "¥" + value;
+              }
+            },
+            grid: {
+              color: "rgba(255,255,255,0.07)"
+            }
+          }
+        }
+      }
+    });
+  </script>
+</body>
+</html>
