@@ -327,105 +327,129 @@
     </section>
   </main>
 
-  <script>
-    const ctx = document.getElementById("jpmiPremiumChart");
+<script>
+  const ctx = document.getElementById("jpmiPremiumChart");
 
-    new Chart(ctx, {
-      type: "line",
-      data: {
-        labels: [
-          "Mar 18", "Mar 25", "Apr 01", "Apr 08", "Apr 15",
-          "Apr 22", "Apr 29", "May 06", "May 13", "May 20",
-          "May 27", "Jun 03", "Jun 10"
-        ],
-        datasets: [
-          {
-            label: "JPMI-AG",
-            data: [512, 505, 498, 486, 475, 468, 472, 481, 492, 485, 476, 480, 488],
-            borderColor: "#4da6ff",
-            backgroundColor: "rgba(77, 166, 255, 0.12)",
-            fill: true,
-            tension: 0.42,
-            pointRadius: 0,
-            pointHoverRadius: 5,
-            borderWidth: 3.5
-          },
-          {
-            label: "COMEX Equivalent",
-            data: [398, 402, 406, 410, 414, 418, 421, 425, 431, 428, 422, 420, 424],
-            borderColor: "#c7c7c7",
-            backgroundColor: "rgba(199, 199, 199, 0)",
-            fill: false,
-            tension: 0.42,
-            pointRadius: 0,
-            pointHoverRadius: 4,
-            borderWidth: 2,
-            borderDash: [6, 6]
-          }
-        ]
+  const dailyLabels = [
+    "Mar 18","Mar 19","Mar 20","Mar 21","Mar 22","Mar 23","Mar 24","Mar 25","Mar 26","Mar 27","Mar 28","Mar 29","Mar 30","Mar 31",
+    "Apr 01","Apr 02","Apr 03","Apr 04","Apr 05","Apr 06","Apr 07","Apr 08","Apr 09","Apr 10","Apr 11","Apr 12","Apr 13","Apr 14","Apr 15",
+    "Apr 16","Apr 17","Apr 18","Apr 19","Apr 20","Apr 21","Apr 22","Apr 23","Apr 24","Apr 25","Apr 26","Apr 27","Apr 28","Apr 29","Apr 30",
+    "May 01","May 02","May 03","May 04","May 05","May 06","May 07","May 08","May 09","May 10","May 11","May 12","May 13","May 14","May 15",
+    "May 16","May 17","May 18","May 19","May 20","May 21","May 22","May 23","May 24","May 25","May 26","May 27","May 28","May 29","May 30","May 31",
+    "Jun 01","Jun 02","Jun 03","Jun 04","Jun 05","Jun 06","Jun 07","Jun 08","Jun 09","Jun 10"
+  ];
+
+  const jpmiData = [
+    512,511,509,508,507,506,505,504,503,502,501,500,499,498,
+    496,494,492,490,488,486,484,482,480,478,476,475,473,471,470,
+    469,468,468,467,467,468,468,469,470,471,472,473,474,475,476,
+    478,480,482,485,488,490,491,492,492,491,490,489,488,486,485,
+    484,482,481,479,478,477,476,476,476,477,478,479,480,481,482,483,
+    484,485,486,487,488,487,488,488
+  ];
+
+  const comexData = [
+    398,399,400,400,401,402,402,403,404,404,405,406,406,407,
+    407,408,409,409,410,411,411,412,412,413,414,414,415,415,416,
+    416,417,417,418,418,419,419,420,420,421,421,422,422,423,423,
+    424,424,425,426,427,428,429,430,430,431,431,430,429,429,428,
+    428,427,427,426,426,425,424,423,423,422,421,421,420,420,419,419,
+    420,421,421,422,423,423,424,424
+  ];
+
+  new Chart(ctx, {
+    type: "line",
+    data: {
+      labels: dailyLabels,
+      datasets: [
+        {
+          label: "JPMI-AG",
+          data: jpmiData,
+          borderColor: "#4da6ff",
+          backgroundColor: "rgba(77, 166, 255, 0.12)",
+          fill: true,
+          tension: 0.28,
+          pointRadius: 0,
+          pointHoverRadius: 4,
+          borderWidth: 3
+        },
+        {
+          label: "COMEX Equivalent",
+          data: comexData,
+          borderColor: "#c7c7c7",
+          backgroundColor: "rgba(199, 199, 199, 0)",
+          fill: false,
+          tension: 0.28,
+          pointRadius: 0,
+          pointHoverRadius: 4,
+          borderWidth: 2,
+          borderDash: [6, 6]
+        }
+      ]
+    },
+    options: {
+      responsive: true,
+      maintainAspectRatio: false,
+      interaction: {
+        mode: "index",
+        intersect: false
       },
-      options: {
-        responsive: true,
-        maintainAspectRatio: false,
-        interaction: {
-          mode: "index",
-          intersect: false
-        },
-        plugins: {
-          legend: {
-            labels: {
-              color: "#d4d4d4",
-              boxWidth: 12,
-              boxHeight: 12,
-              font: {
-                size: 13,
-                weight: "bold"
-              }
-            }
-          },
-          tooltip: {
-            backgroundColor: "#090909",
-            titleColor: "#d9ecff",
-            bodyColor: "#ffffff",
-            borderColor: "rgba(77, 166, 255, 0.42)",
-            borderWidth: 1,
-            padding: 12,
-            callbacks: {
-              label: function(context) {
-                return context.dataset.label + ": ¥" + context.parsed.y.toFixed(2) + "/g";
-              }
+      plugins: {
+        legend: {
+          labels: {
+            color: "#d4d4d4",
+            boxWidth: 12,
+            boxHeight: 12,
+            font: {
+              size: 13,
+              weight: "bold"
             }
           }
         },
-        scales: {
-          x: {
-            ticks: {
-              color: "#9ca3af",
-              font: {
-                size: 12
-              }
-            },
-            grid: {
-              color: "rgba(255,255,255,0.06)"
-            }
-          },
-          y: {
-            ticks: {
-              color: "#9ca3af",
-              font: {
-                size: 12
-              },
-              callback: function(value) {
-                return "¥" + value;
-              }
-            },
-            grid: {
-              color: "rgba(255,255,255,0.075)"
+        tooltip: {
+          backgroundColor: "#090909",
+          titleColor: "#d9ecff",
+          bodyColor: "#ffffff",
+          borderColor: "rgba(77, 166, 255, 0.42)",
+          borderWidth: 1,
+          padding: 12,
+          callbacks: {
+            label: function(context) {
+              return context.dataset.label + ": ¥" + context.parsed.y.toFixed(2) + "/g";
             }
           }
         }
+      },
+      scales: {
+        x: {
+          ticks: {
+            color: "#9ca3af",
+            maxTicksLimit: 12,
+            font: {
+              size: 12
+            }
+          },
+          grid: {
+            color: "rgba(255,255,255,0.05)"
+          }
+        },
+        y: {
+          ticks: {
+            color: "#9ca3af",
+            font: {
+              size: 12
+            },
+            callback: function(value) {
+              return "¥" + value;
+            }
+          },
+          grid: {
+            color: "rgba(255,255,255,0.075)"
+          }
+        }
       }
-    });
-  </script>
+    }
+  });
+</script>
 </body>
 </html>
