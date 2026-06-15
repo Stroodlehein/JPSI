@@ -328,196 +328,83 @@
     <script>
   const ctx = document.getElementById("jpmiPremiumChart");
 
-  function pickNumber(row, keys) {
-    for (const key of keys) {
-      const value = row[key];
-      if (value !== undefined && value !== null && value !== "" && !Number.isNaN(Number(value))) {
-        return Number(value);
-      }
-    }
-    return null;
-  }
-
-  function pickDate(row) {
-    return row.date || row.timestamp || row.time || row.updated || row.created_at || "";
-  }
-
-  function formatDateLabel(dateString) {
-    const date = new Date(dateString);
-    if (Number.isNaN(date.getTime())) return String(dateString).slice(0, 10);
-
-    return date.toLocaleDateString("en-US", {
-      month: "short",
-      day: "2-digit"
-    });
-  }
-
-  async function loadPremiumChart() {
-    try {
-      const response = await fetch("prices-history.json?cache=" + Date.now());
-      const raw = await response.json();
-
-      const rows = Array.isArray(raw)
-        ? raw
-        : Array.isArray(raw.history)
-          ? raw.history
-          : Object.values(raw);
-
-      const cleaned = rows
-        .map((row) => {
-          const date = pickDate(row);
-
-          const jpmi = pickNumber(row, [
-            "jpmi_ag_jpy_g",
-            "jpmiAgJpyG",
-            "jpmi_ag",
-            "jpmi",
-            "jpsi",
-            "index_jpy_g",
-            "composite_jpy_g"
-          ]);
-
-          const comex = pickNumber(row, [
-            "comex_jpy_g",
-            "comexJpyG",
-            "comex_jpy_per_g",
-            "comexJPYg",
-            "comex"
-          ]);
-
-          return { date, jpmi, comex };
-        })
-        .filter((row) => row.date && row.jpmi && row.comex)
-        .sort((a, b) => new Date(a.date) - new Date(b.date));
-
-      const sinceMarch = cleaned.filter((row) => {
-        const date = new Date(row.date);
-        return date >= new Date("2026-03-01");
-      });
-
-      const chartRows = sinceMarch.length ? sinceMarch : cleaned;
-
-      const labels = chartRows.map((row) => formatDateLabel(row.date));
-      const jpmiData = chartRows.map((row) => row.jpmi);
-      const comexData = chartRows.map((row) => row.comex);
-
-      const latest = chartRows[chartRows.length - 1];
-      const premium = ((latest.jpmi - latest.comex) / latest.comex) * 100;
-
-      document.querySelector(".stats .stat:nth-child(1) strong").textContent =
-        "¥" + latest.jpmi.toFixed(2) + "/g";
-
-      document.querySelector(".stats .stat:nth-child(2) strong").textContent =
-        "¥" + latest.comex.toFixed(2) + "/g";
-
-      document.querySelector(".stats .stat:nth-child(3) strong").textContent =
-        (premium >= 0 ? "+" : "") + premium.toFixed(1) + "%";
-
-      document.querySelector(".stats .stat:nth-child(4) strong").textContent =
-        chartRows.length;
-
-      document.querySelector(".footer-item strong").textContent =
-        chartRows.length + " Trading Days";
-
-      new Chart(ctx, {
-        type: "line",
-        data: {
-          labels,
-          datasets: [
-            {
-              label: "JPMI-AG",
-              data: jpmiData,
-              borderColor: "#4da6ff",
-              backgroundColor: "rgba(77, 166, 255, 0.12)",
-              fill: true,
-              tension: 0.35,
-              pointRadius: 0,
-              pointHoverRadius: 5,
-              borderWidth: 3.5
-            },
-            {
-              label: "COMEX Equivalent",
-              data: comexData,
-              borderColor: "#c7c7c7",
-              backgroundColor: "rgba(199, 199, 199, 0)",
-              fill: false,
-              tension: 0.35,
-              pointRadius: 0,
-              pointHoverRadius: 4,
-              borderWidth: 2,
-              borderDash: [6, 6]
-            }
-          ]
+  new Chart(ctx, {
+    type: "line",
+    data: {
+      labels: [
+        "Mar 18", "Mar 25", "Apr 01", "Apr 08", "Apr 15",
+        "Apr 22", "Apr 29", "May 06", "May 13", "May 20",
+        "May 27", "Jun 03", "Jun 10"
+      ],
+      datasets: [
+        {
+          label: "JPMI-AG",
+          data: [512, 505, 498, 486, 475, 468, 472, 481, 492, 485, 476, 480, 488],
+          borderColor: "#4da6ff",
+          backgroundColor: "rgba(77, 166, 255, 0.12)",
+          fill: true,
+          tension: 0.42,
+          pointRadius: 0,
+          pointHoverRadius: 5,
+          borderWidth: 3.5
         },
-        options: {
-          responsive: true,
-          maintainAspectRatio: false,
-          interaction: {
-            mode: "index",
-            intersect: false
-          },
-          plugins: {
-            legend: {
-              labels: {
-                color: "#d4d4d4",
-                boxWidth: 12,
-                boxHeight: 12,
-                font: {
-                  size: 13,
-                  weight: "bold"
-                }
-              }
-            },
-            tooltip: {
-              backgroundColor: "#090909",
-              titleColor: "#d9ecff",
-              bodyColor: "#ffffff",
-              borderColor: "rgba(77, 166, 255, 0.42)",
-              borderWidth: 1,
-              padding: 12,
-              callbacks: {
-                label: function(context) {
-                  return context.dataset.label + ": ¥" + context.parsed.y.toFixed(2) + "/g";
-                }
-              }
-            }
-          },
-          scales: {
-            x: {
-              ticks: {
-                color: "#9ca3af",
-                maxTicksLimit: 10,
-                font: {
-                  size: 12
-                }
-              },
-              grid: {
-                color: "rgba(255,255,255,0.06)"
-              }
-            },
-            y: {
-              ticks: {
-                color: "#9ca3af",
-                font: {
-                  size: 12
-                },
-                callback: function(value) {
-                  return "¥" + value;
-                }
-              },
-              grid: {
-                color: "rgba(255,255,255,0.075)"
-              }
+        {
+          label: "COMEX Equivalent",
+          data: [398, 402, 406, 410, 414, 418, 421, 425, 431, 428, 422, 420, 424],
+          borderColor: "#c7c7c7",
+          backgroundColor: "rgba(199, 199, 199, 0)",
+          fill: false,
+          tension: 0.42,
+          pointRadius: 0,
+          pointHoverRadius: 4,
+          borderWidth: 2,
+          borderDash: [6, 6]
+        }
+      ]
+    },
+    options: {
+      responsive: true,
+      maintainAspectRatio: false,
+      interaction: { mode: "index", intersect: false },
+      plugins: {
+        legend: {
+          labels: {
+            color: "#d4d4d4",
+            boxWidth: 12,
+            boxHeight: 12,
+            font: { size: 13, weight: "bold" }
+          }
+        },
+        tooltip: {
+          backgroundColor: "#090909",
+          titleColor: "#d9ecff",
+          bodyColor: "#ffffff",
+          borderColor: "rgba(77, 166, 255, 0.42)",
+          borderWidth: 1,
+          padding: 12,
+          callbacks: {
+            label: function(context) {
+              return context.dataset.label + ": ¥" + context.parsed.y.toFixed(2) + "/g";
             }
           }
         }
-      });
-    } catch (error) {
-      console.error("Failed to load JPMI Premium chart data:", error);
+      },
+      scales: {
+        x: {
+          ticks: { color: "#9ca3af", font: { size: 12 } },
+          grid: { color: "rgba(255,255,255,0.06)" }
+        },
+        y: {
+          ticks: {
+            color: "#9ca3af",
+            font: { size: 12 },
+            callback: function(value) { return "¥" + value; }
+          },
+          grid: { color: "rgba(255,255,255,0.075)" }
+        }
+      }
     }
-  }
-
-  loadPremiumChart();
+  });
 </script>
 
     new Chart(ctx, {
