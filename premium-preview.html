@@ -9,10 +9,19 @@
   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
   <style>
+    :root {
+      --jpmi-red: #bc002d;
+      --jpmi-red-soft: rgba(188, 0, 45, 0.14);
+      --jpmi-red-border: rgba(188, 0, 45, 0.42);
+      --jpmi-white: #f5f5f5;
+      --jpmi-muted: #a3a3a3;
+      --jpmi-dark: #050505;
+    }
+
     body {
       margin: 0;
-      background: #050505;
-      color: #f5f5f5;
+      background: var(--jpmi-dark);
+      color: var(--jpmi-white);
       font-family: Arial, sans-serif;
     }
 
@@ -26,14 +35,14 @@
       display: inline-block;
       margin-bottom: 18px;
       padding: 8px 16px;
-      border: 1px solid rgba(245, 197, 24, 0.5);
+      border: 1px solid var(--jpmi-red-border);
       border-radius: 999px;
-      color: #f5c518;
+      color: #ffffff;
       font-size: 12px;
       font-weight: 800;
       letter-spacing: 0.2em;
       text-transform: uppercase;
-      background: rgba(245, 197, 24, 0.08);
+      background: var(--jpmi-red-soft);
     }
 
     h1 {
@@ -54,10 +63,10 @@
 
     .chart-card {
       margin-top: 52px;
-      border: 1px solid rgba(245, 197, 24, 0.25);
+      border: 1px solid rgba(188, 0, 45, 0.28);
       border-radius: 30px;
       background:
-        radial-gradient(circle at top left, rgba(245, 197, 24, 0.16), transparent 32%),
+        radial-gradient(circle at top left, rgba(188, 0, 45, 0.18), transparent 32%),
         linear-gradient(180deg, #111111, #070707);
       box-shadow: 0 35px 100px rgba(0,0,0,0.65);
       overflow: hidden;
@@ -87,13 +96,13 @@
       align-self: start;
       padding: 11px 16px;
       border-radius: 14px;
-      background: rgba(245, 197, 24, 0.12);
-      color: #f5c518;
+      background: rgba(188, 0, 45, 0.15);
+      color: #ffffff;
       font-size: 12px;
       font-weight: 800;
       letter-spacing: 0.16em;
       text-transform: uppercase;
-      border: 1px solid rgba(245, 197, 24, 0.38);
+      border: 1px solid rgba(188, 0, 45, 0.45);
     }
 
     .stats {
@@ -153,7 +162,7 @@
       gap: 14px;
       margin-top: 24px;
       padding: 22px;
-      border: 1px solid rgba(245, 197, 24, 0.28);
+      border: 1px solid rgba(188, 0, 45, 0.32);
       border-radius: 22px;
       background: rgba(0,0,0,0.65);
       text-align: center;
@@ -161,7 +170,7 @@
 
     .footer-item strong {
       display: block;
-      color: #f5c518;
+      color: #ffffff;
       font-size: 15px;
       font-weight: 800;
     }
@@ -184,10 +193,15 @@
     .primary-btn {
       padding: 14px 22px;
       border-radius: 999px;
-      background: #f5c518;
-      color: #050505;
+      background: var(--jpmi-red);
+      color: #ffffff;
       font-weight: 900;
       text-decoration: none;
+      box-shadow: 0 12px 30px rgba(188, 0, 45, 0.28);
+    }
+
+    .primary-btn:hover {
+      background: #d40035;
     }
 
     .locked-btn {
@@ -325,8 +339,8 @@
           {
             label: "JPMI-AG",
             data: [512, 505, 498, 486, 475, 468, 472, 481, 492, 485, 476, 480, 488],
-            borderColor: "#f5c518",
-            backgroundColor: "rgba(245, 197, 24, 0.13)",
+            borderColor: "#bc002d",
+            backgroundColor: "rgba(188, 0, 45, 0.16)",
             fill: true,
             tension: 0.42,
             pointRadius: 0,
@@ -336,7 +350,7 @@
           {
             label: "COMEX Equivalent",
             data: [398, 402, 406, 410, 414, 418, 421, 425, 431, 428, 422, 420, 424],
-            borderColor: "#9ca3af",
+            borderColor: "#d4d4d4",
             backgroundColor: "rgba(156, 163, 175, 0)",
             fill: false,
             tension: 0.42,
@@ -368,9 +382,9 @@
           },
           tooltip: {
             backgroundColor: "#090909",
-            titleColor: "#f5c518",
+            titleColor: "#ffffff",
             bodyColor: "#ffffff",
-            borderColor: "rgba(245, 197, 24, 0.35)",
+            borderColor: "rgba(188, 0, 45, 0.45)",
             borderWidth: 1,
             padding: 12,
             callbacks: {
