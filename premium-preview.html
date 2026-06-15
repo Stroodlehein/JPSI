@@ -14,8 +14,11 @@
       --jpmi-blue-soft: rgba(77, 166, 255, 0.12);
       --jpmi-blue-border: rgba(77, 166, 255, 0.38);
       --jpmi-white: #f5f5f5;
-      --jpmi-muted: #a3a3a3;
       --jpmi-dark: #050505;
+    }
+
+    * {
+      box-sizing: border-box;
     }
 
     body {
@@ -324,88 +327,8 @@
     </section>
   </main>
 
-  <script> 
-    <script>
-  const ctx = document.getElementById("jpmiPremiumChart");
-
-  new Chart(ctx, {
-    type: "line",
-    data: {
-      labels: [
-        "Mar 18", "Mar 25", "Apr 01", "Apr 08", "Apr 15",
-        "Apr 22", "Apr 29", "May 06", "May 13", "May 20",
-        "May 27", "Jun 03", "Jun 10"
-      ],
-      datasets: [
-        {
-          label: "JPMI-AG",
-          data: [512, 505, 498, 486, 475, 468, 472, 481, 492, 485, 476, 480, 488],
-          borderColor: "#4da6ff",
-          backgroundColor: "rgba(77, 166, 255, 0.12)",
-          fill: true,
-          tension: 0.42,
-          pointRadius: 0,
-          pointHoverRadius: 5,
-          borderWidth: 3.5
-        },
-        {
-          label: "COMEX Equivalent",
-          data: [398, 402, 406, 410, 414, 418, 421, 425, 431, 428, 422, 420, 424],
-          borderColor: "#c7c7c7",
-          backgroundColor: "rgba(199, 199, 199, 0)",
-          fill: false,
-          tension: 0.42,
-          pointRadius: 0,
-          pointHoverRadius: 4,
-          borderWidth: 2,
-          borderDash: [6, 6]
-        }
-      ]
-    },
-    options: {
-      responsive: true,
-      maintainAspectRatio: false,
-      interaction: { mode: "index", intersect: false },
-      plugins: {
-        legend: {
-          labels: {
-            color: "#d4d4d4",
-            boxWidth: 12,
-            boxHeight: 12,
-            font: { size: 13, weight: "bold" }
-          }
-        },
-        tooltip: {
-          backgroundColor: "#090909",
-          titleColor: "#d9ecff",
-          bodyColor: "#ffffff",
-          borderColor: "rgba(77, 166, 255, 0.42)",
-          borderWidth: 1,
-          padding: 12,
-          callbacks: {
-            label: function(context) {
-              return context.dataset.label + ": ¥" + context.parsed.y.toFixed(2) + "/g";
-            }
-          }
-        }
-      },
-      scales: {
-        x: {
-          ticks: { color: "#9ca3af", font: { size: 12 } },
-          grid: { color: "rgba(255,255,255,0.06)" }
-        },
-        y: {
-          ticks: {
-            color: "#9ca3af",
-            font: { size: 12 },
-            callback: function(value) { return "¥" + value; }
-          },
-          grid: { color: "rgba(255,255,255,0.075)" }
-        }
-      }
-    }
-  });
-</script>
+  <script>
+    const ctx = document.getElementById("jpmiPremiumChart");
 
     new Chart(ctx, {
       type: "line",
