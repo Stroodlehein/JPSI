@@ -17,9 +17,7 @@
       --jpmi-dark: #050505;
     }
 
-    * {
-      box-sizing: border-box;
-    }
+    * { box-sizing: border-box; }
 
     body {
       margin: 0;
@@ -151,6 +149,29 @@
       padding: 30px;
     }
 
+    .chart-controls {
+      display: flex;
+      gap: 10px;
+      margin-bottom: 18px;
+      flex-wrap: wrap;
+    }
+
+    .chart-toggle {
+      padding: 9px 14px;
+      border-radius: 999px;
+      border: 1px solid rgba(255,255,255,0.12);
+      background: rgba(255,255,255,0.035);
+      color: #aaa;
+      font-weight: 800;
+      cursor: pointer;
+    }
+
+    .chart-toggle.active {
+      background: var(--jpmi-blue);
+      color: #050505;
+      border-color: var(--jpmi-blue);
+    }
+
     .chart-wrap {
       height: 560px;
       padding: 20px;
@@ -217,18 +238,14 @@
     }
 
     @media (max-width: 850px) {
-      .chart-header {
-        flex-direction: column;
-      }
+      .chart-header { flex-direction: column; }
 
       .stats,
       .premium-footer {
         grid-template-columns: 1fr 1fr;
       }
 
-      .chart-wrap {
-        height: 440px;
-      }
+      .chart-wrap { height: 440px; }
     }
 
     @media (max-width: 540px) {
@@ -243,9 +260,7 @@
         padding: 20px;
       }
 
-      .chart-wrap {
-        height: 360px;
-      }
+      .chart-wrap { height: 360px; }
     }
   </style>
 </head>
@@ -273,34 +288,42 @@
       <div class="stats">
         <div class="stat">
           <span>Latest JPMI-AG</span>
-          <strong>¥488/g</strong>
+          <strong>Loading</strong>
           <small>Japan physical silver</small>
         </div>
         <div class="stat">
           <span>COMEX Equivalent</span>
-          <strong>¥424/g</strong>
+          <strong>Loading</strong>
           <small>Paper benchmark</small>
         </div>
         <div class="stat">
           <span>Physical Premium</span>
-          <strong>+15.1%</strong>
+          <strong>Loading</strong>
           <small>JPMI vs COMEX</small>
         </div>
         <div class="stat">
           <span>Observations</span>
-          <strong>87</strong>
+          <strong>Loading</strong>
           <small>Trading days recorded</small>
         </div>
       </div>
 
       <div class="chart-area">
+        <div class="chart-controls">
+          <button class="chart-toggle active" data-view="jpmi">JPMI-AG</button>
+          <button class="chart-toggle" data-view="rs">RS</button>
+          <button class="chart-toggle" data-view="db">DB</button>
+          <button class="chart-toggle" data-view="mspi">Mercari</button>
+          <button class="chart-toggle" data-view="all">All</button>
+        </div>
+
         <div class="chart-wrap">
           <canvas id="jpmiPremiumChart"></canvas>
         </div>
 
         <div class="premium-footer">
           <div class="footer-item">
-            <strong>87 Trading Days</strong>
+            <strong>Loading</strong>
             <span>Recorded since March 2026</span>
           </div>
           <div class="footer-item">
@@ -327,139 +350,221 @@
     </section>
   </main>
 
-<script>
-  const ctx = document.getElementById("jpmiPremiumChart");
+  <script>
+    const ctx = document.getElementById("jpmiPremiumChart");
+    let premiumChart;
+    let premiumRows = [];
 
-  async function loadJpmiPremiumChart() {
-    const response = await fetch("jpmi-history.json?cache=" + Date.now());
-    const rows = await response.json();
+    const views = {
+      jpmi: [
+        { key: "jpmi_ag_jpy_g", label: "JPMI-AG", color: "#4da6ff", fill: true }
+      ],
+      rs: [
+        { key: "rs_jpy_g", label: "RS Refinery", color: "#60a5fa", fill: true }
+      ],
+      db: [
+        { key: "db_jpy_g", label: "DB Dealer Bid", color: "#38bdf8", fill: true }
+      ],
+      mspi: [
+        { key: "mspi_b_jpy_g", label: "Mercari / MSPI-B", color: "#93c5fd", fill: true }
+      ],
+      all: [
+        { key: "jpmi_ag_jpy_g", label: "JPMI-AG", color: "#4da6ff", fill: false },
+        { key: "rs_jpy_g", label: "RS", color: "#60a5fa", fill: false },
+        { key: "db_jpy_g", label: "DB", color: "#38bdf8", fill: false },
+        { key: "mspi_b_jpy_g", label: "Mercari", color: "#93c5fd", fill: false }
+      ]
+    };
 
-    const sortedRows = rows.sort((a, b) => new Date(a.date) - new Date(b.date));
-
-    const labels = sortedRows.map(row => {
-      const date = new Date(row.date);
+    function formatLabel(dateString) {
+      const date = new Date(dateString);
       return date.toLocaleDateString("en-US", {
         month: "short",
         day: "2-digit"
       });
-    });
+    }
 
-    const jpmiData = sortedRows.map(row => row.jpmi_ag_jpy_g);
-    const comexData = sortedRows.map(row => row.comex_jpy_g);
+    function yen(value) {
+      if (value === null || value === undefined || Number.isNaN(Number(value))) return "N/A";
+      return "¥" + Number(value).toFixed(2) + "/g";
+    }
 
-    const latest = sortedRows[sortedRows.length - 1];
+    function findLatestWithValue(key) {
+      for (let i = premiumRows.length - 1; i >= 0; i--) {
+        const value = premiumRows[i][key];
+        if (value !== null && value !== undefined && !Number.isNaN(Number(value))) {
+          return premiumRows[i];
+        }
+      }
+      return premiumRows[premiumRows.length - 1];
+    }
 
-    document.querySelector(".stats .stat:nth-child(1) strong").textContent =
-      "¥" + latest.jpmi_ag_jpy_g.toFixed(2) + "/g";
+    function buildDatasets(view) {
+      const selected = views[view] || views.jpmi;
 
-    document.querySelector(".stats .stat:nth-child(2) strong").textContent =
-      "¥" + latest.comex_jpy_g.toFixed(2) + "/g";
+      const physicalDatasets = selected.map(series => ({
+        label: series.label,
+        data: premiumRows.map(row => row[series.key] ?? null),
+        borderColor: series.color,
+        backgroundColor: series.fill ? "rgba(77, 166, 255, 0.12)" : "rgba(77, 166, 255, 0)",
+        fill: series.fill,
+        tension: 0.35,
+        pointRadius: 0,
+        pointHoverRadius: 5,
+        borderWidth: view === "all" ? 2.4 : 3.5,
+        spanGaps: true
+      }));
 
-    document.querySelector(".stats .stat:nth-child(3) strong").textContent =
-      "+" + latest.premium_pct.toFixed(1) + "%";
+      const comexDataset = {
+        label: "COMEX Equivalent",
+        data: premiumRows.map(row => row.comex_jpy_g ?? null),
+        borderColor: "#c7c7c7",
+        backgroundColor: "rgba(199, 199, 199, 0)",
+        fill: false,
+        tension: 0.35,
+        pointRadius: 0,
+        pointHoverRadius: 4,
+        borderWidth: 2,
+        borderDash: [6, 6],
+        spanGaps: true
+      };
 
-    document.querySelector(".stats .stat:nth-child(4) strong").textContent =
-      sortedRows.length;
+      return [...physicalDatasets, comexDataset];
+    }
 
-    document.querySelector(".footer-item strong").textContent =
-      sortedRows.length + " Trading Days";
+    function updateStats() {
+      const latestJpmi = findLatestWithValue("jpmi_ag_jpy_g");
+      const latestComex = findLatestWithValue("comex_jpy_g");
+      const latestPremium = findLatestWithValue("premium_pct");
 
-    new Chart(ctx, {
-      type: "line",
-      data: {
-        labels,
-        datasets: [
-          {
-            label: "JPMI-AG",
-            data: jpmiData,
-            borderColor: "#4da6ff",
-            backgroundColor: "rgba(77, 166, 255, 0.12)",
-            fill: true,
-            tension: 0.35,
-            pointRadius: 0,
-            pointHoverRadius: 5,
-            borderWidth: 3.5
-          },
-          {
-            label: "COMEX Equivalent",
-            data: comexData,
-            borderColor: "#c7c7c7",
-            backgroundColor: "rgba(199, 199, 199, 0)",
-            fill: false,
-            tension: 0.35,
-            pointRadius: 0,
-            pointHoverRadius: 4,
-            borderWidth: 2,
-            borderDash: [6, 6]
-          }
-        ]
-      },
-      options: {
-        responsive: true,
-        maintainAspectRatio: false,
-        interaction: {
-          mode: "index",
-          intersect: false
+      document.querySelector(".stats .stat:nth-child(1) strong").textContent =
+        yen(latestJpmi.jpmi_ag_jpy_g);
+
+      document.querySelector(".stats .stat:nth-child(2) strong").textContent =
+        yen(latestComex.comex_jpy_g);
+
+      const premiumValue = latestPremium.premium_pct;
+      document.querySelector(".stats .stat:nth-child(3) strong").textContent =
+        premiumValue === null || premiumValue === undefined
+          ? "N/A"
+          : (Number(premiumValue) >= 0 ? "+" : "") + Number(premiumValue).toFixed(1) + "%";
+
+      document.querySelector(".stats .stat:nth-child(4) strong").textContent =
+        premiumRows.length;
+
+      document.querySelector(".footer-item strong").textContent =
+        premiumRows.length + " Trading Days";
+    }
+
+    function renderChart(view = "jpmi") {
+      const labels = premiumRows.map(row => formatLabel(row.date));
+
+      if (premiumChart) {
+        premiumChart.destroy();
+      }
+
+      premiumChart = new Chart(ctx, {
+        type: "line",
+        data: {
+          labels,
+          datasets: buildDatasets(view)
         },
-        plugins: {
-          legend: {
-            labels: {
-              color: "#d4d4d4",
-              boxWidth: 12,
-              boxHeight: 12,
-              font: {
-                size: 13,
-                weight: "bold"
-              }
-            }
+        options: {
+          responsive: true,
+          maintainAspectRatio: false,
+          interaction: {
+            mode: "index",
+            intersect: false
           },
-          tooltip: {
-            backgroundColor: "#090909",
-            titleColor: "#d9ecff",
-            bodyColor: "#ffffff",
-            borderColor: "rgba(77, 166, 255, 0.42)",
-            borderWidth: 1,
-            padding: 12,
-            callbacks: {
-              label: function(context) {
-                return context.dataset.label + ": ¥" + context.parsed.y.toFixed(2) + "/g";
-              }
-            }
-          }
-        },
-        scales: {
-          x: {
-            ticks: {
-              color: "#9ca3af",
-              maxTicksLimit: 12,
-              font: {
-                size: 12
+          plugins: {
+            legend: {
+              labels: {
+                color: "#d4d4d4",
+                boxWidth: 12,
+                boxHeight: 12,
+                font: {
+                  size: 13,
+                  weight: "bold"
+                }
               }
             },
-            grid: {
-              color: "rgba(255,255,255,0.06)"
+            tooltip: {
+              backgroundColor: "#090909",
+              titleColor: "#d9ecff",
+              bodyColor: "#ffffff",
+              borderColor: "rgba(77, 166, 255, 0.42)",
+              borderWidth: 1,
+              padding: 12,
+              callbacks: {
+                label: function(context) {
+                  if (context.parsed.y === null) {
+                    return context.dataset.label + ": no data";
+                  }
+                  return context.dataset.label + ": ¥" + context.parsed.y.toFixed(2) + "/g";
+                }
+              }
             }
           },
-          y: {
-            ticks: {
-              color: "#9ca3af",
-              font: {
-                size: 12
+          scales: {
+            x: {
+              ticks: {
+                color: "#9ca3af",
+                maxTicksLimit: 12,
+                font: {
+                  size: 12
+                }
               },
-              callback: function(value) {
-                return "¥" + value;
+              grid: {
+                color: "rgba(255,255,255,0.06)"
               }
             },
-            grid: {
-              color: "rgba(255,255,255,0.075)"
+            y: {
+              ticks: {
+                color: "#9ca3af",
+                font: {
+                  size: 12
+                },
+                callback: function(value) {
+                  return "¥" + value;
+                }
+              },
+              grid: {
+                color: "rgba(255,255,255,0.075)"
+              }
             }
           }
         }
-      }
-    });
-  }
+      });
+    }
 
-  loadJpmiPremiumChart();
-</script>
+    async function loadJpmiPremiumChart() {
+      try {
+        const response = await fetch("jpmi-history.json?cache=" + Date.now());
+        premiumRows = await response.json();
+
+        premiumRows = premiumRows
+          .filter(row => row.date)
+          .sort((a, b) => new Date(a.date) - new Date(b.date));
+
+        updateStats();
+        renderChart("jpmi");
+
+        document.querySelectorAll(".chart-toggle").forEach(button => {
+          button.addEventListener("click", () => {
+            document.querySelectorAll(".chart-toggle").forEach(btn => {
+              btn.classList.remove("active");
+            });
+
+            button.classList.add("active");
+            renderChart(button.dataset.view);
+          });
+        });
+      } catch (error) {
+        console.error("Failed to load JPMI Premium chart:", error);
+      }
+    }
+
+    loadJpmiPremiumChart();
+  </script>
 </body>
 </html>
