@@ -1,0 +1,29 @@
+[
+  {
+    "date": "2026-06-10",
+    "jpmi_ag_jpy_g": 488.0,
+    "comex_jpy_g": 424.0,
+    "premium_pct": 15.1,
+    "mspi_b_jpy_g": 488.0,
+    "rs_jpy_g": 420.0,
+    "db_jpy_g": 399.0
+  },
+  {
+    "date": "2026-06-11",
+    "jpmi_ag_jpy_g": 486.5,
+    "comex_jpy_g": 423.5,
+    "premium_pct": 14.9,
+    "mspi_b_jpy_g": 486.5,
+    "rs_jpy_g": 419.8,
+    "db_jpy_g": 399.0
+  },
+  {
+    "date": "2026-06-12",
+    "jpmi_ag_jpy_g": 489.2,
+    "comex_jpy_g": 425.1,
+    "premium_pct": 15.1,
+    "mspi_b_jpy_g": 489.2,
+    "rs_jpy_g": 421.0,
+    "db_jpy_g": 400.0
+  }
+]
