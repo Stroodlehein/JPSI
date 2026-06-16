@@ -357,22 +357,22 @@
 
     const views = {
       jpmi: [
-        { key: "jpmi_ag_jpy_g", label: "JPMI-AG", color: "#4da6ff", fill: true }
+        { key: "jpmi_ag_jpy_g", label: "JPMI-AG", color: "#4da6ff", fill: true, fillColor: "rgba(77, 166, 255, 0.12)" }
       ],
       rs: [
-        { key: "rs_jpy_g", label: "RS Refinery", color: "#60a5fa", fill: true }
+        { key: "rs_jpy_g", label: "RS Refinery", color: "#22c55e", fill: true, fillColor: "rgba(34, 197, 94, 0.12)" }
       ],
       db: [
-        { key: "db_jpy_g", label: "DB Dealer Bid", color: "#38bdf8", fill: true }
+        { key: "db_jpy_g", label: "DB Dealer Bid", color: "#f59e0b", fill: true, fillColor: "rgba(245, 158, 11, 0.12)" }
       ],
       mspi: [
-        { key: "mspi_b_jpy_g", label: "Mercari / MSPI-B", color: "#93c5fd", fill: true }
+        { key: "mspi_b_jpy_g", label: "Mercari / MSPI-B", color: "#a855f7", fill: true, fillColor: "rgba(168, 85, 247, 0.12)" }
       ],
       all: [
-        { key: "jpmi_ag_jpy_g", label: "JPMI-AG", color: "#4da6ff", fill: false },
-        { key: "rs_jpy_g", label: "RS", color: "#60a5fa", fill: false },
-        { key: "db_jpy_g", label: "DB", color: "#38bdf8", fill: false },
-        { key: "mspi_b_jpy_g", label: "Mercari", color: "#93c5fd", fill: false }
+        { key: "jpmi_ag_jpy_g", label: "JPMI-AG", color: "#4da6ff", fill: false, fillColor: "rgba(77, 166, 255, 0)" },
+        { key: "rs_jpy_g", label: "RS", color: "#22c55e", fill: false, fillColor: "rgba(34, 197, 94, 0)" },
+        { key: "db_jpy_g", label: "DB", color: "#f59e0b", fill: false, fillColor: "rgba(245, 158, 11, 0)" },
+        { key: "mspi_b_jpy_g", label: "Mercari", color: "#a855f7", fill: false, fillColor: "rgba(168, 85, 247, 0)" }
       ]
     };
 
@@ -406,7 +406,7 @@
         label: series.label,
         data: premiumRows.map(row => row[series.key] ?? null),
         borderColor: series.color,
-        backgroundColor: series.fill ? "rgba(77, 166, 255, 0.12)" : "rgba(77, 166, 255, 0)",
+        backgroundColor: series.fill ? series.fillColor : "rgba(0, 0, 0, 0)",
         fill: series.fill,
         tension: 0.35,
         pointRadius: 0,
