@@ -1,6 +1,6 @@
 import json
 import re
-from datetime import datetime, timezone
+from datetime import datetime, timezone, timedelta
 
 import requests
 from bs4 import BeautifulSoup
@@ -16,6 +16,9 @@ SOURCES = {
 
 # Nanboya removed from auto fetch
 MANUAL_KEYS = ["nanboya_sv1000"]
+
+JPMI_HISTORY_FILE = "jpmi-history.json"
+JPMI_DAILY_OBSERVATION_HOUR_JST = 19
 
 
 def get_html(url, encoding=None):
@@ -35,6 +38,29 @@ def safe_float(value):
 
 def is_valid_silver_price(price):
     return price is not None and 200 <= price <= 600
+
+
+def average_valid(values):
+    valid = []
+    for value in values:
+        number = safe_float(value)
+        if is_valid_silver_price(number):
+            valid.append(number)
+
+    if not valid:
+        return None
+
+    return round(sum(valid) / len(valid), 2)
+
+
+def calculate_premium_pct(physical, comex):
+    physical = safe_float(physical)
+    comex = safe_float(comex)
+
+    if physical is None or comex is None or comex == 0:
+        return None
+
+    return round(((physical - comex) / comex) * 100, 2)
 
 
 # ---------------- Tanaka ----------------
@@ -153,6 +179,105 @@ def set_price_or_keep_existing(out, key, value, source_name):
     print(msg)
 
 
+def load_jpmi_history():
+    try:
+        with open(JPMI_HISTORY_FILE, "r", encoding="utf-8") as f:
+            data = json.load(f)
+            return data if isinstance(data, list) else []
+    except FileNotFoundError:
+        return []
+    except Exception as e:
+        print(f"{JPMI_HISTORY_FILE}: failed to load existing history: {e}")
+        return []
+
+
+def save_jpmi_history(history):
+    history = sorted(history, key=lambda row: row.get("date", ""))
+
+    with open(JPMI_HISTORY_FILE, "w", encoding="utf-8") as f:
+        json.dump(history, f, ensure_ascii=False, indent=2)
+
+    print(f"{JPMI_HISTORY_FILE} updated with {len(history)} rows")
+
+
+def append_daily_jpmi_history_if_ready(out):
+    utc_now = datetime.now(timezone.utc)
+    jst_now = utc_now + timedelta(hours=9)
+    date_jst = jst_now.date().isoformat()
+
+    if jst_now.hour < JPMI_DAILY_OBSERVATION_HOUR_JST:
+        print(
+            f"JPMI history skipped: official daily observation is "
+            f"{JPMI_DAILY_OBSERVATION_HOUR_JST}:00 JST or later. "
+            f"Current JST hour: {jst_now.hour}"
+        )
+        return
+
+    history = load_jpmi_history()
+
+    if any(row.get("date") == date_jst for row in history):
+        print(f"JPMI history skipped: {date_jst} already exists in {JPMI_HISTORY_FILE}")
+        return
+
+    prices = out.get("prices_jpy_per_g", {})
+
+    tanaka = safe_float(prices.get("tanaka_silver_buy"))
+    nihon = safe_float(prices.get("nihon_silver_buy"))
+    mitsubishi = safe_float(prices.get("mitsubishi_silver_buy"))
+    daikichi = safe_float(prices.get("daikichi_sv1000"))
+    nanboya = safe_float(prices.get("nanboya_sv1000"))
+    mspi_b = safe_float(prices.get("mercari_mspi_b"))
+    comex = safe_float(prices.get("comex_silver_jpy_g"))
+
+    rs = average_valid([tanaka, nihon, mitsubishi])
+    db = average_valid([daikichi, nanboya])
+
+    jpmi_components = [
+        value for value in [rs, db, mspi_b]
+        if is_valid_silver_price(value)
+    ]
+
+    jpmi_ag = (
+        round(sum(jpmi_components) / len(jpmi_components), 2)
+        if jpmi_components
+        else None
+    )
+
+    premium_pct = calculate_premium_pct(jpmi_ag, comex)
+
+    row = {
+        "date": date_jst,
+        "observation_time_jst": "19:00",
+        "updated_at_utc": utc_now.isoformat(timespec="seconds"),
+        "jpmi_ag_jpy_g": jpmi_ag,
+        "rs_jpy_g": rs,
+        "db_jpy_g": db,
+        "mspi_b_jpy_g": round(mspi_b, 2) if is_valid_silver_price(mspi_b) else None,
+        "comex_jpy_g": round(comex, 2) if is_valid_silver_price(comex) else None,
+        "premium_pct": premium_pct,
+        "components": {
+            "tanaka_silver_buy": round(tanaka, 2) if is_valid_silver_price(tanaka) else None,
+            "nihon_silver_buy": round(nihon, 2) if is_valid_silver_price(nihon) else None,
+            "mitsubishi_silver_buy": round(mitsubishi, 2) if is_valid_silver_price(mitsubishi) else None,
+            "daikichi_sv1000": round(daikichi, 2) if is_valid_silver_price(daikichi) else None,
+            "nanboya_sv1000": round(nanboya, 2) if is_valid_silver_price(nanboya) else None,
+        },
+        "data_quality": {
+            "has_rs": rs is not None,
+            "has_db": db is not None,
+            "has_mspi_b": is_valid_silver_price(mspi_b),
+            "has_comex": is_valid_silver_price(comex),
+            "jpmi_component_count": len(jpmi_components),
+        },
+    }
+
+    history.append(row)
+    save_jpmi_history(history)
+
+    print("JPMI daily premium history row saved:")
+    print(json.dumps(row, ensure_ascii=False, indent=2))
+
+
 def main():
     existing = load_existing_prices()
 
@@ -218,6 +343,9 @@ def main():
         json.dump(out, f, ensure_ascii=False, indent=2)
 
     print("prices.json updated")
+
+    append_daily_jpmi_history_if_ready(out)
+
     print("Final prices:")
     for k in [
         "tanaka_silver_buy",
