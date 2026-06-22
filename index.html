@@ -524,6 +524,34 @@ body{background:var(--bg);color:var(--ink);font-family:'DM Mono',monospace;font-
     await Promise.all([loadPricesJSON(), loadHistory()]);
   }
 
+  function sourceNameFromError(errorText) {
+    return String(errorText || '').split(':')[0].trim().toLowerCase();
+  }
+
+  function classifySourceErrors(errors) {
+    const previousValueSources = new Set();
+    const problemSources = new Set();
+
+    (errors || []).forEach(error => {
+      const text = String(error || '');
+      const source = sourceNameFromError(text);
+      if (!source) return;
+
+      if (/kept previous valid value/i.test(text)) {
+        previousValueSources.add(source);
+      } else {
+        problemSources.add(source);
+      }
+    });
+
+    const unavailableSources = [...problemSources].filter(source => !previousValueSources.has(source));
+
+    return {
+      previousValueCount: previousValueSources.size,
+      unavailableCount: unavailableSources.length
+    };
+  }
+
   async function loadPricesJSON() {
     const banner = document.getElementById('fetch-banner');
     const statusEl = document.getElementById('fetch-status');
@@ -539,6 +567,7 @@ body{background:var(--bg);color:var(--ink);font-family:'DM Mono',monospace;font-
       const data = await res.json();
       const p = data.prices_jpy_per_g || {};
       const errors = data.errors || [];
+      const sourceStatus = classifySourceErrors(errors);
 
       const fxFromPrices = extractUsdJpyFromObject(data) ?? extractUsdJpyFromObject(p);
       if (fxFromPrices !== null) setUsdJpy(fxFromPrices);
@@ -565,10 +594,17 @@ body{background:var(--bg);color:var(--ink);font-family:'DM Mono',monospace;font-
       const srEl = document.getElementById('sr-last-updated');
       if (srEl && srDate) srEl.textContent = 'Last updated: ' + srDate;
 
-      if (errors.length > 0) {
+      banner.dataset.previousValueCount = String(sourceStatus.previousValueCount);
+      banner.dataset.unavailableCount = String(sourceStatus.unavailableCount);
+
+      if (sourceStatus.unavailableCount > 0) {
         banner.className = 'fetch-banner partial';
-        statusEl.textContent = `⚠ ${errors.length} source(s) unavailable`;
+        statusEl.textContent = `⚠ ${sourceStatus.unavailableCount} source(s) unavailable`;
         retryBtn.style.display = 'inline-block';
+      } else if (sourceStatus.previousValueCount > 0) {
+        banner.className = 'fetch-banner success';
+        statusEl.textContent = `✓ Prices loaded · ${sourceStatus.previousValueCount} source(s) using previous value`;
+        retryBtn.style.display = 'none';
       } else {
         banner.className = 'fetch-banner success';
         statusEl.textContent = `✓ All prices loaded`;
@@ -599,10 +635,15 @@ body{background:var(--bg);color:var(--ink);font-family:'DM Mono',monospace;font-
         const banner = document.getElementById('fetch-banner');
         const statusEl = document.getElementById('fetch-status');
         if (banner.classList.contains('success')) {
-          statusEl.textContent = `✓ All prices loaded · ${tsStr}`;
+          const previousValueCount = Number(banner.dataset.previousValueCount || 0);
+          if (previousValueCount > 0) {
+            statusEl.textContent = `✓ Prices loaded · ${previousValueCount} source(s) using previous value · ${tsStr}`;
+          } else {
+            statusEl.textContent = `✓ All prices loaded · ${tsStr}`;
+          }
         } else if (banner.classList.contains('partial')) {
-          const errCount = statusEl.textContent.match(/\d+/)?.[0] || '1';
-          statusEl.textContent = `⚠ ${errCount} source(s) unavailable · ${tsStr}`;
+          const unavailableCount = Number(banner.dataset.unavailableCount || 1);
+          statusEl.textContent = `⚠ ${unavailableCount} source(s) unavailable · ${tsStr}`;
         }
       }
 
