@@ -2,7 +2,7 @@ name: Update JPSI price feeds
 
 on:
   schedule:
-    - cron: "17 0-9 * * 1-5"   # Hourly at :17, 09:17–18:17 JST, Mon–Fri
+    - cron: "17 0-10 * * 1-5"   # Hourly at :17, 09:17–19:17 JST, Mon–Fri
   workflow_dispatch:
 
 permissions:
@@ -32,10 +32,10 @@ jobs:
         run: |
           python scripts/fetch_prices.py
 
-      - name: Commit updated prices.json only
+      - name: Commit updated prices and JPMI history
         run: |
           git config user.name "JPMI Bot"
           git config user.email "bot@japanphysicalmetals.jp"
-          git add prices.json
+          git add prices.json jpmi-history.json
           git diff --cached --quiet || git commit -m "Update price feeds $(date -u +'%Y-%m-%d %H:%M')"
           git push
