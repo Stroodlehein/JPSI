@@ -1,22 +1,19 @@
 {
-  "updated_at_utc": "2026-06-22T02:05:56+00:00",
+  "updated_at_utc": "2026-06-22T10:48:56+00:00",
   "prices_jpy_per_g": {
-    "tanaka_silver_buy": 365.42,
+    "tanaka_silver_buy": 363.88,
     "mitsubishi_silver_buy": 373.67,
-    "daikichi_sv1000": 354.0,
+    "daikichi_sv1000": 357.0,
     "comex_silver_usd_oz": 66.4697,
     "usd_jpy": 161.23,
     "comex_silver_jpy_g": 344.56,
-    "nihon_silver_buy": 357.5,
+    "nihon_silver_buy": 364.76,
     "nanboya_sv1000": 340.0,
     "mercari_mspi_b": 452.5,
     "mercari_mspi_b_listings": 2,
     "mercari_mspi_b_avg_jpy": 14075
   },
-  "errors": [
-    "nihon: ConnectTimeout: HTTPSConnectionPool(host='material.co.jp', port=443): Max retries exceeded with url: /market.php (Caused by ConnectTimeoutError(<HTTPSConnection(host='material.co.jp', port=443) at 0x7fe393e81a50>, 'Connection to material.co.jp timed out. (connect timeout=30)'))",
-    "nihon: kept previous valid value 357.5"
-  ],
+  "errors": [],
   "sources": {
     "tanaka": "https://gold.tanaka.co.jp/commodity/souba/english/index.php",
     "nihon": "https://material.co.jp/market.php",
