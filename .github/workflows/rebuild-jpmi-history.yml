@@ -1,0 +1,36 @@
+name: Rebuild JPMI History
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  rebuild:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout full history
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Pull latest
+        run: git pull --rebase origin main
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Rebuild JPMI history from Git
+        run: |
+          python scripts/rebuild_jpmi_history_from_git.py
+
+      - name: Commit rebuilt JPMI history
+        run: |
+          git config user.name "JPMI Bot"
+          git config user.email "bot@japanphysicalmetals.jp"
+          git add jpmi-history-rebuilt.json
+          git diff --cached --quiet || git commit -m "Rebuild JPMI history from Git"
+          git push
