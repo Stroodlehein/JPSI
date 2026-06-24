@@ -4,9 +4,9 @@
     "tanaka_silver_buy": 336.49,
     "mitsubishi_silver_buy": 341.0,
     "daikichi_sv1000": 334.0,
-    "comex_silver_usd_oz": 61.5673,
+    "comex_silver_usd_oz": 59.9009,
     "usd_jpy": 161.53,
-    "comex_silver_jpy_g": 319.74,
+    "comex_silver_jpy_g": 311.08,
     "nihon_silver_buy": 342.76,
     "nanboya_sv1000": 320.0,
     "mercari_mspi_b": 457.5,
@@ -20,7 +20,7 @@
     "mitsubishi": "https://gold.mmc.co.jp/market/silver-price/",
     "daikichi": "https://www.kaitori-daikichi.jp/list/gold/silver/souba/"
   },
-  "comex_updated_at_utc": "2026-06-24T08:15:48+00:00",
+  "comex_updated_at_utc": "2026-06-24T11:19:29+00:00",
   "mercari_listings": [
     {
       "coin": "Austrian Philharmonic",
