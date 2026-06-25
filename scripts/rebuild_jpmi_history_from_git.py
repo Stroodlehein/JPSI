@@ -1,7 +1,6 @@
 import json
 import subprocess
-from datetime import datetime
-from collections import defaultdict
+from statistics import median
 
 PRICES_FILE = "prices.json"
 PRICES_HISTORY_FILE = "prices-history.json"
@@ -31,6 +30,33 @@ def safe_float(value):
 def valid_price(value):
     value = safe_float(value)
     return value is not None and 200 <= value <= 700
+
+
+def round_or_none(value):
+    value = safe_float(value)
+    return round(value, 2) if valid_price(value) else None
+
+
+def clean_refinery_values(values):
+    valid = {k: safe_float(v) for k, v in values.items() if valid_price(v)}
+
+    if len(valid) < 3:
+        return valid, {}
+
+    med = median(valid.values())
+    cleaned = {}
+    outliers = {}
+
+    for key, value in valid.items():
+        abs_gap = abs(value - med)
+        pct_gap = abs_gap / med if med else 0
+
+        if abs_gap > 60 and pct_gap > 0.15:
+            outliers[key] = value
+        else:
+            cleaned[key] = value
+
+    return cleaned, outliers
 
 
 def avg(values):
@@ -121,19 +147,35 @@ def build_rs_db_from_git():
         nanboya = safe_float(prices.get("nanboya_sv1000"))
         daikichi = safe_float(prices.get("daikichi_sv1000"))
 
-        rs = avg([tanaka, nihon, mitsubishi])
+        refinery_raw = {
+            "tanaka_silver_buy": tanaka,
+            "nihon_silver_buy": nihon,
+            "mitsubishi_silver_buy": mitsubishi,
+        }
+
+        refinery_clean, refinery_outliers = clean_refinery_values(refinery_raw)
+
+        rs = avg(refinery_clean.values())
         db = avg([nanboya, daikichi])
 
         daily[date] = {
             "date": date,
+            "observation_time_jst": "19:00",
             "rs_jpy_g": rs,
             "db_jpy_g": db,
             "components": {
-                "tanaka_silver_buy": round(tanaka, 2) if valid_price(tanaka) else None,
-                "nihon_silver_buy": round(nihon, 2) if valid_price(nihon) else None,
-                "mitsubishi_silver_buy": round(mitsubishi, 2) if valid_price(mitsubishi) else None,
-                "nanboya_sv1000": round(nanboya, 2) if valid_price(nanboya) else None,
-                "daikichi_sv1000": round(daikichi, 2) if valid_price(daikichi) else None,
+                "tanaka_silver_buy": round_or_none(tanaka),
+                "nihon_silver_buy": round_or_none(nihon),
+                "mitsubishi_silver_buy": round_or_none(mitsubishi),
+                "nanboya_sv1000": round_or_none(nanboya),
+                "daikichi_sv1000": round_or_none(daikichi),
+            },
+            "cleaning": {
+                "rs_components_used": list(refinery_clean.keys()),
+                "rs_outliers_excluded": {
+                    key: round(value, 2)
+                    for key, value in refinery_outliers.items()
+                },
             },
             "source": "rebuilt_from_git_prices_json",
             "git_commit": commit,
@@ -195,7 +237,7 @@ def load_live_real_rows():
 
 
 def main():
-    print("Rebuilding JPMI history from Git commit history...")
+    print("Rebuilding JPMI history from Git commit history with outlier cleaning...")
 
     rs_db_history = build_rs_db_from_git()
     market_history = build_market_history()
@@ -208,6 +250,7 @@ def main():
     for date in all_dates:
         base = {
             "date": date,
+            "observation_time_jst": "19:00",
             "rs_jpy_g": None,
             "db_jpy_g": None,
             "mspi_b_jpy_g": None,
@@ -215,6 +258,7 @@ def main():
             "jpmi_ag_jpy_g": None,
             "premium_pct": None,
             "components": {},
+            "cleaning": {},
             "data_quality": {},
             "source": "rebuilt_history",
         }
