@@ -28,7 +28,7 @@
       "has_comex": false,
       "jpmi_component_count": 2
     },
-    "source": "rebuilt_from_git_prices_json",
+    "source": "live_jpmi_history",
     "git_commit": "45b41f95568ceb933816eff896d7f96a8e71bdf7"
   },
   {
@@ -61,7 +61,7 @@
       "has_comex": false,
       "jpmi_component_count": 2
     },
-    "source": "rebuilt_from_git_prices_json",
+    "source": "live_jpmi_history",
     "git_commit": "f123ddae2c3e33f25b279072d75d493296f2ede4"
   },
   {
@@ -95,7 +95,7 @@
       "has_comex": false,
       "jpmi_component_count": 2
     },
-    "source": "rebuilt_from_git_prices_json",
+    "source": "live_jpmi_history",
     "git_commit": "1ea962790231e9cd73f7b7bffc60fcf7e7344705"
   },
   {
@@ -129,7 +129,7 @@
       "has_comex": false,
       "jpmi_component_count": 2
     },
-    "source": "rebuilt_from_git_prices_json",
+    "source": "live_jpmi_history",
     "git_commit": "49913c1d39672d3783bb98171d73c3723d87dc15"
   },
   {
@@ -163,7 +163,7 @@
       "has_comex": true,
       "jpmi_component_count": 2
     },
-    "source": "rebuilt_from_git_prices_json",
+    "source": "live_jpmi_history",
     "git_commit": "8182bcdb35324075f9893bf5d8e4a11618e6c060"
   },
   {
@@ -197,7 +197,7 @@
       "has_comex": true,
       "jpmi_component_count": 3
     },
-    "source": "rebuilt_from_git_prices_json",
+    "source": "live_jpmi_history",
     "git_commit": "2128b88d8cc2dd8a8677c83ec1b8f305f2c2c819"
   },
   {
@@ -231,7 +231,7 @@
       "has_comex": true,
       "jpmi_component_count": 2
     },
-    "source": "rebuilt_from_git_prices_json",
+    "source": "live_jpmi_history",
     "git_commit": "bda9fcc02cf477fd40f741c49bc8eeb1202adbaf"
   },
   {
@@ -265,7 +265,7 @@
       "has_comex": true,
       "jpmi_component_count": 2
     },
-    "source": "rebuilt_from_git_prices_json",
+    "source": "live_jpmi_history",
     "git_commit": "874896b97a0db2d12b5981a51139f589211cbe62"
   },
   {
@@ -299,7 +299,7 @@
       "has_comex": true,
       "jpmi_component_count": 3
     },
-    "source": "rebuilt_from_git_prices_json",
+    "source": "live_jpmi_history",
     "git_commit": "c9d821df665b9dc4b910c7fcf9bae980d2e8c5a4"
   },
   {
@@ -333,7 +333,7 @@
       "has_comex": true,
       "jpmi_component_count": 2
     },
-    "source": "rebuilt_from_git_prices_json",
+    "source": "live_jpmi_history",
     "git_commit": "a7971f0b56c15aa90e20750be3af72b9b7041c2c"
   },
   {
@@ -367,7 +367,7 @@
       "has_comex": true,
       "jpmi_component_count": 2
     },
-    "source": "rebuilt_from_git_prices_json",
+    "source": "live_jpmi_history",
     "git_commit": "2b7b9d0e66075a51f5b816b93da3c96c5f115b12"
   },
   {
@@ -401,7 +401,7 @@
       "has_comex": true,
       "jpmi_component_count": 3
     },
-    "source": "rebuilt_from_git_prices_json",
+    "source": "live_jpmi_history",
     "git_commit": "46dd5f438984294e29530c29632c27cb1c8c74d5"
   },
   {
@@ -435,7 +435,7 @@
       "has_comex": true,
       "jpmi_component_count": 2
     },
-    "source": "rebuilt_from_git_prices_json",
+    "source": "live_jpmi_history",
     "git_commit": "5f9bbed1ccfbff5395c9f6c38f7dcc73bd25753a"
   },
   {
@@ -469,7 +469,7 @@
       "has_comex": true,
       "jpmi_component_count": 2
     },
-    "source": "rebuilt_from_git_prices_json",
+    "source": "live_jpmi_history",
     "git_commit": "7dbd8f36753b49e45793b42b0445913c73074b8a"
   },
   {
@@ -503,7 +503,7 @@
       "has_comex": true,
       "jpmi_component_count": 2
     },
-    "source": "rebuilt_from_git_prices_json",
+    "source": "live_jpmi_history",
     "git_commit": "22867b67a01d96099b5ea6d873b72469493c681d"
   },
   {
@@ -537,7 +537,7 @@
       "has_comex": true,
       "jpmi_component_count": 2
     },
-    "source": "rebuilt_from_git_prices_json",
+    "source": "live_jpmi_history",
     "git_commit": "a807f199edaf91ea95934f3fff2370bba79be126"
   },
   {
@@ -571,7 +571,7 @@
       "has_comex": true,
       "jpmi_component_count": 3
     },
-    "source": "rebuilt_from_git_prices_json",
+    "source": "live_jpmi_history",
     "git_commit": "43004882a288589ce84d7956cfadf1e49856fab7"
   },
   {
@@ -605,7 +605,7 @@
       "has_comex": true,
       "jpmi_component_count": 3
     },
-    "source": "rebuilt_from_git_prices_json",
+    "source": "live_jpmi_history",
     "git_commit": "74ab3d15ff8cc97cbaf67d502876846e85d0c083"
   },
   {
@@ -639,7 +639,7 @@
       "has_comex": true,
       "jpmi_component_count": 3
     },
-    "source": "rebuilt_from_git_prices_json",
+    "source": "live_jpmi_history",
     "git_commit": "a8829b27e7e264294a65adb1352b3da818bf8eb8"
   },
   {
@@ -673,7 +673,7 @@
       "has_comex": true,
       "jpmi_component_count": 3
     },
-    "source": "rebuilt_from_git_prices_json",
+    "source": "live_jpmi_history",
     "git_commit": "519227aa12bf80310c19935f2dc9bef5325870fc"
   },
   {
@@ -707,7 +707,7 @@
       "has_comex": true,
       "jpmi_component_count": 2
     },
-    "source": "rebuilt_from_git_prices_json",
+    "source": "live_jpmi_history",
     "git_commit": "56ca17089f65d65cda61edcedd9478afe9503b11"
   },
   {
@@ -741,7 +741,7 @@
       "has_comex": true,
       "jpmi_component_count": 2
     },
-    "source": "rebuilt_from_git_prices_json",
+    "source": "live_jpmi_history",
     "git_commit": "63f267f4e2b94e92cd91dcfe155a3426985fadcc"
   },
   {
@@ -774,7 +774,7 @@
       "has_comex": true,
       "jpmi_component_count": 3
     },
-    "source": "rebuilt_from_git_prices_json",
+    "source": "live_jpmi_history",
     "git_commit": "36fe4e3201430337a69a3e80cdbeb9bb178199cf"
   },
   {
@@ -808,7 +808,7 @@
       "has_comex": true,
       "jpmi_component_count": 3
     },
-    "source": "rebuilt_from_git_prices_json",
+    "source": "live_jpmi_history",
     "git_commit": "db4859a281f84a7d8c28203fd410330f824271df"
   },
   {
@@ -842,7 +842,7 @@
       "has_comex": true,
       "jpmi_component_count": 3
     },
-    "source": "rebuilt_from_git_prices_json",
+    "source": "live_jpmi_history",
     "git_commit": "3aa55957639c8d231dd330efea8dc154c50a41c2"
   },
   {
@@ -876,7 +876,7 @@
       "has_comex": true,
       "jpmi_component_count": 3
     },
-    "source": "rebuilt_from_git_prices_json",
+    "source": "live_jpmi_history",
     "git_commit": "4313622a26f154758121205f824a905a825dd90e"
   },
   {
@@ -910,7 +910,7 @@
       "has_comex": true,
       "jpmi_component_count": 3
     },
-    "source": "rebuilt_from_git_prices_json",
+    "source": "live_jpmi_history",
     "git_commit": "0ddbede58f4b7231896c9e7d475ac2a1713f975c"
   },
   {
@@ -943,7 +943,7 @@
       "has_comex": true,
       "jpmi_component_count": 2
     },
-    "source": "rebuilt_from_git_prices_json",
+    "source": "live_jpmi_history",
     "git_commit": "c5e1f5351cfaeac714b84c4f5aa9f9a7df02ee43"
   },
   {
@@ -976,7 +976,7 @@
       "has_comex": true,
       "jpmi_component_count": 2
     },
-    "source": "rebuilt_from_git_prices_json",
+    "source": "live_jpmi_history",
     "git_commit": "165f250fcaf9f8b512ee7cf615e99a02306885ce"
   },
   {
@@ -1010,7 +1010,7 @@
       "has_comex": true,
       "jpmi_component_count": 3
     },
-    "source": "rebuilt_from_git_prices_json",
+    "source": "live_jpmi_history",
     "git_commit": "f2bd8b8eef6647e3e12ba5cbbeed80b24b0ee27c"
   },
   {
@@ -1044,7 +1044,7 @@
       "has_comex": true,
       "jpmi_component_count": 3
     },
-    "source": "rebuilt_from_git_prices_json",
+    "source": "live_jpmi_history",
     "git_commit": "17137e2cebb43144b839703b46e75fad577e2f4f"
   },
   {
@@ -1078,7 +1078,7 @@
       "has_comex": true,
       "jpmi_component_count": 3
     },
-    "source": "rebuilt_from_git_prices_json",
+    "source": "live_jpmi_history",
     "git_commit": "fb48b60fc1d51dc148bebefa8243c5ca3d1be39b"
   },
   {
@@ -1112,7 +1112,7 @@
       "has_comex": true,
       "jpmi_component_count": 3
     },
-    "source": "rebuilt_from_git_prices_json",
+    "source": "live_jpmi_history",
     "git_commit": "cbca916e18ea69093cac1a5443acf74b174babea"
   },
   {
@@ -1146,7 +1146,7 @@
       "has_comex": true,
       "jpmi_component_count": 3
     },
-    "source": "rebuilt_from_git_prices_json",
+    "source": "live_jpmi_history",
     "git_commit": "fce790678844720058fda2cf39da87addbcf0195"
   },
   {
@@ -1180,7 +1180,7 @@
       "has_comex": true,
       "jpmi_component_count": 2
     },
-    "source": "rebuilt_from_git_prices_json",
+    "source": "live_jpmi_history",
     "git_commit": "789642d25c4baf568da3938b04e7cf059bf15197"
   },
   {
@@ -1214,7 +1214,7 @@
       "has_comex": true,
       "jpmi_component_count": 2
     },
-    "source": "rebuilt_from_git_prices_json",
+    "source": "live_jpmi_history",
     "git_commit": "1fe0351b58a6d812bc194fb37a754f12c90cfa8f"
   },
   {
@@ -1248,7 +1248,7 @@
       "has_comex": true,
       "jpmi_component_count": 3
     },
-    "source": "rebuilt_from_git_prices_json",
+    "source": "live_jpmi_history",
     "git_commit": "59875417617e0d18567bc0bbba29eeac8bfe058d"
   },
   {
@@ -1282,7 +1282,7 @@
       "has_comex": true,
       "jpmi_component_count": 3
     },
-    "source": "rebuilt_from_git_prices_json",
+    "source": "live_jpmi_history",
     "git_commit": "47bbf2008b5422b032c7ad915fe85f93b8750663"
   },
   {
@@ -1316,7 +1316,7 @@
       "has_comex": true,
       "jpmi_component_count": 3
     },
-    "source": "rebuilt_from_git_prices_json",
+    "source": "live_jpmi_history",
     "git_commit": "1e5ac4ef33cb9045044937af33ce9dc5b1f53c2f"
   },
   {
@@ -1351,7 +1351,7 @@
       "has_comex": true,
       "jpmi_component_count": 2
     },
-    "source": "rebuilt_from_git_prices_json",
+    "source": "live_jpmi_history",
     "git_commit": "25be92635e4bf36a77917148f537229e0b73daf8"
   },
   {
@@ -1385,7 +1385,7 @@
       "has_comex": true,
       "jpmi_component_count": 3
     },
-    "source": "rebuilt_from_git_prices_json",
+    "source": "live_jpmi_history",
     "git_commit": "f196dc0666103710eebb385b0104be097961f3cc"
   },
   {
@@ -1419,7 +1419,7 @@
       "has_comex": true,
       "jpmi_component_count": 2
     },
-    "source": "rebuilt_from_git_prices_json",
+    "source": "live_jpmi_history",
     "git_commit": "a6bc26b4c8c85665dd42fdce334cdb848bc66a63"
   },
   {
@@ -1453,7 +1453,7 @@
       "has_comex": true,
       "jpmi_component_count": 2
     },
-    "source": "rebuilt_from_git_prices_json",
+    "source": "live_jpmi_history",
     "git_commit": "3199f89206b2a415cb6589b793deb6bf2c00bd54"
   },
   {
@@ -1487,7 +1487,7 @@
       "has_comex": true,
       "jpmi_component_count": 3
     },
-    "source": "rebuilt_from_git_prices_json",
+    "source": "live_jpmi_history",
     "git_commit": "fdff03460eec3271a20080baaaa7a689be745b1e"
   },
   {
@@ -1521,7 +1521,7 @@
       "has_comex": true,
       "jpmi_component_count": 3
     },
-    "source": "rebuilt_from_git_prices_json",
+    "source": "live_jpmi_history",
     "git_commit": "e3cfc4ed707df3f38b56960da7d77fa68e72c249"
   },
   {
@@ -1555,7 +1555,7 @@
       "has_comex": true,
       "jpmi_component_count": 3
     },
-    "source": "rebuilt_from_git_prices_json",
+    "source": "live_jpmi_history",
     "git_commit": "a490ade9e66aa3cdc92e571df0c1474253445739"
   },
   {
@@ -1589,7 +1589,7 @@
       "has_comex": true,
       "jpmi_component_count": 3
     },
-    "source": "rebuilt_from_git_prices_json",
+    "source": "live_jpmi_history",
     "git_commit": "9d0bd8900f0e80400de18dd905e13aa7d22703a8"
   },
   {
@@ -1623,7 +1623,7 @@
       "has_comex": true,
       "jpmi_component_count": 3
     },
-    "source": "rebuilt_from_git_prices_json",
+    "source": "live_jpmi_history",
     "git_commit": "543d5244d12543445a569f4c4b2ec1ff60bf2ff1"
   },
   {
@@ -1657,7 +1657,7 @@
       "has_comex": true,
       "jpmi_component_count": 2
     },
-    "source": "rebuilt_from_git_prices_json",
+    "source": "live_jpmi_history",
     "git_commit": "bdb61acc05f3456398a79075785009ea29ae5d00"
   },
   {
@@ -1691,7 +1691,7 @@
       "has_comex": true,
       "jpmi_component_count": 2
     },
-    "source": "rebuilt_from_git_prices_json",
+    "source": "live_jpmi_history",
     "git_commit": "aec6065835c09231750513894ffadb341fd0af48"
   },
   {
@@ -1725,7 +1725,7 @@
       "has_comex": true,
       "jpmi_component_count": 3
     },
-    "source": "rebuilt_from_git_prices_json",
+    "source": "live_jpmi_history",
     "git_commit": "e9b478902ceb711966d5f4551b89be41a8d6ce24"
   },
   {
@@ -1759,7 +1759,7 @@
       "has_comex": true,
       "jpmi_component_count": 3
     },
-    "source": "rebuilt_from_git_prices_json",
+    "source": "live_jpmi_history",
     "git_commit": "65d529ca464b3417f1a6e88e35fa16415939469e"
   },
   {
@@ -1793,7 +1793,7 @@
       "has_comex": true,
       "jpmi_component_count": 3
     },
-    "source": "rebuilt_from_git_prices_json",
+    "source": "live_jpmi_history",
     "git_commit": "bc885d845ef48bbcc41f9cc7094afa60779e51aa"
   },
   {
@@ -1827,7 +1827,7 @@
       "has_comex": true,
       "jpmi_component_count": 3
     },
-    "source": "rebuilt_from_git_prices_json",
+    "source": "live_jpmi_history",
     "git_commit": "dcef29807e7059085864804dd0e53e42ea344f63"
   },
   {
@@ -1861,7 +1861,7 @@
       "has_comex": true,
       "jpmi_component_count": 3
     },
-    "source": "rebuilt_from_git_prices_json",
+    "source": "live_jpmi_history",
     "git_commit": "ae7153632ad916ec56f58a1919eb93e64e55c9ec"
   },
   {
@@ -1895,7 +1895,7 @@
       "has_comex": true,
       "jpmi_component_count": 2
     },
-    "source": "rebuilt_from_git_prices_json",
+    "source": "live_jpmi_history",
     "git_commit": "2d2ea7607cfd8e3ab8e3f8937db673a3117f9665"
   },
   {
@@ -1929,7 +1929,7 @@
       "has_comex": true,
       "jpmi_component_count": 2
     },
-    "source": "rebuilt_from_git_prices_json",
+    "source": "live_jpmi_history",
     "git_commit": "bf7c01db29402dace70fa614d9b6d39deefa3723"
   },
   {
@@ -1963,7 +1963,7 @@
       "has_comex": true,
       "jpmi_component_count": 3
     },
-    "source": "rebuilt_from_git_prices_json",
+    "source": "live_jpmi_history",
     "git_commit": "5219a5b07c4134155c67db94c47a4a5e7935c4d4"
   },
   {
@@ -1997,7 +1997,7 @@
       "has_comex": true,
       "jpmi_component_count": 3
     },
-    "source": "rebuilt_from_git_prices_json",
+    "source": "live_jpmi_history",
     "git_commit": "0bf73ea80eab86dd1d71f340a6252d23863b4b78"
   },
   {
@@ -2031,7 +2031,7 @@
       "has_comex": true,
       "jpmi_component_count": 3
     },
-    "source": "rebuilt_from_git_prices_json",
+    "source": "live_jpmi_history",
     "git_commit": "a37d940ff160fd4281fdc6f6f9f768c2cedd31ee"
   },
   {
@@ -2065,7 +2065,7 @@
       "has_comex": true,
       "jpmi_component_count": 3
     },
-    "source": "rebuilt_from_git_prices_json",
+    "source": "live_jpmi_history",
     "git_commit": "cb8d028020c87fac896d873753e6264224df4565"
   },
   {
@@ -2099,7 +2099,7 @@
       "has_comex": true,
       "jpmi_component_count": 3
     },
-    "source": "rebuilt_from_git_prices_json",
+    "source": "live_jpmi_history",
     "git_commit": "8328158b207f3006a333f2288285b92e619fcc4c"
   },
   {
@@ -2133,7 +2133,7 @@
       "has_comex": true,
       "jpmi_component_count": 2
     },
-    "source": "rebuilt_from_git_prices_json",
+    "source": "live_jpmi_history",
     "git_commit": "bbb4364b3dce3ca42d9dbe15356aa49a6c48adcb"
   },
   {
@@ -2167,7 +2167,7 @@
       "has_comex": true,
       "jpmi_component_count": 2
     },
-    "source": "rebuilt_from_git_prices_json",
+    "source": "live_jpmi_history",
     "git_commit": "3b38eb5d3fc5b10973c0a7517051584c24436a42"
   },
   {
@@ -2201,7 +2201,7 @@
       "has_comex": true,
       "jpmi_component_count": 3
     },
-    "source": "rebuilt_from_git_prices_json",
+    "source": "live_jpmi_history",
     "git_commit": "4aa4c69030051e4723e43a64447ca656fb586852"
   },
   {
@@ -2235,7 +2235,7 @@
       "has_comex": true,
       "jpmi_component_count": 3
     },
-    "source": "rebuilt_from_git_prices_json",
+    "source": "live_jpmi_history",
     "git_commit": "2e1f9dc56cb18c7370eda0dc7355340859a0b866"
   },
   {
@@ -2269,7 +2269,7 @@
       "has_comex": true,
       "jpmi_component_count": 3
     },
-    "source": "rebuilt_from_git_prices_json",
+    "source": "live_jpmi_history",
     "git_commit": "397106ad10d5943d30d9cc1935de59c066d2c9e1"
   },
   {
@@ -2303,7 +2303,7 @@
       "has_comex": true,
       "jpmi_component_count": 3
     },
-    "source": "rebuilt_from_git_prices_json",
+    "source": "live_jpmi_history",
     "git_commit": "1f5e6f6754ce90fb1512a2ed465ae8276d66bec8"
   },
   {
@@ -2337,7 +2337,7 @@
       "has_comex": true,
       "jpmi_component_count": 3
     },
-    "source": "rebuilt_from_git_prices_json",
+    "source": "live_jpmi_history",
     "git_commit": "6148b9586a96312e1464db419de28e0159763d52"
   },
   {
@@ -2371,7 +2371,7 @@
       "has_comex": true,
       "jpmi_component_count": 2
     },
-    "source": "rebuilt_from_git_prices_json",
+    "source": "live_jpmi_history",
     "git_commit": "ba4738f2449ab8fecef1fa9ee3101526f8b208cf"
   },
   {
@@ -2405,7 +2405,7 @@
       "has_comex": true,
       "jpmi_component_count": 2
     },
-    "source": "rebuilt_from_git_prices_json",
+    "source": "live_jpmi_history",
     "git_commit": "741d04766b2475ca8d32fba00983a720b51fb02f"
   },
   {
@@ -2439,7 +2439,7 @@
       "has_comex": true,
       "jpmi_component_count": 3
     },
-    "source": "rebuilt_from_git_prices_json",
+    "source": "live_jpmi_history",
     "git_commit": "3130418e0aa62344d5a283647cb1990dfb662e4a"
   },
   {
@@ -2473,7 +2473,7 @@
       "has_comex": true,
       "jpmi_component_count": 3
     },
-    "source": "rebuilt_from_git_prices_json",
+    "source": "live_jpmi_history",
     "git_commit": "99246cff512b445cf98b302cb414609e5490712a"
   },
   {
@@ -2507,7 +2507,7 @@
       "has_comex": true,
       "jpmi_component_count": 3
     },
-    "source": "rebuilt_from_git_prices_json",
+    "source": "live_jpmi_history",
     "git_commit": "6491a6173697a1a7273213e6e7cd656dcc1d9135"
   },
   {
@@ -2541,7 +2541,7 @@
       "has_comex": true,
       "jpmi_component_count": 3
     },
-    "source": "rebuilt_from_git_prices_json",
+    "source": "live_jpmi_history",
     "git_commit": "9b4d6753a367a425bd2791c31b2ed2c20f53cb28"
   },
   {
@@ -2575,7 +2575,7 @@
       "has_comex": true,
       "jpmi_component_count": 3
     },
-    "source": "rebuilt_from_git_prices_json",
+    "source": "live_jpmi_history",
     "git_commit": "3de91a1db040553be5b93cdbd1eed65e7b542476"
   },
   {
@@ -2609,7 +2609,7 @@
       "has_comex": true,
       "jpmi_component_count": 2
     },
-    "source": "rebuilt_from_git_prices_json",
+    "source": "live_jpmi_history",
     "git_commit": "848f726e33c6f16ca124d88a243adf673366d549"
   },
   {
@@ -2643,7 +2643,7 @@
       "has_comex": true,
       "jpmi_component_count": 2
     },
-    "source": "rebuilt_from_git_prices_json",
+    "source": "live_jpmi_history",
     "git_commit": "8d4f5c0e9f86f1e7ed5a17bf719a3dbe341104be"
   },
   {
@@ -2677,7 +2677,7 @@
       "has_comex": true,
       "jpmi_component_count": 3
     },
-    "source": "rebuilt_from_git_prices_json",
+    "source": "live_jpmi_history",
     "git_commit": "154f26e7b6d1e627d70f3752a2cf62c74e758acb"
   },
   {
@@ -2711,7 +2711,7 @@
       "has_comex": true,
       "jpmi_component_count": 3
     },
-    "source": "rebuilt_from_git_prices_json",
+    "source": "live_jpmi_history",
     "git_commit": "862872d9b2fe0334b542502f3dc1f4bb802fbaa5"
   },
   {
@@ -2745,7 +2745,7 @@
       "has_comex": true,
       "jpmi_component_count": 3
     },
-    "source": "rebuilt_from_git_prices_json",
+    "source": "live_jpmi_history",
     "git_commit": "6fb4b32aadeaa1f9860153a5dd87667221ad9913"
   },
   {
@@ -2779,7 +2779,7 @@
       "has_comex": true,
       "jpmi_component_count": 3
     },
-    "source": "rebuilt_from_git_prices_json",
+    "source": "live_jpmi_history",
     "git_commit": "ef929ba5745fb3fdf37a111e41fc098ef3fe746f"
   },
   {
@@ -2813,7 +2813,7 @@
       "has_comex": true,
       "jpmi_component_count": 3
     },
-    "source": "rebuilt_from_git_prices_json",
+    "source": "live_jpmi_history",
     "git_commit": "b4944e235c8c89c8dcdbc44f65b301cc00ca45c6"
   },
   {
@@ -2847,7 +2847,7 @@
       "has_comex": true,
       "jpmi_component_count": 2
     },
-    "source": "rebuilt_from_git_prices_json",
+    "source": "live_jpmi_history",
     "git_commit": "9717da90e6cdf11c969058e4a6b24a1eb8204de6"
   },
   {
@@ -2881,7 +2881,7 @@
       "has_comex": true,
       "jpmi_component_count": 2
     },
-    "source": "rebuilt_from_git_prices_json",
+    "source": "live_jpmi_history",
     "git_commit": "8e258a89ee50d65959b2f07841bf5f8301a58f40"
   },
   {
@@ -2915,7 +2915,7 @@
       "has_comex": true,
       "jpmi_component_count": 3
     },
-    "source": "rebuilt_from_git_prices_json",
+    "source": "live_jpmi_history",
     "git_commit": "fa90a1fd8d562e0b6370ceaaa6b61daebb5b8af2"
   },
   {
@@ -2949,7 +2949,7 @@
       "has_comex": true,
       "jpmi_component_count": 3
     },
-    "source": "rebuilt_from_git_prices_json",
+    "source": "live_jpmi_history",
     "git_commit": "80308916382943263a025412309b768074b93c57"
   },
   {
@@ -2983,7 +2983,7 @@
       "has_comex": true,
       "jpmi_component_count": 3
     },
-    "source": "rebuilt_from_git_prices_json",
+    "source": "live_jpmi_history",
     "git_commit": "58026aa513725135d7060c896316f07e9f454305"
   },
   {
@@ -3017,7 +3017,7 @@
       "has_comex": true,
       "jpmi_component_count": 3
     },
-    "source": "rebuilt_from_git_prices_json",
+    "source": "live_jpmi_history",
     "git_commit": "04c420c4710154e098fc56f9e119653b766685c1"
   },
   {
@@ -3051,7 +3051,7 @@
       "has_comex": true,
       "jpmi_component_count": 3
     },
-    "source": "rebuilt_from_git_prices_json",
+    "source": "live_jpmi_history",
     "git_commit": "a4f1b86edd6f7cdaf28f85a3a846a8d50be63827"
   },
   {
@@ -3085,7 +3085,7 @@
       "has_comex": true,
       "jpmi_component_count": 2
     },
-    "source": "rebuilt_from_git_prices_json",
+    "source": "live_jpmi_history",
     "git_commit": "0f282f60a200aae59197b23c7c6f972d6d4bdbf6"
   },
   {
@@ -3119,7 +3119,7 @@
       "has_comex": true,
       "jpmi_component_count": 2
     },
-    "source": "rebuilt_from_git_prices_json",
+    "source": "live_jpmi_history",
     "git_commit": "0cc90db689d87a9c95efa288bb6507a1c3b8b89a"
   },
   {
@@ -3153,7 +3153,7 @@
       "has_comex": true,
       "jpmi_component_count": 3
     },
-    "source": "rebuilt_from_git_prices_json",
+    "source": "live_jpmi_history",
     "git_commit": "2284270a806c49f88024bf4c5d5800e25f2b468d"
   },
   {
@@ -3187,7 +3187,7 @@
       "has_comex": true,
       "jpmi_component_count": 3
     },
-    "source": "rebuilt_from_git_prices_json",
+    "source": "live_jpmi_history",
     "git_commit": "ae58f0f6507c57799f3a7f34ace9a6e8fcd4f51a"
   },
   {
@@ -3221,7 +3221,7 @@
       "has_comex": true,
       "jpmi_component_count": 3
     },
-    "source": "rebuilt_from_git_prices_json",
+    "source": "live_jpmi_history",
     "git_commit": "ba301454b78379de236debb047dfbc03fadc5d11"
   },
   {
@@ -3255,7 +3255,7 @@
       "has_comex": true,
       "jpmi_component_count": 3
     },
-    "source": "rebuilt_from_git_prices_json",
+    "source": "live_jpmi_history",
     "git_commit": "90a6d4a0b93a74222947235221cf062d899c824c"
   },
   {
@@ -3289,7 +3289,7 @@
       "has_comex": true,
       "jpmi_component_count": 3
     },
-    "source": "rebuilt_from_git_prices_json",
+    "source": "live_jpmi_history",
     "git_commit": "49294dd2c77931985007cad1d5d89bebdd234970"
   },
   {
@@ -3323,7 +3323,7 @@
       "has_comex": true,
       "jpmi_component_count": 2
     },
-    "source": "rebuilt_from_git_prices_json",
+    "source": "live_jpmi_history",
     "git_commit": "b7b231cf77fc01f2e338cce4c2783b02ac9aa10c"
   },
   {
@@ -3357,7 +3357,7 @@
       "has_comex": true,
       "jpmi_component_count": 2
     },
-    "source": "rebuilt_from_git_prices_json",
+    "source": "live_jpmi_history",
     "git_commit": "6fa28866d6375183f33045cc4aed729fcdf28218"
   },
   {
@@ -3391,7 +3391,7 @@
       "has_comex": true,
       "jpmi_component_count": 3
     },
-    "source": "rebuilt_from_git_prices_json",
+    "source": "live_jpmi_history",
     "git_commit": "bbf4230b9ba7563a1a520ec3161cdc71b0fdce96"
   },
   {
@@ -3425,7 +3425,7 @@
       "has_comex": true,
       "jpmi_component_count": 3
     },
-    "source": "rebuilt_from_git_prices_json",
+    "source": "live_jpmi_history",
     "git_commit": "671a521456f68e63ca438bdd4ccd116dfa8a13c0"
   },
   {
@@ -3459,7 +3459,7 @@
       "has_comex": true,
       "jpmi_component_count": 3
     },
-    "source": "rebuilt_from_git_prices_json",
+    "source": "live_jpmi_history",
     "git_commit": "b82ac9b0fcd46181413a49f50ab8c9029003c658"
   },
   {
@@ -3493,7 +3493,7 @@
       "has_comex": true,
       "jpmi_component_count": 3
     },
-    "source": "rebuilt_from_git_prices_json",
+    "source": "live_jpmi_history",
     "git_commit": "ab1745c14ff966f21e878055706f81e13effe121"
   },
   {
@@ -3527,7 +3527,7 @@
       "has_comex": true,
       "jpmi_component_count": 3
     },
-    "source": "rebuilt_from_git_prices_json",
+    "source": "live_jpmi_history",
     "git_commit": "d4fc1a06aa762ebfa60e3cd79cdbb963a8d53f62"
   },
   {
@@ -3561,7 +3561,7 @@
       "has_comex": true,
       "jpmi_component_count": 2
     },
-    "source": "rebuilt_from_git_prices_json",
+    "source": "live_jpmi_history",
     "git_commit": "497127b0a941570265d77ce69600689f4481092b"
   },
   {
@@ -3595,7 +3595,7 @@
       "has_comex": true,
       "jpmi_component_count": 2
     },
-    "source": "rebuilt_from_git_prices_json",
+    "source": "live_jpmi_history",
     "git_commit": "20d76d4e1c8f166e5d52793c3f716dd074b9242a"
   },
   {
@@ -3629,7 +3629,7 @@
       "has_comex": true,
       "jpmi_component_count": 3
     },
-    "source": "rebuilt_from_git_prices_json",
+    "source": "live_jpmi_history",
     "git_commit": "c44cc433ced6c9d0be0e650f6e540278207b0bc0"
   },
   {
@@ -3663,7 +3663,7 @@
       "has_comex": true,
       "jpmi_component_count": 3
     },
-    "source": "rebuilt_from_git_prices_json",
+    "source": "live_jpmi_history",
     "git_commit": "add3eab17138253d521257747a6960283d508aae"
   },
   {
@@ -3697,7 +3697,7 @@
       "has_comex": true,
       "jpmi_component_count": 3
     },
-    "source": "rebuilt_from_git_prices_json",
+    "source": "live_jpmi_history",
     "git_commit": "f74076ab1c366cc0d1ae1d0d348cce2a1d099c2f"
   },
   {
@@ -3731,7 +3731,7 @@
       "has_comex": true,
       "jpmi_component_count": 3
     },
-    "source": "rebuilt_from_git_prices_json",
+    "source": "live_jpmi_history",
     "git_commit": "3d8b4bf3fc8dfb779d8585052da9d0c503cdd5d2"
   },
   {
@@ -3765,7 +3765,7 @@
       "has_comex": true,
       "jpmi_component_count": 3
     },
-    "source": "rebuilt_from_git_prices_json",
+    "source": "live_jpmi_history",
     "git_commit": "6248ff8bfd33e40e90b390f53a736d0803ed2fd7"
   },
   {
@@ -3799,7 +3799,7 @@
       "has_comex": true,
       "jpmi_component_count": 2
     },
-    "source": "rebuilt_from_git_prices_json",
+    "source": "live_jpmi_history",
     "git_commit": "f2f604208c81011c375e7a70fece006fe50fa7d7"
   },
   {
@@ -3833,7 +3833,7 @@
       "has_comex": true,
       "jpmi_component_count": 2
     },
-    "source": "rebuilt_from_git_prices_json",
+    "source": "live_jpmi_history",
     "git_commit": "dce7676ee41bd91f6cf9b446af3e52fa5efabac6"
   },
   {
@@ -3940,39 +3940,5 @@
     "source": "live_jpmi_history",
     "git_commit": "9005090d2656e57f93bcdcd4629422c560fc835f",
     "updated_at_utc": "2026-06-24T12:01:14+00:00"
-  },
-  {
-    "date": "2026-06-25",
-    "observation_time_jst": "19:00",
-    "rs_jpy_g": 340.08,
-    "db_jpy_g": 327.0,
-    "mspi_b_jpy_g": 472.0,
-    "comex_jpy_g": 300.02,
-    "jpmi_ag_jpy_g": 355.94,
-    "premium_pct": 18.64,
-    "components": {
-      "tanaka_silver_buy": 336.49,
-      "nihon_silver_buy": 342.76,
-      "mitsubishi_silver_buy": 341.0,
-      "nanboya_sv1000": 320.0,
-      "daikichi_sv1000": 334.0
-    },
-    "cleaning": {
-      "rs_components_used": [
-        "tanaka_silver_buy",
-        "nihon_silver_buy",
-        "mitsubishi_silver_buy"
-      ],
-      "rs_outliers_excluded": {}
-    },
-    "data_quality": {
-      "has_rs": true,
-      "has_db": true,
-      "has_mspi_b": true,
-      "has_comex": true,
-      "jpmi_component_count": 3
-    },
-    "source": "rebuilt_from_git_prices_json",
-    "git_commit": "d94dc7f4bb453b808c783e9a9fac57d4cfb0f305"
   }
 ]
