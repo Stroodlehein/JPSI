@@ -1,6 +1,39 @@
 [
   {
+    "date": "2026-03-01",
+    "observation_time_jst": "19:00",
+    "rs_jpy_g": 480.37,
+    "db_jpy_g": 474.0,
+    "mspi_b_jpy_g": null,
+    "comex_jpy_g": null,
+    "jpmi_ag_jpy_g": 478.12,
+    "premium_pct": null,
+    "components": {
+      "tanaka_silver_buy": 480.37,
+      "nihon_silver_buy": null,
+      "mitsubishi_silver_buy": null,
+      "nanboya_sv1000": 473.0,
+      "daikichi_sv1000": 475.0
+    },
+    "cleaning": {
+      "rs_components_used": [
+        "tanaka_silver_buy"
+      ],
+      "rs_outliers_excluded": {}
+    },
+    "data_quality": {
+      "has_rs": true,
+      "has_db": true,
+      "has_mspi_b": false,
+      "has_comex": false,
+      "jpmi_component_count": 2
+    },
+    "source": "rebuilt_from_git_prices_json",
+    "git_commit": "45b41f95568ceb933816eff896d7f96a8e71bdf7"
+  },
+  {
     "date": "2026-03-02",
+    "observation_time_jst": "19:00",
     "rs_jpy_g": 511.72,
     "db_jpy_g": 504.5,
     "mspi_b_jpy_g": null,
@@ -14,6 +47,13 @@
       "nanboya_sv1000": 508.0,
       "daikichi_sv1000": 501.0
     },
+    "cleaning": {
+      "rs_components_used": [
+        "tanaka_silver_buy",
+        "nihon_silver_buy"
+      ],
+      "rs_outliers_excluded": {}
+    },
     "data_quality": {
       "has_rs": true,
       "has_db": true,
@@ -26,6 +66,7 @@
   },
   {
     "date": "2026-03-03",
+    "observation_time_jst": "19:00",
     "rs_jpy_g": 479.12,
     "db_jpy_g": 485.5,
     "mspi_b_jpy_g": null,
@@ -39,6 +80,14 @@
       "nanboya_sv1000": 489.0,
       "daikichi_sv1000": 482.0
     },
+    "cleaning": {
+      "rs_components_used": [
+        "tanaka_silver_buy",
+        "nihon_silver_buy",
+        "mitsubishi_silver_buy"
+      ],
+      "rs_outliers_excluded": {}
+    },
     "data_quality": {
       "has_rs": true,
       "has_db": true,
@@ -51,6 +100,7 @@
   },
   {
     "date": "2026-03-04",
+    "observation_time_jst": "19:00",
     "rs_jpy_g": 459.51,
     "db_jpy_g": 471.0,
     "mspi_b_jpy_g": null,
@@ -64,6 +114,14 @@
       "nanboya_sv1000": 489.0,
       "daikichi_sv1000": 453.0
     },
+    "cleaning": {
+      "rs_components_used": [
+        "tanaka_silver_buy",
+        "nihon_silver_buy",
+        "mitsubishi_silver_buy"
+      ],
+      "rs_outliers_excluded": {}
+    },
     "data_quality": {
       "has_rs": true,
       "has_db": true,
@@ -76,6 +134,7 @@
   },
   {
     "date": "2026-03-05",
+    "observation_time_jst": "19:00",
     "rs_jpy_g": 453.49,
     "db_jpy_g": 450.0,
     "mspi_b_jpy_g": null,
@@ -89,6 +148,14 @@
       "nanboya_sv1000": 452.0,
       "daikichi_sv1000": 448.0
     },
+    "cleaning": {
+      "rs_components_used": [
+        "tanaka_silver_buy",
+        "nihon_silver_buy",
+        "mitsubishi_silver_buy"
+      ],
+      "rs_outliers_excluded": {}
+    },
     "data_quality": {
       "has_rs": true,
       "has_db": true,
@@ -101,6 +168,7 @@
   },
   {
     "date": "2026-03-06",
+    "observation_time_jst": "19:00",
     "rs_jpy_g": 456.94,
     "db_jpy_g": 449.0,
     "mspi_b_jpy_g": 668.73,
@@ -114,6 +182,14 @@
       "nanboya_sv1000": 449.0,
       "daikichi_sv1000": 449.0
     },
+    "cleaning": {
+      "rs_components_used": [
+        "tanaka_silver_buy",
+        "nihon_silver_buy",
+        "mitsubishi_silver_buy"
+      ],
+      "rs_outliers_excluded": {}
+    },
     "data_quality": {
       "has_rs": true,
       "has_db": true,
@@ -126,6 +202,7 @@
   },
   {
     "date": "2026-03-07",
+    "observation_time_jst": "19:00",
     "rs_jpy_g": 456.94,
     "db_jpy_g": 449.0,
     "mspi_b_jpy_g": null,
@@ -139,6 +216,14 @@
       "nanboya_sv1000": 449.0,
       "daikichi_sv1000": 449.0
     },
+    "cleaning": {
+      "rs_components_used": [
+        "tanaka_silver_buy",
+        "nihon_silver_buy",
+        "mitsubishi_silver_buy"
+      ],
+      "rs_outliers_excluded": {}
+    },
     "data_quality": {
       "has_rs": true,
       "has_db": true,
@@ -151,6 +236,7 @@
   },
   {
     "date": "2026-03-08",
+    "observation_time_jst": "19:00",
     "rs_jpy_g": 456.94,
     "db_jpy_g": 449.0,
     "mspi_b_jpy_g": null,
@@ -164,6 +250,14 @@
       "nanboya_sv1000": 449.0,
       "daikichi_sv1000": 449.0
     },
+    "cleaning": {
+      "rs_components_used": [
+        "tanaka_silver_buy",
+        "nihon_silver_buy",
+        "mitsubishi_silver_buy"
+      ],
+      "rs_outliers_excluded": {}
+    },
     "data_quality": {
       "has_rs": true,
       "has_db": true,
@@ -176,6 +270,7 @@
   },
   {
     "date": "2026-03-09",
+    "observation_time_jst": "19:00",
     "rs_jpy_g": 452.5,
     "db_jpy_g": 426.5,
     "mspi_b_jpy_g": 698.0,
@@ -189,6 +284,14 @@
       "nanboya_sv1000": 406.0,
       "daikichi_sv1000": 447.0
     },
+    "cleaning": {
+      "rs_components_used": [
+        "tanaka_silver_buy",
+        "nihon_silver_buy",
+        "mitsubishi_silver_buy"
+      ],
+      "rs_outliers_excluded": {}
+    },
     "data_quality": {
       "has_rs": true,
       "has_db": true,
@@ -201,6 +304,7 @@
   },
   {
     "date": "2026-03-10",
+    "observation_time_jst": "19:00",
     "rs_jpy_g": 483.38,
     "db_jpy_g": 475.0,
     "mspi_b_jpy_g": null,
@@ -214,6 +318,14 @@
       "nanboya_sv1000": 471.0,
       "daikichi_sv1000": 479.0
     },
+    "cleaning": {
+      "rs_components_used": [
+        "tanaka_silver_buy",
+        "nihon_silver_buy",
+        "mitsubishi_silver_buy"
+      ],
+      "rs_outliers_excluded": {}
+    },
     "data_quality": {
       "has_rs": true,
       "has_db": true,
@@ -226,6 +338,7 @@
   },
   {
     "date": "2026-03-11",
+    "observation_time_jst": "19:00",
     "rs_jpy_g": 483.38,
     "db_jpy_g": 475.0,
     "mspi_b_jpy_g": null,
@@ -239,6 +352,14 @@
       "nanboya_sv1000": 471.0,
       "daikichi_sv1000": 479.0
     },
+    "cleaning": {
+      "rs_components_used": [
+        "tanaka_silver_buy",
+        "nihon_silver_buy",
+        "mitsubishi_silver_buy"
+      ],
+      "rs_outliers_excluded": {}
+    },
     "data_quality": {
       "has_rs": true,
       "has_db": true,
@@ -251,6 +372,7 @@
   },
   {
     "date": "2026-03-12",
+    "observation_time_jst": "19:00",
     "rs_jpy_g": 483.38,
     "db_jpy_g": 475.0,
     "mspi_b_jpy_g": 691.23,
@@ -264,6 +386,14 @@
       "nanboya_sv1000": 471.0,
       "daikichi_sv1000": 479.0
     },
+    "cleaning": {
+      "rs_components_used": [
+        "tanaka_silver_buy",
+        "nihon_silver_buy",
+        "mitsubishi_silver_buy"
+      ],
+      "rs_outliers_excluded": {}
+    },
     "data_quality": {
       "has_rs": true,
       "has_db": true,
@@ -276,6 +406,7 @@
   },
   {
     "date": "2026-03-13",
+    "observation_time_jst": "19:00",
     "rs_jpy_g": 483.38,
     "db_jpy_g": 475.0,
     "mspi_b_jpy_g": null,
@@ -288,6 +419,14 @@
       "mitsubishi_silver_buy": 487.41,
       "nanboya_sv1000": 471.0,
       "daikichi_sv1000": 479.0
+    },
+    "cleaning": {
+      "rs_components_used": [
+        "tanaka_silver_buy",
+        "nihon_silver_buy",
+        "mitsubishi_silver_buy"
+      ],
+      "rs_outliers_excluded": {}
     },
     "data_quality": {
       "has_rs": true,
@@ -301,6 +440,7 @@
   },
   {
     "date": "2026-03-14",
+    "observation_time_jst": "19:00",
     "rs_jpy_g": 483.38,
     "db_jpy_g": 475.0,
     "mspi_b_jpy_g": null,
@@ -314,6 +454,14 @@
       "nanboya_sv1000": 471.0,
       "daikichi_sv1000": 479.0
     },
+    "cleaning": {
+      "rs_components_used": [
+        "tanaka_silver_buy",
+        "nihon_silver_buy",
+        "mitsubishi_silver_buy"
+      ],
+      "rs_outliers_excluded": {}
+    },
     "data_quality": {
       "has_rs": true,
       "has_db": true,
@@ -326,6 +474,7 @@
   },
   {
     "date": "2026-03-15",
+    "observation_time_jst": "19:00",
     "rs_jpy_g": 483.38,
     "db_jpy_g": 475.0,
     "mspi_b_jpy_g": null,
@@ -339,6 +488,14 @@
       "nanboya_sv1000": 471.0,
       "daikichi_sv1000": 479.0
     },
+    "cleaning": {
+      "rs_components_used": [
+        "tanaka_silver_buy",
+        "nihon_silver_buy",
+        "mitsubishi_silver_buy"
+      ],
+      "rs_outliers_excluded": {}
+    },
     "data_quality": {
       "has_rs": true,
       "has_db": true,
@@ -351,6 +508,7 @@
   },
   {
     "date": "2026-03-16",
+    "observation_time_jst": "19:00",
     "rs_jpy_g": 443.7,
     "db_jpy_g": 446.0,
     "mspi_b_jpy_g": null,
@@ -364,6 +522,14 @@
       "nanboya_sv1000": 445.0,
       "daikichi_sv1000": 447.0
     },
+    "cleaning": {
+      "rs_components_used": [
+        "tanaka_silver_buy",
+        "nihon_silver_buy",
+        "mitsubishi_silver_buy"
+      ],
+      "rs_outliers_excluded": {}
+    },
     "data_quality": {
       "has_rs": true,
       "has_db": true,
@@ -376,6 +542,7 @@
   },
   {
     "date": "2026-03-17",
+    "observation_time_jst": "19:00",
     "rs_jpy_g": 447.96,
     "db_jpy_g": 439.5,
     "mspi_b_jpy_g": 694.45,
@@ -389,6 +556,14 @@
       "nanboya_sv1000": 438.0,
       "daikichi_sv1000": 441.0
     },
+    "cleaning": {
+      "rs_components_used": [
+        "tanaka_silver_buy",
+        "nihon_silver_buy",
+        "mitsubishi_silver_buy"
+      ],
+      "rs_outliers_excluded": {}
+    },
     "data_quality": {
       "has_rs": true,
       "has_db": true,
@@ -401,6 +576,7 @@
   },
   {
     "date": "2026-03-18",
+    "observation_time_jst": "19:00",
     "rs_jpy_g": 440.88,
     "db_jpy_g": 434.0,
     "mspi_b_jpy_g": 667.1,
@@ -414,6 +590,14 @@
       "nanboya_sv1000": 433.0,
       "daikichi_sv1000": 435.0
     },
+    "cleaning": {
+      "rs_components_used": [
+        "tanaka_silver_buy",
+        "nihon_silver_buy",
+        "mitsubishi_silver_buy"
+      ],
+      "rs_outliers_excluded": {}
+    },
     "data_quality": {
       "has_rs": true,
       "has_db": true,
@@ -426,6 +610,7 @@
   },
   {
     "date": "2026-03-19",
+    "observation_time_jst": "19:00",
     "rs_jpy_g": 426.18,
     "db_jpy_g": 419.0,
     "mspi_b_jpy_g": 643.03,
@@ -439,6 +624,14 @@
       "nanboya_sv1000": 418.0,
       "daikichi_sv1000": 420.0
     },
+    "cleaning": {
+      "rs_components_used": [
+        "tanaka_silver_buy",
+        "nihon_silver_buy",
+        "mitsubishi_silver_buy"
+      ],
+      "rs_outliers_excluded": {}
+    },
     "data_quality": {
       "has_rs": true,
       "has_db": true,
@@ -451,6 +644,7 @@
   },
   {
     "date": "2026-03-20",
+    "observation_time_jst": "19:00",
     "rs_jpy_g": 401.98,
     "db_jpy_g": 419.0,
     "mspi_b_jpy_g": 613.27,
@@ -464,6 +658,14 @@
       "nanboya_sv1000": 418.0,
       "daikichi_sv1000": 420.0
     },
+    "cleaning": {
+      "rs_components_used": [
+        "tanaka_silver_buy",
+        "nihon_silver_buy",
+        "mitsubishi_silver_buy"
+      ],
+      "rs_outliers_excluded": {}
+    },
     "data_quality": {
       "has_rs": true,
       "has_db": true,
@@ -476,6 +678,7 @@
   },
   {
     "date": "2026-03-21",
+    "observation_time_jst": "19:00",
     "rs_jpy_g": 401.98,
     "db_jpy_g": 419.0,
     "mspi_b_jpy_g": null,
@@ -489,6 +692,14 @@
       "nanboya_sv1000": 418.0,
       "daikichi_sv1000": 420.0
     },
+    "cleaning": {
+      "rs_components_used": [
+        "tanaka_silver_buy",
+        "nihon_silver_buy",
+        "mitsubishi_silver_buy"
+      ],
+      "rs_outliers_excluded": {}
+    },
     "data_quality": {
       "has_rs": true,
       "has_db": true,
@@ -501,6 +712,7 @@
   },
   {
     "date": "2026-03-22",
+    "observation_time_jst": "19:00",
     "rs_jpy_g": 401.98,
     "db_jpy_g": 419.0,
     "mspi_b_jpy_g": null,
@@ -514,6 +726,14 @@
       "nanboya_sv1000": 418.0,
       "daikichi_sv1000": 420.0
     },
+    "cleaning": {
+      "rs_components_used": [
+        "tanaka_silver_buy",
+        "nihon_silver_buy",
+        "mitsubishi_silver_buy"
+      ],
+      "rs_outliers_excluded": {}
+    },
     "data_quality": {
       "has_rs": true,
       "has_db": true,
@@ -526,6 +746,7 @@
   },
   {
     "date": "2026-03-23",
+    "observation_time_jst": "19:00",
     "rs_jpy_g": 372.4,
     "db_jpy_g": 393.5,
     "mspi_b_jpy_g": 568.5,
@@ -539,6 +760,13 @@
       "nanboya_sv1000": 367.0,
       "daikichi_sv1000": 420.0
     },
+    "cleaning": {
+      "rs_components_used": [
+        "tanaka_silver_buy",
+        "mitsubishi_silver_buy"
+      ],
+      "rs_outliers_excluded": {}
+    },
     "data_quality": {
       "has_rs": true,
       "has_db": true,
@@ -551,6 +779,7 @@
   },
   {
     "date": "2026-03-24",
+    "observation_time_jst": "19:00",
     "rs_jpy_g": 372.97,
     "db_jpy_g": 395.5,
     "mspi_b_jpy_g": 603.69,
@@ -564,6 +793,14 @@
       "nanboya_sv1000": 371.0,
       "daikichi_sv1000": 420.0
     },
+    "cleaning": {
+      "rs_components_used": [
+        "tanaka_silver_buy",
+        "nihon_silver_buy",
+        "mitsubishi_silver_buy"
+      ],
+      "rs_outliers_excluded": {}
+    },
     "data_quality": {
       "has_rs": true,
       "has_db": true,
@@ -576,6 +813,7 @@
   },
   {
     "date": "2026-03-25",
+    "observation_time_jst": "19:00",
     "rs_jpy_g": 403.74,
     "db_jpy_g": 407.5,
     "mspi_b_jpy_g": 592.0,
@@ -589,6 +827,14 @@
       "nanboya_sv1000": 395.0,
       "daikichi_sv1000": 420.0
     },
+    "cleaning": {
+      "rs_components_used": [
+        "tanaka_silver_buy",
+        "nihon_silver_buy",
+        "mitsubishi_silver_buy"
+      ],
+      "rs_outliers_excluded": {}
+    },
     "data_quality": {
       "has_rs": true,
       "has_db": true,
@@ -601,6 +847,7 @@
   },
   {
     "date": "2026-03-26",
+    "observation_time_jst": "19:00",
     "rs_jpy_g": 399.08,
     "db_jpy_g": 406.0,
     "mspi_b_jpy_g": 592.0,
@@ -614,6 +861,14 @@
       "nanboya_sv1000": 392.0,
       "daikichi_sv1000": 420.0
     },
+    "cleaning": {
+      "rs_components_used": [
+        "tanaka_silver_buy",
+        "nihon_silver_buy",
+        "mitsubishi_silver_buy"
+      ],
+      "rs_outliers_excluded": {}
+    },
     "data_quality": {
       "has_rs": true,
       "has_db": true,
@@ -626,6 +881,7 @@
   },
   {
     "date": "2026-03-27",
+    "observation_time_jst": "19:00",
     "rs_jpy_g": 378.91,
     "db_jpy_g": 395.5,
     "mspi_b_jpy_g": 562.0,
@@ -639,6 +895,14 @@
       "nanboya_sv1000": 371.0,
       "daikichi_sv1000": 420.0
     },
+    "cleaning": {
+      "rs_components_used": [
+        "tanaka_silver_buy",
+        "nihon_silver_buy",
+        "mitsubishi_silver_buy"
+      ],
+      "rs_outliers_excluded": {}
+    },
     "data_quality": {
       "has_rs": true,
       "has_db": true,
@@ -651,6 +915,7 @@
   },
   {
     "date": "2026-03-28",
+    "observation_time_jst": "19:00",
     "rs_jpy_g": 383.79,
     "db_jpy_g": 395.5,
     "mspi_b_jpy_g": null,
@@ -664,6 +929,13 @@
       "nanboya_sv1000": 371.0,
       "daikichi_sv1000": 420.0
     },
+    "cleaning": {
+      "rs_components_used": [
+        "tanaka_silver_buy",
+        "mitsubishi_silver_buy"
+      ],
+      "rs_outliers_excluded": {}
+    },
     "data_quality": {
       "has_rs": true,
       "has_db": true,
@@ -676,6 +948,7 @@
   },
   {
     "date": "2026-03-29",
+    "observation_time_jst": "19:00",
     "rs_jpy_g": 383.79,
     "db_jpy_g": 395.5,
     "mspi_b_jpy_g": null,
@@ -689,6 +962,13 @@
       "nanboya_sv1000": 371.0,
       "daikichi_sv1000": 420.0
     },
+    "cleaning": {
+      "rs_components_used": [
+        "tanaka_silver_buy",
+        "mitsubishi_silver_buy"
+      ],
+      "rs_outliers_excluded": {}
+    },
     "data_quality": {
       "has_rs": true,
       "has_db": true,
@@ -701,6 +981,7 @@
   },
   {
     "date": "2026-03-30",
+    "observation_time_jst": "19:00",
     "rs_jpy_g": 380.23,
     "db_jpy_g": 396.0,
     "mspi_b_jpy_g": 544.0,
@@ -714,6 +995,14 @@
       "nanboya_sv1000": 372.0,
       "daikichi_sv1000": 420.0
     },
+    "cleaning": {
+      "rs_components_used": [
+        "tanaka_silver_buy",
+        "nihon_silver_buy",
+        "mitsubishi_silver_buy"
+      ],
+      "rs_outliers_excluded": {}
+    },
     "data_quality": {
       "has_rs": true,
       "has_db": true,
@@ -726,6 +1015,7 @@
   },
   {
     "date": "2026-03-31",
+    "observation_time_jst": "19:00",
     "rs_jpy_g": 396.4,
     "db_jpy_g": 398.0,
     "mspi_b_jpy_g": 609.0,
@@ -739,6 +1029,14 @@
       "nanboya_sv1000": 376.0,
       "daikichi_sv1000": 420.0
     },
+    "cleaning": {
+      "rs_components_used": [
+        "tanaka_silver_buy",
+        "nihon_silver_buy",
+        "mitsubishi_silver_buy"
+      ],
+      "rs_outliers_excluded": {}
+    },
     "data_quality": {
       "has_rs": true,
       "has_db": true,
@@ -751,6 +1049,7 @@
   },
   {
     "date": "2026-04-01",
+    "observation_time_jst": "19:00",
     "rs_jpy_g": 411.8,
     "db_jpy_g": 412.0,
     "mspi_b_jpy_g": 605.4,
@@ -764,6 +1063,14 @@
       "nanboya_sv1000": 404.0,
       "daikichi_sv1000": 420.0
     },
+    "cleaning": {
+      "rs_components_used": [
+        "tanaka_silver_buy",
+        "nihon_silver_buy",
+        "mitsubishi_silver_buy"
+      ],
+      "rs_outliers_excluded": {}
+    },
     "data_quality": {
       "has_rs": true,
       "has_db": true,
@@ -776,6 +1083,7 @@
   },
   {
     "date": "2026-04-02",
+    "observation_time_jst": "19:00",
     "rs_jpy_g": 393.76,
     "db_jpy_g": 408.0,
     "mspi_b_jpy_g": 587.33,
@@ -789,6 +1097,14 @@
       "nanboya_sv1000": 411.0,
       "daikichi_sv1000": 405.0
     },
+    "cleaning": {
+      "rs_components_used": [
+        "tanaka_silver_buy",
+        "nihon_silver_buy",
+        "mitsubishi_silver_buy"
+      ],
+      "rs_outliers_excluded": {}
+    },
     "data_quality": {
       "has_rs": true,
       "has_db": true,
@@ -801,6 +1117,7 @@
   },
   {
     "date": "2026-04-03",
+    "observation_time_jst": "19:00",
     "rs_jpy_g": 402.23,
     "db_jpy_g": 392.0,
     "mspi_b_jpy_g": 568.33,
@@ -814,6 +1131,14 @@
       "nanboya_sv1000": 394.0,
       "daikichi_sv1000": 390.0
     },
+    "cleaning": {
+      "rs_components_used": [
+        "tanaka_silver_buy",
+        "nihon_silver_buy",
+        "mitsubishi_silver_buy"
+      ],
+      "rs_outliers_excluded": {}
+    },
     "data_quality": {
       "has_rs": true,
       "has_db": true,
@@ -826,6 +1151,7 @@
   },
   {
     "date": "2026-04-04",
+    "observation_time_jst": "19:00",
     "rs_jpy_g": 403.81,
     "db_jpy_g": 394.0,
     "mspi_b_jpy_g": null,
@@ -839,6 +1165,14 @@
       "nanboya_sv1000": 394.0,
       "daikichi_sv1000": 394.0
     },
+    "cleaning": {
+      "rs_components_used": [
+        "tanaka_silver_buy",
+        "nihon_silver_buy",
+        "mitsubishi_silver_buy"
+      ],
+      "rs_outliers_excluded": {}
+    },
     "data_quality": {
       "has_rs": true,
       "has_db": true,
@@ -851,6 +1185,7 @@
   },
   {
     "date": "2026-04-05",
+    "observation_time_jst": "19:00",
     "rs_jpy_g": 403.81,
     "db_jpy_g": 394.0,
     "mspi_b_jpy_g": null,
@@ -864,6 +1199,14 @@
       "nanboya_sv1000": 394.0,
       "daikichi_sv1000": 394.0
     },
+    "cleaning": {
+      "rs_components_used": [
+        "tanaka_silver_buy",
+        "nihon_silver_buy",
+        "mitsubishi_silver_buy"
+      ],
+      "rs_outliers_excluded": {}
+    },
     "data_quality": {
       "has_rs": true,
       "has_db": true,
@@ -876,6 +1219,7 @@
   },
   {
     "date": "2026-04-06",
+    "observation_time_jst": "19:00",
     "rs_jpy_g": 400.84,
     "db_jpy_g": 389.0,
     "mspi_b_jpy_g": 567.5,
@@ -889,6 +1233,14 @@
       "nanboya_sv1000": 391.0,
       "daikichi_sv1000": 387.0
     },
+    "cleaning": {
+      "rs_components_used": [
+        "tanaka_silver_buy",
+        "nihon_silver_buy",
+        "mitsubishi_silver_buy"
+      ],
+      "rs_outliers_excluded": {}
+    },
     "data_quality": {
       "has_rs": true,
       "has_db": true,
@@ -901,6 +1253,7 @@
   },
   {
     "date": "2026-04-07",
+    "observation_time_jst": "19:00",
     "rs_jpy_g": 402.16,
     "db_jpy_g": 387.5,
     "mspi_b_jpy_g": 591.0,
@@ -914,6 +1267,14 @@
       "nanboya_sv1000": 380.0,
       "daikichi_sv1000": 395.0
     },
+    "cleaning": {
+      "rs_components_used": [
+        "tanaka_silver_buy",
+        "nihon_silver_buy",
+        "mitsubishi_silver_buy"
+      ],
+      "rs_outliers_excluded": {}
+    },
     "data_quality": {
       "has_rs": true,
       "has_db": true,
@@ -926,6 +1287,7 @@
   },
   {
     "date": "2026-04-08",
+    "observation_time_jst": "19:00",
     "rs_jpy_g": 425.04,
     "db_jpy_g": 392.5,
     "mspi_b_jpy_g": 595.25,
@@ -939,6 +1301,14 @@
       "nanboya_sv1000": 380.0,
       "daikichi_sv1000": 405.0
     },
+    "cleaning": {
+      "rs_components_used": [
+        "tanaka_silver_buy",
+        "nihon_silver_buy",
+        "mitsubishi_silver_buy"
+      ],
+      "rs_outliers_excluded": {}
+    },
     "data_quality": {
       "has_rs": true,
       "has_db": true,
@@ -951,18 +1321,28 @@
   },
   {
     "date": "2026-04-09",
-    "rs_jpy_g": 345.22,
+    "observation_time_jst": "19:00",
+    "rs_jpy_g": 413.32,
     "db_jpy_g": 385.5,
     "mspi_b_jpy_g": null,
     "comex_jpy_g": 385.35,
-    "jpmi_ag_jpy_g": 359.44,
-    "premium_pct": -6.72,
+    "jpmi_ag_jpy_g": 403.5,
+    "premium_pct": 4.71,
     "components": {
       "tanaka_silver_buy": 403.15,
       "nihon_silver_buy": 209.0,
       "mitsubishi_silver_buy": 423.5,
       "nanboya_sv1000": 380.0,
       "daikichi_sv1000": 391.0
+    },
+    "cleaning": {
+      "rs_components_used": [
+        "tanaka_silver_buy",
+        "mitsubishi_silver_buy"
+      ],
+      "rs_outliers_excluded": {
+        "nihon_silver_buy": 209.0
+      }
     },
     "data_quality": {
       "has_rs": true,
@@ -976,6 +1356,7 @@
   },
   {
     "date": "2026-04-10",
+    "observation_time_jst": "19:00",
     "rs_jpy_g": 416.2,
     "db_jpy_g": 400.0,
     "mspi_b_jpy_g": 617.25,
@@ -989,6 +1370,14 @@
       "nanboya_sv1000": 396.0,
       "daikichi_sv1000": 404.0
     },
+    "cleaning": {
+      "rs_components_used": [
+        "tanaka_silver_buy",
+        "nihon_silver_buy",
+        "mitsubishi_silver_buy"
+      ],
+      "rs_outliers_excluded": {}
+    },
     "data_quality": {
       "has_rs": true,
       "has_db": true,
@@ -1001,6 +1390,7 @@
   },
   {
     "date": "2026-04-11",
+    "observation_time_jst": "19:00",
     "rs_jpy_g": 416.75,
     "db_jpy_g": 408.0,
     "mspi_b_jpy_g": null,
@@ -1014,6 +1404,14 @@
       "nanboya_sv1000": 408.0,
       "daikichi_sv1000": 408.0
     },
+    "cleaning": {
+      "rs_components_used": [
+        "tanaka_silver_buy",
+        "nihon_silver_buy",
+        "mitsubishi_silver_buy"
+      ],
+      "rs_outliers_excluded": {}
+    },
     "data_quality": {
       "has_rs": true,
       "has_db": true,
@@ -1026,6 +1424,7 @@
   },
   {
     "date": "2026-04-12",
+    "observation_time_jst": "19:00",
     "rs_jpy_g": 416.75,
     "db_jpy_g": 408.0,
     "mspi_b_jpy_g": null,
@@ -1039,6 +1438,14 @@
       "nanboya_sv1000": 408.0,
       "daikichi_sv1000": 408.0
     },
+    "cleaning": {
+      "rs_components_used": [
+        "tanaka_silver_buy",
+        "nihon_silver_buy",
+        "mitsubishi_silver_buy"
+      ],
+      "rs_outliers_excluded": {}
+    },
     "data_quality": {
       "has_rs": true,
       "has_db": true,
@@ -1051,6 +1458,7 @@
   },
   {
     "date": "2026-04-13",
+    "observation_time_jst": "19:00",
     "rs_jpy_g": 410.56,
     "db_jpy_g": 390.0,
     "mspi_b_jpy_g": 616.75,
@@ -1064,6 +1472,14 @@
       "nanboya_sv1000": 380.0,
       "daikichi_sv1000": 400.0
     },
+    "cleaning": {
+      "rs_components_used": [
+        "tanaka_silver_buy",
+        "nihon_silver_buy",
+        "mitsubishi_silver_buy"
+      ],
+      "rs_outliers_excluded": {}
+    },
     "data_quality": {
       "has_rs": true,
       "has_db": true,
@@ -1076,6 +1492,7 @@
   },
   {
     "date": "2026-04-14",
+    "observation_time_jst": "19:00",
     "rs_jpy_g": 416.57,
     "db_jpy_g": 402.0,
     "mspi_b_jpy_g": 549.33,
@@ -1089,6 +1506,14 @@
       "nanboya_sv1000": 391.0,
       "daikichi_sv1000": 413.0
     },
+    "cleaning": {
+      "rs_components_used": [
+        "tanaka_silver_buy",
+        "nihon_silver_buy",
+        "mitsubishi_silver_buy"
+      ],
+      "rs_outliers_excluded": {}
+    },
     "data_quality": {
       "has_rs": true,
       "has_db": true,
@@ -1101,6 +1526,7 @@
   },
   {
     "date": "2026-04-15",
+    "observation_time_jst": "19:00",
     "rs_jpy_g": 437.18,
     "db_jpy_g": 418.5,
     "mspi_b_jpy_g": 583.67,
@@ -1114,6 +1540,14 @@
       "nanboya_sv1000": 409.0,
       "daikichi_sv1000": 428.0
     },
+    "cleaning": {
+      "rs_components_used": [
+        "tanaka_silver_buy",
+        "nihon_silver_buy",
+        "mitsubishi_silver_buy"
+      ],
+      "rs_outliers_excluded": {}
+    },
     "data_quality": {
       "has_rs": true,
       "has_db": true,
@@ -1126,6 +1560,7 @@
   },
   {
     "date": "2026-04-16",
+    "observation_time_jst": "19:00",
     "rs_jpy_g": 439.89,
     "db_jpy_g": 422.5,
     "mspi_b_jpy_g": 580.67,
@@ -1139,6 +1574,14 @@
       "nanboya_sv1000": 411.0,
       "daikichi_sv1000": 434.0
     },
+    "cleaning": {
+      "rs_components_used": [
+        "tanaka_silver_buy",
+        "nihon_silver_buy",
+        "mitsubishi_silver_buy"
+      ],
+      "rs_outliers_excluded": {}
+    },
     "data_quality": {
       "has_rs": true,
       "has_db": true,
@@ -1151,6 +1594,7 @@
   },
   {
     "date": "2026-04-17",
+    "observation_time_jst": "19:00",
     "rs_jpy_g": 433.77,
     "db_jpy_g": 417.5,
     "mspi_b_jpy_g": 587.33,
@@ -1164,6 +1608,14 @@
       "nanboya_sv1000": 407.0,
       "daikichi_sv1000": 428.0
     },
+    "cleaning": {
+      "rs_components_used": [
+        "tanaka_silver_buy",
+        "nihon_silver_buy",
+        "mitsubishi_silver_buy"
+      ],
+      "rs_outliers_excluded": {}
+    },
     "data_quality": {
       "has_rs": true,
       "has_db": true,
@@ -1176,6 +1628,7 @@
   },
   {
     "date": "2026-04-18",
+    "observation_time_jst": "19:00",
     "rs_jpy_g": 433.77,
     "db_jpy_g": 417.5,
     "mspi_b_jpy_g": null,
@@ -1189,6 +1642,14 @@
       "nanboya_sv1000": 407.0,
       "daikichi_sv1000": 428.0
     },
+    "cleaning": {
+      "rs_components_used": [
+        "tanaka_silver_buy",
+        "nihon_silver_buy",
+        "mitsubishi_silver_buy"
+      ],
+      "rs_outliers_excluded": {}
+    },
     "data_quality": {
       "has_rs": true,
       "has_db": true,
@@ -1201,6 +1662,7 @@
   },
   {
     "date": "2026-04-19",
+    "observation_time_jst": "19:00",
     "rs_jpy_g": 433.77,
     "db_jpy_g": 417.5,
     "mspi_b_jpy_g": null,
@@ -1214,6 +1676,14 @@
       "nanboya_sv1000": 407.0,
       "daikichi_sv1000": 428.0
     },
+    "cleaning": {
+      "rs_components_used": [
+        "tanaka_silver_buy",
+        "nihon_silver_buy",
+        "mitsubishi_silver_buy"
+      ],
+      "rs_outliers_excluded": {}
+    },
     "data_quality": {
       "has_rs": true,
       "has_db": true,
@@ -1226,6 +1696,7 @@
   },
   {
     "date": "2026-04-20",
+    "observation_time_jst": "19:00",
     "rs_jpy_g": 437.36,
     "db_jpy_g": 421.5,
     "mspi_b_jpy_g": 595.67,
@@ -1239,6 +1710,14 @@
       "nanboya_sv1000": 411.0,
       "daikichi_sv1000": 432.0
     },
+    "cleaning": {
+      "rs_components_used": [
+        "tanaka_silver_buy",
+        "nihon_silver_buy",
+        "mitsubishi_silver_buy"
+      ],
+      "rs_outliers_excluded": {}
+    },
     "data_quality": {
       "has_rs": true,
       "has_db": true,
@@ -1251,6 +1730,7 @@
   },
   {
     "date": "2026-04-21",
+    "observation_time_jst": "19:00",
     "rs_jpy_g": 434.61,
     "db_jpy_g": 417.5,
     "mspi_b_jpy_g": 611.67,
@@ -1264,6 +1744,14 @@
       "nanboya_sv1000": 409.0,
       "daikichi_sv1000": 426.0
     },
+    "cleaning": {
+      "rs_components_used": [
+        "tanaka_silver_buy",
+        "nihon_silver_buy",
+        "mitsubishi_silver_buy"
+      ],
+      "rs_outliers_excluded": {}
+    },
     "data_quality": {
       "has_rs": true,
       "has_db": true,
@@ -1276,6 +1764,7 @@
   },
   {
     "date": "2026-04-22",
+    "observation_time_jst": "19:00",
     "rs_jpy_g": 428.27,
     "db_jpy_g": 409.5,
     "mspi_b_jpy_g": 569.33,
@@ -1289,6 +1778,14 @@
       "nanboya_sv1000": 400.0,
       "daikichi_sv1000": 419.0
     },
+    "cleaning": {
+      "rs_components_used": [
+        "tanaka_silver_buy",
+        "nihon_silver_buy",
+        "mitsubishi_silver_buy"
+      ],
+      "rs_outliers_excluded": {}
+    },
     "data_quality": {
       "has_rs": true,
       "has_db": true,
@@ -1301,6 +1798,7 @@
   },
   {
     "date": "2026-04-23",
+    "observation_time_jst": "19:00",
     "rs_jpy_g": 420.42,
     "db_jpy_g": 412.5,
     "mspi_b_jpy_g": 601.67,
@@ -1314,6 +1812,14 @@
       "nanboya_sv1000": 404.0,
       "daikichi_sv1000": 421.0
     },
+    "cleaning": {
+      "rs_components_used": [
+        "tanaka_silver_buy",
+        "nihon_silver_buy",
+        "mitsubishi_silver_buy"
+      ],
+      "rs_outliers_excluded": {}
+    },
     "data_quality": {
       "has_rs": true,
       "has_db": true,
@@ -1326,6 +1832,7 @@
   },
   {
     "date": "2026-04-24",
+    "observation_time_jst": "19:00",
     "rs_jpy_g": 412.32,
     "db_jpy_g": 400.0,
     "mspi_b_jpy_g": 568.67,
@@ -1339,6 +1846,14 @@
       "nanboya_sv1000": 392.0,
       "daikichi_sv1000": 408.0
     },
+    "cleaning": {
+      "rs_components_used": [
+        "tanaka_silver_buy",
+        "nihon_silver_buy",
+        "mitsubishi_silver_buy"
+      ],
+      "rs_outliers_excluded": {}
+    },
     "data_quality": {
       "has_rs": true,
       "has_db": true,
@@ -1351,6 +1866,7 @@
   },
   {
     "date": "2026-04-25",
+    "observation_time_jst": "19:00",
     "rs_jpy_g": 412.32,
     "db_jpy_g": 400.0,
     "mspi_b_jpy_g": null,
@@ -1364,6 +1880,14 @@
       "nanboya_sv1000": 392.0,
       "daikichi_sv1000": 408.0
     },
+    "cleaning": {
+      "rs_components_used": [
+        "tanaka_silver_buy",
+        "nihon_silver_buy",
+        "mitsubishi_silver_buy"
+      ],
+      "rs_outliers_excluded": {}
+    },
     "data_quality": {
       "has_rs": true,
       "has_db": true,
@@ -1376,6 +1900,7 @@
   },
   {
     "date": "2026-04-26",
+    "observation_time_jst": "19:00",
     "rs_jpy_g": 412.32,
     "db_jpy_g": 400.0,
     "mspi_b_jpy_g": null,
@@ -1389,6 +1914,14 @@
       "nanboya_sv1000": 392.0,
       "daikichi_sv1000": 408.0
     },
+    "cleaning": {
+      "rs_components_used": [
+        "tanaka_silver_buy",
+        "nihon_silver_buy",
+        "mitsubishi_silver_buy"
+      ],
+      "rs_outliers_excluded": {}
+    },
     "data_quality": {
       "has_rs": true,
       "has_db": true,
@@ -1401,6 +1934,7 @@
   },
   {
     "date": "2026-04-27",
+    "observation_time_jst": "19:00",
     "rs_jpy_g": 416.39,
     "db_jpy_g": 400.5,
     "mspi_b_jpy_g": 620.0,
@@ -1414,6 +1948,14 @@
       "nanboya_sv1000": 389.0,
       "daikichi_sv1000": 412.0
     },
+    "cleaning": {
+      "rs_components_used": [
+        "tanaka_silver_buy",
+        "nihon_silver_buy",
+        "mitsubishi_silver_buy"
+      ],
+      "rs_outliers_excluded": {}
+    },
     "data_quality": {
       "has_rs": true,
       "has_db": true,
@@ -1426,6 +1968,7 @@
   },
   {
     "date": "2026-04-28",
+    "observation_time_jst": "19:00",
     "rs_jpy_g": 408.54,
     "db_jpy_g": 402.0,
     "mspi_b_jpy_g": 519.33,
@@ -1439,6 +1982,14 @@
       "nanboya_sv1000": 394.0,
       "daikichi_sv1000": 410.0
     },
+    "cleaning": {
+      "rs_components_used": [
+        "tanaka_silver_buy",
+        "nihon_silver_buy",
+        "mitsubishi_silver_buy"
+      ],
+      "rs_outliers_excluded": {}
+    },
     "data_quality": {
       "has_rs": true,
       "has_db": true,
@@ -1451,6 +2002,7 @@
   },
   {
     "date": "2026-04-29",
+    "observation_time_jst": "19:00",
     "rs_jpy_g": 408.54,
     "db_jpy_g": 402.0,
     "mspi_b_jpy_g": 522.67,
@@ -1464,6 +2016,14 @@
       "nanboya_sv1000": 394.0,
       "daikichi_sv1000": 410.0
     },
+    "cleaning": {
+      "rs_components_used": [
+        "tanaka_silver_buy",
+        "nihon_silver_buy",
+        "mitsubishi_silver_buy"
+      ],
+      "rs_outliers_excluded": {}
+    },
     "data_quality": {
       "has_rs": true,
       "has_db": true,
@@ -1476,6 +2036,7 @@
   },
   {
     "date": "2026-04-30",
+    "observation_time_jst": "19:00",
     "rs_jpy_g": 400.77,
     "db_jpy_g": 391.0,
     "mspi_b_jpy_g": 546.0,
@@ -1489,6 +2050,14 @@
       "nanboya_sv1000": 394.0,
       "daikichi_sv1000": 388.0
     },
+    "cleaning": {
+      "rs_components_used": [
+        "tanaka_silver_buy",
+        "nihon_silver_buy",
+        "mitsubishi_silver_buy"
+      ],
+      "rs_outliers_excluded": {}
+    },
     "data_quality": {
       "has_rs": true,
       "has_db": true,
@@ -1501,6 +2070,7 @@
   },
   {
     "date": "2026-05-01",
+    "observation_time_jst": "19:00",
     "rs_jpy_g": 399.63,
     "db_jpy_g": 388.0,
     "mspi_b_jpy_g": 508.33,
@@ -1514,6 +2084,14 @@
       "nanboya_sv1000": 380.0,
       "daikichi_sv1000": 396.0
     },
+    "cleaning": {
+      "rs_components_used": [
+        "tanaka_silver_buy",
+        "nihon_silver_buy",
+        "mitsubishi_silver_buy"
+      ],
+      "rs_outliers_excluded": {}
+    },
     "data_quality": {
       "has_rs": true,
       "has_db": true,
@@ -1526,6 +2104,7 @@
   },
   {
     "date": "2026-05-02",
+    "observation_time_jst": "19:00",
     "rs_jpy_g": 399.63,
     "db_jpy_g": 388.0,
     "mspi_b_jpy_g": null,
@@ -1539,6 +2118,14 @@
       "nanboya_sv1000": 380.0,
       "daikichi_sv1000": 396.0
     },
+    "cleaning": {
+      "rs_components_used": [
+        "tanaka_silver_buy",
+        "nihon_silver_buy",
+        "mitsubishi_silver_buy"
+      ],
+      "rs_outliers_excluded": {}
+    },
     "data_quality": {
       "has_rs": true,
       "has_db": true,
@@ -1551,6 +2138,7 @@
   },
   {
     "date": "2026-05-03",
+    "observation_time_jst": "19:00",
     "rs_jpy_g": 399.63,
     "db_jpy_g": 388.0,
     "mspi_b_jpy_g": null,
@@ -1564,6 +2152,14 @@
       "nanboya_sv1000": 380.0,
       "daikichi_sv1000": 396.0
     },
+    "cleaning": {
+      "rs_components_used": [
+        "tanaka_silver_buy",
+        "nihon_silver_buy",
+        "mitsubishi_silver_buy"
+      ],
+      "rs_outliers_excluded": {}
+    },
     "data_quality": {
       "has_rs": true,
       "has_db": true,
@@ -1576,6 +2172,7 @@
   },
   {
     "date": "2026-05-04",
+    "observation_time_jst": "19:00",
     "rs_jpy_g": 399.63,
     "db_jpy_g": 388.0,
     "mspi_b_jpy_g": 522.33,
@@ -1589,6 +2186,14 @@
       "nanboya_sv1000": 380.0,
       "daikichi_sv1000": 396.0
     },
+    "cleaning": {
+      "rs_components_used": [
+        "tanaka_silver_buy",
+        "nihon_silver_buy",
+        "mitsubishi_silver_buy"
+      ],
+      "rs_outliers_excluded": {}
+    },
     "data_quality": {
       "has_rs": true,
       "has_db": true,
@@ -1601,6 +2206,7 @@
   },
   {
     "date": "2026-05-05",
+    "observation_time_jst": "19:00",
     "rs_jpy_g": 399.63,
     "db_jpy_g": 388.0,
     "mspi_b_jpy_g": 557.67,
@@ -1614,6 +2220,14 @@
       "nanboya_sv1000": 380.0,
       "daikichi_sv1000": 396.0
     },
+    "cleaning": {
+      "rs_components_used": [
+        "tanaka_silver_buy",
+        "nihon_silver_buy",
+        "mitsubishi_silver_buy"
+      ],
+      "rs_outliers_excluded": {}
+    },
     "data_quality": {
       "has_rs": true,
       "has_db": true,
@@ -1626,6 +2240,7 @@
   },
   {
     "date": "2026-05-06",
+    "observation_time_jst": "19:00",
     "rs_jpy_g": 399.63,
     "db_jpy_g": 388.0,
     "mspi_b_jpy_g": 506.33,
@@ -1639,6 +2254,14 @@
       "nanboya_sv1000": 380.0,
       "daikichi_sv1000": 396.0
     },
+    "cleaning": {
+      "rs_components_used": [
+        "tanaka_silver_buy",
+        "nihon_silver_buy",
+        "mitsubishi_silver_buy"
+      ],
+      "rs_outliers_excluded": {}
+    },
     "data_quality": {
       "has_rs": true,
       "has_db": true,
@@ -1651,6 +2274,7 @@
   },
   {
     "date": "2026-05-07",
+    "observation_time_jst": "19:00",
     "rs_jpy_g": 424.86,
     "db_jpy_g": 402.5,
     "mspi_b_jpy_g": 567.67,
@@ -1664,6 +2288,14 @@
       "nanboya_sv1000": 393.0,
       "daikichi_sv1000": 412.0
     },
+    "cleaning": {
+      "rs_components_used": [
+        "tanaka_silver_buy",
+        "nihon_silver_buy",
+        "mitsubishi_silver_buy"
+      ],
+      "rs_outliers_excluded": {}
+    },
     "data_quality": {
       "has_rs": true,
       "has_db": true,
@@ -1676,6 +2308,7 @@
   },
   {
     "date": "2026-05-08",
+    "observation_time_jst": "19:00",
     "rs_jpy_g": 430.72,
     "db_jpy_g": 412.5,
     "mspi_b_jpy_g": 511.0,
@@ -1689,6 +2322,14 @@
       "nanboya_sv1000": 403.0,
       "daikichi_sv1000": 422.0
     },
+    "cleaning": {
+      "rs_components_used": [
+        "tanaka_silver_buy",
+        "nihon_silver_buy",
+        "mitsubishi_silver_buy"
+      ],
+      "rs_outliers_excluded": {}
+    },
     "data_quality": {
       "has_rs": true,
       "has_db": true,
@@ -1701,6 +2342,7 @@
   },
   {
     "date": "2026-05-09",
+    "observation_time_jst": "19:00",
     "rs_jpy_g": 430.72,
     "db_jpy_g": 412.5,
     "mspi_b_jpy_g": null,
@@ -1714,6 +2356,14 @@
       "nanboya_sv1000": 403.0,
       "daikichi_sv1000": 422.0
     },
+    "cleaning": {
+      "rs_components_used": [
+        "tanaka_silver_buy",
+        "nihon_silver_buy",
+        "mitsubishi_silver_buy"
+      ],
+      "rs_outliers_excluded": {}
+    },
     "data_quality": {
       "has_rs": true,
       "has_db": true,
@@ -1726,6 +2376,7 @@
   },
   {
     "date": "2026-05-10",
+    "observation_time_jst": "19:00",
     "rs_jpy_g": 430.72,
     "db_jpy_g": 412.5,
     "mspi_b_jpy_g": null,
@@ -1739,6 +2390,14 @@
       "nanboya_sv1000": 403.0,
       "daikichi_sv1000": 422.0
     },
+    "cleaning": {
+      "rs_components_used": [
+        "tanaka_silver_buy",
+        "nihon_silver_buy",
+        "mitsubishi_silver_buy"
+      ],
+      "rs_outliers_excluded": {}
+    },
     "data_quality": {
       "has_rs": true,
       "has_db": true,
@@ -1751,6 +2410,7 @@
   },
   {
     "date": "2026-05-11",
+    "observation_time_jst": "19:00",
     "rs_jpy_g": 436.55,
     "db_jpy_g": 420.0,
     "mspi_b_jpy_g": 520.33,
@@ -1764,6 +2424,14 @@
       "nanboya_sv1000": 409.0,
       "daikichi_sv1000": 431.0
     },
+    "cleaning": {
+      "rs_components_used": [
+        "tanaka_silver_buy",
+        "nihon_silver_buy",
+        "mitsubishi_silver_buy"
+      ],
+      "rs_outliers_excluded": {}
+    },
     "data_quality": {
       "has_rs": true,
       "has_db": true,
@@ -1776,6 +2444,7 @@
   },
   {
     "date": "2026-05-12",
+    "observation_time_jst": "19:00",
     "rs_jpy_g": 466.03,
     "db_jpy_g": 453.5,
     "mspi_b_jpy_g": 542.0,
@@ -1789,6 +2458,14 @@
       "nanboya_sv1000": 444.0,
       "daikichi_sv1000": 463.0
     },
+    "cleaning": {
+      "rs_components_used": [
+        "tanaka_silver_buy",
+        "nihon_silver_buy",
+        "mitsubishi_silver_buy"
+      ],
+      "rs_outliers_excluded": {}
+    },
     "data_quality": {
       "has_rs": true,
       "has_db": true,
@@ -1801,6 +2478,7 @@
   },
   {
     "date": "2026-05-13",
+    "observation_time_jst": "19:00",
     "rs_jpy_g": 476.3,
     "db_jpy_g": 456.5,
     "mspi_b_jpy_g": 521.0,
@@ -1814,6 +2492,14 @@
       "nanboya_sv1000": 447.0,
       "daikichi_sv1000": 466.0
     },
+    "cleaning": {
+      "rs_components_used": [
+        "tanaka_silver_buy",
+        "nihon_silver_buy",
+        "mitsubishi_silver_buy"
+      ],
+      "rs_outliers_excluded": {}
+    },
     "data_quality": {
       "has_rs": true,
       "has_db": true,
@@ -1826,6 +2512,7 @@
   },
   {
     "date": "2026-05-14",
+    "observation_time_jst": "19:00",
     "rs_jpy_g": 477.36,
     "db_jpy_g": 458.0,
     "mspi_b_jpy_g": 517.33,
@@ -1839,6 +2526,14 @@
       "nanboya_sv1000": 446.0,
       "daikichi_sv1000": 470.0
     },
+    "cleaning": {
+      "rs_components_used": [
+        "tanaka_silver_buy",
+        "nihon_silver_buy",
+        "mitsubishi_silver_buy"
+      ],
+      "rs_outliers_excluded": {}
+    },
     "data_quality": {
       "has_rs": true,
       "has_db": true,
@@ -1851,6 +2546,7 @@
   },
   {
     "date": "2026-05-15",
+    "observation_time_jst": "19:00",
     "rs_jpy_g": 441.25,
     "db_jpy_g": 446.5,
     "mspi_b_jpy_g": 548.0,
@@ -1864,6 +2560,14 @@
       "nanboya_sv1000": 446.0,
       "daikichi_sv1000": 447.0
     },
+    "cleaning": {
+      "rs_components_used": [
+        "tanaka_silver_buy",
+        "nihon_silver_buy",
+        "mitsubishi_silver_buy"
+      ],
+      "rs_outliers_excluded": {}
+    },
     "data_quality": {
       "has_rs": true,
       "has_db": true,
@@ -1876,6 +2580,7 @@
   },
   {
     "date": "2026-05-16",
+    "observation_time_jst": "19:00",
     "rs_jpy_g": 441.25,
     "db_jpy_g": 446.5,
     "mspi_b_jpy_g": null,
@@ -1889,6 +2594,14 @@
       "nanboya_sv1000": 446.0,
       "daikichi_sv1000": 447.0
     },
+    "cleaning": {
+      "rs_components_used": [
+        "tanaka_silver_buy",
+        "nihon_silver_buy",
+        "mitsubishi_silver_buy"
+      ],
+      "rs_outliers_excluded": {}
+    },
     "data_quality": {
       "has_rs": true,
       "has_db": true,
@@ -1901,6 +2614,7 @@
   },
   {
     "date": "2026-05-17",
+    "observation_time_jst": "19:00",
     "rs_jpy_g": 441.25,
     "db_jpy_g": 446.5,
     "mspi_b_jpy_g": null,
@@ -1914,6 +2628,14 @@
       "nanboya_sv1000": 446.0,
       "daikichi_sv1000": 447.0
     },
+    "cleaning": {
+      "rs_components_used": [
+        "tanaka_silver_buy",
+        "nihon_silver_buy",
+        "mitsubishi_silver_buy"
+      ],
+      "rs_outliers_excluded": {}
+    },
     "data_quality": {
       "has_rs": true,
       "has_db": true,
@@ -1926,6 +2648,7 @@
   },
   {
     "date": "2026-05-18",
+    "observation_time_jst": "19:00",
     "rs_jpy_g": 412.9,
     "db_jpy_g": 396.0,
     "mspi_b_jpy_g": 481.67,
@@ -1939,6 +2662,14 @@
       "nanboya_sv1000": 387.0,
       "daikichi_sv1000": 405.0
     },
+    "cleaning": {
+      "rs_components_used": [
+        "tanaka_silver_buy",
+        "nihon_silver_buy",
+        "mitsubishi_silver_buy"
+      ],
+      "rs_outliers_excluded": {}
+    },
     "data_quality": {
       "has_rs": true,
       "has_db": true,
@@ -1951,6 +2682,7 @@
   },
   {
     "date": "2026-05-19",
+    "observation_time_jst": "19:00",
     "rs_jpy_g": 422.14,
     "db_jpy_g": 411.0,
     "mspi_b_jpy_g": 525.33,
@@ -1964,6 +2696,14 @@
       "nanboya_sv1000": 403.0,
       "daikichi_sv1000": 419.0
     },
+    "cleaning": {
+      "rs_components_used": [
+        "tanaka_silver_buy",
+        "nihon_silver_buy",
+        "mitsubishi_silver_buy"
+      ],
+      "rs_outliers_excluded": {}
+    },
     "data_quality": {
       "has_rs": true,
       "has_db": true,
@@ -1976,6 +2716,7 @@
   },
   {
     "date": "2026-05-20",
+    "observation_time_jst": "19:00",
     "rs_jpy_g": 410.96,
     "db_jpy_g": 393.0,
     "mspi_b_jpy_g": 539.67,
@@ -1989,6 +2730,14 @@
       "nanboya_sv1000": 384.0,
       "daikichi_sv1000": 402.0
     },
+    "cleaning": {
+      "rs_components_used": [
+        "tanaka_silver_buy",
+        "nihon_silver_buy",
+        "mitsubishi_silver_buy"
+      ],
+      "rs_outliers_excluded": {}
+    },
     "data_quality": {
       "has_rs": true,
       "has_db": true,
@@ -2001,6 +2750,7 @@
   },
   {
     "date": "2026-05-21",
+    "observation_time_jst": "19:00",
     "rs_jpy_g": 414.44,
     "db_jpy_g": 400.0,
     "mspi_b_jpy_g": 540.67,
@@ -2014,6 +2764,14 @@
       "nanboya_sv1000": 391.0,
       "daikichi_sv1000": 409.0
     },
+    "cleaning": {
+      "rs_components_used": [
+        "tanaka_silver_buy",
+        "nihon_silver_buy",
+        "mitsubishi_silver_buy"
+      ],
+      "rs_outliers_excluded": {}
+    },
     "data_quality": {
       "has_rs": true,
       "has_db": true,
@@ -2026,6 +2784,7 @@
   },
   {
     "date": "2026-05-22",
+    "observation_time_jst": "19:00",
     "rs_jpy_g": 419.25,
     "db_jpy_g": 405.0,
     "mspi_b_jpy_g": 442.5,
@@ -2039,6 +2798,14 @@
       "nanboya_sv1000": 397.0,
       "daikichi_sv1000": 413.0
     },
+    "cleaning": {
+      "rs_components_used": [
+        "tanaka_silver_buy",
+        "nihon_silver_buy",
+        "mitsubishi_silver_buy"
+      ],
+      "rs_outliers_excluded": {}
+    },
     "data_quality": {
       "has_rs": true,
       "has_db": true,
@@ -2051,6 +2818,7 @@
   },
   {
     "date": "2026-05-23",
+    "observation_time_jst": "19:00",
     "rs_jpy_g": 419.25,
     "db_jpy_g": 405.0,
     "mspi_b_jpy_g": null,
@@ -2064,6 +2832,14 @@
       "nanboya_sv1000": 397.0,
       "daikichi_sv1000": 413.0
     },
+    "cleaning": {
+      "rs_components_used": [
+        "tanaka_silver_buy",
+        "nihon_silver_buy",
+        "mitsubishi_silver_buy"
+      ],
+      "rs_outliers_excluded": {}
+    },
     "data_quality": {
       "has_rs": true,
       "has_db": true,
@@ -2076,6 +2852,7 @@
   },
   {
     "date": "2026-05-24",
+    "observation_time_jst": "19:00",
     "rs_jpy_g": 419.25,
     "db_jpy_g": 405.0,
     "mspi_b_jpy_g": null,
@@ -2089,6 +2866,14 @@
       "nanboya_sv1000": 397.0,
       "daikichi_sv1000": 413.0
     },
+    "cleaning": {
+      "rs_components_used": [
+        "tanaka_silver_buy",
+        "nihon_silver_buy",
+        "mitsubishi_silver_buy"
+      ],
+      "rs_outliers_excluded": {}
+    },
     "data_quality": {
       "has_rs": true,
       "has_db": true,
@@ -2101,6 +2886,7 @@
   },
   {
     "date": "2026-05-25",
+    "observation_time_jst": "19:00",
     "rs_jpy_g": 429.07,
     "db_jpy_g": 415.5,
     "mspi_b_jpy_g": 512.5,
@@ -2114,6 +2900,14 @@
       "nanboya_sv1000": 407.0,
       "daikichi_sv1000": 424.0
     },
+    "cleaning": {
+      "rs_components_used": [
+        "tanaka_silver_buy",
+        "nihon_silver_buy",
+        "mitsubishi_silver_buy"
+      ],
+      "rs_outliers_excluded": {}
+    },
     "data_quality": {
       "has_rs": true,
       "has_db": true,
@@ -2126,6 +2920,7 @@
   },
   {
     "date": "2026-05-26",
+    "observation_time_jst": "19:00",
     "rs_jpy_g": 422.31,
     "db_jpy_g": 408.5,
     "mspi_b_jpy_g": 506.0,
@@ -2139,6 +2934,14 @@
       "nanboya_sv1000": 400.0,
       "daikichi_sv1000": 417.0
     },
+    "cleaning": {
+      "rs_components_used": [
+        "tanaka_silver_buy",
+        "nihon_silver_buy",
+        "mitsubishi_silver_buy"
+      ],
+      "rs_outliers_excluded": {}
+    },
     "data_quality": {
       "has_rs": true,
       "has_db": true,
@@ -2151,6 +2954,7 @@
   },
   {
     "date": "2026-05-27",
+    "observation_time_jst": "19:00",
     "rs_jpy_g": 420.49,
     "db_jpy_g": 410.0,
     "mspi_b_jpy_g": 514.0,
@@ -2164,6 +2968,14 @@
       "nanboya_sv1000": 402.0,
       "daikichi_sv1000": 418.0
     },
+    "cleaning": {
+      "rs_components_used": [
+        "tanaka_silver_buy",
+        "nihon_silver_buy",
+        "mitsubishi_silver_buy"
+      ],
+      "rs_outliers_excluded": {}
+    },
     "data_quality": {
       "has_rs": true,
       "has_db": true,
@@ -2176,6 +2988,7 @@
   },
   {
     "date": "2026-05-28",
+    "observation_time_jst": "19:00",
     "rs_jpy_g": 402.78,
     "db_jpy_g": 403.0,
     "mspi_b_jpy_g": 487.33,
@@ -2189,6 +3002,14 @@
       "nanboya_sv1000": 402.0,
       "daikichi_sv1000": 404.0
     },
+    "cleaning": {
+      "rs_components_used": [
+        "tanaka_silver_buy",
+        "nihon_silver_buy",
+        "mitsubishi_silver_buy"
+      ],
+      "rs_outliers_excluded": {}
+    },
     "data_quality": {
       "has_rs": true,
       "has_db": true,
@@ -2201,6 +3022,7 @@
   },
   {
     "date": "2026-05-29",
+    "observation_time_jst": "19:00",
     "rs_jpy_g": 415.47,
     "db_jpy_g": 403.0,
     "mspi_b_jpy_g": 528.0,
@@ -2214,6 +3036,14 @@
       "nanboya_sv1000": 395.0,
       "daikichi_sv1000": 411.0
     },
+    "cleaning": {
+      "rs_components_used": [
+        "tanaka_silver_buy",
+        "nihon_silver_buy",
+        "mitsubishi_silver_buy"
+      ],
+      "rs_outliers_excluded": {}
+    },
     "data_quality": {
       "has_rs": true,
       "has_db": true,
@@ -2226,6 +3056,7 @@
   },
   {
     "date": "2026-05-30",
+    "observation_time_jst": "19:00",
     "rs_jpy_g": 415.47,
     "db_jpy_g": 403.0,
     "mspi_b_jpy_g": null,
@@ -2239,6 +3070,14 @@
       "nanboya_sv1000": 395.0,
       "daikichi_sv1000": 411.0
     },
+    "cleaning": {
+      "rs_components_used": [
+        "tanaka_silver_buy",
+        "nihon_silver_buy",
+        "mitsubishi_silver_buy"
+      ],
+      "rs_outliers_excluded": {}
+    },
     "data_quality": {
       "has_rs": true,
       "has_db": true,
@@ -2251,6 +3090,7 @@
   },
   {
     "date": "2026-05-31",
+    "observation_time_jst": "19:00",
     "rs_jpy_g": 415.47,
     "db_jpy_g": 403.0,
     "mspi_b_jpy_g": null,
@@ -2264,6 +3104,14 @@
       "nanboya_sv1000": 395.0,
       "daikichi_sv1000": 411.0
     },
+    "cleaning": {
+      "rs_components_used": [
+        "tanaka_silver_buy",
+        "nihon_silver_buy",
+        "mitsubishi_silver_buy"
+      ],
+      "rs_outliers_excluded": {}
+    },
     "data_quality": {
       "has_rs": true,
       "has_db": true,
@@ -2276,6 +3124,7 @@
   },
   {
     "date": "2026-06-01",
+    "observation_time_jst": "19:00",
     "rs_jpy_g": 415.69,
     "db_jpy_g": 402.0,
     "mspi_b_jpy_g": 490.0,
@@ -2289,6 +3138,14 @@
       "nanboya_sv1000": 395.0,
       "daikichi_sv1000": 409.0
     },
+    "cleaning": {
+      "rs_components_used": [
+        "tanaka_silver_buy",
+        "nihon_silver_buy",
+        "mitsubishi_silver_buy"
+      ],
+      "rs_outliers_excluded": {}
+    },
     "data_quality": {
       "has_rs": true,
       "has_db": true,
@@ -2301,6 +3158,7 @@
   },
   {
     "date": "2026-06-02",
+    "observation_time_jst": "19:00",
     "rs_jpy_g": 418.44,
     "db_jpy_g": 400.5,
     "mspi_b_jpy_g": 494.0,
@@ -2314,6 +3172,14 @@
       "nanboya_sv1000": 391.0,
       "daikichi_sv1000": 410.0
     },
+    "cleaning": {
+      "rs_components_used": [
+        "tanaka_silver_buy",
+        "nihon_silver_buy",
+        "mitsubishi_silver_buy"
+      ],
+      "rs_outliers_excluded": {}
+    },
     "data_quality": {
       "has_rs": true,
       "has_db": true,
@@ -2326,6 +3192,7 @@
   },
   {
     "date": "2026-06-03",
+    "observation_time_jst": "19:00",
     "rs_jpy_g": 411.4,
     "db_jpy_g": 399.0,
     "mspi_b_jpy_g": 491.0,
@@ -2339,6 +3206,14 @@
       "nanboya_sv1000": 391.0,
       "daikichi_sv1000": 407.0
     },
+    "cleaning": {
+      "rs_components_used": [
+        "tanaka_silver_buy",
+        "nihon_silver_buy",
+        "mitsubishi_silver_buy"
+      ],
+      "rs_outliers_excluded": {}
+    },
     "data_quality": {
       "has_rs": true,
       "has_db": true,
@@ -2351,6 +3226,7 @@
   },
   {
     "date": "2026-06-04",
+    "observation_time_jst": "19:00",
     "rs_jpy_g": 402.12,
     "db_jpy_g": 389.0,
     "mspi_b_jpy_g": 502.0,
@@ -2364,6 +3240,14 @@
       "nanboya_sv1000": 379.0,
       "daikichi_sv1000": 399.0
     },
+    "cleaning": {
+      "rs_components_used": [
+        "tanaka_silver_buy",
+        "nihon_silver_buy",
+        "mitsubishi_silver_buy"
+      ],
+      "rs_outliers_excluded": {}
+    },
     "data_quality": {
       "has_rs": true,
       "has_db": true,
@@ -2376,6 +3260,7 @@
   },
   {
     "date": "2026-06-05",
+    "observation_time_jst": "19:00",
     "rs_jpy_g": 404.47,
     "db_jpy_g": 388.5,
     "mspi_b_jpy_g": 533.0,
@@ -2389,6 +3274,14 @@
       "nanboya_sv1000": 380.0,
       "daikichi_sv1000": 397.0
     },
+    "cleaning": {
+      "rs_components_used": [
+        "tanaka_silver_buy",
+        "nihon_silver_buy",
+        "mitsubishi_silver_buy"
+      ],
+      "rs_outliers_excluded": {}
+    },
     "data_quality": {
       "has_rs": true,
       "has_db": true,
@@ -2401,6 +3294,7 @@
   },
   {
     "date": "2026-06-06",
+    "observation_time_jst": "19:00",
     "rs_jpy_g": 404.47,
     "db_jpy_g": 388.5,
     "mspi_b_jpy_g": null,
@@ -2414,6 +3308,14 @@
       "nanboya_sv1000": 380.0,
       "daikichi_sv1000": 397.0
     },
+    "cleaning": {
+      "rs_components_used": [
+        "tanaka_silver_buy",
+        "nihon_silver_buy",
+        "mitsubishi_silver_buy"
+      ],
+      "rs_outliers_excluded": {}
+    },
     "data_quality": {
       "has_rs": true,
       "has_db": true,
@@ -2426,6 +3328,7 @@
   },
   {
     "date": "2026-06-07",
+    "observation_time_jst": "19:00",
     "rs_jpy_g": 404.47,
     "db_jpy_g": 388.5,
     "mspi_b_jpy_g": null,
@@ -2439,6 +3342,14 @@
       "nanboya_sv1000": 380.0,
       "daikichi_sv1000": 397.0
     },
+    "cleaning": {
+      "rs_components_used": [
+        "tanaka_silver_buy",
+        "nihon_silver_buy",
+        "mitsubishi_silver_buy"
+      ],
+      "rs_outliers_excluded": {}
+    },
     "data_quality": {
       "has_rs": true,
       "has_db": true,
@@ -2451,6 +3362,7 @@
   },
   {
     "date": "2026-06-08",
+    "observation_time_jst": "19:00",
     "rs_jpy_g": 370.19,
     "db_jpy_g": 372.0,
     "mspi_b_jpy_g": 480.33,
@@ -2464,6 +3376,14 @@
       "nanboya_sv1000": 374.0,
       "daikichi_sv1000": 370.0
     },
+    "cleaning": {
+      "rs_components_used": [
+        "tanaka_silver_buy",
+        "nihon_silver_buy",
+        "mitsubishi_silver_buy"
+      ],
+      "rs_outliers_excluded": {}
+    },
     "data_quality": {
       "has_rs": true,
       "has_db": true,
@@ -2476,6 +3396,7 @@
   },
   {
     "date": "2026-06-09",
+    "observation_time_jst": "19:00",
     "rs_jpy_g": 372.75,
     "db_jpy_g": 358.5,
     "mspi_b_jpy_g": 500.0,
@@ -2489,6 +3410,14 @@
       "nanboya_sv1000": 350.0,
       "daikichi_sv1000": 367.0
     },
+    "cleaning": {
+      "rs_components_used": [
+        "tanaka_silver_buy",
+        "nihon_silver_buy",
+        "mitsubishi_silver_buy"
+      ],
+      "rs_outliers_excluded": {}
+    },
     "data_quality": {
       "has_rs": true,
       "has_db": true,
@@ -2501,6 +3430,7 @@
   },
   {
     "date": "2026-06-10",
+    "observation_time_jst": "19:00",
     "rs_jpy_g": 355.48,
     "db_jpy_g": 351.5,
     "mspi_b_jpy_g": 468.67,
@@ -2514,6 +3444,14 @@
       "nanboya_sv1000": 350.0,
       "daikichi_sv1000": 353.0
     },
+    "cleaning": {
+      "rs_components_used": [
+        "tanaka_silver_buy",
+        "nihon_silver_buy",
+        "mitsubishi_silver_buy"
+      ],
+      "rs_outliers_excluded": {}
+    },
     "data_quality": {
       "has_rs": true,
       "has_db": true,
@@ -2526,6 +3464,7 @@
   },
   {
     "date": "2026-06-11",
+    "observation_time_jst": "19:00",
     "rs_jpy_g": 351.49,
     "db_jpy_g": 335.0,
     "mspi_b_jpy_g": 471.0,
@@ -2539,6 +3478,14 @@
       "nanboya_sv1000": 327.0,
       "daikichi_sv1000": 343.0
     },
+    "cleaning": {
+      "rs_components_used": [
+        "tanaka_silver_buy",
+        "nihon_silver_buy",
+        "mitsubishi_silver_buy"
+      ],
+      "rs_outliers_excluded": {}
+    },
     "data_quality": {
       "has_rs": true,
       "has_db": true,
@@ -2551,6 +3498,7 @@
   },
   {
     "date": "2026-06-12",
+    "observation_time_jst": "19:00",
     "rs_jpy_g": 368.02,
     "db_jpy_g": 346.0,
     "mspi_b_jpy_g": 495.67,
@@ -2564,6 +3512,14 @@
       "nanboya_sv1000": 327.0,
       "daikichi_sv1000": 365.0
     },
+    "cleaning": {
+      "rs_components_used": [
+        "tanaka_silver_buy",
+        "nihon_silver_buy",
+        "mitsubishi_silver_buy"
+      ],
+      "rs_outliers_excluded": {}
+    },
     "data_quality": {
       "has_rs": true,
       "has_db": true,
@@ -2576,6 +3532,7 @@
   },
   {
     "date": "2026-06-13",
+    "observation_time_jst": "19:00",
     "rs_jpy_g": 368.02,
     "db_jpy_g": 357.5,
     "mspi_b_jpy_g": null,
@@ -2589,6 +3546,14 @@
       "nanboya_sv1000": 350.0,
       "daikichi_sv1000": 365.0
     },
+    "cleaning": {
+      "rs_components_used": [
+        "tanaka_silver_buy",
+        "nihon_silver_buy",
+        "mitsubishi_silver_buy"
+      ],
+      "rs_outliers_excluded": {}
+    },
     "data_quality": {
       "has_rs": true,
       "has_db": true,
@@ -2601,6 +3566,7 @@
   },
   {
     "date": "2026-06-14",
+    "observation_time_jst": "19:00",
     "rs_jpy_g": 368.02,
     "db_jpy_g": 357.5,
     "mspi_b_jpy_g": null,
@@ -2614,6 +3580,14 @@
       "nanboya_sv1000": 350.0,
       "daikichi_sv1000": 365.0
     },
+    "cleaning": {
+      "rs_components_used": [
+        "tanaka_silver_buy",
+        "nihon_silver_buy",
+        "mitsubishi_silver_buy"
+      ],
+      "rs_outliers_excluded": {}
+    },
     "data_quality": {
       "has_rs": true,
       "has_db": true,
@@ -2626,6 +3600,7 @@
   },
   {
     "date": "2026-06-15",
+    "observation_time_jst": "19:00",
     "rs_jpy_g": 387.64,
     "db_jpy_g": 373.0,
     "mspi_b_jpy_g": 492.67,
@@ -2639,6 +3614,14 @@
       "nanboya_sv1000": 365.0,
       "daikichi_sv1000": 381.0
     },
+    "cleaning": {
+      "rs_components_used": [
+        "tanaka_silver_buy",
+        "nihon_silver_buy",
+        "mitsubishi_silver_buy"
+      ],
+      "rs_outliers_excluded": {}
+    },
     "data_quality": {
       "has_rs": true,
       "has_db": true,
@@ -2651,6 +3634,7 @@
   },
   {
     "date": "2026-06-16",
+    "observation_time_jst": "19:00",
     "rs_jpy_g": 385.77,
     "db_jpy_g": 368.5,
     "mspi_b_jpy_g": 511.0,
@@ -2664,6 +3648,14 @@
       "nanboya_sv1000": 361.0,
       "daikichi_sv1000": 376.0
     },
+    "cleaning": {
+      "rs_components_used": [
+        "tanaka_silver_buy",
+        "nihon_silver_buy",
+        "mitsubishi_silver_buy"
+      ],
+      "rs_outliers_excluded": {}
+    },
     "data_quality": {
       "has_rs": true,
       "has_db": true,
@@ -2676,6 +3668,7 @@
   },
   {
     "date": "2026-06-17",
+    "observation_time_jst": "19:00",
     "rs_jpy_g": 387.46,
     "db_jpy_g": 371.0,
     "mspi_b_jpy_g": 506.0,
@@ -2689,6 +3682,14 @@
       "nanboya_sv1000": 361.0,
       "daikichi_sv1000": 381.0
     },
+    "cleaning": {
+      "rs_components_used": [
+        "tanaka_silver_buy",
+        "nihon_silver_buy",
+        "mitsubishi_silver_buy"
+      ],
+      "rs_outliers_excluded": {}
+    },
     "data_quality": {
       "has_rs": true,
       "has_db": true,
@@ -2701,6 +3702,7 @@
   },
   {
     "date": "2026-06-18",
+    "observation_time_jst": "19:00",
     "rs_jpy_g": 380.82,
     "db_jpy_g": 368.5,
     "mspi_b_jpy_g": 454.0,
@@ -2714,6 +3716,14 @@
       "nanboya_sv1000": 360.0,
       "daikichi_sv1000": 377.0
     },
+    "cleaning": {
+      "rs_components_used": [
+        "tanaka_silver_buy",
+        "nihon_silver_buy",
+        "mitsubishi_silver_buy"
+      ],
+      "rs_outliers_excluded": {}
+    },
     "data_quality": {
       "has_rs": true,
       "has_db": true,
@@ -2726,6 +3736,7 @@
   },
   {
     "date": "2026-06-19",
+    "observation_time_jst": "19:00",
     "rs_jpy_g": 356.55,
     "db_jpy_g": 358.5,
     "mspi_b_jpy_g": 480.5,
@@ -2739,6 +3750,14 @@
       "nanboya_sv1000": 360.0,
       "daikichi_sv1000": 357.0
     },
+    "cleaning": {
+      "rs_components_used": [
+        "tanaka_silver_buy",
+        "nihon_silver_buy",
+        "mitsubishi_silver_buy"
+      ],
+      "rs_outliers_excluded": {}
+    },
     "data_quality": {
       "has_rs": true,
       "has_db": true,
@@ -2751,6 +3770,7 @@
   },
   {
     "date": "2026-06-20",
+    "observation_time_jst": "19:00",
     "rs_jpy_g": 356.55,
     "db_jpy_g": 358.5,
     "mspi_b_jpy_g": null,
@@ -2764,6 +3784,14 @@
       "nanboya_sv1000": 360.0,
       "daikichi_sv1000": 357.0
     },
+    "cleaning": {
+      "rs_components_used": [
+        "tanaka_silver_buy",
+        "nihon_silver_buy",
+        "mitsubishi_silver_buy"
+      ],
+      "rs_outliers_excluded": {}
+    },
     "data_quality": {
       "has_rs": true,
       "has_db": true,
@@ -2776,6 +3804,7 @@
   },
   {
     "date": "2026-06-21",
+    "observation_time_jst": "19:00",
     "rs_jpy_g": 356.55,
     "db_jpy_g": 358.5,
     "mspi_b_jpy_g": null,
@@ -2789,6 +3818,14 @@
       "nanboya_sv1000": 360.0,
       "daikichi_sv1000": 357.0
     },
+    "cleaning": {
+      "rs_components_used": [
+        "tanaka_silver_buy",
+        "nihon_silver_buy",
+        "mitsubishi_silver_buy"
+      ],
+      "rs_outliers_excluded": {}
+    },
     "data_quality": {
       "has_rs": true,
       "has_db": true,
@@ -2801,6 +3838,7 @@
   },
   {
     "date": "2026-06-22",
+    "observation_time_jst": "19:00",
     "rs_jpy_g": 367.44,
     "db_jpy_g": 348.5,
     "mspi_b_jpy_g": 452.5,
@@ -2814,6 +3852,14 @@
       "daikichi_sv1000": 357.0,
       "nanboya_sv1000": 340.0
     },
+    "cleaning": {
+      "rs_components_used": [
+        "tanaka_silver_buy",
+        "nihon_silver_buy",
+        "mitsubishi_silver_buy"
+      ],
+      "rs_outliers_excluded": {}
+    },
     "data_quality": {
       "has_rs": true,
       "has_db": true,
@@ -2823,11 +3869,11 @@
     },
     "source": "live_jpmi_history",
     "git_commit": "e1b879b907fed22ac60218ce1f7c7784484a56cf",
-    "observation_time_jst": "19:00",
     "updated_at_utc": "2026-06-22T10:49:01+00:00"
   },
   {
     "date": "2026-06-23",
+    "observation_time_jst": "19:00",
     "rs_jpy_g": 348.81,
     "db_jpy_g": 346.0,
     "mspi_b_jpy_g": 472.0,
@@ -2841,6 +3887,14 @@
       "daikichi_sv1000": 353.0,
       "nanboya_sv1000": 339.0
     },
+    "cleaning": {
+      "rs_components_used": [
+        "tanaka_silver_buy",
+        "nihon_silver_buy",
+        "mitsubishi_silver_buy"
+      ],
+      "rs_outliers_excluded": {}
+    },
     "data_quality": {
       "has_rs": true,
       "has_db": true,
@@ -2850,11 +3904,11 @@
     },
     "source": "live_jpmi_history",
     "git_commit": "ac29e851da96474311000278841f2e0927b841cf",
-    "observation_time_jst": "19:00",
     "updated_at_utc": "2026-06-23T11:50:31+00:00"
   },
   {
     "date": "2026-06-24",
+    "observation_time_jst": "19:00",
     "rs_jpy_g": 340.08,
     "db_jpy_g": 327.0,
     "mspi_b_jpy_g": 457.5,
@@ -2868,6 +3922,14 @@
       "daikichi_sv1000": 334.0,
       "nanboya_sv1000": 320.0
     },
+    "cleaning": {
+      "rs_components_used": [
+        "tanaka_silver_buy",
+        "nihon_silver_buy",
+        "mitsubishi_silver_buy"
+      ],
+      "rs_outliers_excluded": {}
+    },
     "data_quality": {
       "has_rs": true,
       "has_db": true,
@@ -2876,8 +3938,41 @@
       "jpmi_component_count": 3
     },
     "source": "live_jpmi_history",
-    "git_commit": "f3d1e190240917baa6ee015bbdddab16dc476bec",
-    "observation_time_jst": "19:00",
+    "git_commit": "9005090d2656e57f93bcdcd4629422c560fc835f",
     "updated_at_utc": "2026-06-24T12:01:14+00:00"
+  },
+  {
+    "date": "2026-06-25",
+    "observation_time_jst": "19:00",
+    "rs_jpy_g": 340.08,
+    "db_jpy_g": 327.0,
+    "mspi_b_jpy_g": 472.0,
+    "comex_jpy_g": 300.02,
+    "jpmi_ag_jpy_g": 355.94,
+    "premium_pct": 18.64,
+    "components": {
+      "tanaka_silver_buy": 336.49,
+      "nihon_silver_buy": 342.76,
+      "mitsubishi_silver_buy": 341.0,
+      "nanboya_sv1000": 320.0,
+      "daikichi_sv1000": 334.0
+    },
+    "cleaning": {
+      "rs_components_used": [
+        "tanaka_silver_buy",
+        "nihon_silver_buy",
+        "mitsubishi_silver_buy"
+      ],
+      "rs_outliers_excluded": {}
+    },
+    "data_quality": {
+      "has_rs": true,
+      "has_db": true,
+      "has_mspi_b": true,
+      "has_comex": true,
+      "jpmi_component_count": 3
+    },
+    "source": "rebuilt_from_git_prices_json",
+    "git_commit": "d94dc7f4bb453b808c783e9a9fac57d4cfb0f305"
   }
 ]
