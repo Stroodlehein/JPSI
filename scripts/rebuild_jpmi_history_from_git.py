@@ -1,6 +1,7 @@
 import json
 import subprocess
 from statistics import median
+from datetime import datetime, timezone, timedelta
 
 PRICES_FILE = "prices.json"
 PRICES_HISTORY_FILE = "prices-history.json"
@@ -35,6 +36,10 @@ def valid_price(value):
 def round_or_none(value):
     value = safe_float(value)
     return round(value, 2) if valid_price(value) else None
+
+
+def current_jst_date():
+    return (datetime.now(timezone.utc) + timedelta(hours=9)).date().isoformat()
 
 
 def clean_refinery_values(values):
@@ -239,11 +244,16 @@ def load_live_real_rows():
 def main():
     print("Rebuilding JPMI history from Git commit history with outlier cleaning...")
 
+    today_jst = current_jst_date()
+
     rs_db_history = build_rs_db_from_git()
     market_history = build_market_history()
     live_rows = load_live_real_rows()
 
-    all_dates = sorted(set(rs_db_history) | set(market_history) | set(live_rows))
+    all_dates = sorted(
+        date for date in (set(rs_db_history) | set(market_history) | set(live_rows))
+        if date < today_jst
+    )
 
     rebuilt = []
 
@@ -302,6 +312,7 @@ def main():
         json.dump(rebuilt, f, ensure_ascii=False, indent=2)
 
     print(f"Wrote {len(rebuilt)} rows to {OUTPUT_FILE}")
+    print(f"Excluded current JST date from rebuild: {today_jst}")
     print("This script does NOT overwrite jpmi-history.json.")
 
 
