@@ -292,25 +292,26 @@
           <small>Japan physical silver</small>
         </div>
         <div class="stat">
-          <span>COMEX Equivalent</span>
-          <strong>Loading</strong>
-          <small>Paper benchmark</small>
-        </div>
-        <div class="stat">
-          <span>Physical Premium</span>
+          <span>Latest Premium</span>
           <strong>Loading</strong>
           <small>JPMI vs COMEX</small>
         </div>
         <div class="stat">
-          <span>Observations</span>
+          <span>Dataset Coverage</span>
           <strong>Loading</strong>
-          <small>Trading days recorded</small>
+          <small>Historical range</small>
+        </div>
+        <div class="stat">
+          <span>Trading Days</span>
+          <strong>Loading</strong>
+          <small>Observations recorded</small>
         </div>
       </div>
 
       <div class="chart-area">
         <div class="chart-controls">
-          <button class="chart-toggle active" data-view="jpmi">JPMI-AG</button>
+          <button class="chart-toggle active" data-view="default">JPMI vs COMEX</button>
+          <button class="chart-toggle" data-view="jpmi">JPMI-AG</button>
           <button class="chart-toggle" data-view="rs">RS</button>
           <button class="chart-toggle" data-view="db">DB</button>
           <button class="chart-toggle" data-view="mspi">Mercari</button>
@@ -326,19 +327,19 @@
         <div class="premium-footer">
           <div class="footer-item">
             <strong>Loading</strong>
-            <span>Recorded since March 2026</span>
+            <span>Dataset coverage</span>
           </div>
           <div class="footer-item">
-            <strong>Updated Daily</strong>
-            <span>Refiners, dealers, and market data</span>
+            <strong>Loading</strong>
+            <span>Last observation</span>
           </div>
           <div class="footer-item">
             <strong>CSV Export</strong>
             <span>Downloadable premium dataset</span>
           </div>
           <div class="footer-item">
-            <strong>Monthly Research</strong>
-            <span>Japan physical metals notes</span>
+            <strong>19:00 JST</strong>
+            <span>Daily official snapshot</span>
           </div>
         </div>
 
@@ -356,58 +357,35 @@
     const ctx = document.getElementById("jpmiPremiumChart");
     let premiumChart;
     let premiumRows = [];
+    let currentView = "default";
 
-    const views = {
-      jpmi: [
-        { key: "jpmi_ag_jpy_g", label: "JPMI-AG", color: "#4da6ff", fill: true, fillColor: "rgba(77, 166, 255, 0.12)", axis: "price" }
-      ],
-      rs: [
-        { key: "rs_jpy_g", label: "RS Refinery", color: "#22c55e", fill: true, fillColor: "rgba(34, 197, 94, 0.12)", axis: "price" }
-      ],
-      db: [
-        { key: "db_jpy_g", label: "DB Dealer Bid", color: "#f59e0b", fill: true, fillColor: "rgba(245, 158, 11, 0.12)", axis: "price" }
-      ],
-      mspi: [
-        { key: "mspi_b_jpy_g", label: "Mercari / MSPI-B", color: "#a855f7", fill: true, fillColor: "rgba(168, 85, 247, 0.12)", axis: "price" }
-      ],
-      comex: [
-        { key: "comex_jpy_g", label: "COMEX Equivalent", color: "#c7c7c7", fill: true, fillColor: "rgba(199, 199, 199, 0.10)", axis: "price", dashed: true }
-      ],
-      premium: [
-        { key: "premium_pct", label: "Physical Premium", color: "#f97316", fill: true, fillColor: "rgba(249, 115, 22, 0.12)", axis: "percent" }
-      ],
-      all: [
-        { key: "jpmi_ag_jpy_g", label: "JPMI-AG", color: "#4da6ff", fill: false, fillColor: "rgba(77, 166, 255, 0)", axis: "price" },
-        { key: "rs_jpy_g", label: "RS", color: "#22c55e", fill: false, fillColor: "rgba(34, 197, 94, 0)", axis: "price" },
-        { key: "db_jpy_g", label: "DB", color: "#f59e0b", fill: false, fillColor: "rgba(245, 158, 11, 0)", axis: "price" },
-        { key: "mspi_b_jpy_g", label: "Mercari", color: "#a855f7", fill: false, fillColor: "rgba(168, 85, 247, 0)", axis: "price" },
-        { key: "comex_jpy_g", label: "COMEX", color: "#c7c7c7", fill: false, fillColor: "rgba(199, 199, 199, 0)", axis: "price", dashed: true }
-      ]
+    const seriesConfig = {
+      jpmi: { key: "jpmi_ag_jpy_g", label: "JPMI-AG", color: "#4da6ff", fillColor: "rgba(77, 166, 255, 0.12)" },
+      rs: { key: "rs_jpy_g", label: "RS Refinery", color: "#22c55e", fillColor: "rgba(34, 197, 94, 0.12)" },
+      db: { key: "db_jpy_g", label: "DB Dealer Bid", color: "#f59e0b", fillColor: "rgba(245, 158, 11, 0.12)" },
+      mspi: { key: "mspi_b_jpy_g", label: "Mercari / MSPI-B", color: "#a855f7", fillColor: "rgba(168, 85, 247, 0.12)" },
+      comex: { key: "comex_jpy_g", label: "COMEX Equivalent", color: "#c7c7c7", fillColor: "rgba(199, 199, 199, 0)" },
+      premium: { key: "premium_pct", label: "Physical Premium %", color: "#38bdf8", fillColor: "rgba(56, 189, 248, 0.12)" }
     };
 
-    function toNumber(value) {
-      if (value === null || value === undefined || value === "") return null;
-      const number = Number(value);
-      return Number.isFinite(number) ? number : null;
-    }
+    const views = {
+      default: ["jpmi", "comex"],
+      jpmi: ["jpmi"],
+      rs: ["rs"],
+      db: ["db"],
+      mspi: ["mspi"],
+      comex: ["comex"],
+      premium: ["premium"],
+      all: ["jpmi", "rs", "db", "mspi", "comex"]
+    };
 
-    function normalizeRows(rows) {
-      return rows
-        .filter(row => row && row.date)
-        .map(row => ({
-          ...row,
-          jpmi_ag_jpy_g: toNumber(row.jpmi_ag_jpy_g),
-          rs_jpy_g: toNumber(row.rs_jpy_g),
-          db_jpy_g: toNumber(row.db_jpy_g),
-          mspi_b_jpy_g: toNumber(row.mspi_b_jpy_g),
-          comex_jpy_g: toNumber(row.comex_jpy_g),
-          premium_pct: toNumber(row.premium_pct)
-        }))
-        .sort((a, b) => new Date(a.date) - new Date(b.date));
+    function parseDate(dateString) {
+      const [year, month, day] = String(dateString).split("-").map(Number);
+      return new Date(year, month - 1, day);
     }
 
     function formatLabel(dateString) {
-      const date = new Date(dateString + "T00:00:00");
+      const date = parseDate(dateString);
       return date.toLocaleDateString("en-US", {
         month: "short",
         day: "2-digit"
@@ -415,11 +393,19 @@
     }
 
     function formatFullDate(dateString) {
-      const date = new Date(dateString + "T00:00:00");
+      const date = parseDate(dateString);
       return date.toLocaleDateString("en-US", {
         month: "short",
-        day: "2-digit",
+        day: "numeric",
         year: "numeric"
+      });
+    }
+
+    function formatShortDate(dateString) {
+      const date = parseDate(dateString);
+      return date.toLocaleDateString("en-US", {
+        month: "short",
+        day: "numeric"
       });
     }
 
@@ -430,42 +416,50 @@
 
     function percent(value) {
       if (value === null || value === undefined || Number.isNaN(Number(value))) return "N/A";
-      return (Number(value) >= 0 ? "+" : "") + Number(value).toFixed(1) + "%";
+      return (Number(value) >= 0 ? "+" : "") + Number(value).toFixed(2) + "%";
+    }
+
+    function hasValue(row, key) {
+      const value = row?.[key];
+      return value !== null && value !== undefined && !Number.isNaN(Number(value));
     }
 
     function findLatestWithValue(key) {
       for (let i = premiumRows.length - 1; i >= 0; i--) {
-        const value = premiumRows[i][key];
-        if (value !== null && value !== undefined && !Number.isNaN(Number(value))) {
+        if (hasValue(premiumRows[i], key)) {
           return premiumRows[i];
         }
       }
-      return premiumRows[premiumRows.length - 1] || {};
+      return premiumRows[premiumRows.length - 1];
     }
 
-    function buildDatasets(view) {
-      const selected = views[view] || views.jpmi;
+    function buildDataset(seriesKey, view) {
+      const series = seriesConfig[seriesKey];
+      const isPremium = seriesKey === "premium";
+      const isComex = seriesKey === "comex";
+      const isSingle = ["jpmi", "rs", "db", "mspi", "premium"].includes(view);
 
-      return selected.map(series => ({
+      return {
         label: series.label,
         data: premiumRows.map(row => row[series.key] ?? null),
         borderColor: series.color,
-        backgroundColor: series.fill ? series.fillColor : "rgba(0, 0, 0, 0)",
-        fill: series.fill,
-        tension: 0.35,
+        backgroundColor: isSingle || isPremium ? series.fillColor : "rgba(0, 0, 0, 0)",
+        fill: isSingle || isPremium,
+        tension: 0.28,
         pointRadius: 0,
         pointHoverRadius: 5,
-        borderWidth: view === "all" ? 2.4 : 3.5,
-        borderDash: series.dashed ? [6, 6] : [],
-        spanGaps: true,
-        yAxisID: series.axis === "percent" ? "percent" : "price",
-        valueType: series.axis
-      }));
+        borderWidth: view === "all" ? 2.4 : 3.4,
+        borderDash: isComex ? [6, 6] : [],
+        spanGaps: true
+      };
+    }
+
+    function buildDatasets(view) {
+      return (views[view] || views.default).map(seriesKey => buildDataset(seriesKey, view));
     }
 
     function updateStats() {
       const latestJpmi = findLatestWithValue("jpmi_ag_jpy_g");
-      const latestComex = findLatestWithValue("comex_jpy_g");
       const latestPremium = findLatestWithValue("premium_pct");
       const firstRow = premiumRows[0];
       const lastRow = premiumRows[premiumRows.length - 1];
@@ -474,27 +468,23 @@
         yen(latestJpmi.jpmi_ag_jpy_g);
 
       document.querySelector(".stats .stat:nth-child(2) strong").textContent =
-        yen(latestComex.comex_jpy_g);
+        percent(latestPremium.premium_pct);
 
       document.querySelector(".stats .stat:nth-child(3) strong").textContent =
-        percent(latestPremium.premium_pct);
+        firstRow && lastRow ? formatShortDate(firstRow.date) + " → " + formatShortDate(lastRow.date) : "N/A";
 
       document.querySelector(".stats .stat:nth-child(4) strong").textContent =
         premiumRows.length;
 
-      if (firstRow && lastRow) {
-        document.querySelector(".chart-title p").textContent =
-          "Japan physical silver pricing · " + formatFullDate(firstRow.date) + " – " + formatFullDate(lastRow.date);
+      document.querySelector(".premium-footer .footer-item:nth-child(1) strong").textContent =
+        firstRow && lastRow ? formatShortDate(firstRow.date) + " → " + formatShortDate(lastRow.date) : "N/A";
 
-        document.querySelector(".footer-item strong").textContent =
-          premiumRows.length + " Observations";
-
-        document.querySelector(".footer-item span").textContent =
-          formatFullDate(firstRow.date) + " – " + formatFullDate(lastRow.date);
-      }
+      document.querySelector(".premium-footer .footer-item:nth-child(2) strong").textContent =
+        lastRow ? formatFullDate(lastRow.date) : "N/A";
     }
 
-    function renderChart(view = "jpmi") {
+    function renderChart(view = "default") {
+      currentView = view;
       const labels = premiumRows.map(row => formatLabel(row.date));
       const isPremiumView = view === "premium";
 
@@ -536,15 +526,16 @@
               padding: 12,
               callbacks: {
                 title: function(context) {
-                  const index = context[0].dataIndex;
-                  return premiumRows[index] ? formatFullDate(premiumRows[index].date) : "";
+                  const index = context[0]?.dataIndex;
+                  const row = premiumRows[index];
+                  return row ? formatFullDate(row.date) : "";
                 },
                 label: function(context) {
                   if (context.parsed.y === null) {
                     return context.dataset.label + ": no data";
                   }
 
-                  if (context.dataset.valueType === "percent") {
+                  if (isPremiumView) {
                     return context.dataset.label + ": " + percent(context.parsed.y);
                   }
 
@@ -566,34 +557,14 @@
                 color: "rgba(255,255,255,0.06)"
               }
             },
-            price: {
-              type: "linear",
-              display: !isPremiumView,
-              position: "left",
+            y: {
               ticks: {
                 color: "#9ca3af",
                 font: {
                   size: 12
                 },
                 callback: function(value) {
-                  return "¥" + value;
-                }
-              },
-              grid: {
-                color: "rgba(255,255,255,0.075)"
-              }
-            },
-            percent: {
-              type: "linear",
-              display: isPremiumView,
-              position: "left",
-              ticks: {
-                color: "#9ca3af",
-                font: {
-                  size: 12
-                },
-                callback: function(value) {
-                  return value + "%";
+                  return isPremiumView ? value + "%" : "¥" + value;
                 }
               },
               grid: {
@@ -607,18 +578,15 @@
 
     async function loadJpmiPremiumChart() {
       try {
-        const response = await fetch("./jpmi-history.json?cache=" + Date.now());
-        if (!response.ok) throw new Error("HTTP " + response.status);
+        const response = await fetch("jpmi-history.json?cache=" + Date.now());
+        premiumRows = await response.json();
 
-        const rows = await response.json();
-        premiumRows = normalizeRows(rows);
-
-        if (!premiumRows.length) {
-          throw new Error("No JPMI history rows found");
-        }
+        premiumRows = premiumRows
+          .filter(row => row.date)
+          .sort((a, b) => parseDate(a.date) - parseDate(b.date));
 
         updateStats();
-        renderChart("jpmi");
+        renderChart("default");
 
         document.querySelectorAll(".chart-toggle").forEach(button => {
           button.addEventListener("click", () => {
