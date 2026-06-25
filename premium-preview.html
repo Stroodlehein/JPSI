@@ -314,6 +314,8 @@
           <button class="chart-toggle" data-view="rs">RS</button>
           <button class="chart-toggle" data-view="db">DB</button>
           <button class="chart-toggle" data-view="mspi">Mercari</button>
+          <button class="chart-toggle" data-view="comex">COMEX</button>
+          <button class="chart-toggle" data-view="premium">Premium %</button>
           <button class="chart-toggle" data-view="all">All</button>
         </div>
 
@@ -357,36 +359,78 @@
 
     const views = {
       jpmi: [
-        { key: "jpmi_ag_jpy_g", label: "JPMI-AG", color: "#4da6ff", fill: true, fillColor: "rgba(77, 166, 255, 0.12)" }
+        { key: "jpmi_ag_jpy_g", label: "JPMI-AG", color: "#4da6ff", fill: true, fillColor: "rgba(77, 166, 255, 0.12)", axis: "price" }
       ],
       rs: [
-        { key: "rs_jpy_g", label: "RS Refinery", color: "#22c55e", fill: true, fillColor: "rgba(34, 197, 94, 0.12)" }
+        { key: "rs_jpy_g", label: "RS Refinery", color: "#22c55e", fill: true, fillColor: "rgba(34, 197, 94, 0.12)", axis: "price" }
       ],
       db: [
-        { key: "db_jpy_g", label: "DB Dealer Bid", color: "#f59e0b", fill: true, fillColor: "rgba(245, 158, 11, 0.12)" }
+        { key: "db_jpy_g", label: "DB Dealer Bid", color: "#f59e0b", fill: true, fillColor: "rgba(245, 158, 11, 0.12)", axis: "price" }
       ],
       mspi: [
-        { key: "mspi_b_jpy_g", label: "Mercari / MSPI-B", color: "#a855f7", fill: true, fillColor: "rgba(168, 85, 247, 0.12)" }
+        { key: "mspi_b_jpy_g", label: "Mercari / MSPI-B", color: "#a855f7", fill: true, fillColor: "rgba(168, 85, 247, 0.12)", axis: "price" }
+      ],
+      comex: [
+        { key: "comex_jpy_g", label: "COMEX Equivalent", color: "#c7c7c7", fill: true, fillColor: "rgba(199, 199, 199, 0.10)", axis: "price", dashed: true }
+      ],
+      premium: [
+        { key: "premium_pct", label: "Physical Premium", color: "#f97316", fill: true, fillColor: "rgba(249, 115, 22, 0.12)", axis: "percent" }
       ],
       all: [
-        { key: "jpmi_ag_jpy_g", label: "JPMI-AG", color: "#4da6ff", fill: false, fillColor: "rgba(77, 166, 255, 0)" },
-        { key: "rs_jpy_g", label: "RS", color: "#22c55e", fill: false, fillColor: "rgba(34, 197, 94, 0)" },
-        { key: "db_jpy_g", label: "DB", color: "#f59e0b", fill: false, fillColor: "rgba(245, 158, 11, 0)" },
-        { key: "mspi_b_jpy_g", label: "Mercari", color: "#a855f7", fill: false, fillColor: "rgba(168, 85, 247, 0)" }
+        { key: "jpmi_ag_jpy_g", label: "JPMI-AG", color: "#4da6ff", fill: false, fillColor: "rgba(77, 166, 255, 0)", axis: "price" },
+        { key: "rs_jpy_g", label: "RS", color: "#22c55e", fill: false, fillColor: "rgba(34, 197, 94, 0)", axis: "price" },
+        { key: "db_jpy_g", label: "DB", color: "#f59e0b", fill: false, fillColor: "rgba(245, 158, 11, 0)", axis: "price" },
+        { key: "mspi_b_jpy_g", label: "Mercari", color: "#a855f7", fill: false, fillColor: "rgba(168, 85, 247, 0)", axis: "price" },
+        { key: "comex_jpy_g", label: "COMEX", color: "#c7c7c7", fill: false, fillColor: "rgba(199, 199, 199, 0)", axis: "price", dashed: true }
       ]
     };
 
+    function toNumber(value) {
+      if (value === null || value === undefined || value === "") return null;
+      const number = Number(value);
+      return Number.isFinite(number) ? number : null;
+    }
+
+    function normalizeRows(rows) {
+      return rows
+        .filter(row => row && row.date)
+        .map(row => ({
+          ...row,
+          jpmi_ag_jpy_g: toNumber(row.jpmi_ag_jpy_g),
+          rs_jpy_g: toNumber(row.rs_jpy_g),
+          db_jpy_g: toNumber(row.db_jpy_g),
+          mspi_b_jpy_g: toNumber(row.mspi_b_jpy_g),
+          comex_jpy_g: toNumber(row.comex_jpy_g),
+          premium_pct: toNumber(row.premium_pct)
+        }))
+        .sort((a, b) => new Date(a.date) - new Date(b.date));
+    }
+
     function formatLabel(dateString) {
-      const date = new Date(dateString);
+      const date = new Date(dateString + "T00:00:00");
       return date.toLocaleDateString("en-US", {
         month: "short",
         day: "2-digit"
       });
     }
 
+    function formatFullDate(dateString) {
+      const date = new Date(dateString + "T00:00:00");
+      return date.toLocaleDateString("en-US", {
+        month: "short",
+        day: "2-digit",
+        year: "numeric"
+      });
+    }
+
     function yen(value) {
       if (value === null || value === undefined || Number.isNaN(Number(value))) return "N/A";
       return "¥" + Number(value).toFixed(2) + "/g";
+    }
+
+    function percent(value) {
+      if (value === null || value === undefined || Number.isNaN(Number(value))) return "N/A";
+      return (Number(value) >= 0 ? "+" : "") + Number(value).toFixed(1) + "%";
     }
 
     function findLatestWithValue(key) {
@@ -396,13 +440,13 @@
           return premiumRows[i];
         }
       }
-      return premiumRows[premiumRows.length - 1];
+      return premiumRows[premiumRows.length - 1] || {};
     }
 
     function buildDatasets(view) {
       const selected = views[view] || views.jpmi;
 
-      const physicalDatasets = selected.map(series => ({
+      return selected.map(series => ({
         label: series.label,
         data: premiumRows.map(row => row[series.key] ?? null),
         borderColor: series.color,
@@ -412,30 +456,19 @@
         pointRadius: 0,
         pointHoverRadius: 5,
         borderWidth: view === "all" ? 2.4 : 3.5,
-        spanGaps: true
+        borderDash: series.dashed ? [6, 6] : [],
+        spanGaps: true,
+        yAxisID: series.axis === "percent" ? "percent" : "price",
+        valueType: series.axis
       }));
-
-      const comexDataset = {
-        label: "COMEX Equivalent",
-        data: premiumRows.map(row => row.comex_jpy_g ?? null),
-        borderColor: "#c7c7c7",
-        backgroundColor: "rgba(199, 199, 199, 0)",
-        fill: false,
-        tension: 0.35,
-        pointRadius: 0,
-        pointHoverRadius: 4,
-        borderWidth: 2,
-        borderDash: [6, 6],
-        spanGaps: true
-      };
-
-      return [...physicalDatasets, comexDataset];
     }
 
     function updateStats() {
       const latestJpmi = findLatestWithValue("jpmi_ag_jpy_g");
       const latestComex = findLatestWithValue("comex_jpy_g");
       const latestPremium = findLatestWithValue("premium_pct");
+      const firstRow = premiumRows[0];
+      const lastRow = premiumRows[premiumRows.length - 1];
 
       document.querySelector(".stats .stat:nth-child(1) strong").textContent =
         yen(latestJpmi.jpmi_ag_jpy_g);
@@ -443,21 +476,27 @@
       document.querySelector(".stats .stat:nth-child(2) strong").textContent =
         yen(latestComex.comex_jpy_g);
 
-      const premiumValue = latestPremium.premium_pct;
       document.querySelector(".stats .stat:nth-child(3) strong").textContent =
-        premiumValue === null || premiumValue === undefined
-          ? "N/A"
-          : (Number(premiumValue) >= 0 ? "+" : "") + Number(premiumValue).toFixed(1) + "%";
+        percent(latestPremium.premium_pct);
 
       document.querySelector(".stats .stat:nth-child(4) strong").textContent =
         premiumRows.length;
 
-      document.querySelector(".footer-item strong").textContent =
-        premiumRows.length + " Trading Days";
+      if (firstRow && lastRow) {
+        document.querySelector(".chart-title p").textContent =
+          "Japan physical silver pricing · " + formatFullDate(firstRow.date) + " – " + formatFullDate(lastRow.date);
+
+        document.querySelector(".footer-item strong").textContent =
+          premiumRows.length + " Observations";
+
+        document.querySelector(".footer-item span").textContent =
+          formatFullDate(firstRow.date) + " – " + formatFullDate(lastRow.date);
+      }
     }
 
     function renderChart(view = "jpmi") {
       const labels = premiumRows.map(row => formatLabel(row.date));
+      const isPremiumView = view === "premium";
 
       if (premiumChart) {
         premiumChart.destroy();
@@ -496,10 +535,19 @@
               borderWidth: 1,
               padding: 12,
               callbacks: {
+                title: function(context) {
+                  const index = context[0].dataIndex;
+                  return premiumRows[index] ? formatFullDate(premiumRows[index].date) : "";
+                },
                 label: function(context) {
                   if (context.parsed.y === null) {
                     return context.dataset.label + ": no data";
                   }
+
+                  if (context.dataset.valueType === "percent") {
+                    return context.dataset.label + ": " + percent(context.parsed.y);
+                  }
+
                   return context.dataset.label + ": ¥" + context.parsed.y.toFixed(2) + "/g";
                 }
               }
@@ -518,7 +566,10 @@
                 color: "rgba(255,255,255,0.06)"
               }
             },
-            y: {
+            price: {
+              type: "linear",
+              display: !isPremiumView,
+              position: "left",
               ticks: {
                 color: "#9ca3af",
                 font: {
@@ -526,6 +577,23 @@
                 },
                 callback: function(value) {
                   return "¥" + value;
+                }
+              },
+              grid: {
+                color: "rgba(255,255,255,0.075)"
+              }
+            },
+            percent: {
+              type: "linear",
+              display: isPremiumView,
+              position: "left",
+              ticks: {
+                color: "#9ca3af",
+                font: {
+                  size: 12
+                },
+                callback: function(value) {
+                  return value + "%";
                 }
               },
               grid: {
@@ -539,12 +607,15 @@
 
     async function loadJpmiPremiumChart() {
       try {
-        const response = await fetch("jpmi-history.json?cache=" + Date.now());
-        premiumRows = await response.json();
+        const response = await fetch("./jpmi-history.json?cache=" + Date.now());
+        if (!response.ok) throw new Error("HTTP " + response.status);
 
-        premiumRows = premiumRows
-          .filter(row => row.date)
-          .sort((a, b) => new Date(a.date) - new Date(b.date));
+        const rows = await response.json();
+        premiumRows = normalizeRows(rows);
+
+        if (!premiumRows.length) {
+          throw new Error("No JPMI history rows found");
+        }
 
         updateStats();
         renderChart("jpmi");
