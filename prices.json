@@ -4,9 +4,9 @@
     "tanaka_silver_buy": 319.22,
     "mitsubishi_silver_buy": 312.62,
     "daikichi_sv1000": 316.0,
-    "comex_silver_usd_oz": 58.2865,
+    "comex_silver_usd_oz": 58.1659,
     "usd_jpy": 161.85,
-    "comex_silver_jpy_g": 303.3,
+    "comex_silver_jpy_g": 302.67,
     "nihon_silver_buy": 311.3,
     "nanboya_sv1000": 303.0,
     "mercari_mspi_b": 482.0,
@@ -20,7 +20,7 @@
     "mitsubishi": "https://gold.mmc.co.jp/market/silver-price/",
     "daikichi": "https://www.kaitori-daikichi.jp/list/gold/silver/souba/"
   },
-  "comex_updated_at_utc": "2026-06-26T09:53:13+00:00",
+  "comex_updated_at_utc": "2026-06-26T12:11:11+00:00",
   "mercari_listings": [
     {
       "coin": "Canadian Maple Leaf",
