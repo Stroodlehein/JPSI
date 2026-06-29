@@ -10,6 +10,8 @@ OUTPUT_FILE = "jpmi-history-rebuilt.json"
 
 START_DATE = "2026-03-01"
 
+TROY_OUNCE_GRAMS = 31.1035
+
 W_RS = 0.55
 W_DB = 0.30
 W_SR = 0.15
@@ -33,9 +35,29 @@ def valid_price(value):
     return value is not None and 200 <= value <= 700
 
 
+def valid_usd_jpy(value):
+    value = safe_float(value)
+    return value is not None and 80 <= value <= 250
+
+
+def valid_comex_usd_oz(value):
+    value = safe_float(value)
+    return value is not None and 5 <= value <= 300
+
+
 def round_or_none(value):
     value = safe_float(value)
     return round(value, 2) if valid_price(value) else None
+
+
+def round_usd_jpy_or_none(value):
+    value = safe_float(value)
+    return round(value, 4) if valid_usd_jpy(value) else None
+
+
+def round_comex_usd_or_none(value):
+    value = safe_float(value)
+    return round(value, 4) if valid_comex_usd_oz(value) else None
 
 
 def current_jst_date():
@@ -103,6 +125,16 @@ def premium_pct(physical, comex):
     return round(((physical - comex) / comex) * 100, 2)
 
 
+def calculate_comex_usd_oz(comex_jpy_g, usd_jpy):
+    comex_jpy_g = safe_float(comex_jpy_g)
+    usd_jpy = safe_float(usd_jpy)
+
+    if not valid_price(comex_jpy_g) or not valid_usd_jpy(usd_jpy):
+        return None
+
+    return round((comex_jpy_g * TROY_OUNCE_GRAMS) / usd_jpy, 4)
+
+
 def load_json_file(path, fallback):
     try:
         with open(path, "r", encoding="utf-8") as f:
@@ -152,6 +184,13 @@ def build_rs_db_from_git():
         nanboya = safe_float(prices.get("nanboya_sv1000"))
         daikichi = safe_float(prices.get("daikichi_sv1000"))
 
+        usd_jpy = safe_float(prices.get("usd_jpy"))
+        comex_usd_oz = safe_float(prices.get("comex_silver_usd_oz"))
+        comex_jpy_g = safe_float(prices.get("comex_silver_jpy_g"))
+
+        if not valid_comex_usd_oz(comex_usd_oz):
+            comex_usd_oz = calculate_comex_usd_oz(comex_jpy_g, usd_jpy)
+
         refinery_raw = {
             "tanaka_silver_buy": tanaka,
             "nihon_silver_buy": nihon,
@@ -168,6 +207,9 @@ def build_rs_db_from_git():
             "observation_time_jst": "19:00",
             "rs_jpy_g": rs,
             "db_jpy_g": db,
+            "comex_jpy_g": round_or_none(comex_jpy_g),
+            "comex_usd_oz": round_comex_usd_or_none(comex_usd_oz),
+            "usd_jpy": round_usd_jpy_or_none(usd_jpy),
             "components": {
                 "tanaka_silver_buy": round_or_none(tanaka),
                 "nihon_silver_buy": round_or_none(nihon),
@@ -200,28 +242,46 @@ def build_market_history():
 
         date = str(t)[:10]
 
-        comex = safe_float(
+        comex_jpy_g = safe_float(
             row.get("comex_jpy_g")
             or row.get("comex_silver_jpy_g")
         )
+
+        comex_usd_oz = safe_float(
+            row.get("comex_usd_oz")
+            or row.get("comex_silver_usd_oz")
+        )
+
+        usd_jpy = safe_float(row.get("usd_jpy"))
 
         mspi = safe_float(
             row.get("mspi_b_jpy_g")
             or row.get("mercari_mspi_b")
         )
 
+        if not valid_comex_usd_oz(comex_usd_oz):
+            comex_usd_oz = calculate_comex_usd_oz(comex_jpy_g, usd_jpy)
+
         if date not in daily:
             daily[date] = {
                 "date": date,
                 "mspi_b_jpy_g": None,
                 "comex_jpy_g": None,
+                "comex_usd_oz": None,
+                "usd_jpy": None,
             }
 
         if valid_price(mspi):
             daily[date]["mspi_b_jpy_g"] = round(mspi, 2)
 
-        if valid_price(comex):
-            daily[date]["comex_jpy_g"] = round(comex, 2)
+        if valid_price(comex_jpy_g):
+            daily[date]["comex_jpy_g"] = round(comex_jpy_g, 2)
+
+        if valid_comex_usd_oz(comex_usd_oz):
+            daily[date]["comex_usd_oz"] = round(comex_usd_oz, 4)
+
+        if valid_usd_jpy(usd_jpy):
+            daily[date]["usd_jpy"] = round(usd_jpy, 4)
 
     return daily
 
@@ -265,6 +325,8 @@ def main():
             "db_jpy_g": None,
             "mspi_b_jpy_g": None,
             "comex_jpy_g": None,
+            "comex_usd_oz": None,
+            "usd_jpy": None,
             "jpmi_ag_jpy_g": None,
             "premium_pct": None,
             "components": {},
@@ -277,14 +339,29 @@ def main():
             base.update(rs_db_history[date])
 
         if date in market_history:
-            base.update({
-                "mspi_b_jpy_g": market_history[date].get("mspi_b_jpy_g"),
-                "comex_jpy_g": market_history[date].get("comex_jpy_g"),
-            })
+            market_row = market_history[date]
+
+            if market_row.get("mspi_b_jpy_g") is not None:
+                base["mspi_b_jpy_g"] = market_row.get("mspi_b_jpy_g")
+
+            if market_row.get("comex_jpy_g") is not None:
+                base["comex_jpy_g"] = market_row.get("comex_jpy_g")
+
+            if market_row.get("comex_usd_oz") is not None:
+                base["comex_usd_oz"] = market_row.get("comex_usd_oz")
+
+            if market_row.get("usd_jpy") is not None:
+                base["usd_jpy"] = market_row.get("usd_jpy")
 
         if date in live_rows:
             base.update(live_rows[date])
             base["source"] = "live_jpmi_history"
+
+        if not valid_comex_usd_oz(base.get("comex_usd_oz")):
+            base["comex_usd_oz"] = calculate_comex_usd_oz(
+                base.get("comex_jpy_g"),
+                base.get("usd_jpy")
+            )
 
         rs = safe_float(base.get("rs_jpy_g"))
         db = safe_float(base.get("db_jpy_g"))
@@ -299,6 +376,8 @@ def main():
             "has_db": valid_price(db),
             "has_mspi_b": valid_price(sr),
             "has_comex": valid_price(comex),
+            "has_comex_usd_oz": valid_comex_usd_oz(base.get("comex_usd_oz")),
+            "has_usd_jpy": valid_usd_jpy(base.get("usd_jpy")),
             "jpmi_component_count": sum([
                 1 if valid_price(rs) else 0,
                 1 if valid_price(db) else 0,
