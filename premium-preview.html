@@ -364,7 +364,7 @@
       rs: { key: "rs_jpy_g", label: "RS Refinery", color: "#22c55e", fillColor: "rgba(34, 197, 94, 0.12)" },
       db: { key: "db_jpy_g", label: "DB Dealer Bid", color: "#f59e0b", fillColor: "rgba(245, 158, 11, 0.12)" },
       mspi: { key: "mspi_b_jpy_g", label: "Mercari / MSPI-B", color: "#a855f7", fillColor: "rgba(168, 85, 247, 0.12)" },
-      comex: { key: "comex_jpy_g", label: "COMEX Equivalent", color: "#c7c7c7", fillColor: "rgba(199, 199, 199, 0)" },
+      comex: { key: "comex_jpy_g", label: "COMEX", color: "#c7c7c7", fillColor: "rgba(199, 199, 199, 0)" },
       premium: { key: "premium_pct", label: "Physical Premium %", color: "#38bdf8", fillColor: "rgba(56, 189, 248, 0.12)" }
     };
 
@@ -537,6 +537,21 @@
 
                   if (isPremiumView) {
                     return context.dataset.label + ": " + percent(context.parsed.y);
+                  }
+
+                  const row = premiumRows[context.dataIndex];
+
+                  if (context.dataset.label === "COMEX") {
+                    const usd = row?.comex_usd_oz;
+                    const usdText =
+                      usd === null || usd === undefined || Number.isNaN(Number(usd))
+                        ? ""
+                        : " ($" + Number(usd).toFixed(2) + "/oz)";
+
+                    return [
+                      "COMEX",
+                      "¥" + context.parsed.y.toFixed(2) + "/g" + usdText
+                    ];
                   }
 
                   return context.dataset.label + ": ¥" + context.parsed.y.toFixed(2) + "/g";
