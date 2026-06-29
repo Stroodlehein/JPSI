@@ -64,6 +64,13 @@ def current_jst_date():
     return (datetime.now(timezone.utc) + timedelta(hours=9)).date().isoformat()
 
 
+def is_weekend(date_string):
+    try:
+        return datetime.fromisoformat(date_string).weekday() >= 5
+    except Exception:
+        return False
+
+
 def clean_refinery_values(values):
     valid = {k: safe_float(v) for k, v in values.items() if valid_price(v)}
 
@@ -312,7 +319,7 @@ def main():
 
     all_dates = sorted(
         date for date in (set(rs_db_history) | set(market_history) | set(live_rows))
-        if date < today_jst
+        if date < today_jst and not is_weekend(date)
     )
 
     rebuilt = []
@@ -392,6 +399,7 @@ def main():
 
     print(f"Wrote {len(rebuilt)} rows to {OUTPUT_FILE}")
     print(f"Excluded current JST date from rebuild: {today_jst}")
+    print("Excluded Saturday/Sunday rows from rebuilt history.")
     print("This script does NOT overwrite jpmi-history.json.")
 
 
