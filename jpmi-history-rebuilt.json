@@ -6,6 +6,8 @@
     "db_jpy_g": 474.0,
     "mspi_b_jpy_g": null,
     "comex_jpy_g": null,
+    "comex_usd_oz": null,
+    "usd_jpy": null,
     "jpmi_ag_jpy_g": 478.12,
     "premium_pct": null,
     "components": {
@@ -26,6 +28,8 @@
       "has_db": true,
       "has_mspi_b": false,
       "has_comex": false,
+      "has_comex_usd_oz": false,
+      "has_usd_jpy": false,
       "jpmi_component_count": 2
     },
     "source": "live_jpmi_history",
@@ -38,6 +42,8 @@
     "db_jpy_g": 504.5,
     "mspi_b_jpy_g": null,
     "comex_jpy_g": null,
+    "comex_usd_oz": null,
+    "usd_jpy": null,
     "jpmi_ag_jpy_g": 509.17,
     "premium_pct": null,
     "components": {
@@ -59,6 +65,8 @@
       "has_db": true,
       "has_mspi_b": false,
       "has_comex": false,
+      "has_comex_usd_oz": false,
+      "has_usd_jpy": false,
       "jpmi_component_count": 2
     },
     "source": "live_jpmi_history",
@@ -71,6 +79,8 @@
     "db_jpy_g": 485.5,
     "mspi_b_jpy_g": null,
     "comex_jpy_g": null,
+    "comex_usd_oz": null,
+    "usd_jpy": null,
     "jpmi_ag_jpy_g": 481.37,
     "premium_pct": null,
     "components": {
@@ -93,6 +103,8 @@
       "has_db": true,
       "has_mspi_b": false,
       "has_comex": false,
+      "has_comex_usd_oz": false,
+      "has_usd_jpy": false,
       "jpmi_component_count": 2
     },
     "source": "live_jpmi_history",
@@ -105,6 +117,8 @@
     "db_jpy_g": 471.0,
     "mspi_b_jpy_g": null,
     "comex_jpy_g": null,
+    "comex_usd_oz": 84.0241,
+    "usd_jpy": 157.11,
     "jpmi_ag_jpy_g": 463.57,
     "premium_pct": null,
     "components": {
@@ -127,6 +141,8 @@
       "has_db": true,
       "has_mspi_b": false,
       "has_comex": false,
+      "has_comex_usd_oz": true,
+      "has_usd_jpy": true,
       "jpmi_component_count": 2
     },
     "source": "live_jpmi_history",
@@ -139,6 +155,8 @@
     "db_jpy_g": 450.0,
     "mspi_b_jpy_g": null,
     "comex_jpy_g": 419.42,
+    "comex_usd_oz": 82.8071,
+    "usd_jpy": 157.54,
     "jpmi_ag_jpy_g": 452.26,
     "premium_pct": 7.83,
     "components": {
@@ -161,6 +179,8 @@
       "has_db": true,
       "has_mspi_b": false,
       "has_comex": true,
+      "has_comex_usd_oz": true,
+      "has_usd_jpy": true,
       "jpmi_component_count": 2
     },
     "source": "live_jpmi_history",
@@ -173,6 +193,8 @@
     "db_jpy_g": 449.0,
     "mspi_b_jpy_g": 668.73,
     "comex_jpy_g": 429.24,
+    "comex_usd_oz": 84.542,
+    "usd_jpy": 157.92,
     "jpmi_ag_jpy_g": 486.33,
     "premium_pct": 13.3,
     "components": {
@@ -195,6 +217,8 @@
       "has_db": true,
       "has_mspi_b": true,
       "has_comex": true,
+      "has_comex_usd_oz": true,
+      "has_usd_jpy": true,
       "jpmi_component_count": 3
     },
     "source": "live_jpmi_history",
@@ -207,6 +231,8 @@
     "db_jpy_g": 449.0,
     "mspi_b_jpy_g": null,
     "comex_jpy_g": 429.24,
+    "comex_usd_oz": 84.542,
+    "usd_jpy": 157.92,
     "jpmi_ag_jpy_g": 454.14,
     "premium_pct": 5.8,
     "components": {
@@ -229,6 +255,8 @@
       "has_db": true,
       "has_mspi_b": false,
       "has_comex": true,
+      "has_comex_usd_oz": true,
+      "has_usd_jpy": true,
       "jpmi_component_count": 2
     },
     "source": "live_jpmi_history",
@@ -241,6 +269,8 @@
     "db_jpy_g": 449.0,
     "mspi_b_jpy_g": null,
     "comex_jpy_g": 412.73,
+    "comex_usd_oz": 81.2902,
+    "usd_jpy": 157.92,
     "jpmi_ag_jpy_g": 454.14,
     "premium_pct": 10.03,
     "components": {
@@ -263,6 +293,8 @@
       "has_db": true,
       "has_mspi_b": false,
       "has_comex": true,
+      "has_comex_usd_oz": true,
+      "has_usd_jpy": true,
       "jpmi_component_count": 2
     },
     "source": "live_jpmi_history",
@@ -275,6 +307,8 @@
     "db_jpy_g": 426.5,
     "mspi_b_jpy_g": 698.0,
     "comex_jpy_g": 445.81,
+    "comex_usd_oz": 87.4842,
+    "usd_jpy": 158.5,
     "jpmi_ag_jpy_g": 481.53,
     "premium_pct": 8.01,
     "components": {
@@ -297,6 +331,8 @@
       "has_db": true,
       "has_mspi_b": true,
       "has_comex": true,
+      "has_comex_usd_oz": true,
+      "has_usd_jpy": true,
       "jpmi_component_count": 3
     },
     "source": "live_jpmi_history",
@@ -309,6 +345,8 @@
     "db_jpy_g": 475.0,
     "mspi_b_jpy_g": null,
     "comex_jpy_g": 448.43,
+    "comex_usd_oz": 88.3999,
+    "usd_jpy": 157.78,
     "jpmi_ag_jpy_g": 480.42,
     "premium_pct": 7.13,
     "components": {
@@ -331,6 +369,8 @@
       "has_db": true,
       "has_mspi_b": false,
       "has_comex": true,
+      "has_comex_usd_oz": true,
+      "has_usd_jpy": true,
       "jpmi_component_count": 2
     },
     "source": "live_jpmi_history",
@@ -343,6 +383,8 @@
     "db_jpy_g": 475.0,
     "mspi_b_jpy_g": null,
     "comex_jpy_g": 432.1,
+    "comex_usd_oz": 84.7617,
+    "usd_jpy": 158.56,
     "jpmi_ag_jpy_g": 480.42,
     "premium_pct": 11.18,
     "components": {
@@ -365,6 +407,8 @@
       "has_db": true,
       "has_mspi_b": false,
       "has_comex": true,
+      "has_comex_usd_oz": true,
+      "has_usd_jpy": true,
       "jpmi_component_count": 2
     },
     "source": "live_jpmi_history",
@@ -377,6 +421,8 @@
     "db_jpy_g": 475.0,
     "mspi_b_jpy_g": 691.23,
     "comex_jpy_g": 429.9,
+    "comex_usd_oz": 84.1709,
+    "usd_jpy": 158.86,
     "jpmi_ag_jpy_g": 512.04,
     "premium_pct": 19.11,
     "components": {
@@ -399,6 +445,8 @@
       "has_db": true,
       "has_mspi_b": true,
       "has_comex": true,
+      "has_comex_usd_oz": true,
+      "has_usd_jpy": true,
       "jpmi_component_count": 3
     },
     "source": "live_jpmi_history",
@@ -411,6 +459,8 @@
     "db_jpy_g": 475.0,
     "mspi_b_jpy_g": null,
     "comex_jpy_g": 412.93,
+    "comex_usd_oz": 80.6099,
+    "usd_jpy": 159.33,
     "jpmi_ag_jpy_g": 480.42,
     "premium_pct": 16.34,
     "components": {
@@ -433,6 +483,8 @@
       "has_db": true,
       "has_mspi_b": false,
       "has_comex": true,
+      "has_comex_usd_oz": true,
+      "has_usd_jpy": true,
       "jpmi_component_count": 2
     },
     "source": "live_jpmi_history",
@@ -445,6 +497,8 @@
     "db_jpy_g": 475.0,
     "mspi_b_jpy_g": null,
     "comex_jpy_g": 412.93,
+    "comex_usd_oz": 80.6099,
+    "usd_jpy": 159.33,
     "jpmi_ag_jpy_g": 480.42,
     "premium_pct": 16.34,
     "components": {
@@ -467,6 +521,8 @@
       "has_db": true,
       "has_mspi_b": false,
       "has_comex": true,
+      "has_comex_usd_oz": true,
+      "has_usd_jpy": true,
       "jpmi_component_count": 2
     },
     "source": "live_jpmi_history",
@@ -479,6 +535,8 @@
     "db_jpy_g": 475.0,
     "mspi_b_jpy_g": null,
     "comex_jpy_g": 408.12,
+    "comex_usd_oz": 79.6709,
+    "usd_jpy": 159.33,
     "jpmi_ag_jpy_g": 480.42,
     "premium_pct": 17.72,
     "components": {
@@ -501,6 +559,8 @@
       "has_db": true,
       "has_mspi_b": false,
       "has_comex": true,
+      "has_comex_usd_oz": true,
+      "has_usd_jpy": true,
       "jpmi_component_count": 2
     },
     "source": "live_jpmi_history",
@@ -513,6 +573,8 @@
     "db_jpy_g": 446.0,
     "mspi_b_jpy_g": null,
     "comex_jpy_g": 415.13,
+    "comex_usd_oz": 81.1361,
+    "usd_jpy": 159.14,
     "jpmi_ag_jpy_g": 444.51,
     "premium_pct": 7.08,
     "components": {
@@ -535,6 +597,8 @@
       "has_db": true,
       "has_mspi_b": false,
       "has_comex": true,
+      "has_comex_usd_oz": true,
+      "has_usd_jpy": true,
       "jpmi_component_count": 2
     },
     "source": "live_jpmi_history",
@@ -547,6 +611,8 @@
     "db_jpy_g": 439.5,
     "mspi_b_jpy_g": 694.45,
     "comex_jpy_g": 404.63,
+    "comex_usd_oz": 79.1784,
+    "usd_jpy": 158.95,
     "jpmi_ag_jpy_g": 482.4,
     "premium_pct": 19.22,
     "components": {
@@ -569,6 +635,8 @@
       "has_db": true,
       "has_mspi_b": true,
       "has_comex": true,
+      "has_comex_usd_oz": true,
+      "has_usd_jpy": true,
       "jpmi_component_count": 3
     },
     "source": "live_jpmi_history",
@@ -581,6 +649,8 @@
     "db_jpy_g": 434.0,
     "mspi_b_jpy_g": 667.1,
     "comex_jpy_g": 390.25,
+    "comex_usd_oz": 76.0726,
+    "usd_jpy": 159.56,
     "jpmi_ag_jpy_g": 472.75,
     "premium_pct": 21.14,
     "components": {
@@ -603,6 +673,8 @@
       "has_db": true,
       "has_mspi_b": true,
       "has_comex": true,
+      "has_comex_usd_oz": true,
+      "has_usd_jpy": true,
       "jpmi_component_count": 3
     },
     "source": "live_jpmi_history",
@@ -615,6 +687,8 @@
     "db_jpy_g": 419.0,
     "mspi_b_jpy_g": 643.03,
     "comex_jpy_g": 368.33,
+    "comex_usd_oz": 72.1387,
+    "usd_jpy": 158.81,
     "jpmi_ag_jpy_g": 456.55,
     "premium_pct": 23.95,
     "components": {
@@ -637,6 +711,8 @@
       "has_db": true,
       "has_mspi_b": true,
       "has_comex": true,
+      "has_comex_usd_oz": true,
+      "has_usd_jpy": true,
       "jpmi_component_count": 3
     },
     "source": "live_jpmi_history",
@@ -649,6 +725,8 @@
     "db_jpy_g": 419.0,
     "mspi_b_jpy_g": 613.27,
     "comex_jpy_g": 347.22,
+    "comex_usd_oz": 68.0214,
+    "usd_jpy": 158.77,
     "jpmi_ag_jpy_g": 438.78,
     "premium_pct": 26.37,
     "components": {
@@ -671,6 +749,8 @@
       "has_db": true,
       "has_mspi_b": true,
       "has_comex": true,
+      "has_comex_usd_oz": true,
+      "has_usd_jpy": true,
       "jpmi_component_count": 3
     },
     "source": "live_jpmi_history",
@@ -683,6 +763,8 @@
     "db_jpy_g": 419.0,
     "mspi_b_jpy_g": null,
     "comex_jpy_g": 347.22,
+    "comex_usd_oz": 68.0214,
+    "usd_jpy": 158.77,
     "jpmi_ag_jpy_g": 407.99,
     "premium_pct": 17.5,
     "components": {
@@ -705,6 +787,8 @@
       "has_db": true,
       "has_mspi_b": false,
       "has_comex": true,
+      "has_comex_usd_oz": true,
+      "has_usd_jpy": true,
       "jpmi_component_count": 2
     },
     "source": "live_jpmi_history",
@@ -717,6 +801,8 @@
     "db_jpy_g": 419.0,
     "mspi_b_jpy_g": null,
     "comex_jpy_g": 345.55,
+    "comex_usd_oz": 67.6942,
+    "usd_jpy": 158.77,
     "jpmi_ag_jpy_g": 407.99,
     "premium_pct": 18.07,
     "components": {
@@ -739,6 +825,8 @@
       "has_db": true,
       "has_mspi_b": false,
       "has_comex": true,
+      "has_comex_usd_oz": true,
+      "has_usd_jpy": true,
       "jpmi_component_count": 2
     },
     "source": "live_jpmi_history",
@@ -751,6 +839,8 @@
     "db_jpy_g": 393.5,
     "mspi_b_jpy_g": 568.5,
     "comex_jpy_g": 356.69,
+    "comex_usd_oz": 69.9736,
+    "usd_jpy": 158.55,
     "jpmi_ag_jpy_g": 408.14,
     "premium_pct": 14.42,
     "components": {
@@ -772,6 +862,8 @@
       "has_db": true,
       "has_mspi_b": true,
       "has_comex": true,
+      "has_comex_usd_oz": true,
+      "has_usd_jpy": true,
       "jpmi_component_count": 3
     },
     "source": "live_jpmi_history",
@@ -784,6 +876,8 @@
     "db_jpy_g": 395.5,
     "mspi_b_jpy_g": 603.69,
     "comex_jpy_g": 371.4,
+    "comex_usd_oz": 72.6851,
+    "usd_jpy": 158.93,
     "jpmi_ag_jpy_g": 414.34,
     "premium_pct": 11.56,
     "components": {
@@ -806,6 +900,8 @@
       "has_db": true,
       "has_mspi_b": true,
       "has_comex": true,
+      "has_comex_usd_oz": true,
+      "has_usd_jpy": true,
       "jpmi_component_count": 3
     },
     "source": "live_jpmi_history",
@@ -818,6 +914,8 @@
     "db_jpy_g": 407.5,
     "mspi_b_jpy_g": 592.0,
     "comex_jpy_g": 364.04,
+    "comex_usd_oz": 71.2312,
+    "usd_jpy": 158.96,
     "jpmi_ag_jpy_g": 433.11,
     "premium_pct": 18.97,
     "components": {
@@ -840,6 +938,8 @@
       "has_db": true,
       "has_mspi_b": true,
       "has_comex": true,
+      "has_comex_usd_oz": true,
+      "has_usd_jpy": true,
       "jpmi_component_count": 3
     },
     "source": "live_jpmi_history",
@@ -852,6 +952,8 @@
     "db_jpy_g": 406.0,
     "mspi_b_jpy_g": 592.0,
     "comex_jpy_g": 352.48,
+    "comex_usd_oz": 68.6841,
+    "usd_jpy": 159.62,
     "jpmi_ag_jpy_g": 430.09,
     "premium_pct": 22.02,
     "components": {
@@ -874,6 +976,8 @@
       "has_db": true,
       "has_mspi_b": true,
       "has_comex": true,
+      "has_comex_usd_oz": true,
+      "has_usd_jpy": true,
       "jpmi_component_count": 3
     },
     "source": "live_jpmi_history",
@@ -886,6 +990,8 @@
     "db_jpy_g": 395.5,
     "mspi_b_jpy_g": 562.0,
     "comex_jpy_g": 358.66,
+    "comex_usd_oz": 69.766,
+    "usd_jpy": 159.9,
     "jpmi_ag_jpy_g": 411.35,
     "premium_pct": 14.69,
     "components": {
@@ -908,6 +1014,8 @@
       "has_db": true,
       "has_mspi_b": true,
       "has_comex": true,
+      "has_comex_usd_oz": true,
+      "has_usd_jpy": true,
       "jpmi_component_count": 3
     },
     "source": "live_jpmi_history",
@@ -920,6 +1028,8 @@
     "db_jpy_g": 395.5,
     "mspi_b_jpy_g": null,
     "comex_jpy_g": 358.66,
+    "comex_usd_oz": 69.766,
+    "usd_jpy": 159.9,
     "jpmi_ag_jpy_g": 387.92,
     "premium_pct": 8.16,
     "components": {
@@ -941,6 +1051,8 @@
       "has_db": true,
       "has_mspi_b": false,
       "has_comex": true,
+      "has_comex_usd_oz": true,
+      "has_usd_jpy": true,
       "jpmi_component_count": 2
     },
     "source": "live_jpmi_history",
@@ -953,6 +1065,8 @@
     "db_jpy_g": 395.5,
     "mspi_b_jpy_g": null,
     "comex_jpy_g": 349.63,
+    "comex_usd_oz": 68.0095,
+    "usd_jpy": 159.9,
     "jpmi_ag_jpy_g": 387.92,
     "premium_pct": 10.95,
     "components": {
@@ -974,6 +1088,8 @@
       "has_db": true,
       "has_mspi_b": false,
       "has_comex": true,
+      "has_comex_usd_oz": true,
+      "has_usd_jpy": true,
       "jpmi_component_count": 2
     },
     "source": "live_jpmi_history",
@@ -986,6 +1102,8 @@
     "db_jpy_g": 396.0,
     "mspi_b_jpy_g": 544.0,
     "comex_jpy_g": 357.88,
+    "comex_usd_oz": 69.8064,
+    "usd_jpy": 159.46,
     "jpmi_ag_jpy_g": 409.53,
     "premium_pct": 14.43,
     "components": {
@@ -1008,6 +1126,8 @@
       "has_db": true,
       "has_mspi_b": true,
       "has_comex": true,
+      "has_comex_usd_oz": true,
+      "has_usd_jpy": true,
       "jpmi_component_count": 3
     },
     "source": "live_jpmi_history",
@@ -1020,6 +1140,8 @@
     "db_jpy_g": 398.0,
     "mspi_b_jpy_g": 609.0,
     "comex_jpy_g": 384.66,
+    "comex_usd_oz": 75.0111,
+    "usd_jpy": 159.5,
     "jpmi_ag_jpy_g": 428.77,
     "premium_pct": 11.47,
     "components": {
@@ -1042,6 +1164,8 @@
       "has_db": true,
       "has_mspi_b": true,
       "has_comex": true,
+      "has_comex_usd_oz": true,
+      "has_usd_jpy": true,
       "jpmi_component_count": 3
     },
     "source": "live_jpmi_history",
@@ -1054,6 +1178,8 @@
     "db_jpy_g": 412.0,
     "mspi_b_jpy_g": 605.4,
     "comex_jpy_g": 384.93,
+    "comex_usd_oz": 75.6232,
+    "usd_jpy": 158.32,
     "jpmi_ag_jpy_g": 440.9,
     "premium_pct": 14.54,
     "components": {
@@ -1076,6 +1202,8 @@
       "has_db": true,
       "has_mspi_b": true,
       "has_comex": true,
+      "has_comex_usd_oz": true,
+      "has_usd_jpy": true,
       "jpmi_component_count": 3
     },
     "source": "live_jpmi_history",
@@ -1088,6 +1216,8 @@
     "db_jpy_g": 408.0,
     "mspi_b_jpy_g": 587.33,
     "comex_jpy_g": 374.52,
+    "comex_usd_oz": 72.988,
+    "usd_jpy": 159.6,
     "jpmi_ag_jpy_g": 427.07,
     "premium_pct": 14.03,
     "components": {
@@ -1110,6 +1240,8 @@
       "has_db": true,
       "has_mspi_b": true,
       "has_comex": true,
+      "has_comex_usd_oz": true,
+      "has_usd_jpy": true,
       "jpmi_component_count": 3
     },
     "source": "live_jpmi_history",
@@ -1122,6 +1254,8 @@
     "db_jpy_g": 392.0,
     "mspi_b_jpy_g": 568.33,
     "comex_jpy_g": 374.52,
+    "comex_usd_oz": 72.988,
+    "usd_jpy": 159.6,
     "jpmi_ag_jpy_g": 424.08,
     "premium_pct": 13.23,
     "components": {
@@ -1144,6 +1278,8 @@
       "has_db": true,
       "has_mspi_b": true,
       "has_comex": true,
+      "has_comex_usd_oz": true,
+      "has_usd_jpy": true,
       "jpmi_component_count": 3
     },
     "source": "live_jpmi_history",
@@ -1156,6 +1292,8 @@
     "db_jpy_g": 394.0,
     "mspi_b_jpy_g": null,
     "comex_jpy_g": 374.52,
+    "comex_usd_oz": 72.988,
+    "usd_jpy": 159.6,
     "jpmi_ag_jpy_g": 400.35,
     "premium_pct": 6.9,
     "components": {
@@ -1178,6 +1316,8 @@
       "has_db": true,
       "has_mspi_b": false,
       "has_comex": true,
+      "has_comex_usd_oz": true,
+      "has_usd_jpy": true,
       "jpmi_component_count": 2
     },
     "source": "live_jpmi_history",
@@ -1190,6 +1330,8 @@
     "db_jpy_g": 394.0,
     "mspi_b_jpy_g": null,
     "comex_jpy_g": 368.01,
+    "comex_usd_oz": 71.7193,
+    "usd_jpy": 159.6,
     "jpmi_ag_jpy_g": 400.35,
     "premium_pct": 8.79,
     "components": {
@@ -1212,6 +1354,8 @@
       "has_db": true,
       "has_mspi_b": false,
       "has_comex": true,
+      "has_comex_usd_oz": true,
+      "has_usd_jpy": true,
       "jpmi_component_count": 2
     },
     "source": "live_jpmi_history",
@@ -1224,6 +1368,8 @@
     "db_jpy_g": 389.0,
     "mspi_b_jpy_g": 567.5,
     "comex_jpy_g": 373.6,
+    "comex_usd_oz": 72.8087,
+    "usd_jpy": 159.6,
     "jpmi_ag_jpy_g": 422.29,
     "premium_pct": 13.03,
     "components": {
@@ -1246,6 +1392,8 @@
       "has_db": true,
       "has_mspi_b": true,
       "has_comex": true,
+      "has_comex_usd_oz": true,
+      "has_usd_jpy": true,
       "jpmi_component_count": 3
     },
     "source": "live_jpmi_history",
@@ -1258,6 +1406,8 @@
     "db_jpy_g": 387.5,
     "mspi_b_jpy_g": 591.0,
     "comex_jpy_g": 392.21,
+    "comex_usd_oz": 76.3207,
+    "usd_jpy": 159.84,
     "jpmi_ag_jpy_g": 426.09,
     "premium_pct": 8.64,
     "components": {
@@ -1280,6 +1430,8 @@
       "has_db": true,
       "has_mspi_b": true,
       "has_comex": true,
+      "has_comex_usd_oz": true,
+      "has_usd_jpy": true,
       "jpmi_component_count": 3
     },
     "source": "live_jpmi_history",
@@ -1292,6 +1444,8 @@
     "db_jpy_g": 392.5,
     "mspi_b_jpy_g": 595.25,
     "comex_jpy_g": 375.86,
+    "comex_usd_oz": 73.9207,
+    "usd_jpy": 158.15,
     "jpmi_ag_jpy_g": 440.81,
     "premium_pct": 17.28,
     "components": {
@@ -1314,6 +1468,8 @@
       "has_db": true,
       "has_mspi_b": true,
       "has_comex": true,
+      "has_comex_usd_oz": true,
+      "has_usd_jpy": true,
       "jpmi_component_count": 3
     },
     "source": "live_jpmi_history",
@@ -1326,6 +1482,8 @@
     "db_jpy_g": 385.5,
     "mspi_b_jpy_g": null,
     "comex_jpy_g": 385.35,
+    "comex_usd_oz": 75.4199,
+    "usd_jpy": 158.92,
     "jpmi_ag_jpy_g": 403.5,
     "premium_pct": 4.71,
     "components": {
@@ -1349,6 +1507,8 @@
       "has_db": true,
       "has_mspi_b": false,
       "has_comex": true,
+      "has_comex_usd_oz": true,
+      "has_usd_jpy": true,
       "jpmi_component_count": 2
     },
     "source": "live_jpmi_history",
@@ -1361,6 +1521,8 @@
     "db_jpy_g": 400.0,
     "mspi_b_jpy_g": 617.25,
     "comex_jpy_g": 388.94,
+    "comex_usd_oz": 75.9934,
+    "usd_jpy": 159.19,
     "jpmi_ag_jpy_g": 441.5,
     "premium_pct": 13.51,
     "components": {
@@ -1383,6 +1545,8 @@
       "has_db": true,
       "has_mspi_b": true,
       "has_comex": true,
+      "has_comex_usd_oz": true,
+      "has_usd_jpy": true,
       "jpmi_component_count": 3
     },
     "source": "live_jpmi_history",
@@ -1395,6 +1559,8 @@
     "db_jpy_g": 408.0,
     "mspi_b_jpy_g": null,
     "comex_jpy_g": 388.94,
+    "comex_usd_oz": 75.9934,
+    "usd_jpy": 159.19,
     "jpmi_ag_jpy_g": 413.66,
     "premium_pct": 6.36,
     "components": {
@@ -1417,6 +1583,8 @@
       "has_db": true,
       "has_mspi_b": false,
       "has_comex": true,
+      "has_comex_usd_oz": true,
+      "has_usd_jpy": true,
       "jpmi_component_count": 2
     },
     "source": "live_jpmi_history",
@@ -1429,6 +1597,8 @@
     "db_jpy_g": 408.0,
     "mspi_b_jpy_g": null,
     "comex_jpy_g": 375.54,
+    "comex_usd_oz": 73.3753,
+    "usd_jpy": 159.19,
     "jpmi_ag_jpy_g": 413.66,
     "premium_pct": 10.15,
     "components": {
@@ -1451,6 +1621,8 @@
       "has_db": true,
       "has_mspi_b": false,
       "has_comex": true,
+      "has_comex_usd_oz": true,
+      "has_usd_jpy": true,
       "jpmi_component_count": 2
     },
     "source": "live_jpmi_history",
@@ -1463,6 +1635,8 @@
     "db_jpy_g": 390.0,
     "mspi_b_jpy_g": 616.75,
     "comex_jpy_g": 389.06,
+    "comex_usd_oz": 75.7125,
+    "usd_jpy": 159.83,
     "jpmi_ag_jpy_g": 435.32,
     "premium_pct": 11.89,
     "components": {
@@ -1485,6 +1659,8 @@
       "has_db": true,
       "has_mspi_b": true,
       "has_comex": true,
+      "has_comex_usd_oz": true,
+      "has_usd_jpy": true,
       "jpmi_component_count": 3
     },
     "source": "live_jpmi_history",
@@ -1497,6 +1673,8 @@
     "db_jpy_g": 402.0,
     "mspi_b_jpy_g": 549.33,
     "comex_jpy_g": 406.1,
+    "comex_usd_oz": 79.5161,
+    "usd_jpy": 158.85,
     "jpmi_ag_jpy_g": 432.11,
     "premium_pct": 6.4,
     "components": {
@@ -1519,6 +1697,8 @@
       "has_db": true,
       "has_mspi_b": true,
       "has_comex": true,
+      "has_comex_usd_oz": true,
+      "has_usd_jpy": true,
       "jpmi_component_count": 3
     },
     "source": "live_jpmi_history",
@@ -1531,6 +1711,8 @@
     "db_jpy_g": 418.5,
     "mspi_b_jpy_g": 583.67,
     "comex_jpy_g": 406.61,
+    "comex_usd_oz": 79.4958,
+    "usd_jpy": 159.09,
     "jpmi_ag_jpy_g": 453.55,
     "premium_pct": 11.54,
     "components": {
@@ -1553,6 +1735,8 @@
       "has_db": true,
       "has_mspi_b": true,
       "has_comex": true,
+      "has_comex_usd_oz": true,
+      "has_usd_jpy": true,
       "jpmi_component_count": 3
     },
     "source": "live_jpmi_history",
@@ -1565,6 +1749,8 @@
     "db_jpy_g": 422.5,
     "mspi_b_jpy_g": 580.67,
     "comex_jpy_g": 402.9,
+    "comex_usd_oz": 78.825,
+    "usd_jpy": 158.98,
     "jpmi_ag_jpy_g": 455.79,
     "premium_pct": 13.13,
     "components": {
@@ -1587,6 +1773,8 @@
       "has_db": true,
       "has_mspi_b": true,
       "has_comex": true,
+      "has_comex_usd_oz": true,
+      "has_usd_jpy": true,
       "jpmi_component_count": 3
     },
     "source": "live_jpmi_history",
@@ -1599,6 +1787,8 @@
     "db_jpy_g": 417.5,
     "mspi_b_jpy_g": 587.33,
     "comex_jpy_g": 413.53,
+    "comex_usd_oz": 80.8284,
+    "usd_jpy": 159.13,
     "jpmi_ag_jpy_g": 451.92,
     "premium_pct": 9.28,
     "components": {
@@ -1621,6 +1811,8 @@
       "has_db": true,
       "has_mspi_b": true,
       "has_comex": true,
+      "has_comex_usd_oz": true,
+      "has_usd_jpy": true,
       "jpmi_component_count": 3
     },
     "source": "live_jpmi_history",
@@ -1633,6 +1825,8 @@
     "db_jpy_g": 417.5,
     "mspi_b_jpy_g": null,
     "comex_jpy_g": 413.53,
+    "comex_usd_oz": 80.8284,
+    "usd_jpy": 159.13,
     "jpmi_ag_jpy_g": 428.03,
     "premium_pct": 3.51,
     "components": {
@@ -1655,6 +1849,8 @@
       "has_db": true,
       "has_mspi_b": false,
       "has_comex": true,
+      "has_comex_usd_oz": true,
+      "has_usd_jpy": true,
       "jpmi_component_count": 2
     },
     "source": "live_jpmi_history",
@@ -1667,6 +1863,8 @@
     "db_jpy_g": 417.5,
     "mspi_b_jpy_g": null,
     "comex_jpy_g": 404.13,
+    "comex_usd_oz": 78.9911,
+    "usd_jpy": 159.13,
     "jpmi_ag_jpy_g": 428.03,
     "premium_pct": 5.91,
     "components": {
@@ -1689,6 +1887,8 @@
       "has_db": true,
       "has_mspi_b": false,
       "has_comex": true,
+      "has_comex_usd_oz": true,
+      "has_usd_jpy": true,
       "jpmi_component_count": 2
     },
     "source": "live_jpmi_history",
@@ -1701,6 +1901,8 @@
     "db_jpy_g": 421.5,
     "mspi_b_jpy_g": 595.67,
     "comex_jpy_g": 407.9,
+    "comex_usd_oz": 79.8384,
+    "usd_jpy": 158.91,
     "jpmi_ag_jpy_g": 456.35,
     "premium_pct": 11.88,
     "components": {
@@ -1723,6 +1925,8 @@
       "has_db": true,
       "has_mspi_b": true,
       "has_comex": true,
+      "has_comex_usd_oz": true,
+      "has_usd_jpy": true,
       "jpmi_component_count": 3
     },
     "source": "live_jpmi_history",
@@ -1735,6 +1939,8 @@
     "db_jpy_g": 417.5,
     "mspi_b_jpy_g": 611.67,
     "comex_jpy_g": 395.22,
+    "comex_usd_oz": 77.2933,
+    "usd_jpy": 159.04,
     "jpmi_ag_jpy_g": 456.04,
     "premium_pct": 15.39,
     "components": {
@@ -1757,6 +1963,8 @@
       "has_db": true,
       "has_mspi_b": true,
       "has_comex": true,
+      "has_comex_usd_oz": true,
+      "has_usd_jpy": true,
       "jpmi_component_count": 3
     },
     "source": "live_jpmi_history",
@@ -1769,6 +1977,8 @@
     "db_jpy_g": 409.5,
     "mspi_b_jpy_g": 569.33,
     "comex_jpy_g": 396.77,
+    "comex_usd_oz": 77.5087,
+    "usd_jpy": 159.22,
     "jpmi_ag_jpy_g": 443.8,
     "premium_pct": 11.85,
     "components": {
@@ -1791,6 +2001,8 @@
       "has_db": true,
       "has_mspi_b": true,
       "has_comex": true,
+      "has_comex_usd_oz": true,
+      "has_usd_jpy": true,
       "jpmi_component_count": 3
     },
     "source": "live_jpmi_history",
@@ -1803,6 +2015,8 @@
     "db_jpy_g": 412.5,
     "mspi_b_jpy_g": 601.67,
     "comex_jpy_g": 387.2,
+    "comex_usd_oz": 75.5159,
+    "usd_jpy": 159.48,
     "jpmi_ag_jpy_g": 445.23,
     "premium_pct": 14.99,
     "components": {
@@ -1825,6 +2039,8 @@
       "has_db": true,
       "has_mspi_b": true,
       "has_comex": true,
+      "has_comex_usd_oz": true,
+      "has_usd_jpy": true,
       "jpmi_component_count": 3
     },
     "source": "live_jpmi_history",
@@ -1837,6 +2053,8 @@
     "db_jpy_g": 400.0,
     "mspi_b_jpy_g": 568.67,
     "comex_jpy_g": 387.96,
+    "comex_usd_oz": 75.6926,
+    "usd_jpy": 159.42,
     "jpmi_ag_jpy_g": 432.08,
     "premium_pct": 11.37,
     "components": {
@@ -1859,6 +2077,8 @@
       "has_db": true,
       "has_mspi_b": true,
       "has_comex": true,
+      "has_comex_usd_oz": true,
+      "has_usd_jpy": true,
       "jpmi_component_count": 3
     },
     "source": "live_jpmi_history",
@@ -1871,6 +2091,8 @@
     "db_jpy_g": 400.0,
     "mspi_b_jpy_g": null,
     "comex_jpy_g": 387.96,
+    "comex_usd_oz": 75.6926,
+    "usd_jpy": 159.42,
     "jpmi_ag_jpy_g": 407.97,
     "premium_pct": 5.16,
     "components": {
@@ -1893,6 +2115,8 @@
       "has_db": true,
       "has_mspi_b": false,
       "has_comex": true,
+      "has_comex_usd_oz": true,
+      "has_usd_jpy": true,
       "jpmi_component_count": 2
     },
     "source": "live_jpmi_history",
@@ -1905,6 +2129,8 @@
     "db_jpy_g": 400.0,
     "mspi_b_jpy_g": null,
     "comex_jpy_g": 383.84,
+    "comex_usd_oz": 74.8888,
+    "usd_jpy": 159.42,
     "jpmi_ag_jpy_g": 407.97,
     "premium_pct": 6.29,
     "components": {
@@ -1927,6 +2153,8 @@
       "has_db": true,
       "has_mspi_b": false,
       "has_comex": true,
+      "has_comex_usd_oz": true,
+      "has_usd_jpy": true,
       "jpmi_component_count": 2
     },
     "source": "live_jpmi_history",
@@ -1939,6 +2167,8 @@
     "db_jpy_g": 400.5,
     "mspi_b_jpy_g": 620.0,
     "comex_jpy_g": 388.56,
+    "comex_usd_oz": 75.9097,
+    "usd_jpy": 159.21,
     "jpmi_ag_jpy_g": 442.16,
     "premium_pct": 13.79,
     "components": {
@@ -1961,6 +2191,8 @@
       "has_db": true,
       "has_mspi_b": true,
       "has_comex": true,
+      "has_comex_usd_oz": true,
+      "has_usd_jpy": true,
       "jpmi_component_count": 3
     },
     "source": "live_jpmi_history",
@@ -1973,6 +2205,8 @@
     "db_jpy_g": 402.0,
     "mspi_b_jpy_g": 519.33,
     "comex_jpy_g": 375.84,
+    "comex_usd_oz": 73.181,
+    "usd_jpy": 159.74,
     "jpmi_ag_jpy_g": 423.2,
     "premium_pct": 12.6,
     "components": {
@@ -1995,6 +2229,8 @@
       "has_db": true,
       "has_mspi_b": true,
       "has_comex": true,
+      "has_comex_usd_oz": true,
+      "has_usd_jpy": true,
       "jpmi_component_count": 3
     },
     "source": "live_jpmi_history",
@@ -2007,6 +2243,8 @@
     "db_jpy_g": 402.0,
     "mspi_b_jpy_g": 522.67,
     "comex_jpy_g": 367.87,
+    "comex_usd_oz": 71.6068,
+    "usd_jpy": 159.79,
     "jpmi_ag_jpy_g": 423.7,
     "premium_pct": 15.18,
     "components": {
@@ -2029,6 +2267,8 @@
       "has_db": true,
       "has_mspi_b": true,
       "has_comex": true,
+      "has_comex_usd_oz": true,
+      "has_usd_jpy": true,
       "jpmi_component_count": 3
     },
     "source": "live_jpmi_history",
@@ -2041,6 +2281,8 @@
     "db_jpy_g": 391.0,
     "mspi_b_jpy_g": 546.0,
     "comex_jpy_g": 373.08,
+    "comex_usd_oz": 74.1191,
+    "usd_jpy": 156.56,
     "jpmi_ag_jpy_g": 419.62,
     "premium_pct": 12.47,
     "components": {
@@ -2063,6 +2305,8 @@
       "has_db": true,
       "has_mspi_b": true,
       "has_comex": true,
+      "has_comex_usd_oz": true,
+      "has_usd_jpy": true,
       "jpmi_component_count": 3
     },
     "source": "live_jpmi_history",
@@ -2075,6 +2319,8 @@
     "db_jpy_g": 388.0,
     "mspi_b_jpy_g": 508.33,
     "comex_jpy_g": 379.31,
+    "comex_usd_oz": 75.3569,
+    "usd_jpy": 156.56,
     "jpmi_ag_jpy_g": 412.45,
     "premium_pct": 8.74,
     "components": {
@@ -2097,6 +2343,8 @@
       "has_db": true,
       "has_mspi_b": true,
       "has_comex": true,
+      "has_comex_usd_oz": true,
+      "has_usd_jpy": true,
       "jpmi_component_count": 3
     },
     "source": "live_jpmi_history",
@@ -2109,6 +2357,8 @@
     "db_jpy_g": 388.0,
     "mspi_b_jpy_g": null,
     "comex_jpy_g": 379.31,
+    "comex_usd_oz": 75.3569,
+    "usd_jpy": 156.56,
     "jpmi_ag_jpy_g": 395.53,
     "premium_pct": 4.28,
     "components": {
@@ -2131,6 +2381,8 @@
       "has_db": true,
       "has_mspi_b": false,
       "has_comex": true,
+      "has_comex_usd_oz": true,
+      "has_usd_jpy": true,
       "jpmi_component_count": 2
     },
     "source": "live_jpmi_history",
@@ -2143,6 +2395,8 @@
     "db_jpy_g": 388.0,
     "mspi_b_jpy_g": null,
     "comex_jpy_g": 381.43,
+    "comex_usd_oz": 75.778,
+    "usd_jpy": 156.56,
     "jpmi_ag_jpy_g": 395.53,
     "premium_pct": 3.7,
     "components": {
@@ -2165,6 +2419,8 @@
       "has_db": true,
       "has_mspi_b": false,
       "has_comex": true,
+      "has_comex_usd_oz": true,
+      "has_usd_jpy": true,
       "jpmi_component_count": 2
     },
     "source": "live_jpmi_history",
@@ -2177,6 +2433,8 @@
     "db_jpy_g": 388.0,
     "mspi_b_jpy_g": 522.33,
     "comex_jpy_g": 367.14,
+    "comex_usd_oz": 72.6791,
+    "usd_jpy": 157.12,
     "jpmi_ag_jpy_g": 414.55,
     "premium_pct": 12.91,
     "components": {
@@ -2199,6 +2457,8 @@
       "has_db": true,
       "has_mspi_b": true,
       "has_comex": true,
+      "has_comex_usd_oz": true,
+      "has_usd_jpy": true,
       "jpmi_component_count": 3
     },
     "source": "live_jpmi_history",
@@ -2211,6 +2471,8 @@
     "db_jpy_g": 388.0,
     "mspi_b_jpy_g": 557.67,
     "comex_jpy_g": 375.02,
+    "comex_usd_oz": 73.9144,
+    "usd_jpy": 157.81,
     "jpmi_ag_jpy_g": 419.85,
     "premium_pct": 11.95,
     "components": {
@@ -2233,6 +2495,8 @@
       "has_db": true,
       "has_mspi_b": true,
       "has_comex": true,
+      "has_comex_usd_oz": true,
+      "has_usd_jpy": true,
       "jpmi_component_count": 3
     },
     "source": "live_jpmi_history",
@@ -2245,6 +2509,8 @@
     "db_jpy_g": 388.0,
     "mspi_b_jpy_g": 506.33,
     "comex_jpy_g": 388.82,
+    "comex_usd_oz": 77.4193,
+    "usd_jpy": 156.21,
     "jpmi_ag_jpy_g": 412.15,
     "premium_pct": 6.0,
     "components": {
@@ -2267,6 +2533,8 @@
       "has_db": true,
       "has_mspi_b": true,
       "has_comex": true,
+      "has_comex_usd_oz": true,
+      "has_usd_jpy": true,
       "jpmi_component_count": 3
     },
     "source": "live_jpmi_history",
@@ -2279,6 +2547,8 @@
     "db_jpy_g": 402.5,
     "mspi_b_jpy_g": 567.67,
     "comex_jpy_g": 395.79,
+    "comex_usd_oz": 78.7164,
+    "usd_jpy": 156.39,
     "jpmi_ag_jpy_g": 439.57,
     "premium_pct": 11.06,
     "components": {
@@ -2301,6 +2571,8 @@
       "has_db": true,
       "has_mspi_b": true,
       "has_comex": true,
+      "has_comex_usd_oz": true,
+      "has_usd_jpy": true,
       "jpmi_component_count": 3
     },
     "source": "live_jpmi_history",
@@ -2313,6 +2585,8 @@
     "db_jpy_g": 412.5,
     "mspi_b_jpy_g": 511.0,
     "comex_jpy_g": 405.14,
+    "comex_usd_oz": 80.3858,
+    "usd_jpy": 156.76,
     "jpmi_ag_jpy_g": 437.3,
     "premium_pct": 7.94,
     "components": {
@@ -2335,6 +2609,8 @@
       "has_db": true,
       "has_mspi_b": true,
       "has_comex": true,
+      "has_comex_usd_oz": true,
+      "has_usd_jpy": true,
       "jpmi_component_count": 3
     },
     "source": "live_jpmi_history",
@@ -2347,6 +2623,8 @@
     "db_jpy_g": 412.5,
     "mspi_b_jpy_g": null,
     "comex_jpy_g": 405.14,
+    "comex_usd_oz": 80.3858,
+    "usd_jpy": 156.76,
     "jpmi_ag_jpy_g": 424.29,
     "premium_pct": 4.73,
     "components": {
@@ -2369,6 +2647,8 @@
       "has_db": true,
       "has_mspi_b": false,
       "has_comex": true,
+      "has_comex_usd_oz": true,
+      "has_usd_jpy": true,
       "jpmi_component_count": 2
     },
     "source": "live_jpmi_history",
@@ -2381,6 +2661,8 @@
     "db_jpy_g": 412.5,
     "mspi_b_jpy_g": null,
     "comex_jpy_g": 402.95,
+    "comex_usd_oz": 79.9512,
+    "usd_jpy": 156.76,
     "jpmi_ag_jpy_g": 424.29,
     "premium_pct": 5.3,
     "components": {
@@ -2403,6 +2685,8 @@
       "has_db": true,
       "has_mspi_b": false,
       "has_comex": true,
+      "has_comex_usd_oz": true,
+      "has_usd_jpy": true,
       "jpmi_component_count": 2
     },
     "source": "live_jpmi_history",
@@ -2415,6 +2699,8 @@
     "db_jpy_g": 420.0,
     "mspi_b_jpy_g": 520.33,
     "comex_jpy_g": 439.07,
+    "comex_usd_oz": 86.9073,
+    "usd_jpy": 157.14,
     "jpmi_ag_jpy_g": 444.15,
     "premium_pct": 1.16,
     "components": {
@@ -2437,6 +2723,8 @@
       "has_db": true,
       "has_mspi_b": true,
       "has_comex": true,
+      "has_comex_usd_oz": true,
+      "has_usd_jpy": true,
       "jpmi_component_count": 3
     },
     "source": "live_jpmi_history",
@@ -2449,6 +2737,8 @@
     "db_jpy_g": 453.5,
     "mspi_b_jpy_g": 542.0,
     "comex_jpy_g": 439.94,
+    "comex_usd_oz": 86.8309,
+    "usd_jpy": 157.59,
     "jpmi_ag_jpy_g": 473.67,
     "premium_pct": 7.67,
     "components": {
@@ -2471,6 +2761,8 @@
       "has_db": true,
       "has_mspi_b": true,
       "has_comex": true,
+      "has_comex_usd_oz": true,
+      "has_usd_jpy": true,
       "jpmi_component_count": 3
     },
     "source": "live_jpmi_history",
@@ -2483,6 +2775,8 @@
     "db_jpy_g": 456.5,
     "mspi_b_jpy_g": 521.0,
     "comex_jpy_g": 444.68,
+    "comex_usd_oz": 87.6663,
+    "usd_jpy": 157.77,
     "jpmi_ag_jpy_g": 477.06,
     "premium_pct": 7.28,
     "components": {
@@ -2505,6 +2799,8 @@
       "has_db": true,
       "has_mspi_b": true,
       "has_comex": true,
+      "has_comex_usd_oz": true,
+      "has_usd_jpy": true,
       "jpmi_component_count": 3
     },
     "source": "live_jpmi_history",
@@ -2517,6 +2813,8 @@
     "db_jpy_g": 458.0,
     "mspi_b_jpy_g": 517.33,
     "comex_jpy_g": 423.49,
+    "comex_usd_oz": 83.3936,
+    "usd_jpy": 157.95,
     "jpmi_ag_jpy_g": 477.55,
     "premium_pct": 12.77,
     "components": {
@@ -2539,6 +2837,8 @@
       "has_db": true,
       "has_mspi_b": true,
       "has_comex": true,
+      "has_comex_usd_oz": true,
+      "has_usd_jpy": true,
       "jpmi_component_count": 3
     },
     "source": "live_jpmi_history",
@@ -2551,6 +2851,8 @@
     "db_jpy_g": 446.5,
     "mspi_b_jpy_g": 548.0,
     "comex_jpy_g": 387.3,
+    "comex_usd_oz": 75.9785,
+    "usd_jpy": 158.55,
     "jpmi_ag_jpy_g": 458.84,
     "premium_pct": 18.47,
     "components": {
@@ -2573,6 +2875,8 @@
       "has_db": true,
       "has_mspi_b": true,
       "has_comex": true,
+      "has_comex_usd_oz": true,
+      "has_usd_jpy": true,
       "jpmi_component_count": 3
     },
     "source": "live_jpmi_history",
@@ -2585,6 +2889,8 @@
     "db_jpy_g": 446.5,
     "mspi_b_jpy_g": null,
     "comex_jpy_g": 387.3,
+    "comex_usd_oz": 75.9785,
+    "usd_jpy": 158.55,
     "jpmi_ag_jpy_g": 443.1,
     "premium_pct": 14.41,
     "components": {
@@ -2607,6 +2913,8 @@
       "has_db": true,
       "has_mspi_b": false,
       "has_comex": true,
+      "has_comex_usd_oz": true,
+      "has_usd_jpy": true,
       "jpmi_component_count": 2
     },
     "source": "live_jpmi_history",
@@ -2619,6 +2927,8 @@
     "db_jpy_g": 446.5,
     "mspi_b_jpy_g": null,
     "comex_jpy_g": 389.98,
+    "comex_usd_oz": 76.5042,
+    "usd_jpy": 158.55,
     "jpmi_ag_jpy_g": 443.1,
     "premium_pct": 13.62,
     "components": {
@@ -2641,6 +2951,8 @@
       "has_db": true,
       "has_mspi_b": false,
       "has_comex": true,
+      "has_comex_usd_oz": true,
+      "has_usd_jpy": true,
       "jpmi_component_count": 2
     },
     "source": "live_jpmi_history",
@@ -2653,6 +2965,8 @@
     "db_jpy_g": 396.0,
     "mspi_b_jpy_g": 481.67,
     "comex_jpy_g": 401.74,
+    "comex_usd_oz": 78.702,
+    "usd_jpy": 158.77,
     "jpmi_ag_jpy_g": 418.15,
     "premium_pct": 4.08,
     "components": {
@@ -2675,6 +2989,8 @@
       "has_db": true,
       "has_mspi_b": true,
       "has_comex": true,
+      "has_comex_usd_oz": true,
+      "has_usd_jpy": true,
       "jpmi_component_count": 3
     },
     "source": "live_jpmi_history",
@@ -2687,6 +3003,8 @@
     "db_jpy_g": 411.0,
     "mspi_b_jpy_g": 525.33,
     "comex_jpy_g": 378.09,
+    "comex_usd_oz": 73.9106,
+    "usd_jpy": 159.11,
     "jpmi_ag_jpy_g": 434.28,
     "premium_pct": 14.86,
     "components": {
@@ -2709,6 +3027,8 @@
       "has_db": true,
       "has_mspi_b": true,
       "has_comex": true,
+      "has_comex_usd_oz": true,
+      "has_usd_jpy": true,
       "jpmi_component_count": 3
     },
     "source": "live_jpmi_history",
@@ -2721,6 +3041,8 @@
     "db_jpy_g": 393.0,
     "mspi_b_jpy_g": 539.67,
     "comex_jpy_g": 386.61,
+    "comex_usd_oz": 75.6142,
+    "usd_jpy": 159.03,
     "jpmi_ag_jpy_g": 424.88,
     "premium_pct": 9.9,
     "components": {
@@ -2743,6 +3065,8 @@
       "has_db": true,
       "has_mspi_b": true,
       "has_comex": true,
+      "has_comex_usd_oz": true,
+      "has_usd_jpy": true,
       "jpmi_component_count": 3
     },
     "source": "live_jpmi_history",
@@ -2755,6 +3079,8 @@
     "db_jpy_g": 400.0,
     "mspi_b_jpy_g": 540.67,
     "comex_jpy_g": 391.86,
+    "comex_usd_oz": 76.588,
+    "usd_jpy": 159.14,
     "jpmi_ag_jpy_g": 429.04,
     "premium_pct": 9.49,
     "components": {
@@ -2777,6 +3103,8 @@
       "has_db": true,
       "has_mspi_b": true,
       "has_comex": true,
+      "has_comex_usd_oz": true,
+      "has_usd_jpy": true,
       "jpmi_component_count": 3
     },
     "source": "live_jpmi_history",
@@ -2789,6 +3117,8 @@
     "db_jpy_g": 405.0,
     "mspi_b_jpy_g": 442.5,
     "comex_jpy_g": 386.38,
+    "comex_usd_oz": 75.5122,
+    "usd_jpy": 159.15,
     "jpmi_ag_jpy_g": 418.46,
     "premium_pct": 8.3,
     "components": {
@@ -2811,6 +3141,8 @@
       "has_db": true,
       "has_mspi_b": true,
       "has_comex": true,
+      "has_comex_usd_oz": true,
+      "has_usd_jpy": true,
       "jpmi_component_count": 3
     },
     "source": "live_jpmi_history",
@@ -2823,6 +3155,8 @@
     "db_jpy_g": 405.0,
     "mspi_b_jpy_g": null,
     "comex_jpy_g": 386.38,
+    "comex_usd_oz": 75.5122,
+    "usd_jpy": 159.15,
     "jpmi_ag_jpy_g": 414.22,
     "premium_pct": 7.21,
     "components": {
@@ -2845,6 +3179,8 @@
       "has_db": true,
       "has_mspi_b": false,
       "has_comex": true,
+      "has_comex_usd_oz": true,
+      "has_usd_jpy": true,
       "jpmi_component_count": 2
     },
     "source": "live_jpmi_history",
@@ -2857,6 +3193,8 @@
     "db_jpy_g": 405.0,
     "mspi_b_jpy_g": null,
     "comex_jpy_g": 403.25,
+    "comex_usd_oz": 78.8092,
+    "usd_jpy": 159.15,
     "jpmi_ag_jpy_g": 414.22,
     "premium_pct": 2.72,
     "components": {
@@ -2879,6 +3217,8 @@
       "has_db": true,
       "has_mspi_b": false,
       "has_comex": true,
+      "has_comex_usd_oz": true,
+      "has_usd_jpy": true,
       "jpmi_component_count": 2
     },
     "source": "live_jpmi_history",
@@ -2891,6 +3231,8 @@
     "db_jpy_g": 415.5,
     "mspi_b_jpy_g": 512.5,
     "comex_jpy_g": 396.37,
+    "comex_usd_oz": 77.5719,
+    "usd_jpy": 158.93,
     "jpmi_ag_jpy_g": 437.51,
     "premium_pct": 10.38,
     "components": {
@@ -2913,6 +3255,8 @@
       "has_db": true,
       "has_mspi_b": true,
       "has_comex": true,
+      "has_comex_usd_oz": true,
+      "has_usd_jpy": true,
       "jpmi_component_count": 3
     },
     "source": "live_jpmi_history",
@@ -2925,6 +3269,8 @@
     "db_jpy_g": 408.5,
     "mspi_b_jpy_g": 506.0,
     "comex_jpy_g": 395.74,
+    "comex_usd_oz": 77.3123,
+    "usd_jpy": 159.21,
     "jpmi_ag_jpy_g": 430.72,
     "premium_pct": 8.84,
     "components": {
@@ -2947,6 +3293,8 @@
       "has_db": true,
       "has_mspi_b": true,
       "has_comex": true,
+      "has_comex_usd_oz": true,
+      "has_usd_jpy": true,
       "jpmi_component_count": 3
     },
     "source": "live_jpmi_history",
@@ -2959,6 +3307,8 @@
     "db_jpy_g": 410.0,
     "mspi_b_jpy_g": 514.0,
     "comex_jpy_g": 382.72,
+    "comex_usd_oz": 74.6703,
+    "usd_jpy": 159.42,
     "jpmi_ag_jpy_g": 431.37,
     "premium_pct": 12.71,
     "components": {
@@ -2981,6 +3331,8 @@
       "has_db": true,
       "has_mspi_b": true,
       "has_comex": true,
+      "has_comex_usd_oz": true,
+      "has_usd_jpy": true,
       "jpmi_component_count": 3
     },
     "source": "live_jpmi_history",
@@ -2993,6 +3345,8 @@
     "db_jpy_g": 403.0,
     "mspi_b_jpy_g": 487.33,
     "comex_jpy_g": 387.94,
+    "comex_usd_oz": 75.6697,
+    "usd_jpy": 159.46,
     "jpmi_ag_jpy_g": 415.53,
     "premium_pct": 7.11,
     "components": {
@@ -3015,6 +3369,8 @@
       "has_db": true,
       "has_mspi_b": true,
       "has_comex": true,
+      "has_comex_usd_oz": true,
+      "has_usd_jpy": true,
       "jpmi_component_count": 3
     },
     "source": "live_jpmi_history",
@@ -3027,6 +3383,8 @@
     "db_jpy_g": 403.0,
     "mspi_b_jpy_g": 528.0,
     "comex_jpy_g": 385.51,
+    "comex_usd_oz": 75.2854,
+    "usd_jpy": 159.27,
     "jpmi_ag_jpy_g": 428.61,
     "premium_pct": 11.18,
     "components": {
@@ -3049,6 +3407,8 @@
       "has_db": true,
       "has_mspi_b": true,
       "has_comex": true,
+      "has_comex_usd_oz": true,
+      "has_usd_jpy": true,
       "jpmi_component_count": 3
     },
     "source": "live_jpmi_history",
@@ -3061,6 +3421,8 @@
     "db_jpy_g": 403.0,
     "mspi_b_jpy_g": null,
     "comex_jpy_g": 385.51,
+    "comex_usd_oz": 75.2854,
+    "usd_jpy": 159.27,
     "jpmi_ag_jpy_g": 411.07,
     "premium_pct": 6.63,
     "components": {
@@ -3083,6 +3445,8 @@
       "has_db": true,
       "has_mspi_b": false,
       "has_comex": true,
+      "has_comex_usd_oz": true,
+      "has_usd_jpy": true,
       "jpmi_component_count": 2
     },
     "source": "live_jpmi_history",
@@ -3095,6 +3459,8 @@
     "db_jpy_g": 403.0,
     "mspi_b_jpy_g": null,
     "comex_jpy_g": 386.84,
+    "comex_usd_oz": 75.5452,
+    "usd_jpy": 159.27,
     "jpmi_ag_jpy_g": 411.07,
     "premium_pct": 6.26,
     "components": {
@@ -3117,6 +3483,8 @@
       "has_db": true,
       "has_mspi_b": false,
       "has_comex": true,
+      "has_comex_usd_oz": true,
+      "has_usd_jpy": true,
       "jpmi_component_count": 2
     },
     "source": "live_jpmi_history",
@@ -3129,6 +3497,8 @@
     "db_jpy_g": 402.0,
     "mspi_b_jpy_g": 490.0,
     "comex_jpy_g": 384.81,
+    "comex_usd_oz": 75.0451,
+    "usd_jpy": 159.49,
     "jpmi_ag_jpy_g": 422.73,
     "premium_pct": 9.85,
     "components": {
@@ -3151,6 +3521,8 @@
       "has_db": true,
       "has_mspi_b": true,
       "has_comex": true,
+      "has_comex_usd_oz": true,
+      "has_usd_jpy": true,
       "jpmi_component_count": 3
     },
     "source": "live_jpmi_history",
@@ -3163,6 +3535,8 @@
     "db_jpy_g": 400.5,
     "mspi_b_jpy_g": 494.0,
     "comex_jpy_g": 384.05,
+    "comex_usd_oz": 74.775,
+    "usd_jpy": 159.75,
     "jpmi_ag_jpy_g": 424.39,
     "premium_pct": 10.5,
     "components": {
@@ -3185,6 +3559,8 @@
       "has_db": true,
       "has_mspi_b": true,
       "has_comex": true,
+      "has_comex_usd_oz": true,
+      "has_usd_jpy": true,
       "jpmi_component_count": 3
     },
     "source": "live_jpmi_history",
@@ -3197,6 +3573,8 @@
     "db_jpy_g": 399.0,
     "mspi_b_jpy_g": 491.0,
     "comex_jpy_g": 374.33,
+    "comex_usd_oz": 72.8323,
+    "usd_jpy": 159.86,
     "jpmi_ag_jpy_g": 419.62,
     "premium_pct": 12.1,
     "components": {
@@ -3219,6 +3597,8 @@
       "has_db": true,
       "has_mspi_b": true,
       "has_comex": true,
+      "has_comex_usd_oz": true,
+      "has_usd_jpy": true,
       "jpmi_component_count": 3
     },
     "source": "live_jpmi_history",
@@ -3231,6 +3611,8 @@
     "db_jpy_g": 389.0,
     "mspi_b_jpy_g": 502.0,
     "comex_jpy_g": 379.78,
+    "comex_usd_oz": 73.9204,
+    "usd_jpy": 159.8,
     "jpmi_ag_jpy_g": 413.17,
     "premium_pct": 8.79,
     "components": {
@@ -3253,6 +3635,8 @@
       "has_db": true,
       "has_mspi_b": true,
       "has_comex": true,
+      "has_comex_usd_oz": true,
+      "has_usd_jpy": true,
       "jpmi_component_count": 3
     },
     "source": "live_jpmi_history",
@@ -3265,6 +3649,8 @@
     "db_jpy_g": 388.5,
     "mspi_b_jpy_g": 533.0,
     "comex_jpy_g": 348.67,
+    "comex_usd_oz": 67.8397,
+    "usd_jpy": 159.86,
     "jpmi_ag_jpy_g": 418.96,
     "premium_pct": 20.16,
     "components": {
@@ -3287,6 +3673,8 @@
       "has_db": true,
       "has_mspi_b": true,
       "has_comex": true,
+      "has_comex_usd_oz": true,
+      "has_usd_jpy": true,
       "jpmi_component_count": 3
     },
     "source": "live_jpmi_history",
@@ -3299,6 +3687,8 @@
     "db_jpy_g": 388.5,
     "mspi_b_jpy_g": null,
     "comex_jpy_g": 348.67,
+    "comex_usd_oz": 67.8397,
+    "usd_jpy": 159.86,
     "jpmi_ag_jpy_g": 398.83,
     "premium_pct": 14.39,
     "components": {
@@ -3321,6 +3711,8 @@
       "has_db": true,
       "has_mspi_b": false,
       "has_comex": true,
+      "has_comex_usd_oz": true,
+      "has_usd_jpy": true,
       "jpmi_component_count": 2
     },
     "source": "live_jpmi_history",
@@ -3333,6 +3725,8 @@
     "db_jpy_g": 388.5,
     "mspi_b_jpy_g": null,
     "comex_jpy_g": 349.78,
+    "comex_usd_oz": 68.0557,
+    "usd_jpy": 159.86,
     "jpmi_ag_jpy_g": 398.83,
     "premium_pct": 14.02,
     "components": {
@@ -3355,6 +3749,8 @@
       "has_db": true,
       "has_mspi_b": false,
       "has_comex": true,
+      "has_comex_usd_oz": true,
+      "has_usd_jpy": true,
       "jpmi_component_count": 2
     },
     "source": "live_jpmi_history",
@@ -3367,6 +3763,8 @@
     "db_jpy_g": 372.0,
     "mspi_b_jpy_g": 480.33,
     "comex_jpy_g": 350.51,
+    "comex_usd_oz": 68.1508,
+    "usd_jpy": 159.97,
     "jpmi_ag_jpy_g": 387.25,
     "premium_pct": 10.48,
     "components": {
@@ -3389,6 +3787,8 @@
       "has_db": true,
       "has_mspi_b": true,
       "has_comex": true,
+      "has_comex_usd_oz": true,
+      "has_usd_jpy": true,
       "jpmi_component_count": 3
     },
     "source": "live_jpmi_history",
@@ -3401,6 +3801,8 @@
     "db_jpy_g": 358.5,
     "mspi_b_jpy_g": 500.0,
     "comex_jpy_g": 334.48,
+    "comex_usd_oz": 64.9569,
+    "usd_jpy": 160.16,
     "jpmi_ag_jpy_g": 387.56,
     "premium_pct": 15.87,
     "components": {
@@ -3423,6 +3825,8 @@
       "has_db": true,
       "has_mspi_b": true,
       "has_comex": true,
+      "has_comex_usd_oz": true,
+      "has_usd_jpy": true,
       "jpmi_component_count": 3
     },
     "source": "live_jpmi_history",
@@ -3435,6 +3839,8 @@
     "db_jpy_g": 351.5,
     "mspi_b_jpy_g": 468.67,
     "comex_jpy_g": 323.78,
+    "comex_usd_oz": 62.7496,
+    "usd_jpy": 160.49,
     "jpmi_ag_jpy_g": 371.26,
     "premium_pct": 14.66,
     "components": {
@@ -3457,6 +3863,8 @@
       "has_db": true,
       "has_mspi_b": true,
       "has_comex": true,
+      "has_comex_usd_oz": true,
+      "has_usd_jpy": true,
       "jpmi_component_count": 3
     },
     "source": "live_jpmi_history",
@@ -3469,6 +3877,8 @@
     "db_jpy_g": 335.0,
     "mspi_b_jpy_g": 471.0,
     "comex_jpy_g": 349.02,
+    "comex_usd_oz": 67.6202,
+    "usd_jpy": 160.54,
     "jpmi_ag_jpy_g": 364.47,
     "premium_pct": 4.43,
     "components": {
@@ -3491,6 +3901,8 @@
       "has_db": true,
       "has_mspi_b": true,
       "has_comex": true,
+      "has_comex_usd_oz": true,
+      "has_usd_jpy": true,
       "jpmi_component_count": 3
     },
     "source": "live_jpmi_history",
@@ -3503,6 +3915,8 @@
     "db_jpy_g": 346.0,
     "mspi_b_jpy_g": 495.67,
     "comex_jpy_g": 349.11,
+    "comex_usd_oz": 67.7812,
+    "usd_jpy": 160.2,
     "jpmi_ag_jpy_g": 380.56,
     "premium_pct": 9.01,
     "components": {
@@ -3525,6 +3939,8 @@
       "has_db": true,
       "has_mspi_b": true,
       "has_comex": true,
+      "has_comex_usd_oz": true,
+      "has_usd_jpy": true,
       "jpmi_component_count": 3
     },
     "source": "live_jpmi_history",
@@ -3537,6 +3953,8 @@
     "db_jpy_g": 357.5,
     "mspi_b_jpy_g": null,
     "comex_jpy_g": 349.11,
+    "comex_usd_oz": 67.7812,
+    "usd_jpy": 160.2,
     "jpmi_ag_jpy_g": 364.31,
     "premium_pct": 4.35,
     "components": {
@@ -3559,6 +3977,8 @@
       "has_db": true,
       "has_mspi_b": false,
       "has_comex": true,
+      "has_comex_usd_oz": true,
+      "has_usd_jpy": true,
       "jpmi_component_count": 2
     },
     "source": "live_jpmi_history",
@@ -3571,6 +3991,8 @@
     "db_jpy_g": 357.5,
     "mspi_b_jpy_g": null,
     "comex_jpy_g": 361.03,
+    "comex_usd_oz": 70.0955,
+    "usd_jpy": 160.2,
     "jpmi_ag_jpy_g": 364.31,
     "premium_pct": 0.91,
     "components": {
@@ -3593,6 +4015,8 @@
       "has_db": true,
       "has_mspi_b": false,
       "has_comex": true,
+      "has_comex_usd_oz": true,
+      "has_usd_jpy": true,
       "jpmi_component_count": 2
     },
     "source": "live_jpmi_history",
@@ -3605,6 +4029,8 @@
     "db_jpy_g": 373.0,
     "mspi_b_jpy_g": 492.67,
     "comex_jpy_g": 359.88,
+    "comex_usd_oz": 69.8766,
+    "usd_jpy": 160.19,
     "jpmi_ag_jpy_g": 399.0,
     "premium_pct": 10.87,
     "components": {
@@ -3627,6 +4053,8 @@
       "has_db": true,
       "has_mspi_b": true,
       "has_comex": true,
+      "has_comex_usd_oz": true,
+      "has_usd_jpy": true,
       "jpmi_component_count": 3
     },
     "source": "live_jpmi_history",
@@ -3639,6 +4067,8 @@
     "db_jpy_g": 368.5,
     "mspi_b_jpy_g": 511.0,
     "comex_jpy_g": 361.1,
+    "comex_usd_oz": 70.0304,
+    "usd_jpy": 160.38,
     "jpmi_ag_jpy_g": 399.37,
     "premium_pct": 10.6,
     "components": {
@@ -3661,6 +4091,8 @@
       "has_db": true,
       "has_mspi_b": true,
       "has_comex": true,
+      "has_comex_usd_oz": true,
+      "has_usd_jpy": true,
       "jpmi_component_count": 3
     },
     "source": "live_jpmi_history",
@@ -3673,6 +4105,8 @@
     "db_jpy_g": 371.0,
     "mspi_b_jpy_g": 506.0,
     "comex_jpy_g": 350.19,
+    "comex_usd_oz": 67.9442,
+    "usd_jpy": 160.31,
     "jpmi_ag_jpy_g": 400.3,
     "premium_pct": 14.31,
     "components": {
@@ -3695,6 +4129,8 @@
       "has_db": true,
       "has_mspi_b": true,
       "has_comex": true,
+      "has_comex_usd_oz": true,
+      "has_usd_jpy": true,
       "jpmi_component_count": 3
     },
     "source": "live_jpmi_history",
@@ -3707,6 +4143,8 @@
     "db_jpy_g": 368.5,
     "mspi_b_jpy_g": 454.0,
     "comex_jpy_g": 338.07,
+    "comex_usd_oz": 65.34,
+    "usd_jpy": 160.93,
     "jpmi_ag_jpy_g": 388.1,
     "premium_pct": 14.8,
     "components": {
@@ -3729,6 +4167,8 @@
       "has_db": true,
       "has_mspi_b": true,
       "has_comex": true,
+      "has_comex_usd_oz": true,
+      "has_usd_jpy": true,
       "jpmi_component_count": 3
     },
     "source": "live_jpmi_history",
@@ -3741,6 +4181,8 @@
     "db_jpy_g": 358.5,
     "mspi_b_jpy_g": 480.5,
     "comex_jpy_g": 336.09,
+    "comex_usd_oz": 64.8364,
+    "usd_jpy": 161.23,
     "jpmi_ag_jpy_g": 375.73,
     "premium_pct": 11.79,
     "components": {
@@ -3763,6 +4205,8 @@
       "has_db": true,
       "has_mspi_b": true,
       "has_comex": true,
+      "has_comex_usd_oz": true,
+      "has_usd_jpy": true,
       "jpmi_component_count": 3
     },
     "source": "live_jpmi_history",
@@ -3775,6 +4219,8 @@
     "db_jpy_g": 358.5,
     "mspi_b_jpy_g": null,
     "comex_jpy_g": 336.09,
+    "comex_usd_oz": 64.8364,
+    "usd_jpy": 161.23,
     "jpmi_ag_jpy_g": 357.24,
     "premium_pct": 6.29,
     "components": {
@@ -3797,6 +4243,8 @@
       "has_db": true,
       "has_mspi_b": false,
       "has_comex": true,
+      "has_comex_usd_oz": true,
+      "has_usd_jpy": true,
       "jpmi_component_count": 2
     },
     "source": "live_jpmi_history",
@@ -3809,6 +4257,8 @@
     "db_jpy_g": 358.5,
     "mspi_b_jpy_g": null,
     "comex_jpy_g": 333.53,
+    "comex_usd_oz": 64.3426,
+    "usd_jpy": 161.23,
     "jpmi_ag_jpy_g": 357.24,
     "premium_pct": 7.11,
     "components": {
@@ -3831,6 +4281,8 @@
       "has_db": true,
       "has_mspi_b": false,
       "has_comex": true,
+      "has_comex_usd_oz": true,
+      "has_usd_jpy": true,
       "jpmi_component_count": 2
     },
     "source": "live_jpmi_history",
@@ -3843,6 +4295,8 @@
     "db_jpy_g": 348.5,
     "mspi_b_jpy_g": 452.5,
     "comex_jpy_g": 344.56,
+    "comex_usd_oz": 65.0428,
+    "usd_jpy": 161.78,
     "jpmi_ag_jpy_g": 374.52,
     "premium_pct": 8.7,
     "components": {
@@ -3865,6 +4319,8 @@
       "has_db": true,
       "has_mspi_b": true,
       "has_comex": true,
+      "has_comex_usd_oz": true,
+      "has_usd_jpy": true,
       "jpmi_component_count": 3
     },
     "source": "live_jpmi_history",
@@ -3878,6 +4334,8 @@
     "db_jpy_g": 346.0,
     "mspi_b_jpy_g": 472.0,
     "comex_jpy_g": 323.44,
+    "comex_usd_oz": 61.4117,
+    "usd_jpy": 161.53,
     "jpmi_ag_jpy_g": 366.45,
     "premium_pct": 13.3,
     "components": {
@@ -3900,6 +4358,8 @@
       "has_db": true,
       "has_mspi_b": true,
       "has_comex": true,
+      "has_comex_usd_oz": true,
+      "has_usd_jpy": true,
       "jpmi_component_count": 3
     },
     "source": "live_jpmi_history",
@@ -3913,6 +4373,8 @@
     "db_jpy_g": 327.0,
     "mspi_b_jpy_g": 457.5,
     "comex_jpy_g": 311.08,
+    "comex_usd_oz": 57.5419,
+    "usd_jpy": 161.68,
     "jpmi_ag_jpy_g": 353.77,
     "premium_pct": 13.72,
     "components": {
@@ -3935,10 +4397,166 @@
       "has_db": true,
       "has_mspi_b": true,
       "has_comex": true,
+      "has_comex_usd_oz": true,
+      "has_usd_jpy": true,
       "jpmi_component_count": 3
     },
     "source": "live_jpmi_history",
     "git_commit": "9005090d2656e57f93bcdcd4629422c560fc835f",
     "updated_at_utc": "2026-06-24T12:01:14+00:00"
+  },
+  {
+    "date": "2026-06-25",
+    "observation_time_jst": "19:00",
+    "rs_jpy_g": 314.45,
+    "db_jpy_g": 309.0,
+    "mspi_b_jpy_g": 472.0,
+    "comex_jpy_g": 298.25,
+    "comex_usd_oz": 57.8888,
+    "usd_jpy": 161.85,
+    "jpmi_ag_jpy_g": 336.45,
+    "premium_pct": 12.81,
+    "components": {
+      "tanaka_silver_buy": 304.48,
+      "nihon_silver_buy": 320.1,
+      "mitsubishi_silver_buy": 318.78,
+      "daikichi_sv1000": 315.0,
+      "nanboya_sv1000": 303.0
+    },
+    "cleaning": {
+      "rs_components_used": [
+        "tanaka_silver_buy",
+        "nihon_silver_buy",
+        "mitsubishi_silver_buy"
+      ],
+      "rs_outliers_excluded": {}
+    },
+    "data_quality": {
+      "has_rs": true,
+      "has_db": true,
+      "has_mspi_b": true,
+      "has_comex": true,
+      "has_comex_usd_oz": true,
+      "has_usd_jpy": true,
+      "jpmi_component_count": 3
+    },
+    "source": "live_jpmi_history",
+    "git_commit": "cd56f226884d588d8891a5b0eb77d603cbffe516",
+    "updated_at_utc": "2026-06-25T11:44:04+00:00"
+  },
+  {
+    "date": "2026-06-26",
+    "observation_time_jst": "19:00",
+    "rs_jpy_g": 314.38,
+    "db_jpy_g": 309.5,
+    "mspi_b_jpy_g": 482.0,
+    "comex_jpy_g": 303.3,
+    "comex_usd_oz": 58.9244,
+    "usd_jpy": 161.65,
+    "jpmi_ag_jpy_g": 338.06,
+    "premium_pct": 11.46,
+    "components": {
+      "tanaka_silver_buy": 319.22,
+      "nihon_silver_buy": 311.3,
+      "mitsubishi_silver_buy": 312.62,
+      "daikichi_sv1000": 316.0,
+      "nanboya_sv1000": 303.0
+    },
+    "cleaning": {
+      "rs_components_used": [
+        "tanaka_silver_buy",
+        "nihon_silver_buy",
+        "mitsubishi_silver_buy"
+      ],
+      "rs_outliers_excluded": {}
+    },
+    "data_quality": {
+      "has_rs": true,
+      "has_db": true,
+      "has_mspi_b": true,
+      "has_comex": true,
+      "has_comex_usd_oz": true,
+      "has_usd_jpy": true,
+      "jpmi_component_count": 3
+    },
+    "source": "live_jpmi_history",
+    "git_commit": "3489befbb37ecdcb3f42a14302e61c7756982c7e",
+    "updated_at_utc": "2026-06-26T11:50:01+00:00"
+  },
+  {
+    "date": "2026-06-27",
+    "observation_time_jst": "19:00",
+    "rs_jpy_g": 314.38,
+    "db_jpy_g": 309.5,
+    "mspi_b_jpy_g": null,
+    "comex_jpy_g": 306.24,
+    "comex_usd_oz": 58.9244,
+    "usd_jpy": 161.65,
+    "jpmi_ag_jpy_g": 312.66,
+    "premium_pct": 2.1,
+    "components": {
+      "tanaka_silver_buy": 319.22,
+      "nihon_silver_buy": 311.3,
+      "mitsubishi_silver_buy": 312.62,
+      "nanboya_sv1000": 303.0,
+      "daikichi_sv1000": 316.0
+    },
+    "cleaning": {
+      "rs_components_used": [
+        "tanaka_silver_buy",
+        "nihon_silver_buy",
+        "mitsubishi_silver_buy"
+      ],
+      "rs_outliers_excluded": {}
+    },
+    "data_quality": {
+      "has_rs": true,
+      "has_db": true,
+      "has_mspi_b": false,
+      "has_comex": true,
+      "has_comex_usd_oz": true,
+      "has_usd_jpy": true,
+      "jpmi_component_count": 2
+    },
+    "source": "rebuilt_from_git_prices_json",
+    "git_commit": "12a2ab317bbf4635717a6c2594dae8ea3f9c8b14"
+  },
+  {
+    "date": "2026-06-28",
+    "observation_time_jst": "19:00",
+    "rs_jpy_g": 314.38,
+    "db_jpy_g": 309.5,
+    "mspi_b_jpy_g": null,
+    "comex_jpy_g": 305.54,
+    "comex_usd_oz": 58.7898,
+    "usd_jpy": 161.65,
+    "jpmi_ag_jpy_g": 312.66,
+    "premium_pct": 2.33,
+    "components": {
+      "tanaka_silver_buy": 319.22,
+      "nihon_silver_buy": 311.3,
+      "mitsubishi_silver_buy": 312.62,
+      "nanboya_sv1000": 303.0,
+      "daikichi_sv1000": 316.0
+    },
+    "cleaning": {
+      "rs_components_used": [
+        "tanaka_silver_buy",
+        "nihon_silver_buy",
+        "mitsubishi_silver_buy"
+      ],
+      "rs_outliers_excluded": {}
+    },
+    "data_quality": {
+      "has_rs": true,
+      "has_db": true,
+      "has_mspi_b": false,
+      "has_comex": true,
+      "has_comex_usd_oz": true,
+      "has_usd_jpy": true,
+      "jpmi_component_count": 2
+    },
+    "source": "rebuilt_from_git_prices_json",
+    "git_commit": "e74e7ac660e15007ea8e98586128c0b8485e4427"
   }
 ]
