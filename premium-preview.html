@@ -15,6 +15,9 @@
       --jpmi-blue-border: rgba(77, 166, 255, 0.38);
       --jpmi-white: #f5f5f5;
       --jpmi-dark: #050505;
+      --jpmi-muted: #9ca3af;
+      --jpmi-card: rgba(255, 255, 255, 0.035);
+      --jpmi-card-border: rgba(255, 255, 255, 0.09);
     }
 
     * { box-sizing: border-box; }
@@ -55,14 +58,14 @@
     }
 
     .subtitle {
-      max-width: 760px;
+      max-width: 780px;
       margin-top: 26px;
       color: #b8b8b8;
       font-size: 18px;
       line-height: 1.7;
     }
 
-    .chart-card {
+    .premium-shell {
       margin-top: 52px;
       border: 1px solid rgba(77, 166, 255, 0.24);
       border-radius: 30px;
@@ -73,7 +76,7 @@
       overflow: hidden;
     }
 
-    .chart-header {
+    .premium-header {
       display: flex;
       justify-content: space-between;
       gap: 24px;
@@ -81,13 +84,13 @@
       border-bottom: 1px solid rgba(255,255,255,0.08);
     }
 
-    .chart-title h2 {
+    .premium-title h2 {
       margin: 0;
       font-size: 32px;
       letter-spacing: -0.035em;
     }
 
-    .chart-title p {
+    .premium-title p {
       margin: 10px 0 0;
       color: #aaa;
       font-size: 15px;
@@ -104,24 +107,38 @@
       letter-spacing: 0.16em;
       text-transform: uppercase;
       border: 1px solid rgba(77, 166, 255, 0.42);
+      white-space: nowrap;
     }
 
-    .stats {
-      display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      gap: 14px;
+    .section-block {
       padding: 26px 30px;
       border-bottom: 1px solid rgba(255,255,255,0.08);
     }
 
-    .stat {
-      padding: 19px;
-      border: 1px solid rgba(255,255,255,0.09);
-      border-radius: 20px;
-      background: rgba(255,255,255,0.035);
+    .section-title {
+      margin: 0 0 16px;
+      color: #d9ecff;
+      font-size: 12px;
+      font-weight: 900;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
     }
 
-    .stat span {
+    .cards-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 14px;
+    }
+
+    .metric-card {
+      padding: 19px;
+      border: 1px solid var(--jpmi-card-border);
+      border-radius: 20px;
+      background: var(--jpmi-card);
+      min-height: 118px;
+    }
+
+    .metric-card span {
       display: block;
       color: #777;
       font-size: 11px;
@@ -130,23 +147,32 @@
       text-transform: uppercase;
     }
 
-    .stat strong {
+    .metric-card strong {
       display: block;
       margin-top: 10px;
       font-family: "Courier New", monospace;
       font-size: 27px;
+      line-height: 1.1;
       color: #fff;
     }
 
-    .stat small {
+    .metric-card small {
       display: block;
-      margin-top: 6px;
+      margin-top: 7px;
       color: #888;
       font-size: 12px;
+      line-height: 1.35;
+    }
+
+    .metric-card.status-card strong {
+      font-family: Arial, sans-serif;
+      font-size: 24px;
+      letter-spacing: -0.02em;
     }
 
     .chart-area {
       padding: 30px;
+      border-bottom: 1px solid rgba(255,255,255,0.08);
     }
 
     .chart-controls {
@@ -180,26 +206,29 @@
       background: rgba(0,0,0,0.42);
     }
 
-    .premium-footer {
+    .dataset-info {
+      padding: 24px 30px;
+      border-bottom: 1px solid rgba(255,255,255,0.08);
+    }
+
+    .dataset-grid {
       display: grid;
       grid-template-columns: repeat(4, 1fr);
       gap: 14px;
-      margin-top: 24px;
-      padding: 22px;
+      padding: 20px;
       border: 1px solid rgba(77, 166, 255, 0.28);
       border-radius: 22px;
-      background: rgba(0,0,0,0.65);
-      text-align: center;
+      background: rgba(0,0,0,0.48);
     }
 
-    .footer-item strong {
+    .dataset-item strong {
       display: block;
       color: #d9ecff;
       font-size: 15px;
       font-weight: 800;
     }
 
-    .footer-item span {
+    .dataset-item span {
       display: block;
       margin-top: 5px;
       color: #999;
@@ -209,39 +238,45 @@
     .actions {
       display: flex;
       gap: 12px;
-      margin-top: 24px;
+      padding: 26px 30px 30px;
       flex-wrap: wrap;
       justify-content: center;
     }
 
-    .primary-btn {
-      padding: 14px 22px;
-      border-radius: 999px;
-      background: var(--jpmi-blue);
-      color: #050505;
-      font-weight: 900;
-      text-decoration: none;
-      box-shadow: 0 12px 30px rgba(77, 166, 255, 0.22);
-    }
-
-    .primary-btn:hover {
-      background: #72b9ff;
-    }
-
+    .primary-btn,
+    .secondary-btn,
     .locked-btn {
       padding: 14px 22px;
       border-radius: 999px;
+      font-weight: 900;
+      text-decoration: none;
+    }
+
+    .primary-btn {
+      background: var(--jpmi-blue);
+      color: #050505;
+      box-shadow: 0 12px 30px rgba(77, 166, 255, 0.22);
+    }
+
+    .primary-btn:hover { background: #72b9ff; }
+
+    .secondary-btn {
+      border: 1px solid rgba(77, 166, 255, 0.35);
+      color: #d9ecff;
+      background: rgba(77, 166, 255, 0.08);
+    }
+
+    .locked-btn {
       border: 1px solid rgba(255,255,255,0.14);
       color: #777;
-      text-decoration: none;
       pointer-events: none;
     }
 
-    @media (max-width: 850px) {
-      .chart-header { flex-direction: column; }
+    @media (max-width: 900px) {
+      .premium-header { flex-direction: column; }
 
-      .stats,
-      .premium-footer {
+      .cards-grid,
+      .dataset-grid {
         grid-template-columns: 1fr 1fr;
       }
 
@@ -249,15 +284,18 @@
     }
 
     @media (max-width: 540px) {
-      .stats,
-      .premium-footer {
+      .cards-grid,
+      .dataset-grid {
         grid-template-columns: 1fr;
       }
 
       .chart-area,
-      .chart-header,
-      .stats {
-        padding: 20px;
+      .premium-header,
+      .section-block,
+      .dataset-info,
+      .actions {
+        padding-left: 20px;
+        padding-right: 20px;
       }
 
       .chart-wrap { height: 360px; }
@@ -272,39 +310,94 @@
     <h1>Historical Japan Physical Silver Intelligence</h1>
 
     <p class="subtitle">
-      Access the JPMI-AG historical chart, downloadable CSV data, and monthly
-      research notes covering Japan's physical silver market.
+      Access the complete JPMI historical database, market analytics, downloadable CSV data,
+      and monthly research notes covering Japan's physical silver market.
     </p>
 
-    <section class="chart-card">
-      <div class="chart-header">
-        <div class="chart-title">
+    <section class="premium-shell">
+      <div class="premium-header">
+        <div class="premium-title">
           <h2>JPMI-AG Historical Chart</h2>
           <p>Japan physical silver pricing · March 2026 – Present</p>
         </div>
         <div class="premium-tag">Premium Dataset</div>
       </div>
 
-      <div class="stats">
-        <div class="stat">
-          <span>Latest JPMI-AG</span>
-          <strong>Loading</strong>
-          <small>Japan physical silver</small>
+      <div class="section-block">
+        <h3 class="section-title">Live Market Snapshot</h3>
+        <div class="cards-grid">
+          <div class="metric-card" id="card-latest-jpmi">
+            <span>JPMI-AG</span>
+            <strong>Loading</strong>
+            <small>Japan Physical Silver Index</small>
+          </div>
+          <div class="metric-card" id="card-latest-premium">
+            <span>Premium vs COMEX</span>
+            <strong>Loading</strong>
+            <small>Physical premium</small>
+          </div>
+          <div class="metric-card" id="card-comex">
+            <span>COMEX</span>
+            <strong>Loading</strong>
+            <small>Global reference market</small>
+          </div>
+          <div class="metric-card" id="card-trading-days">
+            <span>Trading Days</span>
+            <strong>Loading</strong>
+            <small>Historical observations</small>
+          </div>
         </div>
-        <div class="stat">
-          <span>Latest Premium</span>
-          <strong>Loading</strong>
-          <small>JPMI vs COMEX</small>
+      </div>
+
+      <div class="section-block">
+        <h3 class="section-title">Market Intelligence</h3>
+        <div class="cards-grid">
+          <div class="metric-card" id="card-average-premium">
+            <span>Average Premium</span>
+            <strong>Loading</strong>
+            <small>Since March 2026</small>
+          </div>
+          <div class="metric-card" id="card-highest-premium">
+            <span>Highest Premium</span>
+            <strong>Loading</strong>
+            <small>Historical high</small>
+          </div>
+          <div class="metric-card" id="card-lowest-premium">
+            <span>Lowest Premium</span>
+            <strong>Loading</strong>
+            <small>Historical low</small>
+          </div>
+          <div class="metric-card status-card" id="card-market-status">
+            <span>Market Status</span>
+            <strong>Loading</strong>
+            <small>Based on current premium vs history</small>
+          </div>
         </div>
-        <div class="stat">
-          <span>Dataset Coverage</span>
-          <strong>Loading</strong>
-          <small>Historical range</small>
-        </div>
-        <div class="stat">
-          <span>Trading Days</span>
-          <strong>Loading</strong>
-          <small>Observations recorded</small>
+      </div>
+
+      <div class="section-block">
+        <h3 class="section-title">Market Structure</h3>
+        <div class="cards-grid">
+          <div class="metric-card" id="card-average-jpmi">
+            <span>Average JPMI-AG</span>
+            <strong>Loading</strong>
+            <small>Historical average</small>
+          </div>
+          <div class="metric-card" id="card-average-rs">
+            <span>Average RS</span>
+            <strong>Loading</strong>
+            <small>Refinery buyback average</small>
+          </div>
+          <div class="metric-card" id="card-average-db">
+            <span>Average DB</span>
+            <strong>Loading</strong>
+            <small>Dealer / pawn bid average</small>
+          </div>
+          <div class="metric-card" id="card-average-mercari">
+            <span>Average Mercari</span>
+            <strong>Loading</strong>
+            <small>Street retail average</small>
+          </div>
         </div>
       </div>
 
@@ -323,32 +416,36 @@
         <div class="chart-wrap">
           <canvas id="jpmiPremiumChart"></canvas>
         </div>
+      </div>
 
-        <div class="premium-footer">
-          <div class="footer-item">
+      <div class="dataset-info">
+        <h3 class="section-title">Historical Dataset</h3>
+        <div class="dataset-grid">
+          <div class="dataset-item" id="dataset-coverage">
             <strong>Loading</strong>
-            <span>Dataset coverage</span>
+            <span>Coverage</span>
           </div>
-          <div class="footer-item">
+          <div class="dataset-item" id="dataset-last-observation">
             <strong>Loading</strong>
             <span>Last observation</span>
           </div>
-          <div class="footer-item">
-            <strong>CSV Export</strong>
-            <span>Downloadable premium dataset</span>
-          </div>
-          <div class="footer-item">
+          <div class="dataset-item">
             <strong>19:00 JST</strong>
             <span>Daily official snapshot</span>
           </div>
+          <div class="dataset-item" id="dataset-csv-status">
+            <strong>Premium Members</strong>
+            <span>CSV export</span>
+          </div>
         </div>
+      </div>
 
-        <div class="actions">
-          <a class="primary-btn" href="mailto:cryptoblockcats@gmail.com?subject=JPMI%20Premium%20Access">
-            Request Premium Access
-          </a>
-          <a class="locked-btn" href="#">CSV Export 🔒</a>
-        </div>
+      <div class="actions">
+        <a class="primary-btn" href="mailto:cryptoblockcats@gmail.com?subject=JPMI%20Premium%20Access">
+          Request Premium Access
+        </a>
+        <a class="secondary-btn" href="#" id="csv-export-button">CSV Export 🔒</a>
+        <a class="locked-btn" href="#">Monthly Reports 🔒</a>
       </div>
     </section>
   </main>
@@ -414,6 +511,11 @@
       return "¥" + Number(value).toFixed(2) + "/g";
     }
 
+    function usdOz(value) {
+      if (value === null || value === undefined || Number.isNaN(Number(value))) return "N/A";
+      return "$" + Number(value).toFixed(2) + "/oz";
+    }
+
     function percent(value) {
       if (value === null || value === undefined || Number.isNaN(Number(value))) return "N/A";
       return (Number(value) >= 0 ? "+" : "") + Number(value).toFixed(2) + "%";
@@ -424,6 +526,29 @@
       return value !== null && value !== undefined && !Number.isNaN(Number(value));
     }
 
+    function validRowsFor(key) {
+      return premiumRows.filter(row => hasValue(row, key));
+    }
+
+    function average(key) {
+      const rows = validRowsFor(key);
+      if (!rows.length) return null;
+      const total = rows.reduce((sum, row) => sum + Number(row[key]), 0);
+      return total / rows.length;
+    }
+
+    function maxValue(key) {
+      const rows = validRowsFor(key);
+      if (!rows.length) return null;
+      return Math.max(...rows.map(row => Number(row[key])));
+    }
+
+    function minValue(key) {
+      const rows = validRowsFor(key);
+      if (!rows.length) return null;
+      return Math.min(...rows.map(row => Number(row[key])));
+    }
+
     function findLatestWithValue(key) {
       for (let i = premiumRows.length - 1; i >= 0; i--) {
         if (hasValue(premiumRows[i], key)) {
@@ -431,6 +556,38 @@
         }
       }
       return premiumRows[premiumRows.length - 1];
+    }
+
+    function setCard(selector, value, subtitle) {
+      const card = document.querySelector(selector);
+      if (!card) return;
+      const strong = card.querySelector("strong");
+      const small = card.querySelector("small");
+      if (strong) strong.textContent = value;
+      if (small && subtitle) small.textContent = subtitle;
+    }
+
+    function getMarketStatus(latestPremium, avgPremium) {
+      if (latestPremium === null || latestPremium === undefined || Number.isNaN(Number(latestPremium))) {
+        return { label: "N/A", note: "Insufficient premium data" };
+      }
+
+      const latest = Number(latestPremium);
+      const avg = Number(avgPremium);
+
+      if (latest >= 22) {
+        return { label: "🔴 Extreme", note: "Premium is above 22%" };
+      }
+
+      if (latest >= 18) {
+        return { label: "🟠 Tight", note: "Premium is elevated vs history" };
+      }
+
+      if (!Number.isNaN(avg) && latest >= avg + 2) {
+        return { label: "🟡 Firm", note: "Premium is above historical average" };
+      }
+
+      return { label: "🟢 Normal", note: "Premium is near historical range" };
     }
 
     function buildDataset(seriesKey, view) {
@@ -461,25 +618,40 @@
     function updateStats() {
       const latestJpmi = findLatestWithValue("jpmi_ag_jpy_g");
       const latestPremium = findLatestWithValue("premium_pct");
+      const latestComex = findLatestWithValue("comex_jpy_g");
       const firstRow = premiumRows[0];
       const lastRow = premiumRows[premiumRows.length - 1];
 
-      document.querySelector(".stats .stat:nth-child(1) strong").textContent =
-        yen(latestJpmi.jpmi_ag_jpy_g);
+      const avgPremium = average("premium_pct");
+      const avgJpmi = average("jpmi_ag_jpy_g");
+      const avgRs = average("rs_jpy_g");
+      const avgDb = average("db_jpy_g");
+      const avgMercari = average("mspi_b_jpy_g");
+      const highPremium = maxValue("premium_pct");
+      const lowPremium = minValue("premium_pct");
+      const marketStatus = getMarketStatus(latestPremium?.premium_pct, avgPremium);
 
-      document.querySelector(".stats .stat:nth-child(2) strong").textContent =
-        percent(latestPremium.premium_pct);
+      setCard("#card-latest-jpmi", yen(latestJpmi?.jpmi_ag_jpy_g), "Japan Physical Silver Index");
+      setCard("#card-latest-premium", percent(latestPremium?.premium_pct), "Physical premium");
 
-      document.querySelector(".stats .stat:nth-child(3) strong").textContent =
+      const comexMain = latestComex?.comex_usd_oz ? usdOz(latestComex.comex_usd_oz) : yen(latestComex?.comex_jpy_g);
+      const comexSub = latestComex?.comex_usd_oz ? yen(latestComex.comex_jpy_g) + " equivalent" : "JPY/g equivalent";
+      setCard("#card-comex", comexMain, comexSub);
+
+      setCard("#card-trading-days", String(premiumRows.length), "Historical observations");
+      setCard("#card-average-premium", percent(avgPremium), "Since March 2026");
+      setCard("#card-highest-premium", percent(highPremium), "Historical high");
+      setCard("#card-lowest-premium", percent(lowPremium), "Historical low");
+      setCard("#card-market-status", marketStatus.label, marketStatus.note);
+      setCard("#card-average-jpmi", yen(avgJpmi), "Historical average");
+      setCard("#card-average-rs", yen(avgRs), "Refinery buyback average");
+      setCard("#card-average-db", yen(avgDb), "Dealer / pawn bid average");
+      setCard("#card-average-mercari", yen(avgMercari), "Street retail average");
+
+      document.querySelector("#dataset-coverage strong").textContent =
         firstRow && lastRow ? formatShortDate(firstRow.date) + " → " + formatShortDate(lastRow.date) : "N/A";
 
-      document.querySelector(".stats .stat:nth-child(4) strong").textContent =
-        premiumRows.length;
-
-      document.querySelector(".premium-footer .footer-item:nth-child(1) strong").textContent =
-        firstRow && lastRow ? formatShortDate(firstRow.date) + " → " + formatShortDate(lastRow.date) : "N/A";
-
-      document.querySelector(".premium-footer .footer-item:nth-child(2) strong").textContent =
+      document.querySelector("#dataset-last-observation strong").textContent =
         lastRow ? formatFullDate(lastRow.date) : "N/A";
     }
 
@@ -543,14 +715,18 @@
 
                   if (context.dataset.label === "COMEX") {
                     const usd = row?.comex_usd_oz;
-                    const usdText =
-                      usd === null || usd === undefined || Number.isNaN(Number(usd))
-                        ? ""
-                        : " ($" + Number(usd).toFixed(2) + "/oz)";
+
+                    if (usd !== null && usd !== undefined && !Number.isNaN(Number(usd))) {
+                      return [
+                        "COMEX",
+                        "¥" + context.parsed.y.toFixed(2) + "/g",
+                        "($" + Number(usd).toFixed(2) + "/oz)"
+                      ];
+                    }
 
                     return [
                       "COMEX",
-                      "¥" + context.parsed.y.toFixed(2) + "/g" + usdText
+                      "¥" + context.parsed.y.toFixed(2) + "/g"
                     ];
                   }
 
@@ -591,6 +767,49 @@
       });
     }
 
+    function buildCsv() {
+      const headers = [
+        "date",
+        "jpmi_ag_jpy_g",
+        "rs_jpy_g",
+        "db_jpy_g",
+        "mspi_b_jpy_g",
+        "comex_jpy_g",
+        "comex_usd_oz",
+        "usd_jpy",
+        "premium_pct"
+      ];
+
+      const lines = [headers.join(",")];
+
+      premiumRows.forEach(row => {
+        lines.push(headers.map(key => row[key] ?? "").join(","));
+      });
+
+      return lines.join("\n");
+    }
+
+    function attachCsvExport() {
+      const button = document.getElementById("csv-export-button");
+      if (!button) return;
+
+      button.addEventListener("click", event => {
+        event.preventDefault();
+
+        const csv = buildCsv();
+        const blob = new Blob([csv], { type: "text/csv;charset=utf-8;" });
+        const url = URL.createObjectURL(blob);
+        const link = document.createElement("a");
+
+        link.href = url;
+        link.download = "jpmi-premium-history.csv";
+        document.body.appendChild(link);
+        link.click();
+        document.body.removeChild(link);
+        URL.revokeObjectURL(url);
+      });
+    }
+
     async function loadJpmiPremiumChart() {
       try {
         const response = await fetch("jpmi-history.json?cache=" + Date.now());
@@ -602,6 +821,7 @@
 
         updateStats();
         renderChart("default");
+        attachCsvExport();
 
         document.querySelectorAll(".chart-toggle").forEach(button => {
           button.addEventListener("click", () => {
