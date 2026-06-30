@@ -195,6 +195,11 @@
       margin: 24px 0 28px;
     }
 
+    .metric-grid.compact {
+      margin-top: 22px;
+      margin-bottom: 24px;
+    }
+
     .metric-card small {
       display: block;
       margin-top: 7px;
@@ -379,9 +384,20 @@
         border-radius: 0;
         box-shadow: none;
         page-break-after: always;
+        break-after: page;
         background:
           radial-gradient(circle at top left, rgba(77,166,255,0.13), transparent 36%),
           linear-gradient(180deg, #111, #070707) !important;
+      }
+
+      .metric-card,
+      .meta-card,
+      .note-card,
+      .highlight-box,
+      .chart-panel,
+      table {
+        break-inside: avoid;
+        page-break-inside: avoid;
       }
 
       .cover {
@@ -408,6 +424,12 @@
 
       p, td, li, .disclaimer {
         color: #d6d6d6 !important;
+      }
+
+      p {
+        font-size: 15px;
+        line-height: 1.58;
+        margin-bottom: 13px;
       }
 
       th {
@@ -464,7 +486,7 @@
       </div>
     </section>
 
-    <section class="page">
+    <section class="page executive-page">
       <div class="kicker">Executive Summary</div>
       <h2>Japan physical silver outperformed COMEX through June's decline.</h2>
 
@@ -484,17 +506,58 @@
         Refinery and dealer pricing declined alongside global markets, but retail street pricing, represented by the Mercari MSPI-B component, remained comparatively firm. Mercari observations ranged from <strong>¥443.00/g</strong> to <strong>¥533.00/g</strong>, reinforcing the gap between institutional-style buyback pricing and peer-to-peer physical silver transactions in Japan.
       </p>
 
-      <h3>Key Findings</h3>
-      <ul>
-        <li>JPMI-AG averaged <strong>¥386.63/g</strong> across 21 June observations.</li>
-        <li>COMEX averaged <strong>¥342.52/g</strong> and <strong>$66.55/oz</strong> where USD/oz data was available.</li>
-        <li>Physical premiums averaged <strong>+12.52%</strong> and ended the month at <strong>+19.19%</strong>.</li>
-        <li>Mercari retail pricing averaged <strong>¥482.56/g</strong>, materially above refinery and dealer bid levels.</li>
-        <li>The monthly environment is classified as an <strong>Elevated Premium Environment</strong>.</li>
-      </ul>
-
       <div class="footer-line">
         <span>Executive Summary</span>
+        <span>Issue 001 · June 2026</span>
+      </div>
+    </section>
+
+    <section class="page key-findings-page">
+      <div class="kicker">Key Findings</div>
+      <h2>Five data points define June's physical silver market.</h2>
+
+      <div class="metric-grid compact">
+        <div class="metric-card">
+          <span>Average JPMI-AG</span>
+          <strong>¥386.63/g</strong>
+          <small>21 June observations</small>
+        </div>
+        <div class="metric-card">
+          <span>Average COMEX</span>
+          <strong>¥342.52/g</strong>
+          <small>JPY/g equivalent</small>
+        </div>
+        <div class="metric-card">
+          <span>Average Premium</span>
+          <strong>+12.52%</strong>
+          <small>Ended at +19.19%</small>
+        </div>
+        <div class="metric-card">
+          <span>Average Mercari</span>
+          <strong>¥482.56/g</strong>
+          <small>Retail street market</small>
+        </div>
+      </div>
+
+      <table>
+        <thead>
+          <tr><th>Finding</th><th>June 2026 Signal</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>Japan physical silver outperformed COMEX</td><td>JPMI -14.8% vs COMEX -21.4%</td></tr>
+          <tr><td>Premium remained structurally positive</td><td>+4.43% to +20.16%</td></tr>
+          <tr><td>Mercari stayed above buyback markets</td><td>Average ¥482.56/g</td></tr>
+          <tr><td>RS and DB moved lower but remained orderly</td><td>Average RS-DB spread ¥12.62/g</td></tr>
+          <tr><td>Month-end market status</td><td>Elevated Premium Environment</td></tr>
+        </tbody>
+      </table>
+
+      <p>
+        The June dataset shows a clear separation between global paper pricing, Japanese buyback markets, and peer-to-peer retail physical pricing. JPMI's primary signal for the month was not rising nominal prices, but relative resilience: Japanese physical pricing fell less sharply than COMEX and finished the month with an elevated physical premium.
+      </p>
+
+      <div class="footer-line">
+        <span>Key Findings</span>
         <span>Issue 001 · June 2026</span>
       </div>
     </section>
