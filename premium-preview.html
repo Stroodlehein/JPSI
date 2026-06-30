@@ -235,6 +235,61 @@
       font-size: 12px;
     }
 
+    .dataset-export-panel {
+      margin-top: 18px;
+      padding: 22px;
+      border: 1px solid rgba(77, 166, 255, 0.24);
+      border-radius: 22px;
+      background:
+        radial-gradient(circle at top right, rgba(77, 166, 255, 0.10), transparent 34%),
+        rgba(255,255,255,0.025);
+    }
+
+    .dataset-export-panel h4 {
+      margin: 0;
+      color: #ffffff;
+      font-size: 20px;
+      letter-spacing: -0.02em;
+    }
+
+    .dataset-export-panel p {
+      max-width: 820px;
+      margin: 10px 0 0;
+      color: #a8a8a8;
+      font-size: 14px;
+      line-height: 1.7;
+    }
+
+    .dataset-uses {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 10px;
+      margin: 18px 0 0;
+      padding: 0;
+      list-style: none;
+    }
+
+    .dataset-uses li {
+      padding: 12px 13px;
+      border: 1px solid rgba(255,255,255,0.08);
+      border-radius: 14px;
+      color: #d7d7d7;
+      background: rgba(0,0,0,0.32);
+      font-size: 13px;
+      font-weight: 700;
+    }
+
+    .dataset-tools {
+      margin-top: 15px;
+      color: #8f8f8f;
+      font-size: 12px;
+      line-height: 1.6;
+    }
+
+    .dataset-tools strong {
+      color: #d9ecff;
+    }
+
     .actions {
       display: flex;
       gap: 12px;
@@ -276,7 +331,8 @@
       .premium-header { flex-direction: column; }
 
       .cards-grid,
-      .dataset-grid {
+      .dataset-grid,
+      .dataset-uses {
         grid-template-columns: 1fr 1fr;
       }
 
@@ -285,7 +341,8 @@
 
     @media (max-width: 540px) {
       .cards-grid,
-      .dataset-grid {
+      .dataset-grid,
+      .dataset-uses {
         grid-template-columns: 1fr;
       }
 
@@ -434,8 +491,27 @@
             <span>Daily official snapshot</span>
           </div>
           <div class="dataset-item" id="dataset-csv-status">
-            <strong>Available</strong>
+            <strong>Full Dataset</strong>
             <span>CSV export</span>
+          </div>
+        </div>
+
+        <div class="dataset-export-panel">
+          <h4>JPMI Historical Dataset Export</h4>
+          <p>
+            Download the complete JPMI historical database in CSV format for independent research,
+            quantitative analysis, and custom market modelling.
+          </p>
+          <ul class="dataset-uses">
+            <li>Build custom price charts</li>
+            <li>Calculate moving averages</li>
+            <li>Compare JPMI vs COMEX</li>
+            <li>Track physical premiums</li>
+            <li>Run regressions and models</li>
+            <li>Import into analysis software</li>
+          </ul>
+          <div class="dataset-tools">
+            <strong>Designed for:</strong> Excel · Google Sheets · Python · R · Power BI · Trading models · Independent research
           </div>
         </div>
       </div>
@@ -444,7 +520,7 @@
         <a class="primary-btn" href="mailto:cryptoblockcats@gmail.com?subject=JPMI%20Premium%20Access">
           Request Premium Access
         </a>
-        <a class="secondary-btn" href="#" id="csv-export-button">Download CSV</a>
+        <a class="secondary-btn" href="#" id="csv-export-button">Download Full Historical Dataset (.CSV)</a>
         <a class="locked-btn" href="#">Monthly Reports 🔒</a>
       </div>
     </section>
