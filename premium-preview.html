@@ -434,7 +434,7 @@
             <span>Daily official snapshot</span>
           </div>
           <div class="dataset-item" id="dataset-csv-status">
-            <strong>Premium Members</strong>
+            <strong>Available</strong>
             <span>CSV export</span>
           </div>
         </div>
@@ -444,7 +444,7 @@
         <a class="primary-btn" href="mailto:cryptoblockcats@gmail.com?subject=JPMI%20Premium%20Access">
           Request Premium Access
         </a>
-        <a class="secondary-btn" href="#" id="csv-export-button">CSV Export 🔒</a>
+        <a class="secondary-btn" href="#" id="csv-export-button">Download CSV</a>
         <a class="locked-btn" href="#">Monthly Reports 🔒</a>
       </div>
     </section>
@@ -767,23 +767,58 @@
       });
     }
 
+    function csvValue(value) {
+      if (value === null || value === undefined) return "";
+
+      const text = String(value);
+
+      if (text.includes(",") || text.includes('"') || text.includes("\n")) {
+        return '"' + text.replace(/"/g, '""') + '"';
+      }
+
+      return text;
+    }
+
+    function getNestedValue(row, path) {
+      return path.split(".").reduce((value, key) => {
+        if (value === null || value === undefined) return undefined;
+        return value[key];
+      }, row);
+    }
+
     function buildCsv() {
-      const headers = [
-        "date",
-        "jpmi_ag_jpy_g",
-        "rs_jpy_g",
-        "db_jpy_g",
-        "mspi_b_jpy_g",
-        "comex_jpy_g",
-        "comex_usd_oz",
-        "usd_jpy",
-        "premium_pct"
+      const columns = [
+        { label: "date", key: "date" },
+        { label: "observation_time_jst", key: "observation_time_jst" },
+        { label: "updated_at_utc", key: "updated_at_utc" },
+        { label: "jpmi_ag_jpy_g", key: "jpmi_ag_jpy_g" },
+        { label: "rs_jpy_g", key: "rs_jpy_g" },
+        { label: "db_jpy_g", key: "db_jpy_g" },
+        { label: "mspi_b_jpy_g", key: "mspi_b_jpy_g" },
+        { label: "comex_jpy_g", key: "comex_jpy_g" },
+        { label: "comex_usd_oz", key: "comex_usd_oz" },
+        { label: "usd_jpy", key: "usd_jpy" },
+        { label: "premium_pct", key: "premium_pct" },
+        { label: "tanaka_silver_buy", key: "components.tanaka_silver_buy" },
+        { label: "nihon_silver_buy", key: "components.nihon_silver_buy" },
+        { label: "mitsubishi_silver_buy", key: "components.mitsubishi_silver_buy" },
+        { label: "nanboya_sv1000", key: "components.nanboya_sv1000" },
+        { label: "daikichi_sv1000", key: "components.daikichi_sv1000" },
+        { label: "has_rs", key: "data_quality.has_rs" },
+        { label: "has_db", key: "data_quality.has_db" },
+        { label: "has_mspi_b", key: "data_quality.has_mspi_b" },
+        { label: "has_comex", key: "data_quality.has_comex" },
+        { label: "has_comex_usd_oz", key: "data_quality.has_comex_usd_oz" },
+        { label: "has_usd_jpy", key: "data_quality.has_usd_jpy" },
+        { label: "jpmi_component_count", key: "data_quality.jpmi_component_count" },
+        { label: "source", key: "source" }
       ];
 
-      const lines = [headers.join(",")];
+      const lines = [columns.map(column => csvValue(column.label)).join(",")];
 
       premiumRows.forEach(row => {
-        lines.push(headers.map(key => row[key] ?? "").join(","));
+        const values = columns.map(column => csvValue(getNestedValue(row, column.key)));
+        lines.push(values.join(","));
       });
 
       return lines.join("\n");
@@ -796,13 +831,17 @@
       button.addEventListener("click", event => {
         event.preventDefault();
 
+        if (!premiumRows.length) return;
+
         const csv = buildCsv();
         const blob = new Blob([csv], { type: "text/csv;charset=utf-8;" });
         const url = URL.createObjectURL(blob);
         const link = document.createElement("a");
+        const latestRow = premiumRows[premiumRows.length - 1];
+        const latestDate = latestRow?.date || "latest";
 
         link.href = url;
-        link.download = "jpmi-premium-history.csv";
+        link.download = "jpmi-premium-history-" + latestDate + ".csv";
         document.body.appendChild(link);
         link.click();
         document.body.removeChild(link);
