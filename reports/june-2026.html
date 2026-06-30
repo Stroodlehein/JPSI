@@ -355,181 +355,6 @@
       .methodology { columns: 1; }
       .chart-wrap { height: 320px; }
       .print-btn { display: none; }
-
-      @page {
-        size: landscape;
-        margin: 0;
-      }
-
-      .page {
-        height: 100vh;
-        max-height: 100vh;
-        overflow: hidden;
-        padding: 24px 28px !important;
-      }
-
-      .cover {
-        padding: 32px 34px !important;
-      }
-
-      h1 {
-        font-size: 58px !important;
-        line-height: .92 !important;
-      }
-
-      h2 {
-        font-size: 30px !important;
-        line-height: 1.08 !important;
-        margin-bottom: 12px !important;
-      }
-
-      h3 {
-        font-size: 17px !important;
-        margin: 16px 0 8px !important;
-      }
-
-      .kicker {
-        margin-bottom: 9px !important;
-        font-size: 10px !important;
-      }
-
-      .lead {
-        font-size: 15px !important;
-        line-height: 1.48 !important;
-      }
-
-      p {
-        font-size: 12.8px !important;
-        line-height: 1.43 !important;
-        margin-bottom: 9px !important;
-      }
-
-      li {
-        font-size: 12.5px !important;
-        line-height: 1.35 !important;
-        margin: 4px 0 !important;
-      }
-
-      ul {
-        margin-top: 8px !important;
-      }
-
-      .highlight-box {
-        margin: 14px 0 !important;
-        padding: 14px 16px !important;
-        font-size: 14px !important;
-        line-height: 1.45 !important;
-      }
-
-      .metric-grid {
-        gap: 9px !important;
-        margin: 14px 0 16px !important;
-      }
-
-      .metric-card,
-      .meta-card,
-      .note-card {
-        padding: 11px 12px !important;
-        border-radius: 14px !important;
-      }
-
-      .metric-card span,
-      .meta-card span,
-      .note-card span {
-        font-size: 8.5px !important;
-        letter-spacing: .12em !important;
-      }
-
-      .metric-card strong,
-      .meta-card strong,
-      .note-card strong {
-        margin-top: 5px !important;
-        font-size: 18px !important;
-      }
-
-      .metric-card small {
-        margin-top: 4px !important;
-        font-size: 9.5px !important;
-      }
-
-      table {
-        margin: 10px 0 6px !important;
-        border-radius: 10px !important;
-      }
-
-      th, td {
-        padding: 7px 9px !important;
-        font-size: 10.5px !important;
-        line-height: 1.25 !important;
-      }
-
-      th {
-        font-size: 8.5px !important;
-        letter-spacing: .10em !important;
-      }
-
-      .chart-panel {
-        margin-top: 12px !important;
-        padding: 13px !important;
-        border-radius: 16px !important;
-      }
-
-      .chart-title {
-        margin-bottom: 8px !important;
-      }
-
-      .chart-title strong {
-        font-size: 14px !important;
-      }
-
-      .chart-title span {
-        font-size: 8.5px !important;
-      }
-
-      .chart-wrap {
-        height: 245px !important;
-      }
-
-      .chart-wrap.small {
-        height: 215px !important;
-      }
-
-      .footer-line {
-        margin-top: 14px !important;
-        padding-top: 9px !important;
-        font-size: 8.5px !important;
-      }
-
-      .two-col {
-        gap: 14px !important;
-      }
-
-      .methodology {
-        columns: 2 !important;
-        column-gap: 24px !important;
-      }
-
-      .disclaimer {
-        font-size: 10px !important;
-        line-height: 1.35 !important;
-      }
-
-      .snapshot-page table th,
-      .snapshot-page table td,
-      .methodology-page table th,
-      .methodology-page table td {
-        padding: 6px 8px !important;
-      }
-
-      .jpmi-comex-page .chart-wrap,
-      .refinery-page .chart-wrap {
-        height: 285px !important;
-      }
-
-      .mercari-page table th,
-      .mercari-page table td {
-        padding: 7px 8px !important;
-      }
     }
 
     @media (max-width: 540px) {
@@ -541,6 +366,11 @@
     }
 
     @media print {
+      @page {
+        size: landscape;
+        margin: 0;
+      }
+
       body {
         background: #050505;
         color: #ffffff;
@@ -556,6 +386,7 @@
       .page {
         min-height: 100vh;
         margin: 0;
+        padding: 34px 38px;
         border-radius: 0;
         box-shadow: none;
         page-break-after: always;
@@ -563,16 +394,6 @@
         background:
           radial-gradient(circle at top left, rgba(77,166,255,0.13), transparent 36%),
           linear-gradient(180deg, #111, #070707) !important;
-      }
-
-      .metric-card,
-      .meta-card,
-      .note-card,
-      .highlight-box,
-      .chart-panel,
-      table {
-        break-inside: avoid;
-        page-break-inside: avoid;
       }
 
       .cover {
@@ -587,205 +408,152 @@
         text-shadow: 0 2px 18px rgba(0,0,0,.75);
       }
 
+      h1 {
+        font-size: 66px !important;
+        line-height: .92 !important;
+      }
+
+      h2 {
+        font-size: 34px !important;
+        line-height: 1.08 !important;
+        margin-bottom: 14px !important;
+      }
+
+      h3 {
+        font-size: 19px !important;
+        margin: 22px 0 9px !important;
+      }
+
+      .kicker {
+        color: #4da6ff !important;
+        margin-bottom: 10px !important;
+      }
+
+      p {
+        color: #d6d6d6 !important;
+        font-size: 14.5px !important;
+        line-height: 1.52 !important;
+        margin-bottom: 12px !important;
+      }
+
+      li {
+        color: #d6d6d6 !important;
+        font-size: 14px !important;
+        line-height: 1.45 !important;
+        margin: 6px 0 !important;
+      }
+
+      .lead {
+        font-size: 17px !important;
+      }
+
+      .highlight-box {
+        margin: 18px 0 !important;
+        padding: 16px 18px !important;
+        font-size: 16px !important;
+        line-height: 1.5 !important;
+      }
+
+      .metric-grid {
+        gap: 12px !important;
+        margin: 18px 0 20px !important;
+      }
+
+      .metric-card,
+      .meta-card,
+      .note-card {
+        padding: 15px !important;
+        border-radius: 16px !important;
+      }
+
+      .metric-card strong,
+      .meta-card strong,
+      .note-card strong {
+        font-size: 22px !important;
+      }
+
+      .metric-card small {
+        font-size: 11px !important;
+      }
+
+      table {
+        margin: 14px 0 10px !important;
+        break-inside: avoid;
+        page-break-inside: avoid;
+      }
+
+      th, td {
+        padding: 10px 12px !important;
+        font-size: 12px !important;
+        line-height: 1.3 !important;
+      }
+
+      th {
+        color: #d9ecff !important;
+        font-size: 9.5px !important;
+      }
+
+      td {
+        color: #d3d3d3 !important;
+      }
+
+      .chart-panel {
+        margin-top: 16px !important;
+        padding: 16px !important;
+        border-radius: 18px !important;
+        break-inside: avoid;
+        page-break-inside: avoid;
+      }
+
+      .chart-title {
+        margin-bottom: 10px !important;
+      }
+
+      .chart-title strong {
+        font-size: 15px !important;
+      }
+
+      .chart-title span {
+        font-size: 9px !important;
+      }
+
+      .chart-wrap {
+        height: 330px !important;
+      }
+
+      .chart-wrap.small {
+        height: 280px !important;
+      }
+
+      .footer-line {
+        margin-top: 18px !important;
+        padding-top: 10px !important;
+        font-size: 9px !important;
+      }
+
+      .two-col {
+        gap: 20px !important;
+      }
+
+      .methodology {
+        columns: 2 !important;
+        column-gap: 30px !important;
+      }
+
+      .disclaimer {
+        color: #9f9f9f !important;
+        font-size: 12px !important;
+        line-height: 1.4 !important;
+      }
+
       .logo-mark {
         background: rgba(255,255,255,.96) !important;
         -webkit-print-color-adjust: exact;
         print-color-adjust: exact;
       }
 
-      .kicker {
-        color: #4da6ff !important;
-      }
-
-      p, td, li, .disclaimer {
-        color: #d6d6d6 !important;
-      }
-
-      p {
-        font-size: 15px;
-        line-height: 1.58;
-        margin-bottom: 13px;
-      }
-
-      th {
-        color: #d9ecff !important;
-      }
-
-      .print-btn { display: none; }
-
-      @page {
-        size: landscape;
-        margin: 0;
-      }
-
-      .page {
-        height: 100vh;
-        max-height: 100vh;
-        overflow: hidden;
-        padding: 24px 28px !important;
-      }
-
-      .cover {
-        padding: 32px 34px !important;
-      }
-
-      h1 {
-        font-size: 58px !important;
-        line-height: .92 !important;
-      }
-
-      h2 {
-        font-size: 30px !important;
-        line-height: 1.08 !important;
-        margin-bottom: 12px !important;
-      }
-
-      h3 {
-        font-size: 17px !important;
-        margin: 16px 0 8px !important;
-      }
-
-      .kicker {
-        margin-bottom: 9px !important;
-        font-size: 10px !important;
-      }
-
-      .lead {
-        font-size: 15px !important;
-        line-height: 1.48 !important;
-      }
-
-      p {
-        font-size: 12.8px !important;
-        line-height: 1.43 !important;
-        margin-bottom: 9px !important;
-      }
-
-      li {
-        font-size: 12.5px !important;
-        line-height: 1.35 !important;
-        margin: 4px 0 !important;
-      }
-
-      ul {
-        margin-top: 8px !important;
-      }
-
-      .highlight-box {
-        margin: 14px 0 !important;
-        padding: 14px 16px !important;
-        font-size: 14px !important;
-        line-height: 1.45 !important;
-      }
-
-      .metric-grid {
-        gap: 9px !important;
-        margin: 14px 0 16px !important;
-      }
-
-      .metric-card,
-      .meta-card,
-      .note-card {
-        padding: 11px 12px !important;
-        border-radius: 14px !important;
-      }
-
-      .metric-card span,
-      .meta-card span,
-      .note-card span {
-        font-size: 8.5px !important;
-        letter-spacing: .12em !important;
-      }
-
-      .metric-card strong,
-      .meta-card strong,
-      .note-card strong {
-        margin-top: 5px !important;
-        font-size: 18px !important;
-      }
-
-      .metric-card small {
-        margin-top: 4px !important;
-        font-size: 9.5px !important;
-      }
-
-      table {
-        margin: 10px 0 6px !important;
-        border-radius: 10px !important;
-      }
-
-      th, td {
-        padding: 7px 9px !important;
-        font-size: 10.5px !important;
-        line-height: 1.25 !important;
-      }
-
-      th {
-        font-size: 8.5px !important;
-        letter-spacing: .10em !important;
-      }
-
-      .chart-panel {
-        margin-top: 12px !important;
-        padding: 13px !important;
-        border-radius: 16px !important;
-      }
-
-      .chart-title {
-        margin-bottom: 8px !important;
-      }
-
-      .chart-title strong {
-        font-size: 14px !important;
-      }
-
-      .chart-title span {
-        font-size: 8.5px !important;
-      }
-
-      .chart-wrap {
-        height: 245px !important;
-      }
-
-      .chart-wrap.small {
-        height: 215px !important;
-      }
-
-      .footer-line {
-        margin-top: 14px !important;
-        padding-top: 9px !important;
-        font-size: 8.5px !important;
-      }
-
-      .two-col {
-        gap: 14px !important;
-      }
-
-      .methodology {
-        columns: 2 !important;
-        column-gap: 24px !important;
-      }
-
-      .disclaimer {
-        font-size: 10px !important;
-        line-height: 1.35 !important;
-      }
-
-      .snapshot-page table th,
-      .snapshot-page table td,
-      .methodology-page table th,
-      .methodology-page table td {
-        padding: 6px 8px !important;
-      }
-
-      .jpmi-comex-page .chart-wrap,
-      .refinery-page .chart-wrap {
-        height: 285px !important;
-      }
-
-      .mercari-page table th,
-      .mercari-page table td {
-        padding: 7px 8px !important;
+      .print-btn {
+        display: none;
       }
     }
   </style>
@@ -965,12 +733,8 @@
         </div>
       </div>
 
-      <p style="margin-top: 22px;">
-        JPMI-AG tracked lower across June but remained consistently above COMEX converted into yen per gram. The spread widened most visibly during the final week as COMEX fell below <strong>¥305/g</strong> while JPMI-AG remained above <strong>¥336/g</strong> and recovered to <strong>¥360.32/g</strong> by 29 June.
-      </p>
-
-      <p>
-        This chart highlights the core JPMI thesis: Japan's physical silver market should not be understood only through international futures pricing. Physical availability, retail market structure, dealer bid behaviour, and local yen dynamics all contribute to observed domestic pricing.
+      <p style="margin-top: 18px;">
+        JPMI-AG tracked lower across June but remained consistently above COMEX converted into yen per gram. The spread widened most visibly during the final week as COMEX fell below <strong>¥305/g</strong> while JPMI-AG recovered to <strong>¥360.32/g</strong> by 29 June.
       </p>
 
       <div class="footer-line">
@@ -1080,6 +844,33 @@
         The average RS-DB spread was <strong>¥12.62/g</strong>. This relationship remained relatively stable despite volatility in global pricing, suggesting that domestic buyback markets adjusted in an orderly fashion rather than showing major internal dislocation.
       </p>
 
+      <table>
+        <thead>
+          <tr><th>Domestic Buyback Layer</th><th>June 2026</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>Average RS Refinery Spot</td><td>¥371.57/g</td></tr>
+          <tr><td>RS range</td><td>¥314.38–¥418.44/g</td></tr>
+          <tr><td>Average DB Dealer Bid</td><td>¥358.95/g</td></tr>
+          <tr><td>DB range</td><td>¥309.00–¥402.00/g</td></tr>
+          <tr><td>Average RS - DB spread</td><td>¥12.62/g</td></tr>
+        </tbody>
+      </table>
+
+      <p>
+        Refinery and dealer bid prices represent liquidity available to sellers. Mercari reflects retail buyer behaviour for physical bullion coins. JPMI treats these as separate market layers rather than interchangeable price references.
+      </p>
+
+      <div class="footer-line">
+        <span>Refinery & Dealer Analysis</span>
+        <span>RS · DB</span>
+      </div>
+    </section>
+
+    <section class="page market-layers-page">
+      <div class="kicker">Market Layer Chart</div>
+      <h2>RS, DB and Mercari formed clearly separated pricing layers.</h2>
+
       <div class="chart-panel">
         <div class="chart-title">
           <strong>RS, DB and Mercari Market Layers</strong>
@@ -1090,12 +881,12 @@
         </div>
       </div>
 
-      <p style="margin-top: 22px;">
-        The structural separation between RS/DB and Mercari is one of the most important features of the Japanese market. Refinery and dealer bid prices represent liquidity available to sellers, while Mercari reflects retail buyer behaviour for physical bullion coins. Both matter, but they measure different parts of the physical market.
+      <p style="margin-top: 18px;">
+        The chart shows the structural separation between refinery buybacks, dealer bids, and peer-to-peer street pricing. Mercari remained consistently above both RS and DB throughout the month.
       </p>
 
       <div class="footer-line">
-        <span>Refinery & Dealer Analysis</span>
+        <span>Market Layer Chart</span>
         <span>RS · DB · MSPI-B</span>
       </div>
     </section>
@@ -1127,7 +918,7 @@
       </table>
 
       <p>
-        JPMI will continue monitoring Mercari transaction counts as a liquidity indicator. Lower qualifying sales volume may indicate reduced seller willingness, thinner available supply, or widening bid-offer expectations in Japan's retail physical bullion market.
+        JPMI will continue monitoring Mercari transaction counts as a liquidity indicator. Lower qualifying sales volume may indicate thinner supply or widening bid-offer expectations in Japan's retail physical bullion market.
       </p>
 
       <div class="footer-line">
@@ -1197,6 +988,16 @@
         </p>
       </div>
 
+      <div class="footer-line">
+        <span>Methodology</span>
+        <span>Japan Physical Metals Index™</span>
+      </div>
+    </section>
+
+    <section class="page data-notes-page">
+      <div class="kicker">Data Notes</div>
+      <h2>Data layer definitions.</h2>
+
       <table>
         <thead>
           <tr><th>Data Layer</th><th>Description</th></tr>
@@ -1211,11 +1012,11 @@
       </table>
 
       <p class="disclaimer">
-        © 2026 Japan Physical Metals Index™. JPMI is an independent market data and research project. All trademarks belong to their respective owners.
+        © 2026 Japan Physical Metals Index™. JPMI is an independent market data and research project. All trademarks belong to their respective owners. This report is not investment advice and should be used for research purposes only.
       </p>
 
       <div class="footer-line">
-        <span>Methodology</span>
+        <span>Data Notes</span>
         <span>Japan Physical Metals Index™</span>
       </div>
     </section>
