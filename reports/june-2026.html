@@ -2,230 +2,924 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta name="robots" content="noindex, nofollow" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>JPMI Monthly Market Report — June 2026</title>
   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
   <style>
     :root {
       --bg: #050505;
-      --panel: #0c0c0d;
-      --panel2: #111114;
-      --line: rgba(77,166,255,.28);
+      --panel: #101010;
+      --panel-2: #151515;
+      --text: #f5f5f5;
+      --muted: #a9a9a9;
+      --soft: #737373;
       --blue: #4da6ff;
-      --blue2: #d9ecff;
-      --text: #f4f4f5;
-      --muted: #a1a1aa;
-      --soft: rgba(255,255,255,.06);
+      --blue-soft: rgba(77, 166, 255, 0.14);
+      --border: rgba(255,255,255,0.10);
+      --border-blue: rgba(77, 166, 255, 0.32);
       --green: #22c55e;
       --orange: #f59e0b;
       --purple: #a855f7;
+      --cyan: #38bdf8;
     }
+
     * { box-sizing: border-box; }
-    body { margin: 0; background: radial-gradient(circle at top left, rgba(77,166,255,.12), transparent 32%), var(--bg); color: var(--text); font-family: Arial, sans-serif; line-height: 1.6; }
-    .page { max-width: 1120px; margin: 0 auto; padding: 54px 20px 80px; }
-    .badge { display:inline-block; padding:8px 14px; border:1px solid var(--line); border-radius:999px; color:var(--blue2); background:rgba(77,166,255,.11); font-size:12px; letter-spacing:.18em; font-weight:900; text-transform:uppercase; }
-    h1 { margin: 20px 0 8px; font-size: clamp(42px, 6vw, 72px); line-height: .95; letter-spacing: -.055em; max-width: 920px; }
-    .sub { max-width: 830px; color: #b8b8bd; font-size: 18px; margin: 22px 0 0; }
-    .meta { margin-top: 26px; display:flex; gap:10px; flex-wrap:wrap; }
-    .pill { border:1px solid rgba(255,255,255,.13); border-radius:999px; padding:8px 12px; color:#c9c9d0; background:rgba(255,255,255,.04); font-size:13px; font-weight:700; }
-    .section { margin-top: 34px; padding: 30px; border:1px solid rgba(255,255,255,.09); border-radius: 26px; background: linear-gradient(180deg, rgba(17,17,20,.94), rgba(7,7,9,.96)); box-shadow: 0 22px 70px rgba(0,0,0,.35); }
-    .section h2 { margin:0 0 12px; font-size: 30px; letter-spacing: -.035em; }
-    .section h3 { margin: 24px 0 8px; font-size: 20px; color: #fff; }
-    .section p { color: #c9c9cf; margin: 12px 0; }
-    .grid4 { display:grid; grid-template-columns: repeat(4,1fr); gap: 14px; margin-top: 18px; }
-    .grid3 { display:grid; grid-template-columns: repeat(3,1fr); gap: 14px; margin-top: 18px; }
-    .card { padding: 18px; border:1px solid rgba(255,255,255,.10); border-radius: 18px; background: rgba(255,255,255,.04); }
-    .card span { display:block; color:#82828b; font-size:11px; letter-spacing:.14em; text-transform:uppercase; font-weight:900; }
-    .card strong { display:block; font-family:"Courier New", monospace; font-size: 25px; margin-top: 8px; }
-    .card small { display:block; color:#8d8d96; margin-top: 5px; font-size:12px; }
-    .highlight { border-color: rgba(77,166,255,.35); background: rgba(77,166,255,.08); }
-    .chartBox { height: 380px; margin-top:18px; padding:18px; border:1px solid rgba(255,255,255,.10); border-radius:20px; background: rgba(0,0,0,.34); }
-    table { width:100%; border-collapse: collapse; margin-top: 18px; font-size: 14px; }
-    th, td { padding: 12px 10px; border-bottom: 1px solid rgba(255,255,255,.08); text-align:left; }
-    th { color:#d9ecff; font-size: 11px; letter-spacing:.12em; text-transform:uppercase; }
-    td { color:#d7d7dd; }
-    .twoCol { display:grid; grid-template-columns: 1.1fr .9fr; gap: 18px; }
-    .note { color:#9e9ea7; font-size: 13px; margin-top: 16px; }
-    ul { color:#c9c9cf; padding-left: 22px; }
-    li { margin: 7px 0; }
-    .footer { color:#8d8d96; font-size: 13px; margin-top:30px; padding-top:20px; border-top:1px solid rgba(255,255,255,.08); }
-    @media(max-width:900px) { .grid4,.grid3,.twoCol { grid-template-columns: 1fr 1fr; } .chartBox { height:330px; } }
-    @media(max-width:580px) { .grid4,.grid3,.twoCol { grid-template-columns: 1fr; } .section { padding:22px; } .chartBox { height:280px; padding:12px; } }
+
+    body {
+      margin: 0;
+      background: var(--bg);
+      color: var(--text);
+      font-family: Arial, Helvetica, sans-serif;
+      line-height: 1.65;
+    }
+
+    .report {
+      max-width: 1180px;
+      margin: 0 auto;
+      padding: 44px 22px 80px;
+    }
+
+    .page {
+      margin: 0 0 34px;
+      padding: 38px;
+      border: 1px solid var(--border);
+      border-radius: 30px;
+      background:
+        radial-gradient(circle at top left, rgba(77,166,255,0.13), transparent 36%),
+        linear-gradient(180deg, #111, #070707);
+      box-shadow: 0 26px 80px rgba(0,0,0,0.45);
+      page-break-after: always;
+    }
+
+    .cover {
+      min-height: 780px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      border-color: var(--border-blue);
+      background:
+        radial-gradient(circle at 18% 10%, rgba(77,166,255,.22), transparent 32%),
+        radial-gradient(circle at 85% 75%, rgba(168,85,247,.12), transparent 35%),
+        linear-gradient(180deg, #111, #030303);
+    }
+
+    .brand-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 18px;
+      margin-bottom: 40px;
+    }
+
+    .brand {
+      display: inline-flex;
+      align-items: center;
+      gap: 12px;
+      font-weight: 900;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: #d9ecff;
+    }
+
+    .logo-mark {
+      width: 38px;
+      height: 38px;
+      border-radius: 50%;
+      border: 1px solid rgba(255,255,255,.18);
+      background:
+        radial-gradient(circle at 50% 50%, #ffffff 0 22%, transparent 23%),
+        linear-gradient(90deg, #fff 0 50%, #d71920 50% 100%);
+      box-shadow: 0 0 28px rgba(77,166,255,.18);
+    }
+
+    .issue {
+      padding: 8px 14px;
+      border-radius: 999px;
+      border: 1px solid var(--border-blue);
+      background: var(--blue-soft);
+      color: #d9ecff;
+      font-size: 12px;
+      font-weight: 800;
+      letter-spacing: .14em;
+      text-transform: uppercase;
+      white-space: nowrap;
+    }
+
+    h1 {
+      margin: 0;
+      max-width: 900px;
+      font-size: clamp(48px, 7vw, 92px);
+      line-height: .92;
+      letter-spacing: -.07em;
+    }
+
+    h2 {
+      margin: 0 0 18px;
+      font-size: clamp(28px, 4vw, 44px);
+      line-height: 1.05;
+      letter-spacing: -.045em;
+    }
+
+    h3 {
+      margin: 30px 0 10px;
+      color: #e9f5ff;
+      font-size: 21px;
+      letter-spacing: -.02em;
+    }
+
+    p {
+      margin: 0 0 16px;
+      color: #c7c7c7;
+      font-size: 16px;
+    }
+
+    .lead {
+      max-width: 820px;
+      color: #d6d6d6;
+      font-size: 19px;
+      line-height: 1.7;
+    }
+
+    .kicker {
+      margin-bottom: 14px;
+      color: var(--blue);
+      font-size: 12px;
+      font-weight: 900;
+      letter-spacing: .22em;
+      text-transform: uppercase;
+    }
+
+    .cover-meta {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 14px;
+      margin-top: 44px;
+    }
+
+    .meta-card, .metric-card, .note-card {
+      padding: 18px;
+      border-radius: 20px;
+      border: 1px solid var(--border);
+      background: rgba(255,255,255,.035);
+    }
+
+    .meta-card span,
+    .metric-card span,
+    .note-card span {
+      display: block;
+      color: var(--soft);
+      font-size: 11px;
+      font-weight: 900;
+      letter-spacing: .16em;
+      text-transform: uppercase;
+    }
+
+    .meta-card strong,
+    .metric-card strong,
+    .note-card strong {
+      display: block;
+      margin-top: 8px;
+      color: #fff;
+      font-family: "Courier New", monospace;
+      font-size: 24px;
+      line-height: 1.1;
+    }
+
+    .metric-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 14px;
+      margin: 24px 0 28px;
+    }
+
+    .metric-card small {
+      display: block;
+      margin-top: 7px;
+      color: #858585;
+      font-size: 12px;
+    }
+
+    .highlight-box {
+      margin: 26px 0;
+      padding: 22px 24px;
+      border-left: 4px solid var(--blue);
+      border-radius: 18px;
+      background: rgba(77,166,255,.10);
+      color: #eaf6ff;
+      font-size: 19px;
+      font-weight: 700;
+      letter-spacing: -.015em;
+    }
+
+    .two-col {
+      display: grid;
+      grid-template-columns: 1.2fr .8fr;
+      gap: 24px;
+      align-items: start;
+    }
+
+    .chart-panel {
+      margin-top: 22px;
+      padding: 22px;
+      border: 1px solid var(--border);
+      border-radius: 24px;
+      background: rgba(0,0,0,.45);
+    }
+
+    .chart-title {
+      display: flex;
+      justify-content: space-between;
+      gap: 20px;
+      align-items: baseline;
+      margin-bottom: 16px;
+    }
+
+    .chart-title strong {
+      font-size: 19px;
+      letter-spacing: -.02em;
+    }
+
+    .chart-title span {
+      color: #888;
+      font-size: 12px;
+      font-weight: 800;
+      letter-spacing: .14em;
+      text-transform: uppercase;
+    }
+
+    .chart-wrap {
+      height: 380px;
+    }
+
+    .chart-wrap.small {
+      height: 330px;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 18px 0 8px;
+      overflow: hidden;
+      border-radius: 16px;
+      border: 1px solid var(--border);
+      background: rgba(0,0,0,.22);
+    }
+
+    th, td {
+      padding: 13px 15px;
+      border-bottom: 1px solid rgba(255,255,255,.07);
+      text-align: left;
+      font-size: 14px;
+    }
+
+    th {
+      color: #d9ecff;
+      background: rgba(77,166,255,.10);
+      font-size: 11px;
+      font-weight: 900;
+      letter-spacing: .14em;
+      text-transform: uppercase;
+    }
+
+    td {
+      color: #d3d3d3;
+    }
+
+    td:last-child, th:last-child {
+      text-align: right;
+      font-family: "Courier New", monospace;
+    }
+
+    tr:last-child td { border-bottom: 0; }
+
+    ul {
+      margin: 14px 0 0;
+      padding-left: 19px;
+      color: #c7c7c7;
+    }
+
+    li { margin: 8px 0; }
+
+    .footer-line {
+      display: flex;
+      justify-content: space-between;
+      gap: 20px;
+      margin-top: 34px;
+      padding-top: 16px;
+      border-top: 1px solid rgba(255,255,255,.09);
+      color: #747474;
+      font-size: 11px;
+      font-weight: 800;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+    }
+
+    .methodology {
+      columns: 2;
+      column-gap: 34px;
+    }
+
+    .disclaimer {
+      color: #8d8d8d;
+      font-size: 13px;
+    }
+
+    .print-btn {
+      position: fixed;
+      right: 22px;
+      bottom: 22px;
+      z-index: 20;
+      padding: 13px 18px;
+      border: 1px solid var(--border-blue);
+      border-radius: 999px;
+      background: var(--blue);
+      color: #050505;
+      font-weight: 900;
+      cursor: pointer;
+      box-shadow: 0 18px 44px rgba(77,166,255,.25);
+    }
+
+    @media (max-width: 850px) {
+      .page { padding: 26px; border-radius: 24px; }
+      .cover { min-height: 660px; }
+      .cover-meta, .metric-grid { grid-template-columns: repeat(2, 1fr); }
+      .two-col { grid-template-columns: 1fr; }
+      .methodology { columns: 1; }
+      .chart-wrap { height: 320px; }
+      .print-btn { display: none; }
+    }
+
+    @media (max-width: 540px) {
+      .report { padding: 24px 14px 60px; }
+      .page { padding: 22px; }
+      .cover-meta, .metric-grid { grid-template-columns: 1fr; }
+      .brand-row { flex-direction: column; align-items: flex-start; }
+      h1 { font-size: 46px; }
+    }
+
+    @media print {
+      body {
+        background: #fff;
+        color: #000;
+        -webkit-print-color-adjust: exact;
+        print-color-adjust: exact;
+      }
+
+      .report {
+        max-width: none;
+        padding: 0;
+      }
+
+      .page {
+        min-height: 100vh;
+        margin: 0;
+        border-radius: 0;
+        box-shadow: none;
+        page-break-after: always;
+      }
+
+      .print-btn { display: none; }
+
+      p, td, li, .disclaimer { color: #d6d6d6; }
+    }
   </style>
 </head>
+
 <body>
-  <main class="page">
-    <div class="badge">JPMI Monthly Market Report</div>
-    <h1>Japan Physical Silver Market — June 2026</h1>
-    <p class="sub">Issue No. 001 · A data-driven monthly review of Japan's physical silver market using JPMI-AG, refinery buyback prices, dealer bids, Mercari street pricing, COMEX equivalents, and physical premium calculations.</p>
-    <div class="meta">
-      <div class="pill">Published: 30 June 2026</div>
-      <div class="pill">Coverage: 1–29 June 2026</div>
-      <div class="pill">Observations: 21 trading days</div>
-      <div class="pill">Snapshot: 19:00 JST</div>
-    </div>
+  <button class="print-btn" onclick="window.print()">Download / Print PDF</button>
 
-    <section class="section">
-      <h2>Market Snapshot</h2>
-      <div class="grid4">
-        <div class="card highlight"><span>Average JPMI-AG</span><strong>¥384.86/g</strong><small>Japan physical silver composite</small></div>
-        <div class="card highlight"><span>Average Premium</span><strong>+12.26%</strong><small>JPMI-AG vs COMEX JPY/g</small></div>
-        <div class="card"><span>Highest Premium</span><strong>+20.16%</strong><small>5 June 2026</small></div>
-        <div class="card"><span>Lowest Premium</span><strong>+4.43%</strong><small>11 June 2026</small></div>
+  <main class="report">
+    <section class="page cover">
+      <div>
+        <div class="brand-row">
+          <div class="brand"><span class="logo-mark"></span> JPMI</div>
+          <div class="issue">Issue No. 001</div>
+        </div>
+
+        <div class="kicker">Japan Physical Metals Index™</div>
+        <h1>Monthly Market Report</h1>
+        <p class="lead" style="margin-top: 28px;">
+          Japan Physical Silver Market Intelligence — June 2026
+        </p>
       </div>
-      <div class="grid4">
-        <div class="card"><span>JPMI Monthly Range</span><strong>¥336.45/g–424.39/g</strong><small>Low to high</small></div>
-        <div class="card"><span>COMEX Average</span><strong>$66.73/oz</strong><small>¥343.18/g equivalent</small></div>
-        <div class="card"><span>Mercari Average</span><strong>¥483.28/g</strong><small>Street market pricing</small></div>
-        <div class="card"><span>Market Status</span><strong>Elevated</strong><small>Premium environment</small></div>
+
+      <div>
+        <div class="cover-meta">
+          <div class="meta-card">
+            <span>Published</span>
+            <strong>30 Jun 2026</strong>
+          </div>
+          <div class="meta-card">
+            <span>Coverage</span>
+            <strong>1–29 Jun</strong>
+          </div>
+          <div class="meta-card">
+            <span>Observations</span>
+            <strong>21</strong>
+          </div>
+          <div class="meta-card">
+            <span>Status</span>
+            <strong>Elevated</strong>
+          </div>
+        </div>
+
+        <div class="footer-line">
+          <span>JPMI Monthly Market Report</span>
+          <span>Japan Physical Silver Intelligence</span>
+        </div>
       </div>
     </section>
 
-    <section class="section">
-      <h2>1. Executive Summary</h2>
-      <p>Japan's physical silver market remained structurally firm during June even as international paper-market pricing weakened sharply. JPMI-AG declined from <strong>¥422.73/g</strong> on 1 June to <strong>¥360.32/g</strong> on 29 June, a fall of approximately <strong>14.8%</strong>. COMEX equivalent pricing declined more severely, from <strong>¥384.81/g</strong> to <strong>¥302.30/g</strong>, a decline of approximately <strong>21.4%</strong>.</p>
-      <p>The result was a persistent physical premium environment. The average JPMI premium versus COMEX was <strong>+12.26%</strong>, with the month ending at <strong>+19.19%</strong>. The highest premium was <strong>+20.16%</strong> on 5 June, while the lowest was <strong>+4.43%</strong> on 11 June.</p>
-      <p>Mercari street market prices remained the most resilient component of the dataset, averaging <strong>¥483.28/g</strong> and ranging between <strong>¥443.00/g</strong> and <strong>¥533.00/g</strong>. This suggests that retail physical silver pricing remained elevated even as global benchmark prices declined.</p>
-    </section>
+    <section class="page">
+      <div class="kicker">Executive Summary</div>
+      <h2>Japan physical silver outperformed COMEX through June's decline.</h2>
 
-    <section class="section">
-      <h2>2. JPMI-AG Monthly Overview</h2>
-      <p>JPMI-AG averaged <strong>¥384.86/g</strong> across 21 June observations. The index reached its monthly high of <strong>¥424.39/g</strong> on 2 June and its monthly low of <strong>¥336.45/g</strong> on 25 June.</p>
-      <p>The monthly path showed two distinct phases: early-month strength above ¥410/g, followed by a sharp repricing after 5 June as both refinery and dealer quotes moved lower. Despite that move, JPMI-AG held materially above COMEX equivalent pricing through most of the month.</p>
-      <div class="chartBox"><canvas id="chartJpmiComex"></canvas></div>
-    </section>
-
-    <section class="section">
-      <h2>3. Premium vs COMEX</h2>
-      <p>The physical premium averaged <strong>+12.26%</strong> during June. Premiums were below 10% on <strong>5</strong> observation days, above 15% on <strong>3</strong> days, and above 20% on <strong>1</strong> day.</p>
-      <p>The widening premium was primarily driven by COMEX equivalent pricing falling faster than the domestic physical composite. This is the core divergence JPMI is designed to capture: Japan's physical market does not always move one-for-one with international futures pricing.</p>
-      <div class="chartBox"><canvas id="chartPremium"></canvas></div>
-    </section>
-
-    <section class="section">
-      <h2>4. Refinery Spot (RS) & Dealer Bid (DB) Trends</h2>
-      <div class="grid4">
-        <div class="card"><span>Average RS</span><strong>¥370.31/g</strong><small>Refinery buyback composite</small></div>
-        <div class="card"><span>Average DB</span><strong>¥358.88/g</strong><small>Dealer / pawn bid composite</small></div>
-        <div class="card"><span>Average RS-DB Spread</span><strong>¥11.42/g</strong><small>Refinery over dealer bid</small></div>
-        <div class="card"><span>Spread Range</span><strong>¥-1.95–¥22.02</strong><small>Min to max</small></div>
+      <div class="highlight-box">
+        JPMI-AG fell 14.8% during June, while COMEX silver converted into JPY/g fell 21.4%. The result was a widening physical premium, with the month ending at +19.19%.
       </div>
-      <p>Refinery Spot averaged <strong>¥370.31/g</strong>, while Dealer Bid averaged <strong>¥358.88/g</strong>. RS declined approximately <strong>22.3%</strong> during the month, while DB declined approximately <strong>21.6%</strong>.</p>
-      <p>The average RS-DB spread was <strong>¥11.42/g</strong>. This indicates that the domestic buyback structure remained orderly even during the wider market repricing.</p>
-    </section>
 
-    <section class="section">
-      <h2>5. Mercari Street Market</h2>
-      <p>Mercari MSPI-B averaged <strong>¥483.28/g</strong>, significantly above JPMI-AG and COMEX equivalent pricing. The highest Mercari observation was <strong>¥533.00/g</strong> on 5 June, while the lowest was <strong>¥443.00/g</strong> on 29 June.</p>
-      <p>The average Mercari premium over COMEX equivalent pricing was approximately <strong>+41.36%</strong>. Even as COMEX weakened, retail physical pricing remained elevated, reinforcing the importance of tracking Japan's street-level bullion market separately from refinery and dealer buyback markets.</p>
-      <div class="chartBox"><canvas id="chartMercari"></canvas></div>
-    </section>
+      <p>
+        Japan's physical silver market remained resilient in June even as international silver pricing weakened sharply. JPMI-AG began the month at <strong>¥422.73/g</strong> and ended at <strong>¥360.32/g</strong>, a monthly decline of <strong>14.8%</strong>. Over the same period, COMEX silver converted into yen per gram declined from <strong>¥384.81/g</strong> to <strong>¥302.30/g</strong>, a sharper fall of <strong>21.4%</strong>.
+      </p>
 
-    <section class="section">
-      <h2>6. Key Observations</h2>
+      <p>
+        The divergence between domestic physical pricing and international futures pricing caused the JPMI physical premium to remain persistently elevated. The premium averaged <strong>12.52%</strong> during the month, ranged from a low of <strong>+4.43%</strong> on 11 June to a high of <strong>+20.16%</strong> on 5 June, and finished the month at <strong>+19.19%</strong>.
+      </p>
+
+      <p>
+        Refinery and dealer pricing declined alongside global markets, but retail street pricing, represented by the Mercari MSPI-B component, remained comparatively firm. Mercari observations ranged from <strong>¥443.00/g</strong> to <strong>¥533.00/g</strong>, reinforcing the gap between institutional-style buyback pricing and peer-to-peer physical silver transactions in Japan.
+      </p>
+
+      <h3>Key Findings</h3>
       <ul>
-        <li><strong>Japan physical outperformed COMEX:</strong> JPMI-AG fell about 14.8%, while COMEX equivalent pricing fell about 21.4%.</li>
-        <li><strong>Premiums remained elevated:</strong> the average physical premium was +12.26%, with month-end premium at +19.19%.</li>
-        <li><strong>Retail pricing stayed firm:</strong> Mercari averaged ¥483.28/g, roughly ¥98.42/g above JPMI-AG.</li>
-        <li><strong>Domestic buyback markets remained orderly:</strong> RS and DB moved lower together, with an average spread of ¥11.42/g.</li>
-        <li><strong>COMEX USD declined sharply:</strong> recorded COMEX USD/oz fell from $75.05/oz to a late-month low of $57.54/oz.</li>
+        <li>JPMI-AG averaged <strong>¥386.63/g</strong> across 21 June observations.</li>
+        <li>COMEX averaged <strong>¥342.52/g</strong> and <strong>$66.55/oz</strong> where USD/oz data was available.</li>
+        <li>Physical premiums averaged <strong>+12.52%</strong> and ended the month at <strong>+19.19%</strong>.</li>
+        <li>Mercari retail pricing averaged <strong>¥482.56/g</strong>, materially above refinery and dealer bid levels.</li>
+        <li>The monthly environment is classified as an <strong>Elevated Premium Environment</strong>.</li>
       </ul>
+
+      <div class="footer-line">
+        <span>Executive Summary</span>
+        <span>Issue 001 · June 2026</span>
+      </div>
     </section>
 
-    <section class="section">
-      <h2>7. Data Notes & Methodology</h2>
-      <p>JPMI-AG combines Refinery Spot (RS), Dealer Bid (DB), and Mercari Street Physical Index (MSPI-B) to estimate Japan's physical silver market level. Premium calculations compare JPMI-AG with COMEX silver converted into Japanese yen per gram using the corresponding foreign exchange data where available.</p>
+    <section class="page">
+      <div class="kicker">Market Snapshot</div>
+      <h2>June 2026 at a glance.</h2>
+
+      <div class="metric-grid">
+        <div class="metric-card"><span>Average JPMI-AG</span><strong>¥386.63/g</strong><small>Japan physical silver</small></div>
+        <div class="metric-card"><span>Average Premium</span><strong>+12.52%</strong><small>JPMI vs COMEX</small></div>
+        <div class="metric-card"><span>Highest Premium</span><strong>+20.16%</strong><small>5 Jun 2026</small></div>
+        <div class="metric-card"><span>Lowest Premium</span><strong>+4.43%</strong><small>11 Jun 2026</small></div>
+        <div class="metric-card"><span>Average COMEX</span><strong>$66.55/oz</strong><small>USD/oz average</small></div>
+        <div class="metric-card"><span>Average RS</span><strong>¥371.57/g</strong><small>Refinery spot</small></div>
+        <div class="metric-card"><span>Average DB</span><strong>¥358.95/g</strong><small>Dealer bid</small></div>
+        <div class="metric-card"><span>Average Mercari</span><strong>¥482.56/g</strong><small>Street physical</small></div>
+      </div>
+
       <table>
-        <thead><tr><th>Component</th><th>Description</th><th>June Average</th></tr></thead>
+        <thead>
+          <tr><th>Metric</th><th>June Result</th></tr>
+        </thead>
         <tbody>
-          <tr><td>JPMI-AG</td><td>Composite Japan physical silver index</td><td>¥384.86/g</td></tr>
-          <tr><td>RS</td><td>Refinery buyback pricing</td><td>¥370.31/g</td></tr>
-          <tr><td>DB</td><td>Dealer / pawn bid pricing</td><td>¥358.88/g</td></tr>
-          <tr><td>MSPI-B</td><td>Mercari street market 1 oz bullion coin pricing</td><td>¥483.28/g</td></tr>
-          <tr><td>COMEX</td><td>International benchmark converted to JPY/g</td><td>¥343.18/g</td></tr>
+          <tr><td>Trading-day observations</td><td>21</td></tr>
+          <tr><td>JPMI-AG range</td><td>¥336.45–¥424.39/g</td></tr>
+          <tr><td>COMEX JPY/g range</td><td>¥298.25–¥384.81/g</td></tr>
+          <tr><td>Premium range</td><td>+4.43%–+20.16%</td></tr>
+          <tr><td>Mercari MSPI-B range</td><td>¥443.00–¥533.00/g</td></tr>
+          <tr><td>Market status</td><td>Elevated Premium Environment</td></tr>
         </tbody>
       </table>
-      <p class="note">June 29 COMEX USD/oz and USD/JPY values were not included in the user-provided row, so monthly COMEX USD averages use the available 20 observations.</p>
-    </section>
 
-    <section class="section">
-      <h2>8. Outlook for July</h2>
-      <p>July analysis should focus on whether Japan's elevated physical premium remains persistent or compresses as global prices stabilise. If COMEX recovers while domestic retail pricing remains resilient, the key metric will be whether JPMI-AG continues to maintain a double-digit premium.</p>
-      <p>JPMI will continue monitoring daily 19:00 JST snapshots, the RS-DB relationship, Mercari transaction quality, and the spread between Japan's physical market and international futures pricing.</p>
-      <div class="grid3">
-        <div class="card"><span>Watch Point 1</span><strong>Premium Persistence</strong><small>Does the premium stay above 10%?</small></div>
-        <div class="card"><span>Watch Point 2</span><strong>Mercari Liquidity</strong><small>Do qualifying trades expand or dry up?</small></div>
-        <div class="card"><span>Watch Point 3</span><strong>RS-DB Spread</strong><small>Does domestic buyback structure remain orderly?</small></div>
+      <p>
+        The market snapshot shows a broad decline in nominal silver pricing across both domestic and international references. The key distinction is relative performance: domestic physical prices declined less severely than COMEX, creating a wider calculated premium into month-end.
+      </p>
+
+      <div class="footer-line">
+        <span>Market Snapshot</span>
+        <span>JPMI Monthly Market Report</span>
       </div>
     </section>
 
-    <section class="section">
-      <h2>About JPMI</h2>
-      <p>The Japan Physical Metals Index™ is an independent research initiative tracking Japan's physical precious metals market using transparent, publicly observable pricing data. JPMI Premium provides access to historical datasets, monthly market reports, CSV exports, and proprietary market intelligence.</p>
-      <div class="footer">© 2026 JPMI — Japan Physical Metals Index™ · Issue No. 001 · June 2026</div>
+    <section class="page">
+      <div class="kicker">JPMI vs COMEX</div>
+      <h2>Physical silver remained structurally above the global paper benchmark.</h2>
+
+      <div class="chart-panel">
+        <div class="chart-title">
+          <strong>JPMI-AG vs COMEX Equivalent</strong>
+          <span>JPY per gram</span>
+        </div>
+        <div class="chart-wrap">
+          <canvas id="chartJpmiComex"></canvas>
+        </div>
+      </div>
+
+      <p style="margin-top: 22px;">
+        JPMI-AG tracked lower across June but remained consistently above COMEX converted into yen per gram. The spread widened most visibly during the final week as COMEX fell below <strong>¥305/g</strong> while JPMI-AG remained above <strong>¥336/g</strong> and recovered to <strong>¥360.32/g</strong> by 29 June.
+      </p>
+
+      <p>
+        This chart highlights the core JPMI thesis: Japan's physical silver market should not be understood only through international futures pricing. Physical availability, retail market structure, dealer bid behaviour, and local yen dynamics all contribute to observed domestic pricing.
+      </p>
+
+      <div class="footer-line">
+        <span>Chart 1 · JPMI vs COMEX</span>
+        <span>JPY/g basis</span>
+      </div>
+    </section>
+
+    <section class="page">
+      <div class="kicker">Premium Analysis</div>
+      <h2>The physical premium remained positive all month and widened into the close.</h2>
+
+      <div class="two-col">
+        <div>
+          <p>
+            The JPMI premium averaged <strong>+12.52%</strong> in June. The lowest observed premium was <strong>+4.43%</strong> on 11 June, while the highest was <strong>+20.16%</strong> on 5 June. The final observation on 29 June recorded <strong>+19.19%</strong>, indicating that the month ended in an elevated premium environment.
+          </p>
+          <p>
+            The premium did not rise because Japanese physical prices increased in nominal terms. Instead, it widened because COMEX prices weakened more aggressively than Japan's composite physical index. This distinction is important: the market signal is not simply "higher physical prices," but rather <strong>relative physical resilience</strong>.
+          </p>
+        </div>
+
+        <table>
+          <thead>
+            <tr><th>Premium Statistic</th><th>Value</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>Average premium</td><td>+12.52%</td></tr>
+            <tr><td>Median premium</td><td>+12.10%</td></tr>
+            <tr><td>Highest premium</td><td>+20.16%</td></tr>
+            <tr><td>Lowest premium</td><td>+4.43%</td></tr>
+            <tr><td>Days above 15%</td><td>4</td></tr>
+            <tr><td>Final observation</td><td>+19.19%</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="chart-panel">
+        <div class="chart-title">
+          <strong>JPMI Physical Premium</strong>
+          <span>Percent vs COMEX</span>
+        </div>
+        <div class="chart-wrap small">
+          <canvas id="chartPremium"></canvas>
+        </div>
+      </div>
+
+      <div class="footer-line">
+        <span>Chart 2 · Premium Analysis</span>
+        <span>JPMI vs COMEX</span>
+      </div>
+    </section>
+
+    <section class="page">
+      <div class="kicker">Statistical Tables</div>
+      <h2>June was defined by falling nominal prices and resilient physical spreads.</h2>
+
+      <div class="two-col">
+        <table>
+          <thead>
+            <tr><th>Price Metric</th><th>Result</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>JPMI-AG average</td><td>¥386.63/g</td></tr>
+            <tr><td>JPMI-AG high</td><td>¥424.39/g</td></tr>
+            <tr><td>JPMI-AG low</td><td>¥336.45/g</td></tr>
+            <tr><td>JPMI-AG monthly change</td><td>-14.76%</td></tr>
+            <tr><td>COMEX JPY/g average</td><td>¥342.52/g</td></tr>
+            <tr><td>COMEX monthly change</td><td>-21.44%</td></tr>
+          </tbody>
+        </table>
+
+        <table>
+          <thead>
+            <tr><th>Market Structure Metric</th><th>Result</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>RS average</td><td>¥371.57/g</td></tr>
+            <tr><td>DB average</td><td>¥358.95/g</td></tr>
+            <tr><td>Mercari average</td><td>¥482.56/g</td></tr>
+            <tr><td>Average RS - DB spread</td><td>¥12.62/g</td></tr>
+            <tr><td>Average Mercari vs RS spread</td><td>¥110.99/g</td></tr>
+            <tr><td>Average Mercari vs COMEX spread</td><td>¥140.04/g</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <p>
+        The data shows three distinct market layers: COMEX as the global paper benchmark, RS/DB as Japan's institutional-style buyback layer, and Mercari as the peer-to-peer retail layer. The retail layer remained structurally above both domestic buyback markets and COMEX throughout the month.
+      </p>
+
+      <div class="footer-line">
+        <span>Statistical Tables</span>
+        <span>June 2026</span>
+      </div>
+    </section>
+
+    <section class="page">
+      <div class="kicker">Refinery & Dealer Analysis</div>
+      <h2>Refinery and dealer pricing moved lower, but remained orderly.</h2>
+
+      <p>
+        Refinery Spot (RS) averaged <strong>¥371.57/g</strong> in June, with observations ranging from <strong>¥314.38/g</strong> to <strong>¥418.44/g</strong>. Dealer Bid (DB) averaged <strong>¥358.95/g</strong>, ranging from <strong>¥309.00/g</strong> to <strong>¥402.00/g</strong>.
+      </p>
+
+      <p>
+        The average RS-DB spread was <strong>¥12.62/g</strong>. This relationship remained relatively stable despite volatility in global pricing, suggesting that domestic buyback markets adjusted in an orderly fashion rather than showing major internal dislocation.
+      </p>
+
+      <div class="chart-panel">
+        <div class="chart-title">
+          <strong>RS, DB and Mercari Market Layers</strong>
+          <span>JPY per gram</span>
+        </div>
+        <div class="chart-wrap">
+          <canvas id="chartLayers"></canvas>
+        </div>
+      </div>
+
+      <p style="margin-top: 22px;">
+        The structural separation between RS/DB and Mercari is one of the most important features of the Japanese market. Refinery and dealer bid prices represent liquidity available to sellers, while Mercari reflects retail buyer behaviour for physical bullion coins. Both matter, but they measure different parts of the physical market.
+      </p>
+
+      <div class="footer-line">
+        <span>Refinery & Dealer Analysis</span>
+        <span>RS · DB · MSPI-B</span>
+      </div>
+    </section>
+
+    <section class="page">
+      <div class="kicker">Mercari Physical Market</div>
+      <h2>Retail street prices stayed elevated despite broader silver weakness.</h2>
+
+      <p>
+        Mercari MSPI-B averaged <strong>¥482.56/g</strong> during June. The highest observed street-market level was <strong>¥533.00/g</strong> on 5 June, while the lowest was <strong>¥443.00/g</strong> on 29 June.
+      </p>
+
+      <p>
+        Even at the end of the month, Mercari remained materially above both RS and DB. On 29 June, Mercari was recorded at <strong>¥443.00/g</strong>, compared with RS at <strong>¥322.96/g</strong>, DB at <strong>¥315.00/g</strong>, and COMEX at <strong>¥302.30/g</strong>.
+      </p>
+
+      <table>
+        <thead>
+          <tr><th>Mercari Metric</th><th>Value</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>Average MSPI-B</td><td>¥482.56/g</td></tr>
+          <tr><td>Highest MSPI-B</td><td>¥533.00/g</td></tr>
+          <tr><td>Lowest MSPI-B</td><td>¥443.00/g</td></tr>
+          <tr><td>Average Mercari vs RS premium</td><td>¥110.99/g</td></tr>
+          <tr><td>Average Mercari vs COMEX spread</td><td>¥140.04/g</td></tr>
+          <tr><td>Liquidity Watch</td><td>Monitoring continues</td></tr>
+        </tbody>
+      </table>
+
+      <p>
+        JPMI will continue monitoring Mercari transaction counts as a liquidity indicator. Lower qualifying sales volume may indicate reduced seller willingness, thinner available supply, or widening bid-offer expectations in Japan's retail physical bullion market.
+      </p>
+
+      <div class="footer-line">
+        <span>Mercari Physical Market</span>
+        <span>MSPI-B</span>
+      </div>
+    </section>
+
+    <section class="page">
+      <div class="kicker">Outlook</div>
+      <h2>July will test whether elevated premiums persist.</h2>
+
+      <p>
+        The key question for July is whether the elevated premium environment observed into late June proves temporary or becomes a more persistent feature of Japan's physical silver market.
+      </p>
+
+      <p>
+        If COMEX stabilises while Japanese physical prices remain firm, JPMI premiums may continue to indicate meaningful divergence between paper and physical markets. Conversely, if Japanese refinery and dealer bid prices catch down more aggressively, the premium could compress.
+      </p>
+
+      <h3>JPMI will monitor:</h3>
+      <ul>
+        <li>Whether the physical premium remains above the June average of <strong>+12.52%</strong>.</li>
+        <li>Whether Mercari MSPI-B remains structurally above RS and DB.</li>
+        <li>Whether dealer bid pricing continues tracking refinery buybacks in an orderly way.</li>
+        <li>Whether Mercari qualifying transaction counts suggest improving or weakening liquidity.</li>
+        <li>Whether COMEX USD/oz movements translate proportionally into Japan physical pricing.</li>
+      </ul>
+
+      <div class="highlight-box">
+        JPMI's July focus: premium persistence, retail liquidity, and the degree of physical market resilience relative to global futures pricing.
+      </div>
+
+      <div class="footer-line">
+        <span>Outlook</span>
+        <span>July 2026 Watchlist</span>
+      </div>
+    </section>
+
+    <section class="page">
+      <div class="kicker">Methodology & Notes</div>
+      <h2>Data sources and construction methodology.</h2>
+
+      <div class="methodology">
+        <p>
+          The Japan Physical Metals Index™ (JPMI) is an independent research initiative tracking Japan's physical precious metals market through publicly observable price data.
+        </p>
+
+        <p>
+          JPMI-AG combines three major physical silver market layers: Refinery Spot (RS), Dealer Bid (DB), and Mercari Street Physical Index (MSPI-B). The current composite weighting framework is RS 55%, DB 30%, and MSPI-B 15% when all components are available.
+        </p>
+
+        <p>
+          Refinery Spot includes major Japanese refinery silver buyback prices. Dealer Bid includes observable dealer and pawn bid pricing for Sv1000 silver. MSPI-B reflects qualifying one-ounce bullion coin transactions observed on Mercari.
+        </p>
+
+        <p>
+          COMEX silver is converted into Japanese yen per gram using prevailing USD/JPY exchange rates where available. Premium calculations compare JPMI-AG against the COMEX yen-per-gram equivalent.
+        </p>
+
+        <p>
+          Historical observations are recorded as daily snapshots around 19:00 JST on trading days. Some historical observations were reconstructed from JPMI Git commit history and cleaned for obvious outliers where appropriate.
+        </p>
+
+        <p>
+          This report is not investment advice. Data may contain delays, missing values, market anomalies, or errors. JPMI is designed as a market intelligence and research tool, not as a trading recommendation service.
+        </p>
+      </div>
+
+      <table>
+        <thead>
+          <tr><th>Data Layer</th><th>Description</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>RS</td><td>Japanese refinery silver buyback pricing</td></tr>
+          <tr><td>DB</td><td>Dealer and pawn Sv1000 bid pricing</td></tr>
+          <tr><td>MSPI-B</td><td>Mercari one-ounce bullion coin street market pricing</td></tr>
+          <tr><td>COMEX</td><td>International silver benchmark converted to JPY/g</td></tr>
+          <tr><td>Premium</td><td>JPMI-AG vs COMEX JPY/g equivalent</td></tr>
+        </tbody>
+      </table>
+
+      <p class="disclaimer">
+        © 2026 Japan Physical Metals Index™. JPMI is an independent market data and research project. All trademarks belong to their respective owners.
+      </p>
+
+      <div class="footer-line">
+        <span>Methodology</span>
+        <span>Japan Physical Metals Index™</span>
+      </div>
     </section>
   </main>
-<script>
-const rows = [{"date": "2026-06-01", "label": "Jun 01", "jpmi": 422.73, "rs": 415.69, "db": 402.0, "mspi": 490.0, "comex_jpy": 384.81, "comex_usd": 75.05, "premium": 9.85}, {"date": "2026-06-02", "label": "Jun 02", "jpmi": 424.39, "rs": 418.44, "db": 400.5, "mspi": 494.0, "comex_jpy": 384.05, "comex_usd": 74.78, "premium": 10.5}, {"date": "2026-06-03", "label": "Jun 03", "jpmi": 419.62, "rs": 411.4, "db": 399.0, "mspi": 491.0, "comex_jpy": 374.33, "comex_usd": 72.83, "premium": 12.1}, {"date": "2026-06-04", "label": "Jun 04", "jpmi": 413.17, "rs": 402.12, "db": 389.0, "mspi": 502.0, "comex_jpy": 379.78, "comex_usd": 73.92, "premium": 8.79}, {"date": "2026-06-05", "label": "Jun 05", "jpmi": 418.96, "rs": 404.47, "db": 388.5, "mspi": 533.0, "comex_jpy": 348.67, "comex_usd": 67.84, "premium": 20.16}, {"date": "2026-06-08", "label": "Jun 08", "jpmi": 387.25, "rs": 370.19, "db": 372.0, "mspi": 480.33, "comex_jpy": 350.51, "comex_usd": 68.15, "premium": 10.48}, {"date": "2026-06-09", "label": "Jun 09", "jpmi": 387.56, "rs": 372.75, "db": 358.5, "mspi": 500.0, "comex_jpy": 334.48, "comex_usd": 64.96, "premium": 15.87}, {"date": "2026-06-10", "label": "Jun 10", "jpmi": 371.26, "rs": 355.48, "db": 351.5, "mspi": 468.67, "comex_jpy": 323.78, "comex_usd": 62.75, "premium": 14.66}, {"date": "2026-06-11", "label": "Jun 11", "jpmi": 364.47, "rs": 351.49, "db": 335.0, "mspi": 471.0, "comex_jpy": 349.02, "comex_usd": 67.62, "premium": 4.43}, {"date": "2026-06-12", "label": "Jun 12", "jpmi": 380.56, "rs": 368.02, "db": 346.0, "mspi": 495.67, "comex_jpy": 349.11, "comex_usd": 67.78, "premium": 9.01}, {"date": "2026-06-15", "label": "Jun 15", "jpmi": 399.0, "rs": 387.64, "db": 373.0, "mspi": 492.67, "comex_jpy": 359.88, "comex_usd": 69.88, "premium": 10.87}, {"date": "2026-06-16", "label": "Jun 16", "jpmi": 399.37, "rs": 385.77, "db": 368.5, "mspi": 511.0, "comex_jpy": 361.1, "comex_usd": 70.03, "premium": 10.6}, {"date": "2026-06-17", "label": "Jun 17", "jpmi": 400.3, "rs": 387.46, "db": 371.0, "mspi": 506.0, "comex_jpy": 350.19, "comex_usd": 67.94, "premium": 14.31}, {"date": "2026-06-18", "label": "Jun 18", "jpmi": 388.1, "rs": 380.82, "db": 368.5, "mspi": 454.0, "comex_jpy": 338.07, "comex_usd": 65.34, "premium": 14.8}, {"date": "2026-06-19", "label": "Jun 19", "jpmi": 375.73, "rs": 356.55, "db": 358.5, "mspi": 480.5, "comex_jpy": 336.09, "comex_usd": 64.84, "premium": 11.79}, {"date": "2026-06-22", "label": "Jun 22", "jpmi": 374.52, "rs": 367.44, "db": 348.5, "mspi": 452.5, "comex_jpy": 344.56, "comex_usd": 65.04, "premium": 8.7}, {"date": "2026-06-23", "label": "Jun 23", "jpmi": 366.45, "rs": 348.81, "db": 346.0, "mspi": 472.0, "comex_jpy": 323.44, "comex_usd": 61.41, "premium": 13.3}, {"date": "2026-06-24", "label": "Jun 24", "jpmi": 353.77, "rs": 340.08, "db": 327.0, "mspi": 457.5, "comex_jpy": 311.08, "comex_usd": 57.54, "premium": 13.72}, {"date": "2026-06-25", "label": "Jun 25", "jpmi": 336.45, "rs": 314.45, "db": 309.0, "mspi": 472.0, "comex_jpy": 298.25, "comex_usd": 57.89, "premium": 12.81}, {"date": "2026-06-26", "label": "Jun 26", "jpmi": 338.06, "rs": 314.38, "db": 309.5, "mspi": 482.0, "comex_jpy": 303.3, "comex_usd": 58.92, "premium": 11.46}, {"date": "2026-06-29", "label": "Jun 29", "jpmi": 360.32, "rs": 322.96, "db": 315.0, "mspi": 443.0, "comex_jpy": 302.3, "comex_usd": null, "premium": 19.19}];
-const labels = rows.map(r => r.label);
-const gridColor = "rgba(255,255,255,.075)";
-const tickColor = "#9ca3af";
-const commonOptions = {
-  responsive: true,
-  maintainAspectRatio: false,
-  interaction: { mode: "index", intersect: false },
-  plugins: {
-    legend: { labels: { color: "#d4d4d4", font: { weight: "bold" } } },
-    tooltip: {
-      backgroundColor: "#090909",
-      titleColor: "#d9ecff",
-      bodyColor: "#fff",
-      borderColor: "rgba(77,166,255,.42)",
-      borderWidth: 1,
-      padding: 12
+
+  <script>
+    const juneRows = [
+      { date: "Jun 1", jpmi: 422.73, rs: 415.69, db: 402.00, mspi: 490.00, comex: 384.81, premium: 9.85 },
+      { date: "Jun 2", jpmi: 424.39, rs: 418.44, db: 400.50, mspi: 494.00, comex: 384.05, premium: 10.50 },
+      { date: "Jun 3", jpmi: 419.62, rs: 411.40, db: 399.00, mspi: 491.00, comex: 374.33, premium: 12.10 },
+      { date: "Jun 4", jpmi: 413.17, rs: 402.12, db: 389.00, mspi: 502.00, comex: 379.78, premium: 8.79 },
+      { date: "Jun 5", jpmi: 418.96, rs: 404.47, db: 388.50, mspi: 533.00, comex: 348.67, premium: 20.16 },
+      { date: "Jun 8", jpmi: 387.25, rs: 370.19, db: 372.00, mspi: 480.33, comex: 350.51, premium: 10.48 },
+      { date: "Jun 9", jpmi: 387.56, rs: 372.75, db: 358.50, mspi: 500.00, comex: 334.48, premium: 15.87 },
+      { date: "Jun 10", jpmi: 371.26, rs: 355.48, db: 351.50, mspi: 468.67, comex: 323.78, premium: 14.66 },
+      { date: "Jun 11", jpmi: 364.47, rs: 351.49, db: 335.00, mspi: 471.00, comex: 349.02, premium: 4.43 },
+      { date: "Jun 12", jpmi: 380.56, rs: 368.02, db: 346.00, mspi: 495.67, comex: 349.11, premium: 9.01 },
+      { date: "Jun 15", jpmi: 399.00, rs: 387.64, db: 373.00, mspi: 492.67, comex: 359.88, premium: 10.87 },
+      { date: "Jun 16", jpmi: 399.37, rs: 385.77, db: 368.50, mspi: 511.00, comex: 361.10, premium: 10.60 },
+      { date: "Jun 17", jpmi: 400.30, rs: 387.46, db: 371.00, mspi: 506.00, comex: 350.19, premium: 14.31 },
+      { date: "Jun 18", jpmi: 388.10, rs: 380.82, db: 368.50, mspi: 454.00, comex: 338.07, premium: 14.80 },
+      { date: "Jun 19", jpmi: 375.73, rs: 356.55, db: 358.50, mspi: 480.50, comex: 336.09, premium: 11.79 },
+      { date: "Jun 22", jpmi: 374.52, rs: 367.44, db: 348.50, mspi: 452.50, comex: 344.56, premium: 8.70 },
+      { date: "Jun 23", jpmi: 366.45, rs: 348.81, db: 346.00, mspi: 472.00, comex: 323.44, premium: 13.30 },
+      { date: "Jun 24", jpmi: 353.77, rs: 340.08, db: 327.00, mspi: 457.50, comex: 311.08, premium: 13.72 },
+      { date: "Jun 25", jpmi: 336.45, rs: 314.45, db: 309.00, mspi: 472.00, comex: 298.25, premium: 12.81 },
+      { date: "Jun 26", jpmi: 338.06, rs: 314.38, db: 309.50, mspi: 482.00, comex: 303.30, premium: 11.46 },
+      { date: "Jun 29", jpmi: 360.32, rs: 322.96, db: 315.00, mspi: 443.00, comex: 302.30, premium: 19.19 }
+    ];
+
+    const chartDefaults = {
+      responsive: true,
+      maintainAspectRatio: false,
+      interaction: { mode: "index", intersect: false },
+      plugins: {
+        legend: {
+          labels: {
+            color: "#d4d4d4",
+            boxWidth: 12,
+            boxHeight: 12,
+            font: { size: 12, weight: "bold" }
+          }
+        },
+        tooltip: {
+          backgroundColor: "#090909",
+          titleColor: "#d9ecff",
+          bodyColor: "#ffffff",
+          borderColor: "rgba(77, 166, 255, 0.42)",
+          borderWidth: 1,
+          padding: 12
+        }
+      },
+      scales: {
+        x: {
+          ticks: { color: "#9ca3af", maxTicksLimit: 10 },
+          grid: { color: "rgba(255,255,255,0.06)" }
+        },
+        y: {
+          ticks: { color: "#9ca3af" },
+          grid: { color: "rgba(255,255,255,0.075)" }
+        }
+      }
+    };
+
+    function makeLineChart(canvasId, datasets, yCallback) {
+      const options = JSON.parse(JSON.stringify(chartDefaults));
+      options.scales.y.ticks.callback = yCallback || function(value) { return "¥" + value; };
+
+      new Chart(document.getElementById(canvasId), {
+        type: "line",
+        data: {
+          labels: juneRows.map(row => row.date),
+          datasets
+        },
+        options
+      });
     }
-  },
-  scales: {
-    x: { ticks: { color: tickColor, maxTicksLimit: 10 }, grid: { color: gridColor } },
-    y: { ticks: { color: tickColor }, grid: { color: gridColor } }
-  }
-};
-new Chart(document.getElementById("chartJpmiComex"), {
-  type: "line",
-  data: {
-    labels,
-    datasets: [
-      { label: "JPMI-AG ¥/g", data: rows.map(r=>r.jpmi), borderColor: "#4da6ff", backgroundColor: "rgba(77,166,255,.08)", fill: false, tension: .28, pointRadius: 0, borderWidth: 3 },
-      { label: "COMEX ¥/g", data: rows.map(r=>r.comex_jpy), borderColor: "#c7c7c7", fill: false, tension: .28, pointRadius: 0, borderDash: [6,6], borderWidth: 2.5 }
-    ]
-  },
-  options: commonOptions
-});
-new Chart(document.getElementById("chartPremium"), {
-  type: "line",
-  data: {
-    labels,
-    datasets: [
-      { label: "Physical Premium %", data: rows.map(r=>r.premium), borderColor: "#38bdf8", backgroundColor: "rgba(56,189,248,.12)", fill: true, tension: .28, pointRadius: 0, borderWidth: 3 }
-    ]
-  },
-  options: {
-    ...commonOptions,
-    scales: { ...commonOptions.scales, y: { ticks: { color: tickColor, callback: v => v + "%" }, grid: { color: gridColor } } }
-  }
-});
-new Chart(document.getElementById("chartMercari"), {
-  type: "line",
-  data: {
-    labels,
-    datasets: [
-      { label: "Mercari / MSPI-B ¥/g", data: rows.map(r=>r.mspi), borderColor: "#a855f7", backgroundColor: "rgba(168,85,247,.10)", fill: false, tension: .28, pointRadius: 0, borderWidth: 3 },
-      { label: "JPMI-AG ¥/g", data: rows.map(r=>r.jpmi), borderColor: "#4da6ff", fill: false, tension: .28, pointRadius: 0, borderWidth: 2 }
-    ]
-  },
-  options: commonOptions
-});
-</script>
+
+    makeLineChart("chartJpmiComex", [
+      {
+        label: "JPMI-AG",
+        data: juneRows.map(row => row.jpmi),
+        borderColor: "#4da6ff",
+        backgroundColor: "rgba(77,166,255,.10)",
+        fill: false,
+        tension: .28,
+        pointRadius: 0,
+        pointHoverRadius: 5,
+        borderWidth: 3.4
+      },
+      {
+        label: "COMEX JPY/g",
+        data: juneRows.map(row => row.comex),
+        borderColor: "#c7c7c7",
+        backgroundColor: "rgba(199,199,199,0)",
+        fill: false,
+        tension: .28,
+        pointRadius: 0,
+        pointHoverRadius: 5,
+        borderWidth: 2.6,
+        borderDash: [6, 6]
+      }
+    ]);
+
+    makeLineChart("chartPremium", [
+      {
+        label: "Physical Premium %",
+        data: juneRows.map(row => row.premium),
+        borderColor: "#38bdf8",
+        backgroundColor: "rgba(56,189,248,.12)",
+        fill: true,
+        tension: .28,
+        pointRadius: 0,
+        pointHoverRadius: 5,
+        borderWidth: 3.2
+      }
+    ], function(value) { return value + "%"; });
+
+    makeLineChart("chartLayers", [
+      {
+        label: "RS Refinery",
+        data: juneRows.map(row => row.rs),
+        borderColor: "#22c55e",
+        backgroundColor: "rgba(34,197,94,0)",
+        fill: false,
+        tension: .28,
+        pointRadius: 0,
+        borderWidth: 2.4
+      },
+      {
+        label: "DB Dealer Bid",
+        data: juneRows.map(row => row.db),
+        borderColor: "#f59e0b",
+        backgroundColor: "rgba(245,158,11,0)",
+        fill: false,
+        tension: .28,
+        pointRadius: 0,
+        borderWidth: 2.4
+      },
+      {
+        label: "Mercari MSPI-B",
+        data: juneRows.map(row => row.mspi),
+        borderColor: "#a855f7",
+        backgroundColor: "rgba(168,85,247,0)",
+        fill: false,
+        tension: .28,
+        pointRadius: 0,
+        borderWidth: 2.8
+      }
+    ]);
+  </script>
 </body>
 </html>
