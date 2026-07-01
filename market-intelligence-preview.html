@@ -1,0 +1,607 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="robots" content="noindex, nofollow">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>JPMI Market Intelligence | Japan Physical Metals Index</title>
+  <meta name="description" content="Access JPMI Market Intelligence: proprietary Japan physical silver data, historical premium charts, monthly market commentary, and independent precious metals research.">
+
+  <link rel="icon" type="image/x-icon" href="favicon.ico">
+  <link rel="canonical" href="https://www.japanphysicalmetals.jp/market-intelligence.html">
+
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="JPMI Market Intelligence">
+  <meta property="og:description" content="Independent intelligence on Japan's physical precious metals market.">
+  <meta property="og:site_name" content="JPMI — Japan Physical Metals Index">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:site" content="@JPMI_index">
+
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@200;300;400;600&family=DM+Mono:wght@300;400;500&family=Playfair+Display:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --bg:#050505;
+      --panel:#101010;
+      --panel2:#151515;
+      --ink:#f6f4ef;
+      --ink2:#d5d1c8;
+      --ink3:#a69f93;
+      --ink4:#706a61;
+      --blue:#4da6ff;
+      --blue2:#d9ecff;
+      --green:#22c55e;
+      --orange:#f59e0b;
+      --purple:#a855f7;
+      --border:rgba(255,255,255,.11);
+      --border2:rgba(77,166,255,.32);
+    }
+
+    *{box-sizing:border-box;margin:0;padding:0;}
+
+    body{
+      background:
+        radial-gradient(circle at 15% 0%, rgba(77,166,255,.16), transparent 30%),
+        radial-gradient(circle at 90% 20%, rgba(168,85,247,.10), transparent 30%),
+        linear-gradient(180deg,#050505,#080808 45%,#030303);
+      color:var(--ink);
+      font-family:'DM Mono',monospace;
+      min-height:100vh;
+    }
+
+    .page{
+      max-width:1100px;
+      margin:0 auto;
+      padding:34px 22px 72px;
+    }
+
+    .masthead{
+      display:flex;
+      justify-content:space-between;
+      align-items:flex-start;
+      gap:18px;
+      padding-bottom:22px;
+      margin-bottom:26px;
+      border-bottom:1px solid var(--border);
+    }
+
+    .brand{
+      font-size:.76rem;
+      letter-spacing:.22em;
+      color:var(--blue2);
+      text-transform:uppercase;
+      font-weight:800;
+    }
+
+    .brand a{
+      color:inherit;
+      text-decoration:none;
+    }
+
+    .tagline{
+      margin-top:8px;
+      color:var(--ink3);
+      font-size:.76rem;
+      line-height:1.7;
+      max-width:640px;
+    }
+
+    .nav{
+      display:flex;
+      gap:14px;
+      flex-wrap:wrap;
+      justify-content:flex-end;
+      font-size:.72rem;
+      letter-spacing:.09em;
+      text-transform:uppercase;
+    }
+
+    .nav a{
+      color:var(--ink3);
+      text-decoration:none;
+      transition:.15s;
+    }
+
+    .nav a:hover{color:var(--ink);}
+
+    .hero{
+      position:relative;
+      overflow:hidden;
+      border:1px solid var(--border2);
+      border-radius:34px;
+      padding:54px 48px;
+      background:
+        radial-gradient(circle at 10% 0%, rgba(77,166,255,.24), transparent 34%),
+        radial-gradient(circle at 95% 80%, rgba(168,85,247,.14), transparent 38%),
+        linear-gradient(180deg,#111,#060606);
+      box-shadow:0 28px 90px rgba(0,0,0,.55);
+      margin-bottom:26px;
+    }
+
+    .hero::after{
+      content:'MI';
+      position:absolute;
+      right:22px;
+      top:12px;
+      font-family:'Playfair Display',serif;
+      font-size:180px;
+      line-height:1;
+      color:rgba(255,255,255,.035);
+      pointer-events:none;
+    }
+
+    .kicker{
+      color:var(--blue);
+      font-size:.72rem;
+      letter-spacing:.25em;
+      text-transform:uppercase;
+      font-weight:900;
+      margin-bottom:16px;
+    }
+
+    h1{
+      font-family:'Playfair Display',Georgia,serif;
+      font-size:clamp(3rem,7vw,6rem);
+      line-height:.9;
+      letter-spacing:-.065em;
+      max-width:850px;
+      margin-bottom:20px;
+    }
+
+    .hero-lede{
+      max-width:760px;
+      color:var(--ink2);
+      font-size:1.02rem;
+      line-height:1.85;
+      margin-bottom:30px;
+    }
+
+    .hero-actions{
+      display:flex;
+      align-items:center;
+      gap:14px;
+      flex-wrap:wrap;
+    }
+
+    .btn{
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      min-height:46px;
+      padding:13px 18px;
+      border-radius:999px;
+      background:var(--blue);
+      color:#050505;
+      text-decoration:none;
+      font-weight:900;
+      letter-spacing:.05em;
+      box-shadow:0 18px 42px rgba(77,166,255,.24);
+      transition:.15s;
+    }
+
+    .btn:hover{
+      transform:translateY(-1px);
+      opacity:.92;
+    }
+
+    .price-pill{
+      color:var(--ink2);
+      border:1px solid var(--border);
+      background:rgba(255,255,255,.045);
+      border-radius:999px;
+      padding:12px 16px;
+      font-size:.78rem;
+      letter-spacing:.08em;
+      text-transform:uppercase;
+    }
+
+    .price-pill strong{
+      color:#fff;
+      font-size:.95rem;
+    }
+
+    .grid{
+      display:grid;
+      grid-template-columns:repeat(4,1fr);
+      gap:14px;
+      margin:26px 0;
+    }
+
+    .metric{
+      padding:20px;
+      border:1px solid var(--border);
+      border-radius:22px;
+      background:rgba(255,255,255,.035);
+    }
+
+    .metric span{
+      display:block;
+      color:var(--ink4);
+      font-size:.66rem;
+      font-weight:900;
+      letter-spacing:.17em;
+      text-transform:uppercase;
+      margin-bottom:8px;
+    }
+
+    .metric strong{
+      display:block;
+      font-family:'Courier New',monospace;
+      color:#fff;
+      font-size:1.38rem;
+      line-height:1.15;
+    }
+
+    .section{
+      margin-top:28px;
+      padding:32px;
+      border:1px solid var(--border);
+      border-radius:30px;
+      background:rgba(255,255,255,.032);
+    }
+
+    .section h2{
+      font-family:'Playfair Display',Georgia,serif;
+      font-size:2rem;
+      line-height:1.1;
+      letter-spacing:-.035em;
+      margin-bottom:12px;
+    }
+
+    .section p{
+      color:var(--ink2);
+      font-size:.92rem;
+      line-height:1.85;
+      margin-bottom:14px;
+    }
+
+    .features{
+      display:grid;
+      grid-template-columns:repeat(2,1fr);
+      gap:14px;
+      margin-top:22px;
+    }
+
+    .feature{
+      padding:20px;
+      border-radius:22px;
+      border:1px solid var(--border);
+      background:rgba(0,0,0,.35);
+    }
+
+    .feature b{
+      display:block;
+      color:#fff;
+      font-size:1rem;
+      margin-bottom:8px;
+      letter-spacing:-.01em;
+    }
+
+    .feature small{
+      color:var(--ink3);
+      font-size:.78rem;
+      line-height:1.75;
+    }
+
+    .preview-grid{
+      display:grid;
+      grid-template-columns:1.1fr .9fr;
+      gap:16px;
+      margin-top:24px;
+      align-items:stretch;
+    }
+
+    .preview-card{
+      position:relative;
+      min-height:260px;
+      padding:22px;
+      border-radius:24px;
+      border:1px solid var(--border);
+      background:linear-gradient(180deg,rgba(255,255,255,.055),rgba(255,255,255,.025));
+      overflow:hidden;
+    }
+
+    .preview-card.blurred .blur-content{
+      filter:blur(7px);
+      opacity:.68;
+      user-select:none;
+      pointer-events:none;
+    }
+
+    .locked{
+      position:absolute;
+      inset:auto 18px 18px 18px;
+      padding:14px 16px;
+      border:1px solid var(--border2);
+      border-radius:18px;
+      background:rgba(5,5,5,.78);
+      backdrop-filter:blur(12px);
+      color:var(--blue2);
+      font-size:.78rem;
+      line-height:1.6;
+      font-weight:800;
+      z-index:2;
+    }
+
+    .mock-chart{
+      height:170px;
+      margin-top:18px;
+      border-radius:18px;
+      border:1px solid rgba(255,255,255,.08);
+      background:
+        linear-gradient(135deg, transparent 0 18%, rgba(77,166,255,.45) 18% 19%, transparent 19% 38%, rgba(34,197,94,.38) 38% 39%, transparent 39% 60%, rgba(245,158,11,.40) 60% 61%, transparent 61% 100%),
+        linear-gradient(180deg,rgba(77,166,255,.10),rgba(0,0,0,.20));
+    }
+
+    .mock-bars{
+      display:flex;
+      align-items:end;
+      gap:10px;
+      height:170px;
+      margin-top:18px;
+      padding:18px;
+      border-radius:18px;
+      border:1px solid rgba(255,255,255,.08);
+      background:rgba(0,0,0,.28);
+    }
+
+    .mock-bars i{
+      display:block;
+      flex:1;
+      border-radius:8px 8px 0 0;
+      background:linear-gradient(180deg,var(--blue),rgba(77,166,255,.22));
+    }
+
+    .mock-bars i:nth-child(1){height:42%;}
+    .mock-bars i:nth-child(2){height:64%;}
+    .mock-bars i:nth-child(3){height:48%;}
+    .mock-bars i:nth-child(4){height:78%;}
+    .mock-bars i:nth-child(5){height:56%;}
+    .mock-bars i:nth-child(6){height:84%;}
+
+    .preview-title{
+      color:#fff;
+      font-size:1.05rem;
+      font-weight:900;
+      letter-spacing:-.015em;
+    }
+
+    .preview-note{
+      color:var(--ink3);
+      font-size:.78rem;
+      margin-top:8px;
+      line-height:1.7;
+    }
+
+    .offer{
+      display:grid;
+      grid-template-columns:1fr auto;
+      gap:22px;
+      align-items:center;
+      margin-top:28px;
+      padding:28px;
+      border:1px solid var(--border2);
+      border-radius:30px;
+      background:radial-gradient(circle at top left, rgba(77,166,255,.18), transparent 34%), rgba(77,166,255,.055);
+    }
+
+    .offer h2{margin-bottom:8px;}
+
+    .offer-price{
+      text-align:right;
+      min-width:210px;
+    }
+
+    .offer-price .amount{
+      display:block;
+      font-family:'Courier New',monospace;
+      font-size:2.4rem;
+      color:#fff;
+      font-weight:900;
+      line-height:1;
+      margin-bottom:10px;
+    }
+
+    .offer-price small{
+      color:var(--ink3);
+      font-size:.72rem;
+      text-transform:uppercase;
+      letter-spacing:.12em;
+    }
+
+    .disclaimer{
+      margin-top:24px;
+      color:#7e7e7e;
+      font-size:.72rem;
+      line-height:1.75;
+      border-top:1px solid var(--border);
+      padding-top:18px;
+    }
+
+    footer{
+      margin-top:34px;
+      padding-top:18px;
+      border-top:1px solid var(--border);
+      display:flex;
+      justify-content:space-between;
+      gap:18px;
+      flex-wrap:wrap;
+      color:var(--ink4);
+      font-size:.7rem;
+      letter-spacing:.08em;
+      line-height:1.7;
+    }
+
+    footer a{
+      color:var(--ink3);
+      text-decoration:none;
+    }
+
+    @media(max-width:780px){
+      .masthead{flex-direction:column;}
+      .nav{justify-content:flex-start;}
+      .hero{padding:38px 26px;}
+      .grid{grid-template-columns:repeat(2,1fr);}
+      .features,.preview-grid,.offer{grid-template-columns:1fr;}
+      .offer-price{text-align:left;}
+    }
+
+    @media(max-width:520px){
+      .grid{grid-template-columns:1fr;}
+      h1{font-size:3rem;}
+      .section{padding:24px;}
+    }
+  </style>
+</head>
+
+<body>
+  <div class="page">
+    <header class="masthead">
+      <div>
+        <div class="brand"><a href="index.html">JPMI — Japan Physical Metals Index™</a></div>
+        <div class="tagline">Independent research on Japan physical silver, global benchmarks, and regional physical pricing divergence.</div>
+      </div>
+
+      <nav class="nav">
+        <a href="index.html">Index</a>
+        <a href="paper-vs-physical.html">Paper vs Physical</a>
+        <a href="research.html">Research</a>
+        <a href="buy-silver.html">Buy Silver</a>
+      </nav>
+    </header>
+
+    <section class="hero">
+      <div class="kicker">JPMI Market Intelligence</div>
+      <h1>Japan's physical silver market, decoded.</h1>
+      <p class="hero-lede">
+        Access proprietary JPMI data, historical premium charts, monthly market commentary, and independent intelligence on Japan's physical precious metals market.
+      </p>
+
+      <div class="hero-actions">
+        <a class="btn" href="https://buy.stripe.com/bJedRa2nn8D40Ks5pkcs800" target="_blank" rel="noopener">Unlock Full Intelligence</a>
+        <span class="price-pill"><strong>US$14.99</strong> · one-time access</span>
+      </div>
+    </section>
+
+    <section class="grid" aria-label="Market Intelligence highlights">
+      <div class="metric">
+        <span>Product</span>
+        <strong>Market Intelligence</strong>
+      </div>
+      <div class="metric">
+        <span>Access</span>
+        <strong>One-time</strong>
+      </div>
+      <div class="metric">
+        <span>Price</span>
+        <strong>US$14.99</strong>
+      </div>
+      <div class="metric">
+        <span>Focus</span>
+        <strong>Japan Physical Silver</strong>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="kicker">What is included</div>
+      <h2>Built for investors, stackers, analysts, and researchers who want more than spot price.</h2>
+      <p>
+        JPMI Market Intelligence is designed to explain the gap between global paper benchmarks and Japan's physical silver market. It brings together JPMI-AG, COMEX comparison data, Mercari street pricing, dealer/refinery layers, and monthly interpretation.
+      </p>
+
+      <div class="features">
+        <div class="feature">
+          <b>Historical JPMI data</b>
+          <small>Track Japan physical silver pricing through time rather than relying on a single daily snapshot.</small>
+        </div>
+        <div class="feature">
+          <b>Premium analysis</b>
+          <small>View Japan physical silver premiums against global benchmarks and identify expansion or compression.</small>
+        </div>
+        <div class="feature">
+          <b>Exclusive monthly commentary</b>
+          <small>Understand what changed during the month and why it matters for the physical market.</small>
+        </div>
+        <div class="feature">
+          <b>Market structure context</b>
+          <small>Compare refinery, dealer, peer-to-peer, and global benchmark layers in one intelligence product.</small>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="kicker">Preview</div>
+      <h2>A sample of the intelligence layer.</h2>
+      <p>
+        The full version includes the current monthly report, proprietary charts, premium analysis, and access instructions after checkout.
+      </p>
+
+      <div class="preview-grid">
+        <div class="preview-card blurred">
+          <div class="blur-content">
+            <div class="preview-title">JPMI vs COMEX</div>
+            <div class="preview-note">Physical silver in Japan remained structurally above global benchmarks during the period.</div>
+            <div class="mock-chart"></div>
+          </div>
+          <div class="locked">Full chart and commentary unlocked after purchase.</div>
+        </div>
+
+        <div class="preview-card blurred">
+          <div class="blur-content">
+            <div class="preview-title">Premium analysis</div>
+            <div class="preview-note">Track premium compression, expansion, and key market drivers through the month.</div>
+            <div class="mock-bars">
+              <i></i><i></i><i></i><i></i><i></i><i></i>
+            </div>
+          </div>
+          <div class="locked">Includes proprietary JPMI historical premium analysis.</div>
+        </div>
+      </div>
+    </section>
+
+    <section class="offer">
+      <div>
+        <div class="kicker">One-time access</div>
+        <h2>Unlock JPMI Market Intelligence.</h2>
+        <p>
+          Purchase access to JPMI's independent market intelligence on Japan's physical precious metals market. After checkout, you will receive immediate access instructions through the Stripe success flow.
+        </p>
+      </div>
+
+      <div class="offer-price">
+        <span class="amount">$14.99</span>
+        <small>One-time purchase</small>
+        <div style="margin-top:14px;">
+          <a class="btn" href="https://buy.stripe.com/bJedRa2nn8D40Ks5pkcs800" target="_blank" rel="noopener">Unlock Full Intelligence</a>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="kicker">Important note</div>
+      <h2>Independent research. Not investment advice.</h2>
+      <p>
+        JPMI Market Intelligence is provided for informational and research purposes only. It does not constitute financial, investment, legal, or tax advice. Always perform your own due diligence before making decisions involving silver, gold, or other precious metals.
+      </p>
+      <p>
+        Access is provided for the personal use of the purchaser. Redistribution, republication, or resale of JPMI Market Intelligence is not permitted without prior written permission.
+      </p>
+    </section>
+
+    <div class="disclaimer">
+      © 2026 Japan Physical Metals Index™ (JPMI). All rights reserved. This publication is provided for the personal use of the purchaser only and may not be reproduced, redistributed, or republished without prior written permission. JPMI is an independent market data and research project. This publication is provided for informational purposes only and does not constitute financial, investment, or legal advice. All trademarks are the property of their respective owners.
+    </div>
+
+    <footer>
+      <div>
+        JPMI — Japan Physical Metals Index™<br>
+        Independent research on Japan physical silver and regional pricing divergence.
+      </div>
+      <div>
+        <a href="https://x.com/JPMI_index" target="_blank" rel="noopener">X @JPMI_index</a><br>
+        <a href="https://buymeacoffee.com/jpmi" target="_blank" rel="noopener">Support JPMI Research →</a>
+      </div>
+    </footer>
+  </div>
+</body>
+</html>
