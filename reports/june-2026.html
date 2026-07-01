@@ -232,7 +232,7 @@
       border: 1px solid var(--border);
       border-radius: 24px;
       background: rgba(0,0,0,.45);
-      overflow: hidden;
+      overflow: visible;
     }
 
     .chart-title {
@@ -290,7 +290,7 @@
       width: 100%;
       border-collapse: collapse;
       margin: 18px 0 8px;
-      overflow: hidden;
+      overflow: visible;
       border-radius: 16px;
       border: 1px solid var(--border);
       background: rgba(0,0,0,.22);
@@ -420,17 +420,16 @@
       }
 
       .page {
-        height: 100vh;
-        min-height: 0;
+        min-height: 100vh;
+        height: auto;
         margin: 0;
-        padding: 30px 38px 26px;
+        padding: 30px 38px 30px;
         border-radius: 0;
         box-shadow: none;
         page-break-after: always;
         break-after: page;
-        display: flex;
-        flex-direction: column;
-        overflow: hidden;
+        display: block;
+        overflow: visible;
         background:
           radial-gradient(circle at top left, rgba(77,166,255,0.13), transparent 36%),
           linear-gradient(180deg, #111, #070707) !important;
@@ -543,7 +542,7 @@
         border-radius: 18px !important;
         break-inside: avoid;
         page-break-inside: avoid;
-        overflow: hidden !important;
+        overflow: visible !important;
       }
 
       .chart-title {
@@ -561,11 +560,11 @@
       .chart-wrap {
         position: relative !important;
         width: 100% !important;
-        height: 260px !important;
+        height: 300px !important;
       }
 
       .chart-wrap.small {
-        height: 230px !important;
+        height: 260px !important;
       }
 
       .chart-wrap canvas {
@@ -579,10 +578,9 @@
       }
 
       .footer-line {
-        margin-top: auto !important;
+        margin-top: 18px !important;
         padding-top: 10px !important;
         font-size: 9px !important;
-        flex-shrink: 0 !important;
       }
 
       .two-col {
@@ -593,7 +591,7 @@
 
       .jpmi-comex-page .chart-wrap,
       .market-layers-page .chart-wrap {
-        height: 255px !important;
+        height: 300px !important;
       }
 
       .jpmi-comex-page h2,
@@ -603,13 +601,13 @@
 
       .jpmi-comex-page p,
       .market-layers-page p {
-        margin-top: 10px !important;
-        line-height: 1.42 !important;
+        margin-top: 12px !important;
+        line-height: 1.45 !important;
       }
 
       .jpmi-comex-page .footer-line,
       .market-layers-page .footer-line {
-        margin-top: auto !important;
+        margin-top: 18px !important;
       }
 
       .methodology {
@@ -1163,8 +1161,8 @@
 
     const chartDefaults = {
       responsive: true,
-      maintainAspectRatio: false,
-      interaction: { mode: "index", intersect: false },
+          maintainAspectRatio: false,
+          interaction: { mode: "index", intersect: false },
       plugins: {
         legend: {
           labels: {
