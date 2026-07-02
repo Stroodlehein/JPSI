@@ -720,8 +720,7 @@
 
       document.querySelectorAll('[data-en]').forEach(el => {
         const txt = lang === 'ja' && el.dataset.ja ? el.dataset.ja : el.dataset.en;
-        el.innerHTML = txt.replace(/
-/g, '<br>');
+        el.innerHTML = txt.replace(/\n/g, '<br>');
       });
     }
   </script>
