@@ -1178,7 +1178,7 @@
       const input = document.getElementById("access-password");
       const error = document.getElementById("access-error");
 
-      if (localStorage.getItem(ACCESS_STORAGE_KEY) === "true") {
+      if (sessionStorage.getItem(ACCESS_STORAGE_KEY) === "true") {
         unlockTerminal();
         return;
       }
@@ -1193,7 +1193,7 @@
         const enteredPassword = input.value.trim();
 
         if (enteredPassword === ACCESS_PASSWORD) {
-          localStorage.setItem(ACCESS_STORAGE_KEY, "true");
+          sessionStorage.setItem(ACCESS_STORAGE_KEY, "true");
           if (error) error.classList.remove("visible");
           unlockTerminal();
           return;
