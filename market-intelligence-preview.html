@@ -119,7 +119,7 @@
     }
 
     .hero::after{
-      content:'MI';
+      content:'銀';
       position:absolute;
       right:22px;
       top:12px;
@@ -457,20 +457,31 @@
 <body>
   <div class="page">
     <header class="masthead">
-      <div>
-        <div class="brand"><a href="index.html">JPMI — Japan Physical Metals Index™</a></div>
-        <div class="tagline">Independent research on Japan physical silver, global benchmarks, and regional physical pricing divergence.</div>
+  <div class="masthead-top">
+    <div class="masthead-identity">
+      <div class="masthead-kicker" data-en="Japan Physical Metals Index™" data-ja="日本現物金属指数™">Japan Physical Metals Index™</div>
+      <div class="masthead-title"><a href="index.html" class="masthead-home">JPMI</a><span class="abbr"> — </span><span class="kanji-inline">日本現物金属指数</span></div>
+      <div class="masthead-tagline" data-en="Research notes on Japan physical silver premiums, global pricing, and regional physical pricing divergence." data-ja="日本の現物銀プレミアム、グローバル価格、地域別現物価格の乖離に関するリサーチノート。">Research notes on Japan physical silver premiums, global pricing, and regional physical pricing divergence.</div>
+    </div>
+    <div class="masthead-right">
+      <div class="lang-toggle">
+        <button class="lang-btn active" onclick="setLang('en')">EN</button>
+        <button class="lang-btn" onclick="setLang('ja')">JP</button>
       </div>
+      <div class="masthead-meta" data-en="Research Archive<br>Physical market structure" data-ja="リサーチアーカイブ<br>現物市場構造">Research Archive<br>Physical market structure</div>
+    </div>
+  </div>
+</header>
 
-      <nav class="nav">
-        <a href="index.html">Index</a>
-        <a href="paper-vs-physical.html">Paper vs Physical</a>
-        <a href="research.html">Research</a>
-        <a href="buy-silver.html">Buy Silver</a>
-      </nav>
-    </header>
+<nav class="site-nav">
+  <a href="index.html" class="nav-link" data-en="Index" data-ja="指数">Index</a>
+  <a href="paper-vs-physical.html" class="nav-link" data-en="Paper vs Physical" data-ja="先物 vs 現物">Paper vs Physical</a>
+  <a href="about.html" class="nav-link" data-en="About &amp; Methodology" data-ja="概要・方法論">About &amp; Methodology</a>
+  <a href="buy-silver.html" class="nav-link" data-en="Buy Silver" data-ja="銀を買う">Buy Silver</a>
+  <a href="research.html" class="nav-link active" data-en="Research" data-ja="リサーチ">Research</a>
+</nav>
 
-    <section class="hero">
+<section class="hero">
       <div class="kicker">JPMI Market Intelligence</div>
       <h1>Japan's physical silver market, decoded.</h1>
       <p class="hero-lede">
