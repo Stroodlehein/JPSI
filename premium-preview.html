@@ -327,6 +327,182 @@
       pointer-events: none;
     }
 
+
+    /* JPMI terminal-style password gate */
+    body.access-locked {
+      overflow: hidden;
+    }
+
+    body.access-locked .page {
+      display: none;
+    }
+
+    .access-gate {
+      position: fixed;
+      inset: 0;
+      z-index: 9999;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      padding: 24px;
+      background:
+        radial-gradient(circle at 12% 0%, rgba(77, 166, 255, 0.18), transparent 34%),
+        radial-gradient(circle at 88% 18%, rgba(77, 166, 255, 0.07), transparent 36%),
+        linear-gradient(180deg, #050505, #080808 48%, #020202);
+    }
+
+    body.access-locked .access-gate {
+      display: flex;
+    }
+
+    .access-card {
+      width: min(620px, 100%);
+      border: 1px solid rgba(77, 166, 255, 0.36);
+      border-radius: 28px;
+      background:
+        radial-gradient(circle at top left, rgba(77, 166, 255, 0.15), transparent 35%),
+        linear-gradient(180deg, rgba(20,20,20,0.98), rgba(5,5,5,0.98));
+      box-shadow: 0 35px 110px rgba(0,0,0,0.72);
+      overflow: hidden;
+      position: relative;
+    }
+
+    .access-card::after {
+      content: "銀";
+      position: absolute;
+      right: 18px;
+      top: 8px;
+      font-family: Georgia, serif;
+      font-size: 150px;
+      line-height: 1;
+      color: rgba(255,255,255,0.035);
+      pointer-events: none;
+    }
+
+    .access-card-header {
+      position: relative;
+      z-index: 1;
+      padding: 28px 30px 22px;
+      border-bottom: 1px solid rgba(255,255,255,0.09);
+    }
+
+    .access-kicker {
+      color: #d9ecff;
+      font-size: 12px;
+      font-weight: 900;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      margin-bottom: 14px;
+    }
+
+    .access-card h2 {
+      margin: 0;
+      color: #fff;
+      font-size: clamp(34px, 5vw, 52px);
+      line-height: 0.95;
+      letter-spacing: -0.055em;
+    }
+
+    .access-card p {
+      margin: 18px 0 0;
+      max-width: 460px;
+      color: #a8a8a8;
+      font-size: 15px;
+      line-height: 1.75;
+    }
+
+    .access-card-body {
+      position: relative;
+      z-index: 1;
+      padding: 26px 30px 30px;
+    }
+
+    .access-label {
+      display: block;
+      margin-bottom: 9px;
+      color: #9ca3af;
+      font-size: 11px;
+      font-weight: 900;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+    }
+
+    .access-input-row {
+      display: flex;
+      gap: 10px;
+      align-items: stretch;
+    }
+
+    .access-input {
+      flex: 1;
+      min-height: 50px;
+      border: 1px solid rgba(255,255,255,0.13);
+      border-radius: 16px;
+      background: rgba(0,0,0,0.42);
+      color: #fff;
+      padding: 0 16px;
+      font-size: 15px;
+      font-family: "Courier New", monospace;
+      outline: none;
+    }
+
+    .access-input:focus {
+      border-color: rgba(77, 166, 255, 0.72);
+      box-shadow: 0 0 0 3px rgba(77, 166, 255, 0.12);
+    }
+
+    .access-submit {
+      min-height: 50px;
+      padding: 0 20px;
+      border: 1px solid var(--jpmi-blue);
+      border-radius: 16px;
+      background: var(--jpmi-blue);
+      color: #050505;
+      font-weight: 900;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      cursor: pointer;
+    }
+
+    .access-submit:hover {
+      background: #72b9ff;
+    }
+
+    .access-error {
+      display: none;
+      margin-top: 12px;
+      color: #ff8a8a;
+      font-size: 13px;
+      line-height: 1.55;
+    }
+
+    .access-error.visible {
+      display: block;
+    }
+
+    .access-note {
+      margin-top: 18px;
+      padding-top: 16px;
+      border-top: 1px solid rgba(255,255,255,0.08);
+      color: #777;
+      font-size: 12px;
+      line-height: 1.65;
+    }
+
+    .access-note strong {
+      color: #d9ecff;
+    }
+
+    @media (max-width: 540px) {
+      .access-input-row {
+        flex-direction: column;
+      }
+
+      .access-submit {
+        width: 100%;
+      }
+    }
+
     @media (max-width: 900px) {
       .premium-header { flex-direction: column; }
 
@@ -360,7 +536,38 @@
   </style>
 </head>
 
-<body>
+<body class="access-locked">
+
+  <section class="access-gate" aria-label="JPMI Market Intelligence access gate">
+    <div class="access-card">
+      <div class="access-card-header">
+        <div class="access-kicker">JPMI Market Intelligence</div>
+        <h2>Authentication Required</h2>
+        <p>
+          Enter the access password provided after purchase to unlock the JPMI premium data terminal.
+        </p>
+      </div>
+
+      <div class="access-card-body">
+        <form id="access-form">
+          <label class="access-label" for="access-password">Access Password</label>
+          <div class="access-input-row">
+            <input class="access-input" id="access-password" type="password" autocomplete="off" placeholder="Enter password" />
+            <button class="access-submit" type="submit">Unlock</button>
+          </div>
+          <div class="access-error" id="access-error">
+            Access denied. Please check the password from your JPMI Market Intelligence access page.
+          </div>
+        </form>
+
+        <div class="access-note">
+          <strong>Personal use only.</strong> Access credentials are provided to the purchaser and may not be shared, redistributed, republished, or resold.
+        </div>
+      </div>
+    </div>
+  </section>
+
+
   <main class="page">
     <div class="badge">JPMI Premium</div>
 
@@ -527,6 +734,50 @@
   </main>
 
   <script>
+
+    const ACCESS_PASSWORD = "JPMI-SILVER-2026";
+    const ACCESS_STORAGE_KEY = "jpmi_market_intelligence_unlocked";
+
+    function unlockTerminal() {
+      document.body.classList.remove("access-locked");
+      document.body.classList.add("access-unlocked");
+      if (!premiumRows.length) {
+        initAccessGate();
+      }
+    }
+
+    function initAccessGate() {
+      const form = document.getElementById("access-form");
+      const input = document.getElementById("access-password");
+      const error = document.getElementById("access-error");
+
+      if (localStorage.getItem(ACCESS_STORAGE_KEY) === "true") {
+        unlockTerminal();
+        return;
+      }
+
+      if (!form || !input) return;
+
+      setTimeout(() => input.focus(), 80);
+
+      form.addEventListener("submit", event => {
+        event.preventDefault();
+
+        const enteredPassword = input.value.trim();
+
+        if (enteredPassword === ACCESS_PASSWORD) {
+          localStorage.setItem(ACCESS_STORAGE_KEY, "true");
+          if (error) error.classList.remove("visible");
+          unlockTerminal();
+          return;
+        }
+
+        if (error) error.classList.add("visible");
+        input.value = "";
+        input.focus();
+      });
+    }
+
     const ctx = document.getElementById("jpmiPremiumChart");
     let premiumChart;
     let premiumRows = [];
@@ -953,7 +1204,7 @@
       }
     }
 
-    loadJpmiPremiumChart();
+    initAccessGate();
   </script>
 </body>
 </html>
