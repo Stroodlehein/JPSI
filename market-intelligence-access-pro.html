@@ -1,0 +1,648 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="robots" content="noindex, nofollow">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>JPMI Market Intelligence Access | Japan Physical Metals Index</title>
+  <meta name="description" content="Access instructions for JPMI Market Intelligence.">
+
+  <link rel="icon" type="image/x-icon" href="favicon.ico">
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@200;300;400;600&family=DM+Mono:wght@300;400;500&family=Playfair+Display:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+
+  <style>
+    :root{
+      --bg:#050505;
+      --panel:#101010;
+      --panel2:#151515;
+      --ink:#f6f4ef;
+      --ink2:#d5d1c8;
+      --ink3:#a69f93;
+      --ink4:#706a61;
+      --blue:#4da6ff;
+      --blue2:#d9ecff;
+      --green:#22c55e;
+      --border:rgba(255,255,255,.11);
+      --border2:rgba(77,166,255,.32);
+      --border3:rgba(77,166,255,.52);
+    }
+
+    *{box-sizing:border-box;margin:0;padding:0;}
+
+    body{
+      background:
+        radial-gradient(circle at 15% 0%, rgba(77,166,255,.16), transparent 30%),
+        radial-gradient(circle at 90% 20%, rgba(168,85,247,.10), transparent 30%),
+        linear-gradient(180deg,#050505,#080808 45%,#030303);
+      color:var(--ink);
+      font-family:'DM Mono',monospace;
+      min-height:100vh;
+    }
+
+    .page{
+      max-width:1100px;
+      margin:0 auto;
+      padding:34px 22px 72px;
+    }
+
+    .masthead{
+      border-bottom:3px double var(--border);
+      padding:32px 0 20px;
+      background:transparent;
+    }
+
+    .masthead-top{
+      display:flex;
+      justify-content:space-between;
+      align-items:flex-start;
+      gap:16px;
+    }
+
+    .masthead-kicker{
+      font-size:.75rem;
+      letter-spacing:.2em;
+      color:var(--ink3);
+      text-transform:uppercase;
+      margin-bottom:8px;
+      font-weight:500;
+    }
+
+    .masthead-title{
+      font-family:'Playfair Display',Georgia,serif;
+      font-size:2.6rem;
+      font-weight:700;
+      letter-spacing:-.01em;
+      line-height:1;
+      color:var(--ink);
+    }
+
+    .masthead-title .abbr{display:none;}
+
+    .masthead-home{
+      color:inherit;
+      text-decoration:none;
+    }
+
+    .masthead-home:hover{opacity:.75;}
+
+    .masthead-title .kanji-inline{
+      font-family:'Noto Serif JP',serif;
+      font-weight:600;
+      font-size:1.8rem;
+      color:var(--ink);
+      margin-left:10px;
+      vertical-align:middle;
+      opacity:1;
+    }
+
+    .masthead-tagline{
+      margin-top:10px;
+      font-size:.78rem;
+      color:var(--ink3);
+      letter-spacing:.04em;
+      max-width:640px;
+      line-height:1.8;
+    }
+
+    .masthead-right{
+      display:flex;
+      flex-direction:column;
+      align-items:flex-end;
+      gap:10px;
+      flex-shrink:0;
+    }
+
+    .lang-toggle{
+      display:flex;
+      border:1px solid var(--border);
+      border-radius:2px;
+      overflow:hidden;
+      background:rgba(255,255,255,.03);
+    }
+
+    .lang-btn{
+      padding:5px 12px;
+      font-family:'DM Mono',monospace;
+      font-size:.8rem;
+      letter-spacing:.08em;
+      cursor:pointer;
+      border:none;
+      background:transparent;
+      color:var(--ink3);
+      transition:all .15s;
+    }
+
+    .lang-btn.active{
+      background:var(--ink);
+      color:#050505;
+    }
+
+    .lang-btn:hover:not(.active){
+      background:rgba(255,255,255,.08);
+      color:var(--ink);
+    }
+
+    .masthead-meta{
+      font-size:.72rem;
+      color:var(--ink3);
+      letter-spacing:.06em;
+      text-align:right;
+      line-height:1.7;
+    }
+
+    .site-nav{
+      display:flex;
+      gap:0;
+      flex-wrap:wrap;
+      border-bottom:1px solid var(--border);
+      margin-bottom:24px;
+      background:transparent;
+    }
+
+    .nav-link{
+      font-size:.75rem;
+      letter-spacing:.06em;
+      text-transform:uppercase;
+      padding:10px 14px;
+      text-decoration:none;
+      color:var(--ink3);
+      border-bottom:2px solid transparent;
+      margin-bottom:-1px;
+      transition:all .15s;
+      white-space:nowrap;
+    }
+
+    .nav-link:hover{color:var(--ink);}
+
+    .access-hero{
+      position:relative;
+      overflow:hidden;
+      border:1px solid var(--border2);
+      border-radius:34px;
+      padding:54px 48px;
+      background:
+        radial-gradient(circle at 10% 0%, rgba(77,166,255,.24), transparent 34%),
+        radial-gradient(circle at 95% 80%, rgba(168,85,247,.14), transparent 38%),
+        linear-gradient(180deg,#111,#060606);
+      box-shadow:0 28px 90px rgba(0,0,0,.55);
+      margin-bottom:26px;
+    }
+
+    .access-hero::after{
+      content:'銀';
+      position:absolute;
+      right:22px;
+      top:12px;
+      font-family:'Playfair Display',serif;
+      font-size:180px;
+      line-height:1;
+      color:rgba(255,255,255,.035);
+      pointer-events:none;
+    }
+
+    .status-row{
+      display:flex;
+      align-items:center;
+      gap:10px;
+      color:var(--blue2);
+      font-size:.72rem;
+      letter-spacing:.2em;
+      text-transform:uppercase;
+      font-weight:900;
+      margin-bottom:18px;
+    }
+
+    .status-dot{
+      width:9px;
+      height:9px;
+      border-radius:50%;
+      background:var(--green);
+      box-shadow:0 0 18px rgba(34,197,94,.75);
+      flex-shrink:0;
+    }
+
+    h1{
+      font-family:'Playfair Display',Georgia,serif;
+      font-size:clamp(3rem,7vw,5.6rem);
+      line-height:.92;
+      letter-spacing:-.065em;
+      max-width:850px;
+      margin-bottom:20px;
+    }
+
+    .lede{
+      max-width:780px;
+      color:var(--ink2);
+      font-size:1.02rem;
+      line-height:1.85;
+    }
+
+    .access-grid{
+      display:grid;
+      grid-template-columns:1.08fr .92fr;
+      gap:18px;
+      align-items:stretch;
+      margin-top:26px;
+    }
+
+    .terminal-card{
+      border:1px solid var(--border2);
+      border-radius:30px;
+      background:
+        radial-gradient(circle at top left, rgba(77,166,255,.13), transparent 34%),
+        linear-gradient(180deg,rgba(255,255,255,.055),rgba(255,255,255,.025));
+      box-shadow:0 24px 70px rgba(0,0,0,.34);
+      overflow:hidden;
+    }
+
+    .terminal-top{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:14px;
+      padding:14px 18px;
+      border-bottom:1px solid var(--border);
+      background:rgba(0,0,0,.22);
+    }
+
+    .terminal-label{
+      color:var(--ink3);
+      font-size:.68rem;
+      letter-spacing:.18em;
+      text-transform:uppercase;
+      font-weight:900;
+    }
+
+    .terminal-stamp{
+      color:var(--blue2);
+      font-size:.68rem;
+      letter-spacing:.12em;
+      text-transform:uppercase;
+      white-space:nowrap;
+    }
+
+    .terminal-body{
+      padding:30px;
+    }
+
+    .terminal-body h2,
+    .info-card h2{
+      font-family:'Playfair Display',Georgia,serif;
+      font-size:2rem;
+      line-height:1.1;
+      letter-spacing:-.035em;
+      margin-bottom:14px;
+    }
+
+    .terminal-body p,
+    .info-card p{
+      color:var(--ink2);
+      font-size:.9rem;
+      line-height:1.85;
+      margin-bottom:14px;
+    }
+
+    .credential-box{
+      margin-top:18px;
+      border:1px solid var(--border);
+      border-radius:22px;
+      background:rgba(0,0,0,.38);
+      overflow:hidden;
+    }
+
+    .credential-head{
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      gap:12px;
+      padding:12px 16px;
+      border-bottom:1px solid var(--border);
+      background:rgba(255,255,255,.025);
+    }
+
+    .credential-label{
+      color:var(--ink4);
+      font-size:.66rem;
+      font-weight:900;
+      letter-spacing:.17em;
+      text-transform:uppercase;
+    }
+
+    .copy-btn{
+      border:1px solid var(--border2);
+      background:rgba(77,166,255,.08);
+      color:var(--blue2);
+      font-family:'DM Mono',monospace;
+      font-size:.68rem;
+      letter-spacing:.12em;
+      text-transform:uppercase;
+      cursor:pointer;
+      padding:6px 10px;
+      border-radius:999px;
+      transition:.15s;
+      white-space:nowrap;
+    }
+
+    .copy-btn:hover{
+      border-color:var(--border3);
+      background:rgba(77,166,255,.15);
+      color:#fff;
+    }
+
+    .credential-value{
+      display:block;
+      color:#fff;
+      font-size:.94rem;
+      line-height:1.55;
+      word-break:break-word;
+      padding:16px;
+    }
+
+    .password{
+      font-family:'Courier New',monospace;
+      font-size:1.34rem;
+      letter-spacing:.08em;
+      color:var(--blue2);
+    }
+
+    .btn{
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      min-height:48px;
+      padding:13px 19px;
+      border-radius:999px;
+      background:var(--blue);
+      color:#050505;
+      text-decoration:none;
+      font-weight:900;
+      letter-spacing:.05em;
+      box-shadow:0 18px 42px rgba(77,166,255,.24);
+      transition:.15s;
+      margin-top:22px;
+    }
+
+    .btn:hover{
+      transform:translateY(-1px);
+      opacity:.92;
+    }
+
+    .info-card{
+      border:1px solid var(--border);
+      border-radius:30px;
+      background:rgba(255,255,255,.035);
+      padding:30px;
+    }
+
+    .info-block{
+      padding-top:18px;
+      margin-top:18px;
+      border-top:1px solid var(--border);
+    }
+
+    .info-title{
+      color:var(--blue);
+      font-size:.72rem;
+      letter-spacing:.2em;
+      text-transform:uppercase;
+      font-weight:900;
+      margin-bottom:10px;
+    }
+
+    .small-note{
+      color:var(--ink4);
+      font-size:.72rem;
+      line-height:1.75;
+      margin-top:18px;
+      border-top:1px solid var(--border);
+      padding-top:16px;
+    }
+
+    .toast{
+      position:fixed;
+      right:22px;
+      bottom:22px;
+      z-index:20;
+      padding:12px 16px;
+      border:1px solid var(--border2);
+      border-radius:999px;
+      background:rgba(5,5,5,.88);
+      backdrop-filter:blur(12px);
+      color:var(--blue2);
+      font-size:.76rem;
+      letter-spacing:.08em;
+      opacity:0;
+      transform:translateY(8px);
+      pointer-events:none;
+      transition:.18s;
+    }
+
+    .toast.show{
+      opacity:1;
+      transform:translateY(0);
+    }
+
+    footer{
+      margin-top:34px;
+      padding-top:18px;
+      border-top:1px solid var(--border);
+      display:flex;
+      justify-content:space-between;
+      gap:18px;
+      flex-wrap:wrap;
+      color:var(--ink4);
+      font-size:.7rem;
+      letter-spacing:.08em;
+      line-height:1.7;
+    }
+
+    footer a{
+      color:var(--ink3);
+      text-decoration:none;
+    }
+
+    footer a:hover{color:var(--ink);}
+
+    @media(max-width:780px){
+      .masthead-top{flex-direction:column;}
+      .masthead-title{font-size:2rem;}
+      .masthead-title .kanji-inline{font-size:1.2rem;}
+      .masthead-tagline{font-size:.7rem;letter-spacing:0;}
+      .masthead-right{align-items:flex-start;}
+      .access-hero{padding:38px 26px;}
+      .access-grid{grid-template-columns:1fr;}
+      .terminal-body,.info-card{padding:24px;}
+    }
+
+    @media(max-width:520px){
+      h1{font-size:3rem;}
+      .terminal-top{align-items:flex-start;flex-direction:column;}
+      .credential-head{align-items:flex-start;flex-direction:column;}
+      .password{font-size:1.05rem;}
+      .btn{width:100%;}
+    }
+  </style>
+</head>
+
+<body>
+  <div class="page">
+    <header class="masthead">
+      <div class="masthead-top">
+        <div class="masthead-identity">
+          <div class="masthead-kicker" data-en="Japan Physical Metals Index™" data-ja="日本現物金属指数™">Japan Physical Metals Index™</div>
+          <div class="masthead-title"><a href="index.html" class="masthead-home">JPMI</a><span class="abbr"> — </span><span class="kanji-inline">日本現物金属指数</span></div>
+          <div class="masthead-tagline" data-en="Independent intelligence on Japan physical silver premiums, historical pricing, and regional physical market structure." data-ja="日本の現物銀プレミアム、履歴価格、地域別現物市場構造に関する独立系インテリジェンス。">Independent intelligence on Japan physical silver premiums, historical pricing, and regional physical market structure.</div>
+        </div>
+        <div class="masthead-right">
+          <div class="lang-toggle">
+            <button class="lang-btn active" onclick="setLang('en')">EN</button>
+            <button class="lang-btn" onclick="setLang('ja')">JP</button>
+          </div>
+          <div class="masthead-meta" data-en="Access Page<br>Payment confirmed" data-ja="アクセスページ<br>決済完了">Access Page<br>Payment confirmed</div>
+        </div>
+      </div>
+    </header>
+
+    <nav class="site-nav">
+      <a href="index.html" class="nav-link" data-en="Index" data-ja="指数">Index</a>
+      <a href="paper-vs-physical.html" class="nav-link" data-en="Paper vs Physical" data-ja="先物 vs 現物">Paper vs Physical</a>
+      <a href="about.html" class="nav-link" data-en="About &amp; Methodology" data-ja="概要・方法論">About &amp; Methodology</a>
+      <a href="buy-silver.html" class="nav-link" data-en="Buy Silver" data-ja="銀を買う">Buy Silver</a>
+      <a href="research.html" class="nav-link" data-en="Research" data-ja="リサーチ">Research</a>
+    </nav>
+
+    <section class="access-hero">
+      <div class="status-row">
+        <span class="status-dot"></span>
+        <span data-en="Payment confirmed" data-ja="決済確認済み">Payment confirmed</span>
+      </div>
+      <h1 data-en="Welcome to JPMI Market Intelligence." data-ja="JPMIマーケット・インテリジェンスへようこそ。">Welcome to JPMI Market Intelligence.</h1>
+      <p class="lede" data-en="Thank you for supporting independent research into Japan's physical precious metals market. Your access details are below." data-ja="日本の現物貴金属市場に関する独立系リサーチをご支援いただきありがとうございます。アクセス情報は以下をご確認ください。">
+        Thank you for supporting independent research into Japan's physical precious metals market. Your access details are below.
+      </p>
+    </section>
+
+    <section class="access-grid">
+      <div class="terminal-card">
+        <div class="terminal-top">
+          <div class="terminal-label" data-en="Secure access details" data-ja="アクセス情報">Secure access details</div>
+          <div class="terminal-stamp" data-en="Save this page" data-ja="このページを保存">Save this page</div>
+        </div>
+
+        <div class="terminal-body">
+          <h2 data-en="Open the report page and enter the password." data-ja="レポートページを開き、パスワードを入力してください。">Open the report page and enter the password.</h2>
+          <p data-en="Please bookmark this access page or save the credentials below. These access details are intended for purchaser use only." data-ja="このアクセスページをブックマークするか、以下の認証情報を保存してください。アクセス情報は購入者本人の利用を目的としています。">
+            Please bookmark this access page or save the credentials below. These access details are intended for purchaser use only.
+          </p>
+
+          <div class="credential-box">
+            <div class="credential-head">
+              <span class="credential-label" data-en="Report URL" data-ja="レポートURL">Report URL</span>
+              <button class="copy-btn" type="button" onclick="copyText('https://www.japanphysicalmetals.jp/market-intelligence.html', this)" data-en="Copy link" data-ja="リンクをコピー">Copy link</button>
+            </div>
+            <span class="credential-value">https://www.japanphysicalmetals.jp/market-intelligence.html</span>
+          </div>
+
+          <div class="credential-box">
+            <div class="credential-head">
+              <span class="credential-label" data-en="Access Password" data-ja="アクセスパスワード">Access Password</span>
+              <button class="copy-btn" type="button" onclick="copyText('JPMI-SILVER-2026', this)" data-en="Copy password" data-ja="パスワードをコピー">Copy password</button>
+            </div>
+            <span class="credential-value password">JPMI-SILVER-2026</span>
+          </div>
+
+          <a class="btn" href="market-intelligence.html" data-en="Open Market Intelligence" data-ja="マーケット・インテリジェンスを開く">Open Market Intelligence</a>
+        </div>
+      </div>
+
+      <div class="info-card">
+        <div class="info-title" data-en="Important" data-ja="重要事項">Important</div>
+        <h2 data-en="Keep your access details private." data-ja="アクセス情報は大切に保管してください。">Keep your access details private.</h2>
+        <p data-en="JPMI Market Intelligence is licensed for the personal use of the purchaser only. Redistribution, republication, copying, sharing, or resale of any part of this publication is prohibited without prior written permission from JPMI." data-ja="JPMIマーケット・インテリジェンスは、購入者本人の個人利用のみを目的として提供されます。本コンテンツの再配布、再掲載、複製、共有、再販売は、JPMIの事前の書面による許可なく禁止されています。">
+          JPMI Market Intelligence is licensed for the personal use of the purchaser only. Redistribution, republication, copying, sharing, or resale of any part of this publication is prohibited without prior written permission from JPMI.
+        </p>
+
+        <div class="info-block">
+          <div class="info-title" data-en="Research disclaimer" data-ja="リサーチ免責事項">Research disclaimer</div>
+          <p data-en="JPMI Market Intelligence is provided for informational and research purposes only. Nothing contained within JPMI Market Intelligence constitutes financial, investment, legal, or tax advice." data-ja="JPMIマーケット・インテリジェンスは、情報提供およびリサーチ目的のみで提供されます。本コンテンツは金融、投資、法律、税務上の助言ではありません。">
+            JPMI Market Intelligence is provided for informational and research purposes only. Nothing contained within JPMI Market Intelligence constitutes financial, investment, legal, or tax advice.
+          </p>
+        </div>
+
+        <div class="small-note" data-en="If you experience a payment or access issue, please contact JPMI and we will work to resolve the issue promptly." data-ja="決済またはアクセスに問題がある場合は、JPMIまでご連絡ください。速やかに解決できるよう対応します。">
+          If you experience a payment or access issue, please contact JPMI and we will work to resolve the issue promptly.
+        </div>
+      </div>
+    </section>
+
+    <footer>
+      <div data-en="JPMI — Japan Physical Metals Index™<br>Independent research on Japan physical silver and regional pricing divergence." data-ja="JPMI — 日本現物金属指数™<br>日本の現物銀と地域別価格乖離に関する独立系リサーチ。">
+        JPMI — Japan Physical Metals Index™<br>
+        Independent research on Japan physical silver and regional pricing divergence.
+      </div>
+      <div>
+        <a href="https://x.com/JPMI_index" target="_blank" rel="noopener">X @JPMI_index</a><br>
+        <a href="https://buymeacoffee.com/jpmi" target="_blank" rel="noopener" data-en="Support JPMI Research →" data-ja="JPMI Researchを支援 →">Support JPMI Research →</a>
+      </div>
+    </footer>
+  </div>
+
+  <div class="toast" id="copy-toast">Copied</div>
+
+  <script>
+    function setLang(lang) {
+      document.documentElement.lang = lang === 'ja' ? 'ja' : 'en';
+      document.querySelectorAll('.lang-btn').forEach(btn => btn.classList.remove('active'));
+      const activeBtn = document.querySelector(`.lang-btn[onclick="setLang('${lang}')"]`);
+      if (activeBtn) activeBtn.classList.add('active');
+
+      document.querySelectorAll('[data-en]').forEach(el => {
+        const txt = lang === 'ja' && el.dataset.ja ? el.dataset.ja : el.dataset.en;
+        el.innerHTML = txt.replace(/\n/g, '<br>');
+      });
+    }
+
+    function copyText(text, button) {
+      const lang = document.documentElement.lang === 'ja' ? 'ja' : 'en';
+      const original = button.innerHTML;
+
+      function success() {
+        button.innerHTML = lang === 'ja' ? 'コピー済み' : 'Copied';
+        showToast(lang === 'ja' ? 'コピーしました' : 'Copied to clipboard');
+        setTimeout(() => {
+          button.innerHTML = original;
+        }, 1400);
+      }
+
+      if (navigator.clipboard && window.isSecureContext) {
+        navigator.clipboard.writeText(text).then(success).catch(() => fallbackCopy(text, success));
+      } else {
+        fallbackCopy(text, success);
+      }
+    }
+
+    function fallbackCopy(text, callback) {
+      const area = document.createElement('textarea');
+      area.value = text;
+      area.style.position = 'fixed';
+      area.style.left = '-9999px';
+      document.body.appendChild(area);
+      area.focus();
+      area.select();
+      try { document.execCommand('copy'); } catch(e) {}
+      document.body.removeChild(area);
+      callback();
+    }
+
+    function showToast(message) {
+      const toast = document.getElementById('copy-toast');
+      toast.textContent = message;
+      toast.classList.add('show');
+      clearTimeout(window.__jpmiToastTimer);
+      window.__jpmiToastTimer = setTimeout(() => {
+        toast.classList.remove('show');
+      }, 1800);
+    }
+  </script>
+</body>
+</html>
