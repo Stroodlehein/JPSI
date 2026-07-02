@@ -56,53 +56,146 @@
     }
 
     .masthead{
+      border-bottom:3px double var(--border);
+      padding:32px 0 20px;
+      margin-bottom:0;
+      background:transparent;
+    }
+
+    .masthead-top{
       display:flex;
       justify-content:space-between;
       align-items:flex-start;
-      gap:18px;
-      padding-bottom:22px;
-      margin-bottom:26px;
-      border-bottom:1px solid var(--border);
+      gap:16px;
     }
 
-    .brand{
-      font-size:.76rem;
-      letter-spacing:.22em;
-      color:var(--blue2);
+    .masthead-kicker{
+      font-family:'DM Mono',monospace;
+      font-size:.75rem;
+      letter-spacing:.2em;
+      color:var(--ink3);
       text-transform:uppercase;
-      font-weight:800;
+      margin-bottom:8px;
+      font-weight:500;
     }
 
-    .brand a{
+    .masthead-title{
+      font-family:'Playfair Display',Georgia,serif;
+      font-size:2.6rem;
+      font-weight:700;
+      letter-spacing:-.01em;
+      line-height:1;
+      color:var(--ink);
+    }
+
+    .masthead-title .abbr{display:none;}
+
+    .masthead-home{
       color:inherit;
       text-decoration:none;
     }
 
-    .tagline{
-      margin-top:8px;
+    .masthead-home:hover{opacity:.75;}
+
+    .masthead-title .kanji-inline{
+      font-family:'Noto Serif JP',serif;
+      font-weight:600;
+      font-size:1.8rem;
+      color:var(--ink);
+      margin-left:10px;
+      vertical-align:middle;
+      opacity:1;
+    }
+
+    .masthead-tagline{
+      margin-top:10px;
+      font-size:.78rem;
       color:var(--ink3);
-      font-size:.76rem;
-      line-height:1.7;
+      font-family:'DM Mono',monospace;
+      letter-spacing:.04em;
       max-width:640px;
+      line-height:1.8;
     }
 
-    .nav{
+    .masthead-right{
       display:flex;
-      gap:14px;
-      flex-wrap:wrap;
-      justify-content:flex-end;
-      font-size:.72rem;
-      letter-spacing:.09em;
-      text-transform:uppercase;
+      flex-direction:column;
+      align-items:flex-end;
+      gap:10px;
+      flex-shrink:0;
     }
 
-    .nav a{
+    .lang-toggle{
+      display:flex;
+      border:1px solid var(--border);
+      border-radius:2px;
+      overflow:hidden;
+      background:rgba(255,255,255,.03);
+    }
+
+    .lang-btn{
+      padding:5px 12px;
+      font-family:'DM Mono',monospace;
+      font-size:.8rem;
+      letter-spacing:.08em;
+      cursor:pointer;
+      border:none;
+      background:transparent;
       color:var(--ink3);
-      text-decoration:none;
-      transition:.15s;
+      transition:all .15s;
     }
 
-    .nav a:hover{color:var(--ink);}
+    .lang-btn.active{
+      background:var(--ink);
+      color:#050505;
+    }
+
+    .lang-btn:hover:not(.active){
+      background:rgba(255,255,255,.08);
+      color:var(--ink);
+    }
+
+    .masthead-meta{
+      font-family:'DM Mono',monospace;
+      font-size:.72rem;
+      color:var(--ink3);
+      letter-spacing:.06em;
+      text-align:right;
+      line-height:1.7;
+    }
+
+    .site-nav{
+      display:flex;
+      gap:0;
+      flex-wrap:wrap;
+      border-bottom:1px solid var(--border);
+      margin-bottom:24px;
+      margin-top:0;
+      background:transparent;
+    }
+
+    .nav-link{
+      font-family:'DM Mono',monospace;
+      font-size:.75rem;
+      letter-spacing:.06em;
+      text-transform:uppercase;
+      padding:10px 14px;
+      text-decoration:none;
+      color:var(--ink3);
+      border-bottom:2px solid transparent;
+      margin-bottom:-1px;
+      transition:all .15s;
+      white-space:nowrap;
+    }
+
+    .nav-link:hover{
+      color:var(--ink);
+    }
+
+    .nav-link.active{
+      color:#fff;
+      border-bottom-color:var(--blue);
+    }
 
     .hero{
       position:relative;
@@ -438,8 +531,11 @@
     }
 
     @media(max-width:780px){
-      .masthead{flex-direction:column;}
-      .nav{justify-content:flex-start;}
+      .masthead-top{flex-direction:column;}
+      .masthead-title{font-size:2rem;}
+      .masthead-title .kanji-inline{font-size:1.2rem;}
+      .masthead-tagline{font-size:.7rem;letter-spacing:0;}
+      .masthead-right{align-items:flex-start;}
       .hero{padding:38px 26px;}
       .grid{grid-template-columns:repeat(2,1fr);}
       .features,.preview-grid,.offer{grid-template-columns:1fr;}
@@ -461,14 +557,14 @@
     <div class="masthead-identity">
       <div class="masthead-kicker" data-en="Japan Physical Metals Index™" data-ja="日本現物金属指数™">Japan Physical Metals Index™</div>
       <div class="masthead-title"><a href="index.html" class="masthead-home">JPMI</a><span class="abbr"> — </span><span class="kanji-inline">日本現物金属指数</span></div>
-      <div class="masthead-tagline" data-en="Research notes on Japan physical silver premiums, global pricing, and regional physical pricing divergence." data-ja="日本の現物銀プレミアム、グローバル価格、地域別現物価格の乖離に関するリサーチノート。">Research notes on Japan physical silver premiums, global pricing, and regional physical pricing divergence.</div>
+      <div class="masthead-tagline" data-en="Independent intelligence on Japan physical silver premiums, historical pricing, and regional physical market structure." data-ja="日本の現物銀プレミアム、履歴価格、地域別現物市場構造に関する独立系インテリジェンス。">Independent intelligence on Japan physical silver premiums, historical pricing, and regional physical market structure.</div>
     </div>
     <div class="masthead-right">
       <div class="lang-toggle">
         <button class="lang-btn active" onclick="setLang('en')">EN</button>
         <button class="lang-btn" onclick="setLang('ja')">JP</button>
       </div>
-      <div class="masthead-meta" data-en="Research Archive<br>Physical market structure" data-ja="リサーチアーカイブ<br>現物市場構造">Research Archive<br>Physical market structure</div>
+      <div class="masthead-meta" data-en="Market Intelligence<br>Premium access" data-ja="マーケットインテリジェンス<br>プレミアムアクセス">Market Intelligence<br>Premium access</div>
     </div>
   </div>
 </header>
@@ -478,7 +574,7 @@
   <a href="paper-vs-physical.html" class="nav-link" data-en="Paper vs Physical" data-ja="先物 vs 現物">Paper vs Physical</a>
   <a href="about.html" class="nav-link" data-en="About &amp; Methodology" data-ja="概要・方法論">About &amp; Methodology</a>
   <a href="buy-silver.html" class="nav-link" data-en="Buy Silver" data-ja="銀を買う">Buy Silver</a>
-  <a href="research.html" class="nav-link active" data-en="Research" data-ja="リサーチ">Research</a>
+  <a href="research.html" class="nav-link" data-en="Research" data-ja="リサーチ">Research</a>
 </nav>
 
 <section class="hero">
@@ -614,5 +710,19 @@
       </div>
     </footer>
   </div>
+
+  <script>
+    function setLang(lang) {
+      document.documentElement.lang = lang === 'ja' ? 'ja' : 'en';
+      document.querySelectorAll('.lang-btn').forEach(btn => btn.classList.remove('active'));
+      const activeBtn = document.querySelector(`.lang-btn[onclick="setLang('${lang}')"]`);
+      if (activeBtn) activeBtn.classList.add('active');
+
+      document.querySelectorAll('[data-en]').forEach(el => {
+        const txt = lang === 'ja' && el.dataset.ja ? el.dataset.ja : el.dataset.en;
+        el.innerHTML = txt.replace(/\n/g, '<br>');
+      });
+    }
+  </script>
 </body>
 </html>
