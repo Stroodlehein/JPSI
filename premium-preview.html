@@ -566,8 +566,6 @@
       </div>
     </div>
   </section>
-
-
   <main class="page">
     <div class="badge">JPMI Premium</div>
 
@@ -734,50 +732,6 @@
   </main>
 
   <script>
-
-    const ACCESS_PASSWORD = "JPMI-SILVER-2026";
-    const ACCESS_STORAGE_KEY = "jpmi_market_intelligence_unlocked";
-
-    function unlockTerminal() {
-      document.body.classList.remove("access-locked");
-      document.body.classList.add("access-unlocked");
-      if (!premiumRows.length) {
-        initAccessGate();
-      }
-    }
-
-    function initAccessGate() {
-      const form = document.getElementById("access-form");
-      const input = document.getElementById("access-password");
-      const error = document.getElementById("access-error");
-
-      if (localStorage.getItem(ACCESS_STORAGE_KEY) === "true") {
-        unlockTerminal();
-        return;
-      }
-
-      if (!form || !input) return;
-
-      setTimeout(() => input.focus(), 80);
-
-      form.addEventListener("submit", event => {
-        event.preventDefault();
-
-        const enteredPassword = input.value.trim();
-
-        if (enteredPassword === ACCESS_PASSWORD) {
-          localStorage.setItem(ACCESS_STORAGE_KEY, "true");
-          if (error) error.classList.remove("visible");
-          unlockTerminal();
-          return;
-        }
-
-        if (error) error.classList.add("visible");
-        input.value = "";
-        input.focus();
-      });
-    }
-
     const ctx = document.getElementById("jpmiPremiumChart");
     let premiumChart;
     let premiumRows = [];
@@ -1202,6 +1156,53 @@
       } catch (error) {
         console.error("Failed to load JPMI Premium chart:", error);
       }
+    }
+
+
+    const ACCESS_PASSWORD = "JPMI-SILVER-2026";
+    const ACCESS_STORAGE_KEY = "jpmi_market_intelligence_unlocked";
+    let jpmiTerminalLoaded = false;
+
+    function unlockTerminal() {
+      document.body.classList.remove("access-locked");
+      document.body.classList.add("access-unlocked");
+
+      if (!jpmiTerminalLoaded) {
+        jpmiTerminalLoaded = true;
+        loadJpmiPremiumChart();
+      }
+    }
+
+    function initAccessGate() {
+      const form = document.getElementById("access-form");
+      const input = document.getElementById("access-password");
+      const error = document.getElementById("access-error");
+
+      if (localStorage.getItem(ACCESS_STORAGE_KEY) === "true") {
+        unlockTerminal();
+        return;
+      }
+
+      if (!form || !input) return;
+
+      setTimeout(() => input.focus(), 80);
+
+      form.addEventListener("submit", event => {
+        event.preventDefault();
+
+        const enteredPassword = input.value.trim();
+
+        if (enteredPassword === ACCESS_PASSWORD) {
+          localStorage.setItem(ACCESS_STORAGE_KEY, "true");
+          if (error) error.classList.remove("visible");
+          unlockTerminal();
+          return;
+        }
+
+        if (error) error.classList.add("visible");
+        input.value = "";
+        input.focus();
+      });
     }
 
     initAccessGate();
