@@ -421,9 +421,30 @@
       margin-top:18px;
       border-radius:18px;
       border:1px solid rgba(255,255,255,.08);
+      overflow:hidden;
+      position:relative;
+      background:#050505;
+    }
+
+    .mock-chart img{
+      width:100%;
+      height:100%;
+      object-fit:cover;
+      object-position:center;
+      display:block;
+      opacity:.82;
+      filter:blur(1.5px);
+      transform:scale(1.04);
+    }
+
+    .mock-chart::after{
+      content:"";
+      position:absolute;
+      inset:0;
       background:
-        linear-gradient(135deg, transparent 0 18%, rgba(77,166,255,.45) 18% 19%, transparent 19% 38%, rgba(34,197,94,.38) 38% 39%, transparent 39% 60%, rgba(245,158,11,.40) 60% 61%, transparent 61% 100%),
-        linear-gradient(180deg,rgba(77,166,255,.10),rgba(0,0,0,.20));
+        radial-gradient(circle at 15% 0%, rgba(77,166,255,.12), transparent 34%),
+        linear-gradient(180deg,rgba(0,0,0,.12),rgba(0,0,0,.34));
+      pointer-events:none;
     }
 
     .mock-bars{
@@ -660,7 +681,7 @@
           <div class="blur-content">
             <div class="preview-title" data-en="JPMI vs COMEX" data-ja="JPMI vs COMEX">JPMI vs COMEX</div>
             <div class="preview-note" data-en="Physical silver in Japan remained structurally above global benchmarks during the period." data-ja="期間中、日本の現物銀はグローバル指標を構造的に上回って推移しました。">Physical silver in Japan remained structurally above global benchmarks during the period.</div>
-            <div class="mock-chart"></div>
+            <div class="mock-chart"><img src="jpmi-preview-chart-first.png" alt=""></div>
           </div>
           <div class="locked" data-en="Full chart and commentary unlocked after purchase." data-ja="購入後、完全版チャートとコメントを閲覧できます。">Full chart and commentary unlocked after purchase.</div>
         </div>
