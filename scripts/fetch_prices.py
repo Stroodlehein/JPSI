@@ -18,7 +18,7 @@ SOURCES = {
 MANUAL_KEYS = ["nanboya_sv1000"]
 
 JPMI_HISTORY_FILE = "jpmi-history.json"
-JPMI_DAILY_OBSERVATION_HOUR_JST = 19
+JPMI_DAILY_OBSERVATION_HOUR_JST = 19  # Daily history rows are created/updated from 19:00 JST onward
 
 
 def get_html(url, encoding=None):
@@ -215,10 +215,6 @@ def append_daily_jpmi_history_if_ready(out):
 
     history = load_jpmi_history()
 
-    if any(row.get("date") == date_jst for row in history):
-        print(f"JPMI history skipped: {date_jst} already exists in {JPMI_HISTORY_FILE}")
-        return
-
     prices = out.get("prices_jpy_per_g", {})
 
     tanaka = safe_float(prices.get("tanaka_silver_buy"))
@@ -271,10 +267,21 @@ def append_daily_jpmi_history_if_ready(out):
         },
     }
 
-    history.append(row)
+    existing_index = next(
+        (i for i, existing_row in enumerate(history) if existing_row.get("date") == date_jst),
+        None
+    )
+
+    if existing_index is None:
+        history.append(row)
+        action = "created"
+    else:
+        history[existing_index] = row
+        action = "updated"
+
     save_jpmi_history(history)
 
-    print("JPMI daily premium history row saved:")
+    print(f"JPMI daily premium history row {action}:")
     print(json.dumps(row, ensure_ascii=False, indent=2))
 
 
