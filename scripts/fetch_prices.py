@@ -224,6 +224,8 @@ def append_daily_jpmi_history_if_ready(out):
     nanboya = safe_float(prices.get("nanboya_sv1000"))
     mspi_b = safe_float(prices.get("mercari_mspi_b"))
     comex = safe_float(prices.get("comex_silver_jpy_g"))
+    comex_usd = safe_float(prices.get("comex_silver_usd_oz"))
+    usd_jpy = safe_float(prices.get("usd_jpy"))
 
     rs = average_valid([tanaka, nihon, mitsubishi])
     db = average_valid([daikichi, nanboya])
@@ -250,6 +252,8 @@ def append_daily_jpmi_history_if_ready(out):
         "db_jpy_g": db,
         "mspi_b_jpy_g": round(mspi_b, 2) if is_valid_silver_price(mspi_b) else None,
         "comex_jpy_g": round(comex, 2) if is_valid_silver_price(comex) else None,
+        "comex_usd_oz": round(comex_usd, 2) if comex_usd is not None else None,
+        "usd_jpy": round(usd_jpy, 4) if usd_jpy is not None else None,
         "premium_pct": premium_pct,
         "components": {
             "tanaka_silver_buy": round(tanaka, 2) if is_valid_silver_price(tanaka) else None,
@@ -263,6 +267,8 @@ def append_daily_jpmi_history_if_ready(out):
             "has_db": db is not None,
             "has_mspi_b": is_valid_silver_price(mspi_b),
             "has_comex": is_valid_silver_price(comex),
+            "has_comex_usd_oz": comex_usd is not None,
+            "has_usd_jpy": usd_jpy is not None,
             "jpmi_component_count": len(jpmi_components),
         },
     }
