@@ -1134,6 +1134,12 @@
 
         premiumRows = premiumRows
           .filter(row => row.date)
+          .map(row => ({
+            ...row,
+            // Backwards compatibility:
+            // Older rows may use comex_silver_usd_oz, while the premium terminal expects comex_usd_oz.
+            comex_usd_oz: row.comex_usd_oz ?? row.comex_silver_usd_oz ?? null
+          }))
           .sort((a, b) => parseDate(a.date) - parseDate(b.date));
 
         updateStats();
