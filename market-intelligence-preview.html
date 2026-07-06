@@ -433,30 +433,28 @@
       box-shadow:inset 0 0 32px rgba(0,0,0,.52);
     }
 
-    .mock-chart::before,
-    .mock-chart::after{
-      content:'';
+    .mock-chart svg{
       position:absolute;
-      inset:18px 14px 18px 14px;
-      border-radius:18px;
-      background-repeat:no-repeat;
-      opacity:.95;
+      inset:10px 10px 8px;
+      width:calc(100% - 20px);
+      height:calc(100% - 18px);
+      overflow:visible;
     }
 
-    .mock-chart::before{
-      background:
-        linear-gradient(162deg, transparent 0 10%, rgba(168,85,247,.68) 10% 14%, transparent 14% 22%, rgba(168,85,247,.74) 22% 26%, transparent 26% 38%, rgba(168,85,247,.62) 38% 42%, transparent 42% 54%, rgba(168,85,247,.72) 54% 58%, transparent 58% 70%, rgba(168,85,247,.58) 70% 74%, transparent 74% 100%),
-        linear-gradient(170deg, transparent 0 9%, rgba(77,166,255,.70) 9% 12%, transparent 12% 25%, rgba(77,166,255,.55) 25% 29%, transparent 29% 48%, rgba(77,166,255,.62) 48% 51%, transparent 51% 70%, rgba(77,166,255,.52) 70% 74%, transparent 74% 100%);
-      transform:translateY(-5px);
+    .mock-chart polyline{
+      fill:none;
+      stroke-width:4.5;
+      stroke-linecap:round;
+      stroke-linejoin:round;
+      opacity:.82;
+      filter:drop-shadow(0 0 8px currentColor);
     }
 
-    .mock-chart::after{
-      background:
-        linear-gradient(166deg, transparent 0 13%, rgba(34,197,94,.60) 13% 16%, transparent 16% 30%, rgba(34,197,94,.56) 30% 33%, transparent 33% 50%, rgba(34,197,94,.58) 50% 53%, transparent 53% 68%, rgba(34,197,94,.50) 68% 72%, transparent 72% 100%),
-        linear-gradient(158deg, transparent 0 16%, rgba(245,158,11,.58) 16% 19%, transparent 19% 35%, rgba(245,158,11,.50) 35% 38%, transparent 38% 57%, rgba(245,158,11,.54) 57% 60%, transparent 60% 76%, rgba(245,158,11,.48) 76% 79%, transparent 79% 100%),
-        linear-gradient(164deg, transparent 0 18%, rgba(120,120,120,.46) 18% 22%, transparent 22% 39%, rgba(120,120,120,.42) 39% 43%, transparent 43% 63%, rgba(120,120,120,.44) 63% 67%, transparent 67% 100%);
-      transform:translateY(16px);
-    }
+    .mock-chart .line-purple{stroke:rgba(168,85,247,.86);color:rgba(168,85,247,.86);}
+    .mock-chart .line-blue{stroke:rgba(77,166,255,.76);color:rgba(77,166,255,.76);}
+    .mock-chart .line-green{stroke:rgba(34,197,94,.68);color:rgba(34,197,94,.68);}
+    .mock-chart .line-orange{stroke:rgba(245,158,11,.68);color:rgba(245,158,11,.68);}
+    .mock-chart .line-gray{stroke:rgba(140,140,140,.52);color:rgba(140,140,140,.52);}
 
     .mock-bars{
       display:flex;
@@ -699,7 +697,15 @@
           <div class="blur-content">
             <div class="preview-title" data-en="JPMI-AG Chart" data-ja="JPMI-AG チャート">JPMI-AG Chart</div>
             <div class="preview-note" data-en="Historical trends of Japan\'s physical silver market, dealer bids, refinery pricing, and premiums." data-ja="日本の現物銀市場、業者買取、精錬所価格、プレミアムの履歴トレンド。">Historical trends of Japan\'s physical silver market, dealer bids, refinery pricing, and premiums.</div>
-            <div class="mock-chart"></div>
+            <div class="mock-chart" aria-hidden="true">
+              <svg viewBox="0 0 520 150" preserveAspectRatio="none">
+                <polyline class="line-purple" points="0,24 20,18 42,22 64,20 86,50 108,43 130,61 152,39 174,55 196,45 218,34 240,70 262,58 284,73 306,66 328,83 350,75 372,80 394,68 416,88 438,82 460,90 482,78 520,96"></polyline>
+                <polyline class="line-blue" points="0,76 22,86 44,67 66,92 88,80 110,89 132,83 154,87 176,81 198,77 220,74 242,71 264,82 286,79 308,85 330,74 352,58 374,93 396,86 418,90 440,98 462,88 484,102 520,91"></polyline>
+                <polyline class="line-green" points="0,84 22,91 44,82 66,96 88,88 110,92 132,86 154,91 176,85 198,83 220,78 242,82 264,90 286,86 308,92 330,84 352,72 374,101 396,96 418,100 440,108 462,98 484,112 520,103"></polyline>
+                <polyline class="line-orange" points="0,91 22,97 44,88 66,101 88,93 110,98 132,91 154,96 176,90 198,88 220,84 242,87 264,96 286,92 308,98 330,91 352,78 374,108 396,101 418,106 440,115 462,104 484,118 520,109"></polyline>
+                <polyline class="line-gray" points="0,96 22,103 44,94 66,111 88,98 110,107 132,99 154,104 176,96 198,99 220,92 242,94 264,103 286,100 308,106 330,99 352,88 374,117 396,109 418,114 440,124 462,113 484,126 520,118"></polyline>
+              </svg>
+            </div>
           </div>
           <div class="locked" data-en="Full chart and commentary unlocked after purchase." data-ja="購入後、完全版チャートとコメントを閲覧できます。">Full chart and commentary unlocked after purchase.</div>
         </div>
