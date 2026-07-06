@@ -2,11 +2,19 @@ name: Update JPSI price feeds
 
 on:
   schedule:
-    - cron: "17 0-12 * * 1-5"   # Hourly at :17, 09:17–21:17 JST, Mon–Fri
+    # Weekday price refresh window.
+    # Runs hourly from 09:17–18:17 JST, then every 30 minutes from 19:17–21:47 JST.
+    # This gives the daily JPMI history row several chances to create/update after the official 19:00 JST observation time.
+    - cron: "17 0-9 * * 1-5"       # 09:17–18:17 JST, Mon–Fri
+    - cron: "17,47 10-12 * * 1-5"  # 19:17, 19:47, 20:17, 20:47, 21:17, 21:47 JST, Mon–Fri
   workflow_dispatch:
 
 permissions:
   contents: write
+
+concurrency:
+  group: update-jpsi-price-feeds
+  cancel-in-progress: false
 
 jobs:
   fetch:
@@ -28,7 +36,7 @@ jobs:
           python -m pip install --upgrade pip
           pip install requests beautifulsoup4
 
-      - name: Fetch prices -> prices.json
+      - name: Fetch prices -> prices.json and jpmi-history.json
         run: |
           python scripts/fetch_prices.py
 
