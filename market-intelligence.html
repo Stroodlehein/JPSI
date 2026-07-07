@@ -290,6 +290,16 @@
       color: #d9ecff;
     }
 
+    .dataset-download {
+      margin-top: 20px;
+    }
+
+    .dataset-download .secondary-btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+    }
+
     .reports-panel {
       padding: 26px 30px;
       border-bottom: 1px solid rgba(255,255,255,0.08);
@@ -765,8 +775,37 @@
         </div>
       </div>
 
+      <div class="reports-panel">
+        <h3 class="section-title">Monthly Report Archive</h3>
+        <p class="reports-intro">
+          Access JPMI monthly reports covering Japan physical silver spreads, historical chart movements,
+          dealer/refinery pricing layers, Mercari street pricing, and market structure developments.
+        </p>
+
+        <div class="reports-grid">
+          <article class="report-card available">
+            <span>Available</span>
+            <h4>June Report</h4>
+            <p>Comprehensive review of June's Japan physical silver market.</p>
+            <a href="reports/june-2026.html">Open June Report →</a>
+          </article>
+
+          <article class="report-card">
+            <span>Coming Soon</span>
+            <h4>July Report</h4>
+            <p>Upcoming monthly report covering July market data and key developments.</p>
+          </article>
+
+          <article class="report-card">
+            <span>Coming Soon</span>
+            <h4>August Report</h4>
+            <p>Future monthly report slot reserved for ongoing JPMI Market Intelligence coverage.</p>
+          </article>
+        </div>
+      </div>
+
       <div class="dataset-info">
-        <h3 class="section-title">Historical Dataset</h3>
+        <h3 class="section-title">Historical Dataset & CSV Export</h3>
         <div class="dataset-grid">
           <div class="dataset-item" id="dataset-coverage">
             <strong>Loading</strong>
@@ -803,42 +842,12 @@
           <div class="dataset-tools">
             <strong>Compatible with:</strong> Excel • Google Sheets • Python • R • Power BI • MATLAB • Trading platforms
           </div>
+
+          <div class="dataset-download">
+            <a class="secondary-btn" href="#" id="csv-export-button">Download Full Historical Dataset (.CSV)</a>
+          </div>
         </div>
-      </div>
-
-      <div class="reports-panel">
-        <h3 class="section-title">Monthly Reports</h3>
-        <p class="reports-intro">
-          Access JPMI monthly reports covering Japan physical silver spreads, historical chart movements,
-          dealer/refinery pricing layers, Mercari street pricing, and market structure developments.
-        </p>
-
-        <div class="reports-grid">
-          <article class="report-card available">
-            <span>Available</span>
-            <h4>June 2026 Report</h4>
-            <p>Published July 2026 · JPMI Market Intelligence monthly report.</p>
-            <a href="reports/june-2026.html">Read June Report →</a>
-          </article>
-
-          <article class="report-card">
-            <span>Coming Soon</span>
-            <h4>July 2026 Report</h4>
-            <p>Upcoming monthly report covering July market data and key developments.</p>
-          </article>
-
-          <article class="report-card">
-            <span>Coming Soon</span>
-            <h4>August 2026 Report</h4>
-            <p>Future monthly report slot reserved for ongoing JPMI Market Intelligence coverage.</p>
-          </article>
-        </div>
-      </div>
-
-      <div class="actions">
-        <a class="secondary-btn" href="#" id="csv-export-button">Download Full Historical Dataset (.CSV)</a>
-      </div>
-    </section>
+      </div>    </section>
   </main>
 
   <script>
