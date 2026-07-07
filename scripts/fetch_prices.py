@@ -200,6 +200,19 @@ def save_jpmi_history(history):
     print(f"{JPMI_HISTORY_FILE} updated with {len(history)} rows")
 
 
+def latest_history_value_before(history, date_jst, key):
+    prior_rows = [
+        row for row in history
+        if row.get("date") and row.get("date") < date_jst and row.get(key) is not None
+    ]
+
+    if not prior_rows:
+        return None
+
+    prior_rows = sorted(prior_rows, key=lambda row: row.get("date", ""))
+    return safe_float(prior_rows[-1].get(key))
+
+
 def append_daily_jpmi_history_if_ready(out):
     utc_now = datetime.now(timezone.utc)
     jst_now = utc_now + timedelta(hours=9)
@@ -227,6 +240,34 @@ def append_daily_jpmi_history_if_ready(out):
     comex_usd = safe_float(prices.get("comex_silver_usd_oz"))
     usd_jpy = safe_float(prices.get("usd_jpy"))
 
+    # COMEX USD/oz resilience:
+    # 1. Prefer the live/manual comex_silver_usd_oz value from prices.json.
+    # 2. If missing, calculate from COMEX JPY/g and USD/JPY.
+    # 3. If still missing, carry forward the most recent prior history value so the premium terminal does not show a blank.
+    comex_usd_source = "prices_json"
+
+    if comex_usd is None and comex is not None and usd_jpy not in (None, 0):
+        comex_usd = round((comex * 31.1035) / usd_jpy, 4)
+        comex_usd_source = "calculated_from_comex_jpy_g_and_usd_jpy"
+        print(f"COMEX USD/oz calculated from COMEX JPY/g and USD/JPY: {comex_usd}")
+
+    if comex_usd is None:
+        carried_forward_comex_usd = latest_history_value_before(history, date_jst, "comex_usd_oz")
+        if carried_forward_comex_usd is not None:
+            comex_usd = carried_forward_comex_usd
+            comex_usd_source = "carried_forward_from_previous_history_row"
+            warning = (
+                f"COMEX USD/oz missing for {date_jst}; carried forward previous "
+                f"history value {comex_usd}"
+            )
+            out["errors"].append(warning)
+            print(warning)
+        else:
+            comex_usd_source = "missing"
+            warning = f"COMEX USD/oz missing for {date_jst}; no previous history value available"
+            out["errors"].append(warning)
+            print(warning)
+
     rs = average_valid([tanaka, nihon, mitsubishi])
     db = average_valid([daikichi, nanboya])
 
@@ -252,7 +293,8 @@ def append_daily_jpmi_history_if_ready(out):
         "db_jpy_g": db,
         "mspi_b_jpy_g": round(mspi_b, 2) if is_valid_silver_price(mspi_b) else None,
         "comex_jpy_g": round(comex, 2) if is_valid_silver_price(comex) else None,
-        "comex_usd_oz": round(comex_usd, 2) if comex_usd is not None else None,
+        "comex_usd_oz": round(comex_usd, 4) if comex_usd is not None else None,
+        "comex_usd_oz_source": comex_usd_source,
         "usd_jpy": round(usd_jpy, 4) if usd_jpy is not None else None,
         "premium_pct": premium_pct,
         "components": {
@@ -269,6 +311,7 @@ def append_daily_jpmi_history_if_ready(out):
             "has_comex": is_valid_silver_price(comex),
             "has_comex_usd_oz": comex_usd is not None,
             "has_usd_jpy": usd_jpy is not None,
+            "comex_usd_oz_source": comex_usd_source,
             "jpmi_component_count": len(jpmi_components),
         },
     }
