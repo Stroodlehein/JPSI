@@ -4,7 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="robots" content="noindex, nofollow" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>JPMI Premium</title>
+  <title>JPMI Market Intelligence</title>
 
   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
@@ -290,6 +290,88 @@
       color: #d9ecff;
     }
 
+    .reports-panel {
+      padding: 26px 30px;
+      border-bottom: 1px solid rgba(255,255,255,0.08);
+    }
+
+    .reports-intro {
+      max-width: 820px;
+      margin: -2px 0 18px;
+      color: #a8a8a8;
+      font-size: 14px;
+      line-height: 1.7;
+    }
+
+    .reports-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 14px;
+    }
+
+    .report-card {
+      min-height: 150px;
+      padding: 20px;
+      border: 1px solid rgba(255,255,255,0.09);
+      border-radius: 20px;
+      background:
+        radial-gradient(circle at top right, rgba(77, 166, 255, 0.09), transparent 35%),
+        rgba(255,255,255,0.035);
+    }
+
+    .report-card.available {
+      border-color: rgba(77, 166, 255, 0.36);
+      background:
+        radial-gradient(circle at top right, rgba(77, 166, 255, 0.15), transparent 38%),
+        rgba(77,166,255,0.055);
+    }
+
+    .report-card span {
+      display: inline-block;
+      margin-bottom: 12px;
+      padding: 6px 10px;
+      border-radius: 999px;
+      border: 1px solid rgba(255,255,255,0.12);
+      color: #999;
+      font-size: 10px;
+      font-weight: 900;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+    }
+
+    .report-card.available span {
+      border-color: rgba(77, 166, 255, 0.42);
+      color: #d9ecff;
+      background: rgba(77,166,255,0.10);
+    }
+
+    .report-card h4 {
+      margin: 0;
+      color: #fff;
+      font-size: 20px;
+      letter-spacing: -0.025em;
+    }
+
+    .report-card p {
+      margin: 9px 0 0;
+      color: #8f8f8f;
+      font-size: 13px;
+      line-height: 1.6;
+    }
+
+    .report-card a {
+      display: inline-flex;
+      margin-top: 16px;
+      color: #d9ecff;
+      font-size: 13px;
+      font-weight: 900;
+      text-decoration: none;
+    }
+
+    .report-card a:hover {
+      color: #ffffff;
+    }
+
     .actions {
       display: flex;
       gap: 12px;
@@ -508,7 +590,8 @@
 
       .cards-grid,
       .dataset-grid,
-      .dataset-uses {
+      .dataset-uses,
+      .reports-grid {
         grid-template-columns: 1fr 1fr;
       }
 
@@ -518,7 +601,8 @@
     @media (max-width: 540px) {
       .cards-grid,
       .dataset-grid,
-      .dataset-uses {
+      .dataset-uses,
+      .reports-grid {
         grid-template-columns: 1fr;
       }
 
@@ -526,6 +610,7 @@
       .premium-header,
       .section-block,
       .dataset-info,
+      .reports-panel,
       .actions {
         padding-left: 20px;
         padding-right: 20px;
@@ -544,7 +629,7 @@
         <div class="access-kicker">JPMI Market Intelligence</div>
         <h2>Authentication Required</h2>
         <p>
-          Enter the access password provided after purchase to unlock the JPMI premium data terminal.
+          Enter the access password provided after purchase to access JPMI Market Intelligence.
         </p>
       </div>
 
@@ -567,13 +652,13 @@
     </div>
   </section>
   <main class="page">
-    <div class="badge">JPMI Premium</div>
+    <div class="badge">JPMI Market Intelligence</div>
 
     <h1>Historical Japan Physical Silver Intelligence</h1>
 
     <p class="subtitle">
       Access the complete JPMI historical database, market analytics, downloadable CSV data,
-      and monthly research notes covering Japan's physical silver market.
+      and monthly reports covering Japan's physical silver market.
     </p>
 
     <section class="premium-shell">
@@ -582,7 +667,7 @@
           <h2>JPMI-AG Historical Chart</h2>
           <p>Japan physical silver pricing · March 2026 – Present</p>
         </div>
-        <div class="premium-tag">Premium Dataset</div>
+        <div class="premium-tag">Historical Dataset</div>
       </div>
 
       <div class="section-block">
@@ -594,9 +679,9 @@
             <small>Japan Physical Silver Index</small>
           </div>
           <div class="metric-card" id="card-latest-premium">
-            <span>Premium vs COMEX</span>
+            <span>Spread vs COMEX</span>
             <strong>Loading</strong>
-            <small>Physical premium</small>
+            <small>Physical spread</small>
           </div>
           <div class="metric-card" id="card-comex">
             <span>COMEX</span>
@@ -612,20 +697,20 @@
       </div>
 
       <div class="section-block">
-        <h3 class="section-title">Market Intelligence</h3>
+        <h3 class="section-title">Historical Statistics</h3>
         <div class="cards-grid">
           <div class="metric-card" id="card-average-premium">
-            <span>Average Premium</span>
+            <span>Average Spread</span>
             <strong>Loading</strong>
             <small>Since March 2026</small>
           </div>
           <div class="metric-card" id="card-highest-premium">
-            <span>Highest Premium</span>
+            <span>Highest Spread</span>
             <strong>Loading</strong>
             <small>Historical high</small>
           </div>
           <div class="metric-card" id="card-lowest-premium">
-            <span>Lowest Premium</span>
+            <span>Lowest Spread</span>
             <strong>Loading</strong>
             <small>Historical low</small>
           </div>
@@ -671,7 +756,7 @@
           <button class="chart-toggle" data-view="db">DB</button>
           <button class="chart-toggle" data-view="mspi">Mercari</button>
           <button class="chart-toggle" data-view="comex">COMEX</button>
-          <button class="chart-toggle" data-view="premium">Premium %</button>
+          <button class="chart-toggle" data-view="premium">Spread %</button>
           <button class="chart-toggle" data-view="all">All</button>
         </div>
 
@@ -711,7 +796,7 @@
             <li>Build custom price charts</li>
             <li>Calculate moving averages</li>
             <li>Compare JPMI vs COMEX</li>
-            <li>Track physical premiums</li>
+            <li>Track physical spreads</li>
             <li>Run regressions and models</li>
             <li>Import into analysis software</li>
           </ul>
@@ -721,9 +806,37 @@
         </div>
       </div>
 
+      <div class="reports-panel">
+        <h3 class="section-title">Monthly Reports</h3>
+        <p class="reports-intro">
+          Access JPMI monthly reports covering Japan physical silver spreads, historical chart movements,
+          dealer/refinery pricing layers, Mercari street pricing, and market structure developments.
+        </p>
+
+        <div class="reports-grid">
+          <article class="report-card available">
+            <span>Available</span>
+            <h4>June 2026 Report</h4>
+            <p>Published July 2026 · JPMI Market Intelligence monthly report.</p>
+            <a href="reports/june-2026.html">Read June Report →</a>
+          </article>
+
+          <article class="report-card">
+            <span>Coming Soon</span>
+            <h4>July 2026 Report</h4>
+            <p>Upcoming monthly report covering July market data and key developments.</p>
+          </article>
+
+          <article class="report-card">
+            <span>Coming Soon</span>
+            <h4>August 2026 Report</h4>
+            <p>Future monthly report slot reserved for ongoing JPMI Market Intelligence coverage.</p>
+          </article>
+        </div>
+      </div>
+
       <div class="actions">
         <a class="secondary-btn" href="#" id="csv-export-button">Download Full Historical Dataset (.CSV)</a>
-        <a class="secondary-btn" href="reports/june-2026.html">Monthly Research →</a>
       </div>
     </section>
   </main>
@@ -740,7 +853,7 @@
       db: { key: "db_jpy_g", label: "DB Dealer Bid", color: "#f59e0b", fillColor: "rgba(245, 158, 11, 0.12)" },
       mspi: { key: "mspi_b_jpy_g", label: "Mercari / MSPI-B", color: "#a855f7", fillColor: "rgba(168, 85, 247, 0.12)" },
       comex: { key: "comex_jpy_g", label: "COMEX", color: "#c7c7c7", fillColor: "rgba(199, 199, 199, 0)" },
-      premium: { key: "premium_pct", label: "Physical Premium %", color: "#38bdf8", fillColor: "rgba(56, 189, 248, 0.12)" }
+      premium: { key: "premium_pct", label: "Physical Spread %", color: "#38bdf8", fillColor: "rgba(56, 189, 248, 0.12)" }
     };
 
     const views = {
@@ -847,25 +960,25 @@
 
     function getMarketStatus(latestPremium, avgPremium) {
       if (latestPremium === null || latestPremium === undefined || Number.isNaN(Number(latestPremium))) {
-        return { label: "N/A", note: "Insufficient premium data" };
+        return { label: "N/A", note: "Insufficient spread data" };
       }
 
       const latest = Number(latestPremium);
       const avg = Number(avgPremium);
 
       if (latest >= 22) {
-        return { label: "🔴 Extreme", note: "Premium is above 22%" };
+        return { label: "🔴 Extreme", note: "Spread is above 22%" };
       }
 
       if (latest >= 18) {
-        return { label: "🟠 Tight", note: "Premium is elevated vs history" };
+        return { label: "🟠 Tight", note: "Spread is elevated vs history" };
       }
 
       if (!Number.isNaN(avg) && latest >= avg + 2) {
-        return { label: "🟡 Firm", note: "Premium is above historical average" };
+        return { label: "🟡 Firm", note: "Spread is above historical average" };
       }
 
-      return { label: "🟢 Normal", note: "Premium is near historical range" };
+      return { label: "🟢 Normal", note: "Spread is near historical range" };
     }
 
     function buildDataset(seriesKey, view) {
@@ -910,7 +1023,7 @@
       const marketStatus = getMarketStatus(latestPremium?.premium_pct, avgPremium);
 
       setCard("#card-latest-jpmi", yen(latestJpmi?.jpmi_ag_jpy_g), "Japan Physical Silver Index");
-      setCard("#card-latest-premium", percent(latestPremium?.premium_pct), "Physical premium");
+      setCard("#card-latest-premium", percent(latestPremium?.premium_pct), "Physical spread");
 
       const comexMain = latestComex?.comex_usd_oz ? usdOz(latestComex.comex_usd_oz) : yen(latestComex?.comex_jpy_g);
       const comexSub = latestComex?.comex_usd_oz ? yen(latestComex.comex_jpy_g) + " equivalent" : "JPY/g equivalent";
@@ -1076,7 +1189,7 @@
         { label: "comex_jpy_g", key: "comex_jpy_g" },
         { label: "comex_usd_oz", key: "comex_usd_oz" },
         { label: "usd_jpy", key: "usd_jpy" },
-        { label: "premium_pct", key: "premium_pct" },
+        { label: "spread_pct", key: "premium_pct" },
         { label: "tanaka_silver_buy", key: "components.tanaka_silver_buy" },
         { label: "nihon_silver_buy", key: "components.nihon_silver_buy" },
         { label: "mitsubishi_silver_buy", key: "components.mitsubishi_silver_buy" },
@@ -1119,7 +1232,7 @@
         const latestDate = latestRow?.date || "latest";
 
         link.href = url;
-        link.download = "jpmi-premium-history-" + latestDate + ".csv";
+        link.download = "jpmi-market-intelligence-history-" + latestDate + ".csv";
         document.body.appendChild(link);
         link.click();
         document.body.removeChild(link);
@@ -1137,7 +1250,7 @@
           .map(row => ({
             ...row,
             // Backwards compatibility:
-            // Older rows may use comex_silver_usd_oz, while the premium terminal expects comex_usd_oz.
+            // Older rows may use comex_silver_usd_oz, while the Market Intelligence terminal expects comex_usd_oz.
             comex_usd_oz: row.comex_usd_oz ?? row.comex_silver_usd_oz ?? null
           }))
           .sort((a, b) => parseDate(a.date) - parseDate(b.date));
@@ -1157,7 +1270,7 @@
           });
         });
       } catch (error) {
-        console.error("Failed to load JPMI Premium chart:", error);
+        console.error("Failed to load JPMI Market Intelligence chart:", error);
       }
     }
 
