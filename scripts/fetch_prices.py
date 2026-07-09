@@ -64,33 +64,64 @@ def calculate_premium_pct(physical, comex):
 
 
 # ---------------- Tanaka ----------------
-# Parse the flattened SILVER line and return the BUYING price (second valid number).
+# Parse the SILVER table row and return the BUYING / BUYBACK price.
+# This avoids fragile flattened-text parsing when Tanaka changes spacing,
+# line breaks, or adds extra "change from previous price" values.
 def parse_tanaka(html):
     soup = BeautifulSoup(html, "html.parser")
+
+    for row in soup.find_all("tr"):
+        cells = [cell.get_text(" ", strip=True) for cell in row.find_all(["td", "th"])]
+
+        if not cells:
+            continue
+
+        first_cell = cells[0].strip().upper()
+
+        if first_cell != "SILVER":
+            continue
+
+        prices = []
+
+        for cell_text in cells[1:]:
+            numbers = re.findall(r"([\d,]+(?:\.\d+)?)", cell_text)
+
+            for number in numbers:
+                value = safe_float(number)
+
+                if is_valid_silver_price(value):
+                    prices.append(value)
+
+        # Tanaka English table order:
+        # SILVER | retail selling price | selling change | retail buying price | buying change
+        # After filtering to valid silver prices, this should be:
+        # [selling_price, buying_price]
+        if len(prices) >= 2:
+            return round(prices[1], 2)
+
+        raise ValueError(f"Tanaka SILVER row found but buyback price could not be parsed: {cells}")
+
+    # Fallback for unexpected non-table rendering.
+    # Match the complete SILVER sequence including both change columns:
+    # SILVER 356.29 yen +1.32 yen 323.29 yen -14.63 yen
     text = soup.get_text(" ", strip=True)
 
-    # Example live structure:
-    # SILVER 456.50 yen +19.14 yen 439.45 yen +19.14 yen
     m = re.search(
-        r"SILVER\s+([\d,]+(?:\.\d+)?)\s+yen\s+[+\-−]?\d+(?:\.\d+)?\s+yen\s+([\d,]+(?:\.\d+)?)\s+yen",
+        r"SILVER\s+"
+        r"([\d,]+(?:\.\d+)?)\s+yen\s+"
+        r"[+\-−]?\d+(?:\.\d+)?\s+yen\s+"
+        r"([\d,]+(?:\.\d+)?)\s+yen\s+"
+        r"[+\-−]?\d+(?:\.\d+)?\s+yen",
         text,
         re.I,
     )
+
     if m:
-        val = safe_float(m.group(2))
-        if is_valid_silver_price(val):
-            return val
+        value = safe_float(m.group(2))
+        if is_valid_silver_price(value):
+            return round(value, 2)
 
-    # Fallback: find the SILVER line and take the second valid silver-range number
-    for line in soup.get_text("\n", strip=True).splitlines():
-        if "SILVER" not in line.upper():
-            continue
-        nums = [safe_float(x) for x in re.findall(r"([\d,]+(?:\.\d+)?)", line)]
-        nums = [n for n in nums if is_valid_silver_price(n)]
-        if len(nums) >= 2:
-            return nums[1]
-
-    raise ValueError("Tanaka not found")
+    raise ValueError("Tanaka SILVER buyback price not found")
 
 
 # ---------------- Nihon ----------------
