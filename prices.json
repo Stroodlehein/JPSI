@@ -9,9 +9,9 @@
     "comex_silver_jpy_g": 305.07,
     "nihon_silver_buy": 337.92,
     "nanboya_sv1000": 314.0,
-    "mercari_mspi_b": 422.5,
+    "mercari_mspi_b": 401.0,
     "mercari_mspi_b_listings": 2,
-    "mercari_mspi_b_avg_jpy": 13166
+    "mercari_mspi_b_avg_jpy": 12500
   },
   "errors": [],
   "sources": {
@@ -23,9 +23,9 @@
   "comex_updated_at_utc": "2026-07-08T23:41:34+00:00",
   "mercari_listings": [
     {
-      "coin": "American Silver Eagle",
-      "jpy": 13833,
-      "jpy_g": 444.0
+      "coin": "Canadian Maple Leaf",
+      "jpy": 12500,
+      "jpy_g": 401.0
     },
     {
       "coin": "Canadian Maple Leaf",
@@ -33,6 +33,6 @@
       "jpy_g": 401.0
     }
   ],
-  "mspi_updated_at_utc": "2026-07-08T00:00:33+00:00",
-  "mspi_updated_date": "2026-07-08"
+  "mspi_updated_at_utc": "2026-07-09T00:01:14+00:00",
+  "mspi_updated_date": "2026-07-09"
 }
