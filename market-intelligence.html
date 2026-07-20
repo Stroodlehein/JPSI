@@ -206,6 +206,17 @@
       background: rgba(0,0,0,0.42);
     }
 
+    .chart-schedule-note {
+      margin: 12px 2px 0;
+      color: #777;
+      font-size: 11px;
+      line-height: 1.6;
+    }
+
+    .chart-schedule-note strong {
+      color: #9ca3af;
+    }
+
     .dataset-info {
       padding: 24px 30px;
       border-bottom: 1px solid rgba(255,255,255,0.08);
@@ -773,6 +784,10 @@
         <div class="chart-wrap">
           <canvas id="jpmiPremiumChart"></canvas>
         </div>
+
+        <p class="chart-schedule-note">
+          <strong>Data Schedule:</strong> JPMI historical observations are published on Japanese business days only. Weekends and Japanese national holidays are excluded from the dataset.
+        </p>
       </div>
 
       <div class="reports-panel">
