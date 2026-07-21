@@ -55,29 +55,8 @@ body{background:var(--bg);color:var(--ink);font-family:'DM Mono',monospace;font-
 .lang-btn{padding:5px 12px;font-family:'DM Mono',monospace;font-size:0.8rem;letter-spacing:0.08em;cursor:pointer;border:none;background:var(--paper);color:var(--ink3);transition:all 0.15s;}
 .lang-btn.active{background:var(--ink);color:var(--paper);}
 .masthead-meta{font-size:0.72rem;color:var(--ink4);letter-spacing:0.06em;text-align:right;line-height:1.7;}
-.site-nav{
-  display:flex;
-  align-items:center;
-  justify-content:space-between;
-  gap:8px;
-  border-bottom:1px solid var(--border);
-  margin-bottom:32px;
-  overflow:visible;
-}
-.nav-link{
-  font-family:'DM Mono',monospace;
-  font-size:0.74rem;
-  letter-spacing:0.07em;
-  text-transform:uppercase;
-  padding:10px 10px;
-  text-decoration:none;
-  color:var(--ink4);
-  border-bottom:2px solid transparent;
-  margin-bottom:-1px;
-  transition:all 0.15s;
-  white-space:nowrap;
-  flex:0 0 auto;
-}
+.site-nav{display:flex;gap:0;flex-wrap:wrap;border-bottom:1px solid var(--border);margin-bottom:24px;margin-top:0;}
+.nav-link{font-family:'DM Mono',monospace;font-size:0.75rem;letter-spacing:0.06em;text-transform:uppercase;padding:10px 14px;text-decoration:none;color:var(--ink4);border-bottom:2px solid transparent;margin-bottom:-1px;transition:all 0.15s;white-space:nowrap;}
 .nav-link:hover{color:var(--ink2);}
 .nav-link.active{color:var(--ink);border-bottom-color:var(--ink);}
 .nav-link.premium-link{
@@ -85,8 +64,8 @@ body{background:var(--bg);color:var(--ink);font-family:'DM Mono',monospace;font-
   background:#fff8df;
   border:1px solid #e4cf8a;
   border-bottom:2px solid #b8860b;
-  margin-left:0;
-  padding:5px 10px;
+  margin:6px 0 5px 8px;
+  padding:4px 10px;
 }
 .nav-link.premium-link:hover{color:#3f2c00;background:#fff2bd;}
 .page-header{margin-bottom:28px;}
@@ -144,19 +123,6 @@ body{background:var(--bg);color:var(--ink);font-family:'DM Mono',monospace;font-
   .masthead-title .kanji-inline{font-size:1.1rem;}
   .masthead-tagline{font-size:0.7rem;letter-spacing:0;line-height:1.5;}
   .masthead-meta{font-size:0.6rem;}
-  .site-nav{
-    overflow:visible;
-    gap:4px;
-  }
-  .nav-link{
-    padding:8px 7px;
-    font-size:0.58rem;
-    letter-spacing:0.035em;
-  }
-
-  .nav-link.premium-link{
-    padding:4px 7px;
-  }
   .page-title{font-size:1.5rem;}
   .page-subtitle{font-size:0.65rem;}
   .panels{grid-template-columns:1fr;border:none;gap:12px;background:transparent;}
