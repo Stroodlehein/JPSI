@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://stroodlehein.github.io/JPSI/sitemap.xml
+Sitemap: https://japanphysicalmetals.jp/sitemap.xml
