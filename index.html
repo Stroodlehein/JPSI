@@ -131,7 +131,7 @@ body{background:var(--bg);color:var(--ink);font-family:'DM Mono',monospace;font-
 .premium-badge .pval{color:var(--ink);font-size:0.9rem;font-weight:500;}
 .bc-methodology-note{font-family:'DM Mono',monospace;font-size:0.7rem;color:var(--ink4);text-align:right;}
 .section-group{margin-bottom:28px;}
-.section-group-label{font-family:'DM Mono',monospace;font-size:0.7rem;letter-spacing:0.2em;text-transform:uppercase;color:var(--ink4);margin-bottom:10px;padding-bottom:6px;border-bottom:1px solid var(--border);display:flex;align-items:center;justify-content:space-between;}
+.section-group-label{font-family:'DM Mono',monospace;font-size:0.7rem;font-weight:400;letter-spacing:0.2em;text-transform:uppercase;color:var(--ink4);margin-bottom:10px;padding-bottom:6px;border-bottom:1px solid var(--border);display:flex;align-items:center;justify-content:space-between;}
 .sgl-badge{display:inline-block;padding:2px 7px;border-radius:1px;font-size:0.68rem;letter-spacing:0.12em;}
 .sgl-rs{background:#eaf0ea;color:#2a5c3a;border:1px solid #b8d4b8;}
 .sgl-db{background:#eaecf4;color:#2a3a6c;border:1px solid #b8c4e4;}
@@ -168,7 +168,7 @@ body{background:var(--bg);color:var(--ink);font-family:'DM Mono',monospace;font-
 .sr-table-card.loaded{border-color:#d4b07a;background:#fdf3e6;}
 .weights-section{background:var(--paper);border:1px solid var(--border);margin-bottom:28px;}
 .ws-header{padding:14px 20px;border-bottom:1px solid var(--border);display:flex;align-items:center;gap:10px;background:rgba(23,20,15,0.018);}
-.ws-header h3{font-size:0.98rem;font-weight:500;color:var(--ink);}
+.ws-header h2{font-size:0.98rem;font-weight:500;color:var(--ink);}
 .ws-body{padding:18px 20px;}
 .wt-group{display:flex;flex-direction:column;gap:5px;}
 .wt-group label{font-family:'DM Mono',monospace;font-size:0.72rem;color:var(--ink4);letter-spacing:0.08em;text-transform:uppercase;}
@@ -245,7 +245,7 @@ body{background:var(--bg);color:var(--ink);font-family:'DM Mono',monospace;font-
 
 <div class="benchmark-card">
   <div class="bc-header">
-    <div class="bc-label" id="card-date-label">JPMI — SILVER · TODAY'S BENCHMARK</div>
+    <h1 class="bc-label" id="card-date-label" data-en="Physical Silver Price in Japan Today — JPMI-AG" data-ja="日本の現物銀価格・本日 — JPMI-AG">Physical Silver Price in Japan Today — JPMI-AG</h1>
     <div class="bc-timestamp" id="bc-timestamp">—</div>
   </div>
   <div class="bc-index-name">JPMI-AG</div>
@@ -289,10 +289,10 @@ body{background:var(--bg);color:var(--ink);font-family:'DM Mono',monospace;font-
 
 <!-- RS -->
 <div class="section-group">
-  <div class="section-group-label">
-    <span><span class="sgl-badge sgl-rs">RS</span>&nbsp;&nbsp;<span data-en="Refinery Spot — Buyback Prices" data-ja="精錬所スポット — 買取価格">Refinery Spot — Buyback Prices</span></span>
+  <h2 class="section-group-label">
+    <span><span class="sgl-badge sgl-rs">RS</span>&nbsp;&nbsp;<span data-en="Refinery Spot Prices" data-ja="精錬所スポット価格">Refinery Spot Prices</span></span>
     <button class="btn btn-secondary btn-sm" onclick="init()" data-en="↻ Refresh" data-ja="↻ 更新">↻ Refresh</button>
-  </div>
+  </h2>
   <div class="price-grid">
     <div class="price-card rs-card loading-state" id="pc-tanaka">
       <div class="pc-source">Tanaka 田中貴金属</div>
@@ -317,9 +317,9 @@ body{background:var(--bg);color:var(--ink);font-family:'DM Mono',monospace;font-
 
 <!-- DB -->
 <div class="section-group">
-  <div class="section-group-label">
-    <span><span class="sgl-badge sgl-db">DB</span>&nbsp;&nbsp;<span data-en="Dealer / Pawn Bid Prices" data-ja="業者・質屋 買取価格">Dealer / Pawn Bid Prices</span></span>
-  </div>
+  <h2 class="section-group-label">
+    <span><span class="sgl-badge sgl-db">DB</span>&nbsp;&nbsp;<span data-en="Dealer and Pawn Silver Bid Prices" data-ja="業者・質屋の銀買取価格">Dealer and Pawn Silver Bid Prices</span></span>
+  </h2>
   <div class="price-grid">
     <div class="price-card db-card loading-state" id="pc-nanboya">
       <div class="pc-source">Nanboya なんぼや</div>
@@ -338,10 +338,10 @@ body{background:var(--bg);color:var(--ink);font-family:'DM Mono',monospace;font-
 
 <!-- SR -->
 <div class="section-group">
-  <div class="section-group-label">
-    <span><span class="sgl-badge sgl-sr">SR</span>&nbsp;&nbsp;<span data-en="Street Retail — Mercari MSPI-B" data-ja="フリマ実売 — メルカリ MSPI-B">Street Retail — Mercari MSPI-B</span></span>
+  <h2 class="section-group-label">
+    <span><span class="sgl-badge sgl-sr">SR</span>&nbsp;&nbsp;<span data-en="Mercari Physical Silver Prices" data-ja="メルカリ現物銀価格">Mercari Physical Silver Prices</span></span>
     <span style="font-family:'DM Mono',monospace;font-size:0.68rem;color:var(--ink4);" id="sr-last-updated"></span>
-  </div>
+  </h2>
   <div id="sr-table-container" class="price-card sr-table-card loaded" style="padding:0;">
     <table style="width:100%;border-collapse:collapse;">
       <thead>
@@ -366,7 +366,7 @@ body{background:var(--bg);color:var(--ink);font-family:'DM Mono',monospace;font-
 <div class="weights-section">
   <div class="ws-header">
     <span class="badge badge-jpmi">JPMI</span>
-    <h3 data-en="Index Weights &amp; Compute" data-ja="指数ウェイトと計算">Index Weights &amp; Compute</h3>
+    <h2 data-en="How the JPMI-AG Benchmark Is Calculated" data-ja="JPMI-AGベンチマークの算出方法">How the JPMI-AG Benchmark Is Calculated</h2>
   </div>
   <div class="ws-body">
     <p style="font-size:0.85rem;color:var(--ink3);margin-bottom:14px;font-style:italic;" data-en="Fixed weights applied to composite. RS = refiners · DB = dealers/pawn · SR = Mercari peer-to-peer" data-ja="複合指数に適用される固定ウェイト。RS=精錬所 · DB=業者/質屋 · SR=メルカリ">Fixed weights applied to composite. RS = refiners · DB = dealers/pawn · SR = Mercari peer-to-peer</p>
@@ -748,7 +748,7 @@ body{background:var(--bg);color:var(--ink);font-family:'DM Mono',monospace;font-
       }
     });
     document.getElementById('card-date-label').textContent =
-      lang==='ja' ? 'JPMI — 銀 · 本日のベンチマーク' : "JPMI — SILVER · TODAY'S BENCHMARK";
+      lang==='ja' ? '日本の現物銀価格・本日 — JPMI-AG' : 'Physical Silver Price in Japan Today — JPMI-AG';
   }
 
   function recalculate() {
