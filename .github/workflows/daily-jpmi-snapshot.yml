@@ -1,0 +1,78 @@
+name: Daily JPMI Snapshot Safety Net
+
+on:
+  # The COMEX workflow runs independently throughout the day. When one of its
+  # successful runs finishes after 19:00 JST, use it as a reliable event-based
+  # trigger instead of depending only on GitHub's delayed cron scheduler.
+  workflow_run:
+    workflows: ["Update COMEX Price"]
+    types: [completed]
+
+  # Retained as an emergency button. It performs the same safety checks and
+  # will not create a duplicate observation.
+  workflow_dispatch:
+
+permissions:
+  actions: write
+  contents: read
+
+concurrency:
+  group: daily-jpmi-snapshot-safety-net
+  cancel-in-progress: false
+
+jobs:
+  ensure-daily-snapshot:
+    # Ignore failed/cancelled COMEX runs. Manual safety-net runs are allowed.
+    if: >-
+      github.event_name == 'workflow_dispatch' ||
+      github.event.workflow_run.conclusion == 'success'
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Check out the latest main branch
+        uses: actions/checkout@v4
+        with:
+          ref: main
+
+      - name: Check whether tonight's snapshot is needed
+        id: snapshot-check
+        shell: bash
+        run: |
+          jst_date="$(TZ=Asia/Tokyo date +'%Y-%m-%d')"
+          jst_hour="$(TZ=Asia/Tokyo date +'%H')"
+          jst_weekday="$(TZ=Asia/Tokyo date +'%u')"
+
+          echo "Japan time: $(TZ=Asia/Tokyo date +'%Y-%m-%d %H:%M:%S %Z')"
+
+          if [ "$jst_weekday" -gt 5 ]; then
+            echo "Weekend in Japan; no JPMI business-day snapshot required."
+            echo "needed=false" >> "$GITHUB_OUTPUT"
+            exit 0
+          fi
+
+          if [ "$jst_hour" -lt 19 ]; then
+            echo "Before the official 19:00 JST observation time."
+            echo "needed=false" >> "$GITHUB_OUTPUT"
+            exit 0
+          fi
+
+          if jq -e --arg today "$jst_date" 'any(.[]; .date == $today)' jpmi-history.json >/dev/null; then
+            echo "JPMI snapshot already exists for $jst_date; nothing to do."
+            echo "needed=false" >> "$GITHUB_OUTPUT"
+            exit 0
+          fi
+
+          echo "JPMI snapshot is missing for $jst_date; launching the existing updater."
+          echo "needed=true" >> "$GITHUB_OUTPUT"
+
+      - name: Launch the existing JPMI price updater
+        if: steps.snapshot-check.outputs.needed == 'true'
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: gh workflow run update-prices.yml --ref main
+
+      - name: Confirm safety-net action
+        if: steps.snapshot-check.outputs.needed == 'true'
+        run: |
+          echo "The Update JPSI price feeds workflow was dispatched."
+          echo "Its existing duplicate protection will create one row for today's JST date."
