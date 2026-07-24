@@ -3791,5 +3791,36 @@
       "comex_usd_oz_source": "prices_json",
       "jpmi_component_count": 3
     }
+  },
+  {
+    "date": "2026-07-24",
+    "observation_time_jst": "19:00",
+    "updated_at_utc": "2026-07-24T10:49:50+00:00",
+    "jpmi_ag_jpy_g": 393.75,
+    "rs_jpy_g": 323.25,
+    "db_jpy_g": 312.0,
+    "mspi_b_jpy_g": 546.0,
+    "comex_jpy_g": 307.28,
+    "comex_usd_oz": 58.4667,
+    "comex_usd_oz_source": "prices_json",
+    "usd_jpy": 163.47,
+    "premium_pct": 28.14,
+    "components": {
+      "tanaka_silver_buy": 320.32,
+      "nihon_silver_buy": 325.27,
+      "mitsubishi_silver_buy": 324.17,
+      "daikichi_sv1000": 319.0,
+      "nanboya_sv1000": 305.0
+    },
+    "data_quality": {
+      "has_rs": true,
+      "has_db": true,
+      "has_mspi_b": true,
+      "has_comex": true,
+      "has_comex_usd_oz": true,
+      "has_usd_jpy": true,
+      "comex_usd_oz_source": "prices_json",
+      "jpmi_component_count": 3
+    }
   }
 ]
