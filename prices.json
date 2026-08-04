@@ -1,7 +1,7 @@
 {
-  "updated_at_utc": "2026-08-04T06:39:22+00:00",
+  "updated_at_utc": "2026-08-04T09:49:47+00:00",
   "prices_jpy_per_g": {
-    "tanaka_silver_buy": 324.83,
+    "tanaka_silver_buy": 312.84,
     "mitsubishi_silver_buy": 317.9,
     "daikichi_sv1000": 314.0,
     "comex_silver_usd_oz": 58.926,
@@ -14,7 +14,7 @@
     "mercari_mspi_b_avg_jpy": 11876
   },
   "errors": [
-    "nihon: ConnectTimeout: HTTPSConnectionPool(host='material.co.jp', port=443): Max retries exceeded with url: /market.php (Caused by ConnectTimeoutError(<HTTPSConnection(host='material.co.jp', port=443) at 0x7fc1afb93850>, 'Connection to material.co.jp timed out. (connect timeout=30)'))",
+    "nihon: ConnectTimeout: HTTPSConnectionPool(host='material.co.jp', port=443): Max retries exceeded with url: /market.php (Caused by ConnectTimeoutError(<HTTPSConnection(host='material.co.jp', port=443) at 0x7fba4a6da150>, 'Connection to material.co.jp timed out. (connect timeout=30)'))",
     "nihon: kept previous valid value 315.7"
   ],
   "sources": {
