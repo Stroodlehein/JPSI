@@ -9,9 +9,9 @@
     "comex_silver_jpy_g": 296.83,
     "nihon_silver_buy": 315.7,
     "nanboya_sv1000": 293.0,
-    "mercari_mspi_b": 466.0,
-    "mercari_mspi_b_listings": 1,
-    "mercari_mspi_b_avg_jpy": 14500
+    "mercari_mspi_b": 382.0,
+    "mercari_mspi_b_listings": 2,
+    "mercari_mspi_b_avg_jpy": 11876
   },
   "errors": [
     "nihon: ConnectTimeout: HTTPSConnectionPool(host='material.co.jp', port=443): Max retries exceeded with url: /market.php (Caused by ConnectTimeoutError(<HTTPSConnection(host='material.co.jp', port=443) at 0x7fc1afb93850>, 'Connection to material.co.jp timed out. (connect timeout=30)'))",
@@ -27,10 +27,15 @@
   "mercari_listings": [
     {
       "coin": "American Silver Eagle",
-      "jpy": 14500,
-      "jpy_g": 466.0
+      "jpy": 13000,
+      "jpy_g": 418.0
+    },
+    {
+      "coin": "Austrian Philharmonic",
+      "jpy": 10751,
+      "jpy_g": 346.0
     }
   ],
-  "mspi_updated_at_utc": "2026-08-03T07:52:52+00:00",
-  "mspi_updated_date": "2026-08-03"
+  "mspi_updated_at_utc": "2026-08-04T07:23:51+00:00",
+  "mspi_updated_date": "2026-08-04"
 }
