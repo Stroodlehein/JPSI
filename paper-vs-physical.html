@@ -434,7 +434,9 @@ function drawCharts(history) {
           borderColor: '#1a3a5c',
           backgroundColor: 'rgba(26,58,92,0.07)',
           borderWidth: 2,
-          pointRadius: 4,
+          pointRadius: 0,
+          pointHoverRadius: 5,
+          pointHitRadius: 12,
           pointBackgroundColor: '#1a3a5c',
           pointBorderColor: '#fff',
           pointBorderWidth: 2,
@@ -447,7 +449,9 @@ function drawCharts(history) {
           borderColor: '#2a5c3a',
           backgroundColor: 'rgba(42,92,58,0.06)',
           borderWidth: 2.5,
-          pointRadius: 5,
+          pointRadius: 0,
+          pointHoverRadius: 6,
+          pointHitRadius: 12,
           pointBackgroundColor: '#2a5c3a',
           pointBorderColor: '#fff',
           pointBorderWidth: 2,
@@ -475,7 +479,7 @@ function drawCharts(history) {
       },
       scales: {
         x: {
-          grid: { color: gc },
+          grid: { display: false },
           ticks: {
             color: tc,
             font: { size: 12 },
@@ -530,7 +534,7 @@ function drawCharts(history) {
       },
       scales: {
         x: {
-          grid: { color: gc },
+          grid: { display: false },
           ticks: {
             color: tc,
             font: { size: 12 },
