@@ -4,9 +4,9 @@
     "tanaka_silver_buy": 347.16,
     "mitsubishi_silver_buy": 355.96,
     "daikichi_sv1000": 346.0,
-    "comex_silver_usd_oz": 64.9041,
+    "comex_silver_usd_oz": 64.9014,
     "usd_jpy": 159.01,
-    "comex_silver_jpy_g": 331.81,
+    "comex_silver_jpy_g": 331.79,
     "nihon_silver_buy": 345.95,
     "nanboya_sv1000": 317.0,
     "mercari_mspi_b": 385.0,
@@ -20,7 +20,7 @@
     "mitsubishi": "https://gold.mmc.co.jp/market/silver-price/",
     "daikichi": "https://www.kaitori-daikichi.jp/list/gold/silver/souba/"
   },
-  "comex_updated_at_utc": "2026-08-14T16:28:24+00:00",
+  "comex_updated_at_utc": "2026-08-14T17:30:36+00:00",
   "mercari_listings": [
     {
       "coin": "American Silver Eagle",
