@@ -4291,22 +4291,22 @@
   {
     "date": "2026-08-17",
     "observation_time_jst": "19:00",
-    "updated_at_utc": "2026-08-17T11:40:35+00:00",
-    "jpmi_ag_jpy_g": 362.34,
+    "updated_at_utc": "2026-08-17T11:59:46+00:00",
+    "jpmi_ag_jpy_g": 365.84,
     "rs_jpy_g": 357.02,
-    "db_jpy_g": 335.0,
+    "db_jpy_g": 345.5,
     "mspi_b_jpy_g": 395.0,
-    "comex_jpy_g": 335.91,
-    "comex_usd_oz": 65.7065,
+    "comex_jpy_g": 335.8,
+    "comex_usd_oz": 65.6856,
     "comex_usd_oz_source": "prices_json",
     "usd_jpy": 159.01,
-    "premium_pct": 7.87,
+    "premium_pct": 8.95,
     "components": {
       "tanaka_silver_buy": 353.87,
       "nihon_silver_buy": 358.05,
       "mitsubishi_silver_buy": 359.15,
       "daikichi_sv1000": 353.0,
-      "nanboya_sv1000": 317.0
+      "nanboya_sv1000": 338.0
     },
     "data_quality": {
       "has_rs": true,
