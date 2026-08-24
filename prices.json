@@ -9,9 +9,9 @@
     "comex_silver_jpy_g": 352.06,
     "nihon_silver_buy": 377.19,
     "nanboya_sv1000": 351.0,
-    "mercari_mspi_b": 395.0,
-    "mercari_mspi_b_listings": 1,
-    "mercari_mspi_b_avg_jpy": 12300
+    "mercari_mspi_b": 375.5,
+    "mercari_mspi_b_listings": 2,
+    "mercari_mspi_b_avg_jpy": 11700
   },
   "errors": [],
   "sources": {
@@ -23,11 +23,16 @@
   "comex_updated_at_utc": "2026-08-24T01:15:23+00:00",
   "mercari_listings": [
     {
-      "coin": "Britannia",
-      "jpy": 12300,
-      "jpy_g": 395.0
+      "coin": "Austrian Philharmonic",
+      "jpy": 10900,
+      "jpy_g": 350.0
+    },
+    {
+      "coin": "Canadian Maple Leaf",
+      "jpy": 12500,
+      "jpy_g": 401.0
     }
   ],
-  "mspi_updated_at_utc": "2026-08-21T00:10:20+00:00",
-  "mspi_updated_date": "2026-08-21"
+  "mspi_updated_at_utc": "2026-08-24T02:27:12+00:00",
+  "mspi_updated_date": "2026-08-24"
 }
