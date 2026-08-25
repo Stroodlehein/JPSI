@@ -103,6 +103,12 @@ body{background:var(--bg);color:var(--ink);font-family:'DM Mono',monospace;font-
 .chart-legend{display:flex;gap:20px;margin-bottom:12px;font-size:0.68rem;color:var(--ink3);}
 .chart-legend-item{display:flex;align-items:center;gap:6px;}
 .chart-legend-dot{width:10px;height:3px;border-radius:2px;display:inline-block;}
+.history-access{margin-top:20px;border:1px solid var(--border2);border-left:4px solid var(--premium);background:linear-gradient(135deg,#fff 0%,#fdf8f4 100%);padding:22px 24px;display:grid;grid-template-columns:1fr auto;gap:24px;align-items:center;}
+.history-access-kicker{font-size:0.62rem;letter-spacing:0.16em;text-transform:uppercase;color:var(--premium);margin-bottom:7px;font-weight:500;}
+.history-access-title{font-family:'Playfair Display',Georgia,serif;font-size:1.25rem;font-weight:700;color:var(--ink);margin-bottom:7px;}
+.history-access-body{font-size:0.74rem;color:var(--ink3);line-height:1.75;max-width:590px;}
+.history-access-btn{display:inline-block;background:var(--ink);color:#fff;text-decoration:none;padding:11px 16px;font-size:0.68rem;letter-spacing:0.07em;text-transform:uppercase;white-space:nowrap;border:1px solid var(--ink);transition:all 0.15s;}
+.history-access-btn:hover{background:var(--premium);border-color:var(--premium);}
 .explainer{margin-bottom:40px;}
 .explainer-grid{display:grid;grid-template-columns:1fr 1fr;gap:20px;margin-bottom:20px;}
 .exp-card{border:1px solid var(--border);padding:20px 22px;background:var(--paper);}
@@ -140,6 +146,8 @@ body{background:var(--bg);color:var(--ink);font-family:'DM Mono',monospace;font-
   .ctx-cell{padding:12px 14px;}
   .explainer-grid{grid-template-columns:1fr;}
   .exp-card{padding:16px;}
+  .history-access{grid-template-columns:1fr;padding:18px 16px;gap:16px;}
+  .history-access-btn{text-align:center;width:100%;}
   .site-footer{grid-template-columns:1fr;}
   .footer-right{text-align:left;}
 }
@@ -249,6 +257,15 @@ body{background:var(--bg);color:var(--ink);font-family:'DM Mono',monospace;font-
     <div style="margin-top:8px;font-size:0.65rem;color:var(--ink4);line-height:1.6;">
       MSPI-B updated Mon–Fri on trading days. No update = no Mercari sales or market closed.
     </div>
+
+    <div class="history-access">
+      <div>
+        <div class="history-access-kicker" data-en="90-day public view" data-ja="公開版：直近90日">90-day public view</div>
+        <div class="history-access-title" data-en="Unlock the complete JPMI historical dataset" data-ja="JPMIの全履歴データを利用する">Unlock the complete JPMI historical dataset</div>
+        <div class="history-access-body" id="history-access-body" data-en="This chart displays the latest 90 days. Premium Intelligence includes the complete dataset from March 2026, downloadable CSV data and monthly analysis of Japan's physical silver market." data-ja="このチャートは直近90日間を表示しています。プレミアム・インテリジェンスでは、2026年3月以降の全データ、CSVダウンロード、日本の現物銀市場に関する月次分析をご利用いただけます。">This chart displays the latest 90 days. Premium Intelligence includes the complete dataset from March 2026, downloadable CSV data and monthly analysis of Japan's physical silver market.</div>
+      </div>
+      <a href="market-intelligence-preview.html" class="history-access-btn" data-en="Access Premium Intelligence →" data-ja="プレミアム情報を見る →">Access Premium Intelligence →</a>
+    </div>
   </div>
 
   <div class="explainer">
@@ -289,6 +306,7 @@ body{background:var(--bg);color:var(--ink);font-family:'DM Mono',monospace;font-
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.js"></script>
 <script>
 const OZ_TO_G = 31.1035;
+const PUBLIC_CHART_DAYS = 90;
 let _chartPrice = null;
 let _chartPrem = null;
 
@@ -381,7 +399,7 @@ function drawCharts(history) {
     }
   });
 
-  const daily = Object.values(byDay)
+  const allDaily = Object.values(byDay)
     .filter(d =>
       d.mspi_b_jpy_g !== undefined &&
       d.comex_usd !== undefined &&
@@ -389,7 +407,16 @@ function drawCharts(history) {
     )
     .sort((a, b) => a.t.localeCompare(b.t));
 
-  if (daily.length === 0) return;
+  if (allDaily.length === 0) return;
+
+  // Roll the public chart forward from the newest valid observation.
+  // Only the displayed records are filtered; prices-history.json remains intact.
+  const latestDate = new Date(allDaily[allDaily.length - 1].t);
+  latestDate.setUTCHours(0, 0, 0, 0);
+  const cutoffDate = new Date(latestDate);
+  cutoffDate.setUTCDate(cutoffDate.getUTCDate() - (PUBLIC_CHART_DAYS - 1));
+
+  const daily = allDaily.filter(d => new Date(d.t) >= cutoffDate);
 
   // Keep full daily labels for hover tooltips.
   // The x-axis itself only displays the month when a new month begins.
