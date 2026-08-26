@@ -9,9 +9,9 @@
     "comex_silver_jpy_g": 351.68,
     "nihon_silver_buy": 376.53,
     "nanboya_sv1000": 360.0,
-    "mercari_mspi_b": 429.33,
+    "mercari_mspi_b": 402.33,
     "mercari_mspi_b_listings": 3,
-    "mercari_mspi_b_avg_jpy": 13367
+    "mercari_mspi_b_avg_jpy": 12533
   },
   "errors": [
     "nihon: ConnectTimeout: HTTPSConnectionPool(host='material.co.jp', port=443): Max retries exceeded with url: /market.php (Caused by ConnectTimeoutError(<HTTPSConnection(host='material.co.jp', port=443) at 0x7fce2a8af810>, 'Connection to material.co.jp timed out. (connect timeout=30)'))",
@@ -31,16 +31,16 @@
       "jpy_g": 411.0
     },
     {
-      "coin": "Austrian Philharmonic",
-      "jpy": 12600,
-      "jpy_g": 405.0
+      "coin": "Canadian Maple Leaf",
+      "jpy": 13000,
+      "jpy_g": 417.0
     },
     {
-      "coin": "Austrian Philharmonic",
-      "jpy": 14700,
-      "jpy_g": 472.0
+      "coin": "Canadian Maple Leaf",
+      "jpy": 11800,
+      "jpy_g": 379.0
     }
   ],
-  "mspi_updated_at_utc": "2026-08-25T00:11:20+00:00",
-  "mspi_updated_date": "2026-08-25"
+  "mspi_updated_at_utc": "2026-08-26T00:33:49+00:00",
+  "mspi_updated_date": "2026-08-26"
 }
