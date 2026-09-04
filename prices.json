@@ -1,13 +1,13 @@
 {
-  "updated_at_utc": "2026-09-03T14:34:30+00:00",
+  "updated_at_utc": "2026-09-04T04:29:49+00:00",
   "prices_jpy_per_g": {
-    "tanaka_silver_buy": 350.46,
-    "mitsubishi_silver_buy": 358.05,
-    "daikichi_sv1000": 350.0,
+    "tanaka_silver_buy": 363.33,
+    "mitsubishi_silver_buy": 361.68,
+    "daikichi_sv1000": 352.0,
     "comex_silver_usd_oz": 67.115,
     "usd_jpy": 156.01,
     "comex_silver_jpy_g": 336.64,
-    "nihon_silver_buy": 357.28,
+    "nihon_silver_buy": 359.7,
     "nanboya_sv1000": 336.0,
     "mercari_mspi_b": 418.0,
     "mercari_mspi_b_listings": 2,
