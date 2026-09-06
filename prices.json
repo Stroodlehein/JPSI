@@ -4,9 +4,9 @@
     "tanaka_silver_buy": 359.15,
     "mitsubishi_silver_buy": 361.68,
     "daikichi_sv1000": 352.0,
-    "comex_silver_usd_oz": 66.2193,
+    "comex_silver_usd_oz": 66.0835,
     "usd_jpy": 156.25,
-    "comex_silver_jpy_g": 332.66,
+    "comex_silver_jpy_g": 331.97,
     "nihon_silver_buy": 359.7,
     "nanboya_sv1000": 338.0,
     "mercari_mspi_b": 418.0,
@@ -20,7 +20,7 @@
     "mitsubishi": "https://gold.mmc.co.jp/market/silver-price/",
     "daikichi": "https://www.kaitori-daikichi.jp/list/gold/silver/souba/"
   },
-  "comex_updated_at_utc": "2026-09-06T20:21:13+00:00",
+  "comex_updated_at_utc": "2026-09-06T22:13:11+00:00",
   "mercari_listings": [
     {
       "coin": "Australian Kangaroo",
