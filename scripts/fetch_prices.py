@@ -12,10 +12,11 @@ SOURCES = {
     "nihon": "https://material.co.jp/market.php",
     "mitsubishi": "https://gold.mmc.co.jp/market/silver-price/",
     "daikichi": "https://www.kaitori-daikichi.jp/list/gold/silver/souba/",
+    "nanboya": "https://nanboya.com/ajax/todays-prices.json",
 }
 
-# Nanboya removed from auto fetch
-MANUAL_KEYS = ["nanboya_sv1000"]
+# No dealer/refinery prices are manually managed.
+MANUAL_KEYS = []
 
 JPMI_HISTORY_FILE = "jpmi-history.json"
 JPMI_DAILY_OBSERVATION_HOUR_JST = 19  # Daily history rows are created/updated from 19:00 JST onward
@@ -27,6 +28,19 @@ def get_html(url, encoding=None):
     if encoding:
         r.encoding = encoding
     return r.text
+
+
+def get_json(url):
+    # Nanboya uses this public JSON file to populate its price table in the
+    # browser. A timestamp query avoids receiving an older CDN-cached response.
+    r = requests.get(
+        url,
+        headers={"User-Agent": UA, "Accept": "application/json"},
+        params={"_t": int(datetime.now(timezone.utc).timestamp())},
+        timeout=30,
+    )
+    r.raise_for_status()
+    return r.json()
 
 
 def safe_float(value):
@@ -174,6 +188,21 @@ def parse_daikichi(html):
             return val
 
     raise ValueError("Daikichi not found")
+
+
+# ---------------- Nanboya ----------------
+def parse_nanboya(data):
+    if not isinstance(data, dict):
+        raise ValueError("Nanboya response is not a JSON object")
+
+    # Use the exact SV1000 dealer quote shown in Nanboya's purity table.
+    # Do not use "silver-price", which is their separate ingot reference price.
+    value = safe_float(data.get("silver-sv1000-price"))
+
+    if is_valid_silver_price(value):
+        return value
+
+    raise ValueError("Nanboya silver-sv1000-price missing or invalid")
 
 
 def load_existing_prices():
@@ -381,6 +410,7 @@ def main():
         "nihon": parse_nihon,
         "mitsubishi": parse_mitsubishi,
         "daikichi": parse_daikichi,
+        "nanboya": parse_nanboya,
     }
 
     for name, url in SOURCES.items():
@@ -393,8 +423,11 @@ def main():
         )
 
         try:
-            html = get_html(url, encoding=encoding)
-            val = parsers[name](html)
+            if name == "nanboya":
+                val = parsers[name](get_json(url))
+            else:
+                html = get_html(url, encoding=encoding)
+                val = parsers[name](html)
 
             print(f"{name}: fetched {val}")
             set_price_or_keep_existing(out, key, val, name)
@@ -415,11 +448,10 @@ def main():
                 out["errors"].append(no_value_msg)
                 print(no_value_msg)
 
-    # Restore manual keys and manually managed data
+    # Restore manually managed Mercari, FX, and COMEX data.
     for k, v in preserved_prices.items():
         if (
             k.startswith("mercari")
-            or k == "nanboya_sv1000"
             or k == "usd_jpy"
             or k == "comex_silver_usd_oz"
             or k == "comex_silver_jpy_g"
