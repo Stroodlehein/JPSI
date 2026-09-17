@@ -9,9 +9,9 @@
     "comex_silver_jpy_g": 315.47,
     "nihon_silver_buy": 340.45,
     "nanboya_sv1000": 321.0,
-    "mercari_mspi_b": 369.0,
+    "mercari_mspi_b": 404.5,
     "mercari_mspi_b_listings": 2,
-    "mercari_mspi_b_avg_jpy": 11500
+    "mercari_mspi_b_avg_jpy": 12600
   },
   "errors": [],
   "sources": {
@@ -24,16 +24,16 @@
   "comex_updated_at_utc": "2026-09-16T23:53:24+00:00",
   "mercari_listings": [
     {
-      "coin": "Australian Kangaroo",
-      "jpy": 10000,
-      "jpy_g": 321.0
-    },
-    {
-      "coin": "Canadian Maple Leaf",
+      "coin": "Britannia",
       "jpy": 13000,
       "jpy_g": 417.0
+    },
+    {
+      "coin": "Britannia",
+      "jpy": 12201,
+      "jpy_g": 392.0
     }
   ],
-  "mspi_updated_at_utc": "2026-09-16T00:00:27+00:00",
-  "mspi_updated_date": "2026-09-16"
+  "mspi_updated_at_utc": "2026-09-17T00:02:31+00:00",
+  "mspi_updated_date": "2026-09-17"
 }
