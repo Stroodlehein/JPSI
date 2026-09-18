@@ -4,9 +4,9 @@
     "tanaka_silver_buy": 362.45,
     "mitsubishi_silver_buy": 356.29,
     "daikichi_sv1000": 351.0,
-    "comex_silver_usd_oz": 66.9203,
-    "usd_jpy": 155.69,
-    "comex_silver_jpy_g": 334.97,
+    "comex_silver_usd_oz": 66.2405,
+    "usd_jpy": 157.89,
+    "comex_silver_jpy_g": 336.26,
     "nihon_silver_buy": 353.65,
     "nanboya_sv1000": 333.0,
     "mercari_mspi_b": 410.0,
@@ -21,7 +21,7 @@
     "daikichi": "https://www.kaitori-daikichi.jp/list/gold/silver/souba/",
     "nanboya": "https://nanboya.com/ajax/todays-prices.json"
   },
-  "comex_updated_at_utc": "2026-09-18T11:46:54+00:00",
+  "comex_updated_at_utc": "2026-09-18T15:12:20+00:00",
   "mercari_listings": [
     {
       "coin": "Britannia",
