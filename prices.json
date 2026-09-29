@@ -9,9 +9,9 @@
     "comex_silver_jpy_g": 305.87,
     "nihon_silver_buy": 338.25,
     "nanboya_sv1000": 323.0,
-    "mercari_mspi_b": 386.5,
+    "mercari_mspi_b": 385.0,
     "mercari_mspi_b_listings": 2,
-    "mercari_mspi_b_avg_jpy": 12050
+    "mercari_mspi_b_avg_jpy": 12000
   },
   "errors": [],
   "sources": {
@@ -25,15 +25,15 @@
   "mercari_listings": [
     {
       "coin": "American Silver Eagle",
-      "jpy": 13000,
-      "jpy_g": 417.0
+      "jpy": 12000,
+      "jpy_g": 385.0
     },
     {
-      "coin": "Austrian Philharmonic",
-      "jpy": 11100,
-      "jpy_g": 356.0
+      "coin": "Britannia",
+      "jpy": 12000,
+      "jpy_g": 385.0
     }
   ],
-  "mspi_updated_at_utc": "2026-09-28T00:31:49+00:00",
-  "mspi_updated_date": "2026-09-28"
+  "mspi_updated_at_utc": "2026-09-29T00:01:08+00:00",
+  "mspi_updated_date": "2026-09-29"
 }
