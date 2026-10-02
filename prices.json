@@ -9,9 +9,9 @@
     "comex_silver_jpy_g": 309.78,
     "nihon_silver_buy": 326.59,
     "nanboya_sv1000": 309.0,
-    "mercari_mspi_b": 360.0,
+    "mercari_mspi_b": 388.5,
     "mercari_mspi_b_listings": 2,
-    "mercari_mspi_b_avg_jpy": 11208
+    "mercari_mspi_b_avg_jpy": 12100
   },
   "errors": [],
   "sources": {
@@ -25,15 +25,15 @@
   "mercari_listings": [
     {
       "coin": "American Silver Eagle",
-      "jpy": 11858,
-      "jpy_g": 381.0
+      "jpy": 12200,
+      "jpy_g": 392.0
     },
     {
-      "coin": "Mexican Libertad",
-      "jpy": 10558,
-      "jpy_g": 339.0
+      "coin": "Britannia",
+      "jpy": 12000,
+      "jpy_g": 385.0
     }
   ],
-  "mspi_updated_at_utc": "2026-10-01T00:00:28+00:00",
-  "mspi_updated_date": "2026-10-01"
+  "mspi_updated_at_utc": "2026-10-02T00:01:21+00:00",
+  "mspi_updated_date": "2026-10-02"
 }
