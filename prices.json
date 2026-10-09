@@ -9,9 +9,9 @@
     "comex_silver_jpy_g": 303.05,
     "nihon_silver_buy": 325.49,
     "nanboya_sv1000": 307.0,
-    "mercari_mspi_b": 402.0,
+    "mercari_mspi_b": 405.0,
     "mercari_mspi_b_listings": 1,
-    "mercari_mspi_b_avg_jpy": 12500
+    "mercari_mspi_b_avg_jpy": 12600
   },
   "errors": [],
   "sources": {
@@ -24,11 +24,11 @@
   "comex_updated_at_utc": "2026-10-08T23:59:25+00:00",
   "mercari_listings": [
     {
-      "coin": "Australian Kangaroo",
-      "jpy": 12500,
-      "jpy_g": 402.0
+      "coin": "Austrian Philharmonic",
+      "jpy": 12600,
+      "jpy_g": 405.0
     }
   ],
-  "mspi_updated_at_utc": "2026-10-07T23:53:23+00:00",
-  "mspi_updated_date": "2026-10-07"
+  "mspi_updated_at_utc": "2026-10-09T00:20:55+00:00",
+  "mspi_updated_date": "2026-10-09"
 }
