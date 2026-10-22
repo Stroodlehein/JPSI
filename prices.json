@@ -1,5 +1,5 @@
 {
-  "updated_at_utc": "2026-10-22T04:40:29+00:00",
+  "updated_at_utc": "2026-10-22T10:06:08+00:00",
   "prices_jpy_per_g": {
     "tanaka_silver_buy": 304.26,
     "mitsubishi_silver_buy": 307.23,
@@ -8,16 +8,14 @@
     "usd_jpy": 157.88,
     "comex_silver_jpy_g": 283.72,
     "nihon_silver_buy": 305.91,
-    "nanboya_sv1000": 299.0,
+    "nanboya_sv1000": 295.0,
     "mercari_mspi_b": 405.0,
     "mercari_mspi_b_listings": 1,
     "mercari_mspi_b_avg_jpy": 12600
   },
   "errors": [
     "tanaka: HTTPError: 504 Server Error: Gateway Time-out for url: https://gold.tanaka.co.jp/commodity/souba/english/index.php",
-    "tanaka: kept previous valid value 304.26",
-    "nanboya: HTTPError: 503 Server Error: Service Temporarily Unavailable for url: https://nanboya.com/ajax/todays-prices.json?_t=1792644054",
-    "nanboya: kept previous valid value 299.0"
+    "tanaka: kept previous valid value 304.26"
   ],
   "sources": {
     "tanaka": "https://gold.tanaka.co.jp/commodity/souba/english/index.php",
