@@ -1,5 +1,5 @@
 {
-  "updated_at_utc": "2026-10-22T10:09:06+00:00",
+  "updated_at_utc": "2026-10-22T15:16:23+00:00",
   "prices_jpy_per_g": {
     "tanaka_silver_buy": 304.26,
     "mitsubishi_silver_buy": 307.23,
@@ -14,7 +14,7 @@
     "mercari_mspi_b_avg_jpy": 12600
   },
   "errors": [
-    "tanaka: HTTPError: 504 Server Error: Gateway Time-out for url: https://gold.tanaka.co.jp/commodity/souba/english/index.php",
+    "tanaka: HTTPError: 503 Server Error: Service Unavailable for url: https://gold.tanaka.co.jp/commodity/souba/english/index.php",
     "tanaka: kept previous valid value 304.26"
   ],
   "sources": {
