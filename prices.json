@@ -9,9 +9,9 @@
     "comex_silver_jpy_g": 263.9,
     "nihon_silver_buy": 292.05,
     "nanboya_sv1000": 273.0,
-    "mercari_mspi_b": 353.5,
+    "mercari_mspi_b": 347.0,
     "mercari_mspi_b_listings": 2,
-    "mercari_mspi_b_avg_jpy": 11000
+    "mercari_mspi_b_avg_jpy": 10806
   },
   "errors": [
     "tanaka: HTTPError: 503 Server Error: Service Unavailable for url: https://gold.tanaka.co.jp/commodity/souba/english/index.php",
@@ -30,15 +30,15 @@
   "mercari_listings": [
     {
       "coin": "American Silver Eagle",
-      "jpy": 11500,
-      "jpy_g": 370.0
+      "jpy": 11111,
+      "jpy_g": 357.0
     },
     {
-      "coin": "Canadian Maple Leaf",
+      "coin": "American Silver Eagle",
       "jpy": 10500,
       "jpy_g": 337.0
     }
   ],
-  "mspi_updated_at_utc": "2026-10-29T00:00:13+00:00",
-  "mspi_updated_date": "2026-10-29"
+  "mspi_updated_at_utc": "2026-10-30T00:01:45+00:00",
+  "mspi_updated_date": "2026-10-30"
 }
