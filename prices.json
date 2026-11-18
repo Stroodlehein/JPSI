@@ -1,5 +1,5 @@
 {
-  "updated_at_utc": "2026-11-18T17:13:51+00:00",
+  "updated_at_utc": "2026-11-18T18:50:51+00:00",
   "prices_jpy_per_g": {
     "tanaka_silver_buy": 241.78,
     "mitsubishi_silver_buy": 259.27,
@@ -13,7 +13,10 @@
     "mercari_mspi_b_listings": 2,
     "mercari_mspi_b_avg_jpy": 9990
   },
-  "errors": [],
+  "errors": [
+    "mitsubishi: ConnectionError: ('Connection aborted.', ConnectionResetError(104, 'Connection reset by peer'))",
+    "mitsubishi: kept previous valid value 259.27"
+  ],
   "sources": {
     "tanaka": "https://gold.tanaka.co.jp/commodity/souba/english/index.php",
     "nihon": "https://material.co.jp/market.php",
