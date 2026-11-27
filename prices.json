@@ -9,9 +9,9 @@
     "comex_silver_jpy_g": 212.7,
     "nihon_silver_buy": 227.15,
     "nanboya_sv1000": 211.0,
-    "mercari_mspi_b": 288.25,
-    "mercari_mspi_b_listings": 4,
-    "mercari_mspi_b_avg_jpy": 8980
+    "mercari_mspi_b": 288.0,
+    "mercari_mspi_b_listings": 3,
+    "mercari_mspi_b_avg_jpy": 8967
   },
   "errors": [
     "mitsubishi: HTTPError: 503 Server Error: Service Unavailable for url: https://gold.mmc.co.jp/market/silver-price/",
@@ -27,26 +27,21 @@
   "comex_updated_at_utc": "2026-11-26T21:43:34+00:00",
   "mercari_listings": [
     {
-      "coin": "Britannia",
-      "jpy": 9140,
-      "jpy_g": 293.0
+      "coin": "American Silver Eagle",
+      "jpy": 8000,
+      "jpy_g": 257.0
     },
     {
-      "coin": "Britannia",
-      "jpy": 9280,
-      "jpy_g": 298.0
-    },
-    {
-      "coin": "Austrian Philharmonic",
-      "jpy": 8700,
-      "jpy_g": 279.0
+      "coin": "Canadian Maple Leaf",
+      "jpy": 10500,
+      "jpy_g": 337.0
     },
     {
       "coin": "Austrian Philharmonic",
-      "jpy": 8800,
-      "jpy_g": 283.0
+      "jpy": 8400,
+      "jpy_g": 270.0
     }
   ],
-  "mspi_updated_at_utc": "2026-11-26T00:02:45+00:00",
-  "mspi_updated_date": "2026-11-26"
+  "mspi_updated_at_utc": "2026-11-27T00:04:15+00:00",
+  "mspi_updated_date": "2026-11-27"
 }
