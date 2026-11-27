@@ -1,22 +1,19 @@
 {
-  "updated_at_utc": "2026-11-26T19:36:44+00:00",
+  "updated_at_utc": "2026-11-27T08:24:12+00:00",
   "prices_jpy_per_g": {
-    "tanaka_silver_buy": 217.25,
-    "mitsubishi_silver_buy": 247.5,
-    "daikichi_sv1000": 223.0,
+    "tanaka_silver_buy": 231.88,
+    "mitsubishi_silver_buy": 234.52,
+    "daikichi_sv1000": 231.0,
     "comex_silver_usd_oz": 43.595,
     "usd_jpy": 159.26,
     "comex_silver_jpy_g": 223.22,
-    "nihon_silver_buy": 227.15,
-    "nanboya_sv1000": 211.0,
+    "nihon_silver_buy": 228.25,
+    "nanboya_sv1000": 212.0,
     "mercari_mspi_b": 288.0,
     "mercari_mspi_b_listings": 3,
     "mercari_mspi_b_avg_jpy": 8967
   },
-  "errors": [
-    "mitsubishi: HTTPError: 503 Server Error: Service Unavailable for url: https://gold.mmc.co.jp/market/silver-price/",
-    "mitsubishi: kept previous valid value 247.5"
-  ],
+  "errors": [],
   "sources": {
     "tanaka": "https://gold.tanaka.co.jp/commodity/souba/english/index.php",
     "nihon": "https://material.co.jp/market.php",
